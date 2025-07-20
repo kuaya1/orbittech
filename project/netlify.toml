@@ -1,6 +1,6 @@
 [build]
   publish = "dist"
-  command = "npm run build"
+  command = "npm install && npm run build"
 
 [[redirects]]
   from = "/*"
@@ -9,6 +9,7 @@
 
 [build.environment]
   NODE_VERSION = "18"
+  NPM_FLAGS = "--legacy-peer-deps"
 
 [[headers]]
   for = "/assets/*"
@@ -18,22 +19,22 @@
 [[headers]]
   for = "*.js"
   [headers.values]
-    Content-Type = "application/javascript; charset=utf-8"
+    Content-Type = "text/javascript; charset=utf-8"
 
 [[headers]]
   for = "*.mjs"
   [headers.values]
-    Content-Type = "application/javascript; charset=utf-8"
+    Content-Type = "text/javascript; charset=utf-8"
 
 [[headers]]
   for = "*.tsx"
   [headers.values]
-    Content-Type = "application/javascript; charset=utf-8"
+    Content-Type = "text/javascript; charset=utf-8"
 
 [[headers]]
   for = "*.ts"
   [headers.values]
-    Content-Type = "application/javascript; charset=utf-8"
+    Content-Type = "text/javascript; charset=utf-8"
 
 [[headers]]
   for = "*.png"
@@ -49,3 +50,8 @@
   for = "*.webp"
   [headers.values]
     Content-Type = "image/webp"
+
+[[headers]]
+  for = "*.css"
+  [headers.values]
+    Content-Type = "text/css; charset=utf-8"
