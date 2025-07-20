@@ -28,13 +28,15 @@ const Footer = () => {
             
             {/* Contact information - minimal design */}
             <div className="space-y-4">
-                              href="tel:+15719996915" 
+              <a 
+                href="tel:+15719996915" 
                 className="text-white/80 hover:text-white transition-colors font-medium flex items-center group"
               >
                 <div className="mr-3 p-2 bg-white/10 rounded-full group-hover:bg-white/20 transition-all duration-300">
                   📞
                 </div>
                 (571) 999-6915
+              </a>
               <a 
                 href="mailto:contact@orbittec.net" 
                 className="block text-white/95 hover:text-white transition-colors duration-200 font-normal"
