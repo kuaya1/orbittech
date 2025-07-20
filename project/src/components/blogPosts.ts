@@ -10,7 +10,7 @@ const blogPosts: BlogPost[] = [
     readTime: 6,
     author: {
       name: "Spacelink",
-      image: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&h=150&q=80",
+      image: "https://www.flickr.com/photo_download.gne?id=54668057968&secret=401e1aa675&size=l&source=photoPageEngagement",
       role: "Technology Analyst"
     },
     content: `# Revolutionizing Internet Connectivity: A Deep Dive into Starlink's Cutting-Edge Technology
@@ -98,7 +98,7 @@ Or download our **[Free Starlink Readiness Assessment Guide](#)** to learn if St
     readTime: 5,
     author: {
       name: "John Smith",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=150&h=150&q=80",
+      image: "https://www.flickr.com/photo_download.gne?id=54667002422&secret=2c19521cca&size=l&source=photoPageEngagement",
       role: "Starlink Installation Expert"
     },
     content: `# A Beginner's Guide to Starlink Installation
@@ -146,7 +146,7 @@ With these simple steps, you’ll be enjoying high-speed internet from Starlink 
     readTime: 7,
     author: {
       name: "Sarah Johnson",
-      image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?auto=format&fit=crop&w=150&h=150&q=80",
+      image: "https://www.flickr.com/photo_download.gne?id=54667833431&secret=a20c5d88b6&size=l&source=photoPageEngagement",
       role: "Satellite Technology Expert"
     },
     content: `# Amazon Kuiper: The Next Frontier in Satellite Internet
