@@ -82,7 +82,7 @@ As professional installers, we're preparing to support both platforms, ensuring 
     id: "ultimate-starlink-installation-guide-dmv-homeowners",
     title: "The Ultimate Starlink Installation Guide for DMV Homeowners",
     excerpt: "Everything you need to know about a successful Starlink installation in our region, from site surveys to weatherproofing for Mid-Atlantic conditions.",
-    coverImage: "https://images.unsplash.com/photo-1465056836041-7f43ac27dcb5?auto=format&fit=crop&w=2000&q=80",
+    coverImage: "https://www.flickr.com/photo_download.gne?id=54667833431&secret=a20c5d88b6&size=l&source=photoPageEngagement",
     date: "2025-07-18",
     readTime: 12,
     author: {
