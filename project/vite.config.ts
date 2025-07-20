@@ -24,7 +24,13 @@ export default defineConfig({
         manualChunks: {
           vendor: ['react', 'react-dom'],
         },
-        assetFileNames: 'assets/[name].[hash][extname]',
+        assetFileNames: (assetInfo) => {
+          if (!assetInfo.name) return `assets/[name].[hash][extname]`;
+          if (/\.(css)$/.test(assetInfo.name)) {
+            return `assets/[name].[hash].css`;
+          }
+          return `assets/[name].[hash][extname]`;
+        },
         chunkFileNames: 'assets/[name].[hash].js',
         entryFileNames: 'assets/[name].[hash].js',
       },
@@ -32,6 +38,7 @@ export default defineConfig({
     minify: 'terser',
     reportCompressedSize: true,
     sourcemap: false,
+    target: 'es2015',
   },
   server: {
     port: 3001,
