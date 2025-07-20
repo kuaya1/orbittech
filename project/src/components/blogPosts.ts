@@ -5,7 +5,7 @@ const blogPosts: BlogPost[] = [
     id: "how-starlink-connects",
     title: "How Does Starlink Connect to the Internet?",
     excerpt: "Discover the revolutionary technology behind Starlink's satellite internet service and how it delivers high-speed connectivity across the globe.",
-    coverImage: "/satellite-network-earth.jpg",
+    coverImage: "/Starlink Dmv (22).png",
     date: "2023-07-18T10:00:00Z",
     readTime: 6,
     author: {
@@ -93,7 +93,7 @@ Or download our **[Free Starlink Readiness Assessment Guide](#)** to learn if St
     id: "starlink-installation-guide",
     title: "A Beginner's Guide to Starlink Installation",
     excerpt: "Learn how to set up your Starlink kit with this step-by-step installation guide, perfect for beginners and tech enthusiasts alike.",
-    coverImage: "/starlink-dish-installation.jpg",
+    coverImage: "/Starlink Dmv (23).png",
     date: "2024-03-15",
     readTime: 5,
     author: {
@@ -141,7 +141,7 @@ With these simple steps, you’ll be enjoying high-speed internet from Starlink 
     id: "amazon-kuiper-future-satellite-internet",
     title: "Amazon Kuiper: The Future of Satellite Internet Competition",
     excerpt: "Explore Amazon's ambitious Project Kuiper and how it plans to compete with Starlink in the satellite internet market.",
-    coverImage: "/earth-satellite-orbit.jpg",
+    coverImage: "/Untitled design (16).png",
     date: "2024-06-10",
     readTime: 7,
     author: {
