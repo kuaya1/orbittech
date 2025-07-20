@@ -12,4 +12,6 @@ export interface BlogPost {
   date: string;
   readTime: number;
   tags: string[];
+  metaDescription?: string;
+  metaKeywords?: string;
 }
