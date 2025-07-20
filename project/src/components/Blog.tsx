@@ -18,7 +18,7 @@ const Blog = () => {
   console.log("Found post:", currentPost);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-black">
       {currentPost ? (
         <>
           <SEOMetadata 
@@ -35,7 +35,7 @@ const Blog = () => {
         <>
           <SEOMetadata 
             title="Blog & Resources"
-            description="Expert advice on Starlink satellite internet installation, troubleshooting, and optimization from Spacelink's professional technicians."
+            description="Expert advice on Starlink satellite internet installation, troubleshooting, and optimization from The Orbit Tech's professional technicians."
             keywords="Starlink blog, satellite internet resources, Starlink installation guides, professional Starlink setup"
             ogImage="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=1200&q=80"
           />

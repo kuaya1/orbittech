@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { BlogPost as BlogPostType } from '../types/blog';
-import { Calendar, Clock, ArrowLeft, Tag, MessageCircle, Download, ArrowRight } from 'lucide-react';
+import { Calendar, Clock, ArrowLeft, Tag, MessageCircle, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import {
   FacebookShareButton,
@@ -56,12 +56,12 @@ const BlogPost: React.FC<BlogPostProps> = ({ post }) => {
   
   if (!post) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center bg-black">
         <div className="text-center">
-          <h1 className="text-2xl font-bold mb-4">Post not found</h1>
+          <h1 className="text-2xl font-bold mb-4 text-white">Post not found</h1>
           <Link 
             to="/blog" 
-            className="inline-flex items-center text-blue-600 font-medium hover:text-blue-800 transition-colors"
+            className="inline-flex items-center text-white/80 font-medium hover:text-white transition-colors"
           >
             <ArrowLeft className="h-4 w-4 mr-2" />
             Back to all articles
@@ -90,7 +90,7 @@ const BlogPost: React.FC<BlogPostProps> = ({ post }) => {
   ).filter(Boolean) || [];
 
   return (
-    <article className="min-h-screen">
+    <article className="min-h-screen bg-black">
       {/* Hero Section */}
       <div className="relative h-[450px] mb-12">
         <div className="absolute inset-0">
@@ -141,7 +141,7 @@ const BlogPost: React.FC<BlogPostProps> = ({ post }) => {
                 {post.tags.map((tag) => (
                   <span 
                     key={tag} 
-                    className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-blue-600/70 text-white"
+                    className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-white/20 text-white border border-white/30"
                   >
                     <Tag className="h-3 w-3 mr-1" />
                     {tag}
@@ -169,17 +169,17 @@ const BlogPost: React.FC<BlogPostProps> = ({ post }) => {
       </div>
 
       <div className="container mx-auto px-4 pb-16">
-        <div className="max-w-3xl mx-auto bg-white rounded-xl shadow-sm p-8">
+        <div className="max-w-3xl mx-auto bg-black border border-neutral-800 rounded-xl shadow-2xl p-8">
           {/* Table of Contents - if available */}
           {post.tableOfContents && (
-            <div className="bg-gray-50 p-5 rounded-lg mb-8">
-              <h2 className="font-semibold text-lg mb-3">Table of Contents</h2>
+            <div className="bg-neutral-900 border border-neutral-700 p-5 rounded-lg mb-8">
+              <h2 className="font-semibold text-lg mb-3 text-white">Table of Contents</h2>
               <ul className="space-y-2">
                 {post.tableOfContents.map(item => (
                   <li key={item.anchor}>
                     <a 
                       href={`#${item.anchor}`}
-                      className="text-blue-600 hover:underline flex items-center"
+                      className="text-white/80 hover:text-white hover:underline flex items-center transition-colors"
                     >
                       <ArrowRight className="h-3 w-3 mr-2" />
                       {item.title}
@@ -190,19 +190,19 @@ const BlogPost: React.FC<BlogPostProps> = ({ post }) => {
             </div>
           )}
           
-          <div className="prose prose-lg max-w-none">
-            <ReactMarkdown className="prose prose-lg prose-headings:font-semibold prose-h2:text-2xl prose-h2:mt-8 prose-h2:mb-4 prose-p:mb-6 prose-p:text-gray-700 prose-p:leading-relaxed">
+          <div className="prose prose-lg max-w-none prose-invert">
+            <ReactMarkdown className="prose prose-lg prose-invert prose-headings:font-semibold prose-h2:text-2xl prose-h2:mt-8 prose-h2:mb-4 prose-p:mb-6 prose-p:text-white/80 prose-p:leading-relaxed prose-headings:text-white prose-strong:text-white prose-li:text-white/80">
               {post.content}
             </ReactMarkdown>
           </div>
           
           {/* Call to Action */}
           {post.callToAction && (
-            <div className="my-12 p-6 bg-blue-50 rounded-xl border border-blue-100">
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">{post.callToAction.text}</h3>
+            <div className="my-12 p-6 bg-neutral-900 border border-neutral-700 rounded-xl">
+              <h3 className="text-xl font-semibold text-white mb-3">{post.callToAction.text}</h3>
               <Link 
                 to={post.callToAction.url} 
-                className="inline-block mt-2 px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
+                className="inline-block mt-2 px-6 py-3 bg-white text-black font-medium rounded-lg hover:bg-neutral-200 transition-colors uppercase tracking-wider"
               >
                 {post.callToAction.buttonText}
               </Link>
@@ -211,29 +211,28 @@ const BlogPost: React.FC<BlogPostProps> = ({ post }) => {
           
           {/* Default CTA if none provided */}
           {!post.callToAction && (
-            <div className="my-12 p-6 bg-blue-50 rounded-xl border border-blue-100">
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Ready for reliable Starlink internet?</h3>
-              <p className="mb-4">Our expert team can help with professional installation and setup.</p>
+            <div className="my-12 p-6 bg-neutral-900 border border-neutral-700 rounded-xl">
+              <h3 className="text-xl font-semibold text-white mb-3">Ready for reliable Starlink internet?</h3>
+              <p className="mb-4 text-white/80">Our expert team can help with professional installation and setup.</p>
               <div className="flex flex-wrap gap-4">
                 <Link 
                   to="/contact" 
-                  className="inline-block px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
+                  className="inline-block px-6 py-3 bg-white text-black font-medium rounded-lg hover:bg-neutral-200 transition-colors uppercase tracking-wider"
                 >
                   Get a Free Quote
                 </Link>
-                <Link 
-                  to="/resources/checklist" 
-                  className="inline-flex items-center px-6 py-3 border border-blue-600 text-blue-600 font-medium rounded-lg hover:bg-blue-50 transition-colors"
+                <a 
+                  href="tel:5719996915" 
+                  className="inline-flex items-center px-6 py-3 border border-neutral-600 text-white font-medium rounded-lg hover:bg-neutral-800 hover:border-neutral-500 transition-colors uppercase tracking-wider"
                 >
-                  <Download className="h-4 w-4 mr-2" />
-                  Download Pre-Installation Guide
-                </Link>
+                  Call (571) 999-6915
+                </a>
               </div>
             </div>
           )}
 
           {/* Author Info */}
-          <div className="border-t border-gray-200 mt-12 pt-8">
+          <div className="border-t border-neutral-800 mt-12 pt-8">
             <div className="flex items-center">
               <img
                 src={post.author.image}
@@ -241,8 +240,8 @@ const BlogPost: React.FC<BlogPostProps> = ({ post }) => {
                 className="w-16 h-16 rounded-full mr-4"
               />
               <div>
-                <h3 className="font-semibold text-gray-900 text-lg">{post.author.name}</h3>
-                <p className="text-gray-600">{post.author.role}</p>
+                <h3 className="font-semibold text-white text-lg">{post.author.name}</h3>
+                <p className="text-white/60">{post.author.role}</p>
               </div>
             </div>
           </div>
@@ -276,20 +275,20 @@ const BlogPost: React.FC<BlogPostProps> = ({ post }) => {
           
           {/* Related Posts Section */}
           {relatedPosts.length > 0 && (
-            <div className="mt-12 pt-8 border-t border-gray-200">
-              <h3 className="font-semibold text-xl mb-6">Related Articles</h3>
+            <div className="mt-12 pt-8 border-t border-neutral-800">
+              <h3 className="font-semibold text-xl mb-6 text-white">Related Articles</h3>
               <div className="grid md:grid-cols-2 gap-6">
-                {relatedPosts.map(relatedPost => (
+                {relatedPosts.map(relatedPost => relatedPost && (
                   <Link 
                     to={`/blog?post=${relatedPost.id}`}
                     key={relatedPost.id}
-                    className="group flex flex-col h-full bg-gray-50 rounded-lg p-5 hover:bg-gray-100 transition-colors"
+                    className="group flex flex-col h-full bg-neutral-900 border border-neutral-700 rounded-lg p-5 hover:bg-neutral-800 hover:border-neutral-600 transition-colors"
                   >
-                    <h4 className="font-medium text-gray-900 group-hover:text-blue-600 mb-2 transition-colors">
+                    <h4 className="font-medium text-white group-hover:text-white/90 mb-2 transition-colors">
                       {relatedPost.title}
                     </h4>
-                    <p className="text-sm text-gray-600 mb-3 flex-grow">{relatedPost.excerpt.substring(0, 80)}...</p>
-                    <div className="flex items-center text-blue-600 text-sm mt-auto">
+                    <p className="text-sm text-white/60 mb-3 flex-grow">{relatedPost.excerpt.substring(0, 80)}...</p>
+                    <div className="flex items-center text-white/80 text-sm mt-auto">
                       Read article
                       <ArrowRight className="ml-1 h-3 w-3 transition-transform group-hover:translate-x-1" />
                     </div>

@@ -14,4 +14,14 @@ export interface BlogPost {
   tags: string[];
   metaDescription?: string;
   metaKeywords?: string;
+  tableOfContents?: {
+    title: string;
+    anchor: string;
+  }[];
+  callToAction?: {
+    text: string;
+    url: string;
+    buttonText: string;
+  };
+  relatedPosts?: string[];
 }
