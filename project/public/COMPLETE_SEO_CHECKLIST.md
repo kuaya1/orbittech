@@ -178,7 +178,7 @@ server {
   "@type": "LocalBusiness",
   "name": "The Orbit Tech",
   "description": "Professional Starlink & Amazon Kuiper installation services",
-  "telephone": "+1-571-376-8077",
+  "telephone": "+1-571-999-6915",
   "priceRange": "$$",
   "paymentAccepted": "Cash, Check, Credit Card",
   "openingHours": "Mo-Fr 08:00-18:00, Sa 09:00-17:00"
