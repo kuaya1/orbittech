@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" width="56" height="56">
+  <defs>
+    <!-- Subtle shadow for depth -->
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Black background -->
+  <rect x="0" y="0" width="56" height="56" rx="12" ry="12" 
+        fill="#000000" 
+        filter="url(#shadow)"
+        stroke="rgba(255, 255, 255, 0.1)" 
+        stroke-width="1"/>
+  
+  <!-- Logo Image -->
+  <image x="4" y="4" width="48" height="48" 
+         href="https://www.flickr.com/photo_download.gne?id=54630065910&secret=2bffd754f3&size=c&source=photoPageEngagement"
+         style="border-radius: 8px;"
+         preserveAspectRatio="xMidYMid meet"/>
+</svg>

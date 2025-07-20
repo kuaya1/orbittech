@@ -1,0 +1,47 @@
+User-agent: *
+Allow: /
+
+# Disallow admin and private areas
+Disallow: /admin/
+Disallow: /private/
+Disallow: /.well-known/
+Disallow: /api/
+Disallow: /wp-admin/
+Disallow: /wp-includes/
+
+# Preferred domain
+Host: www.theorbittech.com
+
+# Sitemap location
+Sitemap: https://www.theorbittech.com/sitemap.xml
+
+# Crawl delay for respectful crawling
+Crawl-delay: 1
+
+# Important pages for search engines
+Allow: /about/
+Allow: /services/
+Allow: /service-areas/
+Allow: /service-areas/northern-virginia/
+Allow: /service-areas/washington-dc/
+Allow: /testimonials/
+Allow: /faq/
+Allow: /blog/
+Allow: /contact/
+
+# Allow all image and media assets
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.svg
+Allow: /*.webp
+Allow: /*.gif
+Allow: /*.css
+Allow: /*.js
+
+# Block sensitive files
+Disallow: /*.json$
+Disallow: /*.log$
+Disallow: /package.json
+Disallow: /yarn.lock
+Disallow: /node_modules/

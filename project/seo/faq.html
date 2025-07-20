@@ -1,0 +1,2030 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starlink Installation FAQ | DMV Area | Common Questions Answered</title>
+    <meta name="description" content="Get expert answers to Starlink installation questions in DC, Maryland & Virginia. Learn about costs, equipment, timelines, and service areas. Professional installation FAQ guide." />
+    <meta name="keywords" content="starlink installation FAQ, starlink questions DMV, starlink cost DC Maryland Virginia, starlink equipment installation, satellite internet FAQ, starlink installation timeline">
+    
+    <!-- Local Business Information -->
+    <meta name="geo.region" content="US-DC">
+    <meta name="geo.region" content="US-MD">
+    <meta name="geo.region" content="US-VA">
+    <meta name="geo.placename" content="Washington DC, Maryland, Virginia">
+    <meta name="geo.position" content="38.9072;-77.0369">
+    <meta name="ICBM" content="38.9072, -77.0369">
+    <!-- Include your CSS files here -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #3b82f6;
+            --secondary-color: #f8fafc;
+            --accent-color: #0ea5e9;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --border-color: #e2e8f0;
+            --success-color: #10b981;
+            --gradient-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --card-shadow-hover: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: #ffffff;
+        }
+
+        .faq-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--gradient-bg);
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            border-radius: 0 0 50px 50px;
+            margin-bottom: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero h1 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            font-weight: 400;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Navigation Section */
+        .faq-navigation {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 60px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        .faq-navigation h2 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .faq-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .faq-categories a {
+            display: flex;
+            align-items: center;
+            padding: 20px 25px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            color: white;
+            text-decoration: none;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .faq-categories a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .faq-categories a:hover::before {
+            left: 100%;
+        }
+
+        .faq-categories a:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--card-shadow-hover);
+        }
+
+        .faq-categories a::after {
+            content: '→';
+            margin-left: auto;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-categories a:hover::after {
+            transform: translateX(5px);
+        }
+
+        /* Category Sections */
+        .faq-category {
+            margin-bottom: 80px;
+        }
+
+        .category-title {
+            font-family: 'Manrope', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 40px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .category-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 6px;
+            background: var(--gradient-bg);
+            border-radius: 3px;
+        }
+
+        /* FAQ Items */
+        .faq-item {
+            background: white;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            border: 2px solid var(--border-color);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .faq-item:hover {
+            border-color: var(--primary-light);
+            box-shadow: var(--card-shadow-hover);
+            transform: translateY(-2px);
+        }
+
+        .faq-item h3 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            padding: 30px 35px;
+            margin: 0;
+            cursor: pointer;
+            position: relative;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            transition: all 0.3s ease;
+        }
+
+        .faq-item h3::after {
+            content: '\f067';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 35px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .faq-item.active h3::after {
+            content: '\f068';
+            transform: translateY(-50%) rotate(180deg);
+        }
+
+        .faq-item.active h3 {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            color: white;
+        }
+
+        .answer {
+            padding: 0 35px 35px 35px;
+            max-height: none;
+            overflow: visible;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            display: block;
+        }
+
+        .faq-item.collapsed .answer {
+            padding: 0 35px;
+            max-height: 0;
+            overflow: hidden;
+        }
+
+        .faq-item.active .answer {
+            padding: 0 35px 35px 35px;
+            max-height: none;
+            overflow: visible;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .answer p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+        }
+
+        .answer ul {
+            margin: 20px 0;
+            padding-left: 0;
+            list-style: none;
+        }
+
+        .answer li {
+            position: relative;
+            padding: 12px 0 12px 35px;
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .answer li:last-child {
+            border-bottom: none;
+        }
+
+        .answer li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 12px;
+            color: var(--success-color);
+            font-size: 0.9rem;
+        }
+
+        .answer strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: var(--gradient-bg);
+            color: white;
+            text-align: center;
+            padding: 60px 40px;
+            border-radius: 25px;
+            margin: 80px 0 60px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(-50px, -50px) rotate(360deg); }
+        }
+
+        .cta h2 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-button, .cta-phone {
+            padding: 18px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cta-button {
+            background: white;
+            color: var(--primary-color);
+            border: 2px solid white;
+        }
+
+        .cta-button:hover {
+            background: transparent;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .cta-phone {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .cta-phone:hover {
+            background: white;
+            color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        /* Related Resources */
+        .related-resources {
+            background: var(--secondary-color);
+            padding: 50px 40px;
+            border-radius: 20px;
+            margin-bottom: 60px;
+        }
+
+        .related-resources h2 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--text-primary);
+        }
+
+        .resource-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .resource-links a {
+            background: white;
+            padding: 25px 30px;
+            border-radius: 15px;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .resource-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-bg);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .resource-links a:hover::before {
+            left: 0;
+        }
+
+        .resource-links a:hover {
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: var(--card-shadow-hover);
+            border-color: transparent;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .category-title {
+                font-size: 2rem;
+            }
+
+            .faq-item h3 {
+                font-size: 1.1rem;
+                padding: 25px 25px;
+            }
+
+            .faq-item h3::after {
+                right: 25px;
+            }
+
+            .answer {
+                padding: 0 25px 25px 25px;
+            }
+
+            .faq-categories {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .resource-links {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Focus States for Accessibility */
+        .faq-item h3:focus,
+        .faq-categories a:focus,
+        .cta-button:focus,
+        .cta-phone:focus {
+            outline: 3px solid var(--accent-color);
+            outline-offset: 3px;
+        }
+    </style>
+    
+    <!-- FAQ Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is your standard Starlink installation fee?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Our standard installation fee starts at $299 for basic residential installations in the DMV area. This includes complete professional installation and setup, all standard mounting hardware, cable routing up to 100 feet, system configuration and testing, and a 30-day installation warranty. We provide transparent, upfront pricing with no hidden fees."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What does a typical Starlink installation involve?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Our professional installation process includes site assessment to find the optimal dish location, professional mounting using appropriate hardware, clean weatherproof cable routing, complete system setup and Wi-Fi configuration, speed testing and signal verification, and customer training on using the Starlink app. Our certified technicians handle everything for a worry-free experience."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does a Starlink installation take?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most installations are completed in 2-4 hours. Standard residential installations take 2-3 hours, complex residential setups take 3-4 hours, and commercial installations take 4-6 hours. We provide accurate time estimates during your free consultation and work efficiently to minimize disruption."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What kind of internet speeds can I expect with Starlink?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Starlink users in the DMV region typically experience download speeds of 100-250 Mbps, upload speeds of 10-25 Mbps, and latency of 25-50ms. The service includes unlimited data with no throttling or data caps. Our professional installation ensures you achieve the best possible speeds by optimizing dish placement."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What areas do you serve for Starlink installation?",
+          "acceptedAnswer": {
+            "@type": "Answer", 
+            "text": "Orbittec serves a 150-mile radius from Washington DC, including all of Maryland, Virginia, Washington DC, plus parts of Pennsylvania, Delaware, and West Virginia. Our service area covers major cities like Baltimore, Richmond, Norfolk, Annapolis, Frederick, Winchester, and Harrisburg. We're based in Reston, VA and provide same-day service to most locations within our coverage area."
+          }
+        }
+      ]
+    }
+    </script>
+    
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://orbittec.net/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Starlink FAQ",
+          "item": "https://orbittec.net/faq.html"
+        }
+      ]
+    }
+    </script>
+</head>
+<body>
+    <!-- Include your header navigation here -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="service-areas.html">Service Areas</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="testimonials.html">Testimonials</a></li>
+                <li><a href="faq.html" class="active">FAQs</a></li>
+            </ul>
+        </nav>
+        
+        <!-- Breadcrumb navigation -->
+        <div class="breadcrumbs">
+            <a href="index.html">Home</a> &gt; Starlink FAQ
+        </div>
+    </header>
+    
+    <main class="faq-container">
+        <section class="hero">
+            <h1>Starlink Installation FAQ for the DMV Area</h1>
+            <p>Find answers to common questions about Starlink installation in Washington DC, Maryland, and Virginia. Our team provides expert installation services throughout the entire DMV region and beyond.</p>
+        </section>
+
+        <!-- Table of Contents for FAQ Categories -->
+        <section class="faq-navigation">
+            <h2>Quick Navigation</h2>
+            <div class="faq-categories">
+                <a href="#installation-process">The Installation Process</a>
+                <a href="#costs-fees">Costs and Fees</a>
+                <a href="#equipment-setup">Equipment and Setup</a>
+                <a href="#performance-reliability">Performance and Reliability</a>
+            </div>
+        </section>
+
+        <!-- The Installation Process -->
+        <section class="faq-category" id="installation-process">
+            <h2 class="category-title">The Installation Process</h2>
+            
+            <div class="faq-item" id="faq-typical-installation">
+                <h3>What does a typical Starlink installation involve?</h3>
+                <div class="answer">
+                    <p>Our professional installation process is comprehensive yet efficient. Here's what we handle for you:</p>
+                    <ul>
+                        <li><strong>Site Assessment:</strong> We evaluate your property to find the optimal dish location with clear sky visibility</li>
+                        <li><strong>Professional Mounting:</strong> Secure installation using appropriate mounting hardware for your roof, pole, or ground setup</li>
+                        <li><strong>Cable Routing:</strong> Clean, weatherproof cable runs from the dish to your desired indoor location</li>
+                        <li><strong>System Setup:</strong> Complete configuration of your Starlink system, including Wi-Fi network setup</li>
+                        <li><strong>Testing & Optimization:</strong> Speed tests and signal verification to ensure peak performance</li>
+                        <li><strong>Customer Training:</strong> We'll show you how to use the Starlink app and manage your system</li>
+                    </ul>
+                    <p>Our certified technicians handle everything, so you don't have to worry about any technical details or safety concerns.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" id="faq-installation-time">
+                <h3>How long does a Starlink installation take?</h3>
+                <div class="answer">
+                    <p>Most installations are completed in 2-4 hours, depending on your specific setup:</p>
+                    <ul>
+                        <li><strong>Standard residential (2-3 hours):</strong> Ground mount or simple roof installation</li>
+                        <li><strong>Complex residential (3-4 hours):</strong> Multi-story homes, challenging roof access, or custom pole mounts</li>
+                        <li><strong>Commercial installations (4-6 hours):</strong> Larger buildings, multiple access points, or specialized requirements</li>
+                    </ul>
+                    <p>We always provide an accurate time estimate during your free consultation, and our team works efficiently to minimize disruption to your day.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" id="faq-drilling-wiring">
+                <h3>Do you handle all the drilling and wiring?</h3>
+                <div class="answer">
+                    <p>Absolutely! Our experienced technicians handle all aspects of the physical installation, including:</p>
+                    <ul>
+                        <li><strong>Professional drilling:</strong> Precise holes for mounting hardware and cable entry points</li>
+                        <li><strong>Weatherproofing:</strong> All penetrations are properly sealed to prevent water damage</li>
+                        <li><strong>Cable management:</strong> Clean routing through walls, attics, or crawlspaces as needed</li>
+                        <li><strong>Safety compliance:</strong> All work meets local building codes and safety standards</li>
+                    </ul>
+                    <p>We come fully equipped with professional tools and take care to protect your property during installation. No need for you to purchase or provide any tools or hardware.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" id="faq-site-survey">
+                <h3>Do you perform a site survey before installation?</h3>
+                <div class="answer">
+                    <p>Yes, we conduct a thorough site assessment as part of every installation. This includes:</p>
+                    <ul>
+                        <li>Sky visibility analysis using professional tools</li>
+                        <li>Structural evaluation for safe mounting options</li>
+                        <li>Cable routing planning for the cleanest installation</li>
+                        <li>Discussion of your specific internet needs and usage</li>
+                    </ul>
+                    <p>This ensures we provide the best possible installation for your unique property and requirements. Our professional assessment eliminates guesswork and guarantees optimal performance.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Costs and Fees -->
+        <section class="faq-category" id="costs-fees">
+            <h2 class="category-title">Costs and Fees</h2>
+            
+            <div class="faq-item" id="faq-standard-fee">
+                <h3>What is your standard installation fee?</h3>
+                <div class="answer">
+                    <p>Our standard installation fee starts at $299 for basic residential installations in the DMV area. This includes:</p>
+                    <ul>
+                        <li>Complete professional installation and setup</li>
+                        <li>All standard mounting hardware</li>
+                        <li>Cable routing up to 100 feet</li>
+                        <li>System configuration and testing</li>
+                        <li>30-day installation warranty</li>
+                    </ul>
+                    <p>We provide transparent, upfront pricing with no hidden fees. Every customer receives a detailed quote before any work begins, so you know exactly what to expect.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" id="faq-extra-charges">
+                <h3>Are there extra charges for complex installations?</h3>
+                <div class="answer">
+                    <p>Some situations may require additional fees, but we always discuss these upfront during your consultation:</p>
+                    <ul>
+                        <li><strong>Extended cable runs:</strong> $3-5 per foot beyond 100 feet</li>
+                        <li><strong>Custom pole mounts:</strong> $150-300 depending on height and complexity</li>
+                        <li><strong>Challenging roof access:</strong> $100-200 for steep or high roofs requiring special equipment</li>
+                        <li><strong>Concrete mounting:</strong> $100-150 for drilling into concrete or brick</li>
+                        <li><strong>Multiple story cable runs:</strong> $50-150 depending on complexity</li>
+                    </ul>
+                    <p>Our goal is to provide the best installation value while being completely transparent about all costs. No surprises, ever.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" id="faq-payment-options">
+                <h3>What payment options do you accept?</h3>
+                <div class="answer">
+                    <p>We make payment convenient with multiple options:</p>
+                    <ul>
+                        <li>Cash payment on completion</li>
+                        <li>Credit cards (Visa, MasterCard, American Express, Discover)</li>
+                        <li>Business checks (for commercial installations)</li>
+                        <li>Digital payments (Venmo, Zelle, PayPal)</li>
+                    </ul>
+                    <p>Payment is due upon completion of installation and your satisfaction with the work. We never require payment upfront for standard installations.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" id="faq-warranty-coverage">
+                <h3>What warranty coverage do you provide?</h3>
+                <div class="answer">
+                    <p>We stand behind our work with comprehensive warranty coverage:</p>
+                    <ul>
+                        <li><strong>30-day installation warranty:</strong> Any issues related to our installation work</li>
+                        <li><strong>Workmanship guarantee:</strong> We'll fix any installation-related problems at no charge</li>
+                        <li><strong>Weather seal warranty:</strong> All penetrations guaranteed leak-proof for one full year</li>
+                    </ul>
+                    <p>Our professional installation gives you peace of mind that your Starlink system is properly installed and will perform reliably for years to come.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Equipment and Setup -->
+        <section class="faq-category" id="equipment-setup">
+            <h2 class="category-title">Equipment and Setup</h2>
+            
+            <div class="faq-item" id="faq-starlink-kit-contents">
+                <h3>What comes in the Starlink kit?</h3>
+                <div class="answer">
+                    <p>The standard Starlink kit includes everything needed for basic operation:</p>
+                    <ul>
+                        <li><strong>Starlink dish:</strong> The satellite receiver with built-in motors for positioning</li>
+                        <li><strong>Wi-Fi router:</strong> Provides wireless internet throughout your home</li>
+                        <li><strong>Power supply:</strong> Weather-resistant power adapter</li>
+                        <li><strong>75-foot cable:</strong> Connects the dish to your router</li>
+                        <li><strong>Kickstand:</strong> For temporary ground placement</li>
+                        <li><strong>Setup materials:</strong> Quick start guide and app instructions</li>
+                    </ul>
+                    <p>While the kit includes a basic kickstand, our professional installation provides secure, permanent mounting solutions that ensure optimal performance and longevity.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" id="faq-additional-equipment">
+                <h3>Will I need to buy anything extra?</h3>
+                <div class="answer">
+                    <p>For most installations, no additional equipment purchase is required. We provide:</p>
+                    <ul>
+                        <li>Professional mounting hardware (included in installation fee)</li>
+                        <li>Weather-resistant cable connections</li>
+                        <li>Grounding equipment where required</li>
+                        <li>Cable routing materials</li>
+                    </ul>
+                    <p><strong>Optional upgrades available:</strong></p>
+                    <ul>
+                        <li>Extended cable lengths for longer runs</li>
+                        <li>Ethernet adapters for wired connections</li>
+                        <li>Surge protection devices</li>
+                        <li>Mesh network extenders for large homes</li>
+                    </ul>
+                    <p>We'll discuss any recommended upgrades during your consultation based on your specific needs and property layout.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" id="faq-best-location">
+                <h3>Where is the best place to install the Starlink dish?</h3>
+                <div class="answer">
+                    <p>The optimal location depends on your property, but generally we look for:</p>
+                    <ul>
+                        <li><strong>Clear sky view:</strong> Unobstructed view of the northern sky (most important)</li>
+                        <li><strong>Minimal obstructions:</strong> Away from trees, buildings, or other structures</li>
+                        <li><strong>Stable mounting surface:</strong> Roof peak, side of house, or dedicated pole</li>
+                        <li><strong>Reasonable cable run:</strong> Close enough to route cables to your desired internet location</li>
+                    </ul>
+                    <p>Our technicians use professional tools to analyze your property and identify the perfect spot. We consider both performance and aesthetics to find a location that works well and looks good.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" id="faq-existing-internet">
+                <h3>Can I keep my existing internet during the transition?</h3>
+                <div class="answer">
+                    <p>Absolutely! We recommend keeping your current internet active until you're satisfied with Starlink performance. Here's why:</p>
+                    <ul>
+                        <li>Test Starlink speeds and reliability for your specific usage</li>
+                        <li>Ensure all your devices and applications work properly</li>
+                        <li>Have backup internet during any adjustment period</li>
+                        <li>Make the transition seamless for work or family needs</li>
+                    </ul>
+                    <p>Most customers run both services for 1-2 weeks to ensure complete satisfaction before canceling their previous provider. Our installation won't interfere with your existing internet service.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Performance and Reliability -->
+        <section class="faq-category" id="performance-reliability">
+            <h2 class="category-title">Performance and Reliability</h2>
+            
+            <div class="faq-item" id="faq-weather-performance">
+                <h3>How does Starlink perform in bad weather?</h3>
+                <div class="answer">
+                    <p>Starlink performs remarkably well in most weather conditions common to the DMV area:</p>
+                    <ul>
+                        <li><strong>Light rain/snow:</strong> No noticeable impact on performance</li>
+                        <li><strong>Heavy rain:</strong> May experience brief speed reductions (usually 10-20%)</li>
+                        <li><strong>Snow accumulation:</strong> Dish has built-in heating to melt snow automatically</li>
+                        <li><strong>High winds:</strong> No impact on service (our secure mounting prevents movement)</li>
+                    </ul>
+                    <p>Any weather-related slowdowns are typically brief and service automatically returns to full speed when conditions improve. Our professional installation includes weatherproofing that protects all components from the elements.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" id="faq-expected-speeds">
+                <h3>What kind of internet speeds can I expect?</h3>
+                <div class="answer">
+                    <p>Starlink users in the DMV region typically experience excellent speeds:</p>
+                    <ul>
+                        <li><strong>Download speeds:</strong> 100-250 Mbps (sufficient for 4K streaming, video calls, gaming)</li>
+                        <li><strong>Upload speeds:</strong> 10-25 Mbps (great for video conferencing and cloud backups)</li>
+                        <li><strong>Latency:</strong> 25-50ms (suitable for real-time gaming and video calls)</li>
+                        <li><strong>Data:</strong> Unlimited with no throttling or data caps</li>
+                    </ul>
+                    <p>Our professional installation ensures you achieve the best possible speeds by optimizing dish placement and eliminating interference. We test your speeds before leaving to verify optimal performance.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" id="faq-reliability-uptime">
+                <h3>How reliable is Starlink service?</h3>
+                <div class="answer">
+                    <p>Starlink has proven to be highly reliable in the DMV area, with most users experiencing:</p>
+                    <ul>
+                        <li><strong>99%+ uptime:</strong> Service interruptions are rare and brief</li>
+                        <li><strong>Consistent performance:</strong> Speeds remain stable throughout the day</li>
+                        <li><strong>Self-healing network:</strong> Automatically switches between satellites for continuous coverage</li>
+                        <li><strong>No infrastructure dependencies:</strong> Not affected by local cable cuts or equipment failures</li>
+                    </ul>
+                    <p>Our professional installation eliminates common reliability issues by ensuring proper grounding, secure mounting, and optimal positioning. This gives you the most dependable Starlink experience possible.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" id="faq-data-limits">
+                <h3>Are there any data limits or throttling?</h3>
+                <div class="answer">
+                    <p>Starlink residential service offers truly unlimited data with no throttling:</p>
+                    <ul>
+                        <li>No monthly data caps or limits</li>
+                        <li>No speed throttling after high usage</li>
+                        <li>No additional charges for heavy data use</li>
+                        <li>Perfect for streaming, gaming, working from home, and large downloads</li>
+                    </ul>
+                    <p>This makes Starlink ideal for households with high internet usage, multiple users, or those who work from home. Our installation ensures you can take full advantage of this unlimited service with optimal performance.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" id="faq-business-use">
+                <h3>Is Starlink suitable for business use?</h3>
+                <div class="answer">
+                    <p>Yes! Starlink is excellent for business applications in the DMV area:</p>
+                    <ul>
+                        <li><strong>Remote work:</strong> Reliable video conferencing and VPN connections</li>
+                        <li><strong>Small businesses:</strong> Support for point-of-sale systems and cloud applications</li>
+                        <li><strong>Backup internet:</strong> Redundant connection for critical business operations</li>
+                        <li><strong>Rural locations:</strong> High-speed internet where traditional options are limited</li>
+                    </ul>
+                    <p>Our commercial installation service includes business-grade mounting, enhanced weatherproofing, and coordination with your IT requirements. We understand business needs and ensure minimal disruption during installation.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" id="faq-service-areas">
+                <h3>What areas around Washington DC do you service for Starlink installation?</h3>
+                <div class="answer">
+                    <p>We provide Starlink installation services within a 150-mile radius of Washington DC, covering:</p>
+                    <ul>
+                        <li><strong>Washington DC:</strong> All districts and neighborhoods</li>
+                        <li><strong>Maryland:</strong> Baltimore, Annapolis, Frederick, Rockville, Gaithersburg, Hagerstown</li>
+                        <li><strong>Virginia:</strong> Alexandria, Arlington, Fairfax, Richmond, Norfolk, Charlottesville, Winchester</li>
+                        <li><strong>Pennsylvania:</strong> Gettysburg, York, Harrisburg, Lancaster, Reading</li>
+                        <li><strong>Delaware:</strong> Wilmington, Dover, Newark</li>
+                        <li><strong>West Virginia:</strong> Martinsburg, Charles Town, Harpers Ferry, Shepherdstown</li>
+                    </ul>
+                    <p>Based in Reston, VA, we provide same-day service to most locations within our coverage area. Our extensive service region ensures professional Starlink installation throughout the greater DMV area and beyond. See our <a href="service-areas.html">detailed service area page</a> for specific cities and counties we serve.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta">
+            <h2>Have More Questions About Starlink Installation in Your Area?</h2>
+            <p>Contact our DMV area Starlink installation experts today for answers to your specific questions about service in your location.</p>
+            <div class="cta-buttons">
+                <a href="contact.html" class="cta-button">Get a Free Quote</a>
+                <a href="tel:5719996915" class="cta-phone">Call 571-999-6915</a>
+            </div>
+        </section>
+
+        <section class="related-resources">
+            <h2>Related Starlink Information</h2>
+            <div class="resource-links">
+                <a href="services.html">Our Installation Services</a>
+                <a href="service-areas.html">Areas We Serve</a>
+                <a href="blog.html">Starlink Blog</a>
+                <a href="testimonials.html">Customer Testimonials</a>
+            </div>
+        </section>
+
+        <!-- Comprehensive FAQ Page Section -->
+        <section class="comprehensive-faq-page">
+            <div class="faq-page-header">
+                <div class="faq-header-content">
+                    <span class="faq-badge">Frequently Asked Questions</span>
+                    <h2>Everything You Need to Know About Professional Starlink Installation</h2>
+                    <p>Get instant answers to the most common questions about our Starlink installation services in the DMV area. Can't find what you're looking for? Contact our expert team directly.</p>
+                </div>
+                <div class="faq-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Installations Completed</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">99%</div>
+                        <div class="stat-label">Customer Satisfaction</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Support Available</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Featured FAQs Grid -->
+            <div class="featured-faqs">
+                <h3>Most Popular Questions</h3>
+                <div class="featured-faq-grid">
+                    <div class="featured-faq-card">
+                        <div class="faq-icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <h4>Installation Cost</h4>
+                        <p>Starting at $299 for standard residential installations with transparent pricing and no hidden fees.</p>
+                        <a href="#faq-standard-fee" class="faq-card-link">Learn More</a>
+                    </div>
+                    
+                    <div class="featured-faq-card">
+                        <div class="faq-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h4>Installation Time</h4>
+                        <p>Most installations completed in 2-4 hours with minimal disruption to your daily routine.</p>
+                        <a href="#faq-installation-time" class="faq-card-link">Learn More</a>
+                    </div>
+                    
+                    <div class="featured-faq-card">
+                        <div class="faq-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h4>What's Included</h4>
+                        <p>Complete professional installation including mounting, wiring, setup, and testing.</p>
+                        <a href="#faq-typical-installation" class="faq-card-link">Learn More</a>
+                    </div>
+                    
+                    <div class="featured-faq-card">
+                        <div class="faq-icon">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        <h4>Expected Speeds</h4>
+                        <p>Enjoy download speeds of 100-250 Mbps with unlimited data and no throttling.</p>
+                        <a href="#faq-expected-speeds" class="faq-card-link">Learn More</a>
+                    </div>
+                    
+                    <div class="featured-faq-card">
+                        <div class="faq-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h4>Service Areas</h4>
+                        <p>Serving 150-mile radius from DC including Maryland, Virginia, and surrounding states.</p>
+                        <a href="#faq-service-areas" class="faq-card-link">Learn More</a>
+                    </div>
+                    
+                    <div class="featured-faq-card">
+                        <div class="faq-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4>Warranty Coverage</h4>
+                        <p>30-day installation warranty with comprehensive workmanship guarantee.</p>
+                        <a href="#faq-warranty-coverage" class="faq-card-link">Learn More</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Search and Filter -->
+            <div class="faq-search-section">
+                <div class="search-container">
+                    <div class="search-input-wrapper">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="faqSearch" placeholder="Search FAQs... (e.g., 'installation cost', 'weather performance')" />
+                        <button type="button" id="clearSearch" class="clear-search">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="faq-filter-tags">
+                    <span class="filter-label">Quick Filters:</span>
+                    <button class="filter-tag active" data-category="all">All Questions</button>
+                    <button class="filter-tag" data-category="installation-process">Installation</button>
+                    <button class="filter-tag" data-category="costs-fees">Pricing</button>
+                    <button class="filter-tag" data-category="equipment-setup">Equipment</button>
+                    <button class="filter-tag" data-category="performance-reliability">Performance</button>
+                </div>
+            </div>
+
+            <!-- Additional FAQ Categories -->
+            <div class="additional-faq-categories">
+                <div class="faq-category-card">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <div class="category-info">
+                            <h4>Residential Installation</h4>
+                            <p>Questions specific to home installations</p>
+                        </div>
+                        <div class="category-count">8 Questions</div>
+                    </div>
+                    <div class="category-faqs">
+                        <a href="#faq-typical-installation">What does installation involve?</a>
+                        <a href="#faq-drilling-wiring">Do you handle drilling and wiring?</a>
+                        <a href="#faq-best-location">Best location for the dish?</a>
+                        <a href="#faq-existing-internet">Keep existing internet during transition?</a>
+                    </div>
+                </div>
+
+                <div class="faq-category-card">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div class="category-info">
+                            <h4>Commercial Installation</h4>
+                            <p>Business and enterprise solutions</p>
+                        </div>
+                        <div class="category-count">5 Questions</div>
+                    </div>
+                    <div class="category-faqs">
+                        <a href="#faq-business-use">Is Starlink suitable for business?</a>
+                        <a href="#faq-installation-time">Commercial installation time?</a>
+                        <a href="#faq-extra-charges">Complex installation costs?</a>
+                        <a href="#faq-reliability-uptime">Service reliability?</a>
+                    </div>
+                </div>
+
+                <div class="faq-category-card">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-cloud-rain"></i>
+                        </div>
+                        <div class="category-info">
+                            <h4>Weather & Performance</h4>
+                            <p>Service performance in various conditions</p>
+                        </div>
+                        <div class="category-count">6 Questions</div>
+                    </div>
+                    <div class="category-faqs">
+                        <a href="#faq-weather-performance">Bad weather performance?</a>
+                        <a href="#faq-expected-speeds">Expected internet speeds?</a>
+                        <a href="#faq-data-limits">Any data limits or throttling?</a>
+                        <a href="#faq-reliability-uptime">How reliable is the service?</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Customer Success Stories -->
+            <div class="faq-testimonial-section">
+                <h3>What Our Customers Are Saying</h3>
+                <div class="testimonial-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"Professional installation was completed in 3 hours. The team was knowledgeable and explained everything clearly. Getting 200+ Mbps speeds now!"</p>
+                        <div class="testimonial-author">
+                            <strong>Sarah M.</strong> - Arlington, VA
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"Transparent pricing, no surprises. They handled all the drilling and wiring professionally. Couldn't be happier with the service."</p>
+                        <div class="testimonial-author">
+                            <strong>Mike T.</strong> - Frederick, MD
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"Perfect for our rural business location. Reliable internet finally! The installation team was prompt and professional."</p>
+                        <div class="testimonial-author">
+                            <strong>Jennifer L.</strong> - Winchester, VA
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Section -->
+            <div class="faq-contact-section">
+                <div class="contact-grid">
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h4>Call Us</h4>
+                        <p>Speak directly with our installation experts</p>
+                        <a href="tel:5719996915" class="contact-link">571-999-6915</a>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h4>Email Us</h4>
+                        <p>Get detailed answers to your questions</p>
+                        <a href="mailto:contact@orbittec.net" class="contact-link">contact@orbittec.net</a>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <i class="fas fa-calendar"></i>
+                        </div>
+                        <h4>Schedule Consultation</h4>
+                        <p>Free on-site assessment and quote</p>
+                        <a href="contact.html" class="contact-link">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Additional CSS for FAQ Page Section -->
+        <style>
+            .comprehensive-faq-page {
+                background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+                padding: 80px 40px;
+                margin: 80px 0 0 0;
+                border-radius: 30px 30px 0 0;
+                display: block;
+                visibility: visible;
+                opacity: 1;
+            }
+
+            .faq-page-header {
+                display: grid;
+                grid-template-columns: 2fr 1fr;
+                gap: 60px;
+                margin-bottom: 80px;
+                align-items: center;
+            }
+
+            .faq-badge {
+                display: inline-block;
+                background: var(--gradient-bg);
+                color: white;
+                padding: 8px 20px;
+                border-radius: 25px;
+                font-size: 0.9rem;
+                font-weight: 600;
+                margin-bottom: 20px;
+            }
+
+            .faq-header-content h2 {
+                font-family: 'Manrope', sans-serif;
+                font-size: 3rem;
+                font-weight: 800;
+                color: var(--text-primary);
+                margin-bottom: 20px;
+                line-height: 1.2;
+            }
+
+            .faq-header-content p {
+                font-size: 1.2rem;
+                color: var(--text-secondary);
+                line-height: 1.6;
+            }
+
+            .faq-stats {
+                display: grid;
+                gap: 30px;
+            }
+
+            .stat-item {
+                text-align: center;
+                padding: 25px;
+                background: white;
+                border-radius: 20px;
+                box-shadow: var(--card-shadow);
+                border: 1px solid var(--border-color);
+            }
+
+            .stat-number {
+                font-family: 'Manrope', sans-serif;
+                font-size: 2.5rem;
+                font-weight: 800;
+                color: var(--primary-color);
+                margin-bottom: 8px;
+            }
+
+            .stat-label {
+                font-size: 0.9rem;
+                color: var(--text-secondary);
+                font-weight: 600;
+            }
+
+            .featured-faqs {
+                margin-bottom: 80px;
+            }
+
+            .featured-faqs h3 {
+                font-family: 'Manrope', sans-serif;
+                font-size: 2.5rem;
+                font-weight: 700;
+                text-align: center;
+                margin-bottom: 50px;
+                color: var(--text-primary);
+            }
+
+            .featured-faq-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 30px;
+            }
+
+            .featured-faq-card {
+                background: white;
+                padding: 35px 30px;
+                border-radius: 20px;
+                text-align: center;
+                transition: all 0.3s ease;
+                border: 2px solid var(--border-color);
+                position: relative;
+                overflow: hidden;
+            }
+
+            .featured-faq-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: var(--gradient-bg);
+                transition: left 0.3s ease;
+                z-index: 0;
+                opacity: 0.05;
+            }
+
+            .featured-faq-card:hover::before {
+                left: 0;
+            }
+
+            .featured-faq-card:hover {
+                transform: translateY(-8px);
+                box-shadow: var(--card-shadow-hover);
+                border-color: var(--primary-light);
+            }
+
+            .faq-icon {
+                width: 80px;
+                height: 80px;
+                margin: 0 auto 25px;
+                background: var(--gradient-bg);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+                z-index: 1;
+            }
+
+            .faq-icon i {
+                font-size: 2rem;
+                color: white;
+            }
+
+            .featured-faq-card h4 {
+                font-family: 'Manrope', sans-serif;
+                font-size: 1.4rem;
+                font-weight: 700;
+                margin-bottom: 15px;
+                color: var(--text-primary);
+                position: relative;
+                z-index: 1;
+            }
+
+            .featured-faq-card p {
+                color: var(--text-secondary);
+                line-height: 1.6;
+                margin-bottom: 25px;
+                position: relative;
+                z-index: 1;
+            }
+
+            .faq-card-link {
+                color: var(--primary-color);
+                text-decoration: none;
+                font-weight: 600;
+                position: relative;
+                z-index: 1;
+                transition: color 0.3s ease;
+            }
+
+            .faq-card-link:hover {
+                color: var(--primary-dark);
+            }
+
+            .faq-search-section {
+                background: white;
+                padding: 40px;
+                border-radius: 20px;
+                margin-bottom: 60px;
+                box-shadow: var(--card-shadow);
+                border: 1px solid var(--border-color);
+            }
+
+            .search-container {
+                margin-bottom: 30px;
+            }
+
+            .search-input-wrapper {
+                position: relative;
+                max-width: 600px;
+                margin: 0 auto;
+            }
+
+            .search-input-wrapper i {
+                position: absolute;
+                left: 20px;
+                top: 50%;
+                transform: translateY(-50%);
+                color: var(--text-muted);
+                font-size: 1.1rem;
+            }
+
+            #faqSearch {
+                width: 100%;
+                padding: 18px 20px 18px 55px;
+                border: 2px solid var(--border-color);
+                border-radius: 50px;
+                font-size: 1.1rem;
+                transition: all 0.3s ease;
+                background: #f8fafc;
+            }
+
+            #faqSearch:focus {
+                outline: none;
+                border-color: var(--primary-color);
+                background: white;
+                box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            }
+
+            .clear-search {
+                position: absolute;
+                right: 15px;
+                top: 50%;
+                transform: translateY(-50%);
+                background: none;
+                border: none;
+                color: var(--text-muted);
+                cursor: pointer;
+                padding: 5px;
+                border-radius: 50%;
+                transition: all 0.3s ease;
+            }
+
+            .clear-search:hover {
+                background: var(--border-color);
+                color: var(--text-primary);
+            }
+
+            .faq-filter-tags {
+                display: flex;
+                justify-content: center;
+                gap: 15px;
+                flex-wrap: wrap;
+                align-items: center;
+            }
+
+            .filter-label {
+                font-weight: 600;
+                color: var(--text-primary);
+                margin-right: 10px;
+            }
+
+            .filter-tag {
+                padding: 10px 20px;
+                border: 2px solid var(--border-color);
+                border-radius: 25px;
+                background: white;
+                color: var(--text-secondary);
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+
+            .filter-tag:hover,
+            .filter-tag.active {
+                background: var(--primary-color);
+                color: white;
+                border-color: var(--primary-color);
+            }
+
+            .additional-faq-categories {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+                gap: 30px;
+                margin-bottom: 80px;
+            }
+
+            .faq-category-card {
+                background: white;
+                border-radius: 20px;
+                border: 2px solid var(--border-color);
+                overflow: hidden;
+                transition: all 0.3s ease;
+            }
+
+            .faq-category-card:hover {
+                border-color: var(--primary-light);
+                box-shadow: var(--card-shadow-hover);
+                transform: translateY(-3px);
+            }
+
+            .category-header {
+                display: flex;
+                align-items: center;
+                padding: 30px;
+                gap: 20px;
+                background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            }
+
+            .category-icon {
+                width: 60px;
+                height: 60px;
+                background: var(--gradient-bg);
+                border-radius: 15px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+            }
+
+            .category-icon i {
+                font-size: 1.5rem;
+                color: white;
+            }
+
+            .category-info {
+                flex: 1;
+            }
+
+            .category-info h4 {
+                font-family: 'Manrope', sans-serif;
+                font-size: 1.3rem;
+                font-weight: 700;
+                color: var(--text-primary);
+                margin-bottom: 5px;
+            }
+
+            .category-info p {
+                color: var(--text-secondary);
+                font-size: 0.9rem;
+            }
+
+            .category-count {
+                background: var(--primary-color);
+                color: white;
+                padding: 8px 15px;
+                border-radius: 20px;
+                font-size: 0.85rem;
+                font-weight: 600;
+            }
+
+            .category-faqs {
+                padding: 0 30px 30px 30px;
+                display: grid;
+                gap: 12px;
+            }
+
+            .category-faqs a {
+                color: var(--text-secondary);
+                text-decoration: none;
+                padding: 12px 0;
+                border-bottom: 1px solid #f1f5f9;
+                transition: color 0.3s ease;
+                font-size: 0.95rem;
+            }
+
+            .category-faqs a:hover {
+                color: var(--primary-color);
+            }
+
+            .category-faqs a:last-child {
+                border-bottom: none;
+            }
+
+            .faq-testimonial-section {
+                margin-bottom: 60px;
+            }
+
+            .faq-testimonial-section h3 {
+                font-family: 'Manrope', sans-serif;
+                font-size: 2.5rem;
+                font-weight: 700;
+                text-align: center;
+                margin-bottom: 50px;
+                color: var(--text-primary);
+            }
+
+            .testimonial-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 30px;
+            }
+
+            .testimonial-card {
+                background: white;
+                padding: 35px 30px;
+                border-radius: 20px;
+                border: 2px solid var(--border-color);
+                transition: all 0.3s ease;
+            }
+
+            .testimonial-card:hover {
+                border-color: var(--primary-light);
+                box-shadow: var(--card-shadow-hover);
+                transform: translateY(-3px);
+            }
+
+            .testimonial-rating {
+                display: flex;
+                gap: 5px;
+                margin-bottom: 20px;
+            }
+
+            .testimonial-rating i {
+                color: #fbbf24;
+                font-size: 1.1rem;
+            }
+
+            .testimonial-card p {
+                color: var(--text-secondary);
+                line-height: 1.6;
+                margin-bottom: 20px;
+                font-style: italic;
+            }
+
+            .testimonial-author {
+                color: var(--text-primary);
+                font-weight: 600;
+            }
+
+            .faq-contact-section {
+                background: white;
+                padding: 50px 40px;
+                border-radius: 20px;
+                box-shadow: var(--card-shadow);
+                border: 1px solid var(--border-color);
+            }
+
+            .contact-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 40px;
+            }
+
+            .contact-method {
+                text-align: center;
+            }
+
+            .contact-icon {
+                width: 80px;
+                height: 80px;
+                margin: 0 auto 20px;
+                background: var(--gradient-bg);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .contact-icon i {
+                font-size: 2rem;
+                color: white;
+            }
+
+            .contact-method h4 {
+                font-family: 'Manrope', sans-serif;
+                font-size: 1.3rem;
+                font-weight: 700;
+                margin-bottom: 10px;
+                color: var(--text-primary);
+            }
+
+            .contact-method p {
+                color: var(--text-secondary);
+                margin-bottom: 15px;
+            }
+
+            .contact-link {
+                color: var(--primary-color);
+                text-decoration: none;
+                font-weight: 600;
+                font-size: 1.1rem;
+                transition: color 0.3s ease;
+            }
+
+            .contact-link:hover {
+                color: var(--primary-dark);
+            }
+
+            @media (max-width: 768px) {
+                .faq-page-header {
+                    grid-template-columns: 1fr;
+                    gap: 40px;
+                }
+
+                .faq-header-content h2 {
+                    font-size: 2.2rem;
+                }
+
+                .featured-faq-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .additional-faq-categories {
+                    grid-template-columns: 1fr;
+                }
+
+                .testimonial-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .contact-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .faq-filter-tags {
+                    justify-content: center;
+                }
+
+                .filter-label {
+                    width: 100%;
+                    text-align: center;
+                    margin-bottom: 15px;
+                }
+            }
+        </style>
+
+    </main>
+
+    <!-- Include your footer here -->
+    <footer>
+        <div class="contact-info">
+            <p>Email: contact@orbittec.net</p>
+            <p>Phone: 571-999-6915</p>
+            <p>Serving the entire DMV area within 150 miles of Washington DC</p>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Accordion Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            // Make first FAQ item in each category active by default
+            const categories = document.querySelectorAll('.faq-category');
+            categories.forEach(category => {
+                const firstItem = category.querySelector('.faq-item');
+                if (firstItem) {
+                    firstItem.classList.add('active');
+                    const answer = firstItem.querySelector('.answer');
+                    if (answer) {
+                        answer.style.maxHeight = answer.scrollHeight + "px";
+                    }
+                }
+            });
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('h3');
+                const answer = item.querySelector('.answer');
+                
+                // Make questions focusable
+                question.setAttribute('tabindex', '0');
+                question.setAttribute('role', 'button');
+                question.setAttribute('aria-expanded', item.classList.contains('active') ? 'true' : 'false');
+                
+                question.addEventListener('click', function() {
+                    toggleFAQ(item);
+                });
+                
+                // Handle keyboard navigation
+                question.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        toggleFAQ(item);
+                    }
+                });
+            });
+            
+            function toggleFAQ(item) {
+                const isActive = item.classList.contains('active');
+                const question = item.querySelector('h3');
+                const answer = item.querySelector('.answer');
+                
+                if (isActive) {
+                    item.classList.remove('active');
+                    answer.style.maxHeight = '0px';
+                    question.setAttribute('aria-expanded', 'false');
+                } else {
+                    item.classList.add('active');
+                    answer.style.maxHeight = answer.scrollHeight + "px";
+                    question.setAttribute('aria-expanded', 'true');
+                }
+            }
+
+            // Smooth scrolling for navigation links
+            const navLinks = document.querySelectorAll('.faq-categories a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    if (targetSection) {
+                        const offsetTop = targetSection.getBoundingClientRect().top + window.pageYOffset - 100;
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Add entrance animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe FAQ items for entrance animations (but make them visible by default)
+            const elementsToAnimate = document.querySelectorAll('.faq-item, .faq-category, .cta, .related-resources, .comprehensive-faq-page');
+            elementsToAnimate.forEach((el, index) => {
+                // Don't hide the comprehensive FAQ page
+                if (!el.classList.contains('comprehensive-faq-page')) {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateY(30px)';
+                    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    el.style.transitionDelay = `${index * 0.05}s`;
+                }
+                observer.observe(el);
+            });
+
+            // Debug: Log elements to ensure they exist
+            console.log('FAQ Items found:', document.querySelectorAll('.faq-item').length);
+            console.log('FAQ Categories found:', document.querySelectorAll('.faq-category').length);
+            console.log('Comprehensive FAQ Page found:', document.querySelector('.comprehensive-faq-page') ? 'Yes' : 'No');
+            
+            // Force show comprehensive FAQ page if hidden
+            setTimeout(() => {
+                const faqPage = document.querySelector('.comprehensive-faq-page');
+                if (faqPage) {
+                    faqPage.style.display = 'block';
+                    faqPage.style.visibility = 'visible';
+                    faqPage.style.opacity = '1';
+                    console.log('FAQ page visibility forced on');
+                }
+            }, 100);
+        });
+
+        // Add keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                const focusedElement = document.activeElement;
+                if (focusedElement.tagName === 'H3' && focusedElement.closest('.faq-item')) {
+                    e.preventDefault();
+                    focusedElement.click();
+                }
+            }
+        });
+
+        // Add phone number formatting and tracking
+        const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
+        phoneLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                // Track phone clicks for analytics if needed
+                console.log('Phone number clicked:', this.href);
+            });
+        });
+
+        // FAQ Search Functionality
+        const searchInput = document.getElementById('faqSearch');
+        const clearSearchBtn = document.getElementById('clearSearch');
+        const filterTags = document.querySelectorAll('.filter-tag');
+        const allFaqItems = document.querySelectorAll('.faq-item');
+
+        // Search functionality
+        if (searchInput) {
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase().trim();
+                
+                if (searchTerm === '') {
+                    clearSearchBtn.style.display = 'none';
+                    showAllFAQs();
+                } else {
+                    clearSearchBtn.style.display = 'block';
+                    filterFAQs(searchTerm);
+                }
+            });
+
+            clearSearchBtn.addEventListener('click', function() {
+                searchInput.value = '';
+                this.style.display = 'none';
+                showAllFAQs();
+                searchInput.focus();
+            });
+        }
+
+        // Filter functionality
+        filterTags.forEach(tag => {
+            tag.addEventListener('click', function() {
+                // Remove active class from all tags
+                filterTags.forEach(t => t.classList.remove('active'));
+                // Add active class to clicked tag
+                this.classList.add('active');
+
+                const category = this.dataset.category;
+                
+                if (category === 'all') {
+                    showAllFAQs();
+                } else {
+                    filterByCategory(category);
+                }
+
+                // Clear search input
+                if (searchInput) {
+                    searchInput.value = '';
+                    clearSearchBtn.style.display = 'none';
+                }
+            });
+        });
+
+        function filterFAQs(searchTerm) {
+            allFaqItems.forEach(item => {
+                const question = item.querySelector('h3').textContent.toLowerCase();
+                const answer = item.querySelector('.answer').textContent.toLowerCase();
+                
+                if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                    item.style.display = 'block';
+                    item.classList.add('search-highlight');
+                } else {
+                    item.style.display = 'none';
+                    item.classList.remove('search-highlight');
+                }
+            });
+
+            // Show/hide category sections
+            const categories = document.querySelectorAll('.faq-category');
+            categories.forEach(category => {
+                const visibleItems = category.querySelectorAll('.faq-item[style*="block"], .faq-item:not([style*="none"])');
+                if (visibleItems.length === 0) {
+                    category.style.display = 'none';
+                } else {
+                    category.style.display = 'block';
+                }
+            });
+        }
+
+        function filterByCategory(category) {
+            const categories = document.querySelectorAll('.faq-category');
+            categories.forEach(cat => {
+                if (cat.id === category) {
+                    cat.style.display = 'block';
+                    cat.querySelectorAll('.faq-item').forEach(item => {
+                        item.style.display = 'block';
+                    });
+                } else {
+                    cat.style.display = 'none';
+                }
+            });
+        }
+
+        function showAllFAQs() {
+            allFaqItems.forEach(item => {
+                item.style.display = 'block';
+                item.classList.remove('search-highlight');
+            });
+
+            const categories = document.querySelectorAll('.faq-category');
+            categories.forEach(category => {
+                category.style.display = 'block';
+            });
+        }
+
+        // Featured FAQ card links
+        const faqCardLinks = document.querySelectorAll('.faq-card-link, .category-faqs a');
+        faqCardLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    // Show all FAQs first
+                    showAllFAQs();
+                    
+                    // Reset filter tags
+                    filterTags.forEach(tag => tag.classList.remove('active'));
+                    document.querySelector('[data-category="all"]').classList.add('active');
+                    
+                    // Scroll to target
+                    const offsetTop = targetElement.getBoundingClientRect().top + window.pageYOffset - 100;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Open the FAQ item if it's not already open
+                    setTimeout(() => {
+                        if (!targetElement.classList.contains('active')) {
+                            targetElement.querySelector('h3').click();
+                        }
+                        
+                        // Add highlight effect
+                        targetElement.classList.add('highlight-faq');
+                        setTimeout(() => {
+                            targetElement.classList.remove('highlight-faq');
+                        }, 2000);
+                    }, 500);
+                }
+            });
+        });
+
+        // Add highlight effect CSS
+        const highlightStyle = document.createElement('style');
+        highlightStyle.textContent = `
+            .search-highlight {
+                animation: searchGlow 1.5s ease-in-out;
+            }
+            
+            .highlight-faq {
+                animation: highlightPulse 2s ease-in-out;
+            }
+            
+            @keyframes searchGlow {
+                0%, 100% { box-shadow: var(--card-shadow); }
+                50% { box-shadow: 0 0 20px rgba(37, 99, 235, 0.3), var(--card-shadow-hover); }
+            }
+            
+            @keyframes highlightPulse {
+                0%, 100% { transform: scale(1); }
+                50% { transform: scale(1.02); }
+            }
+        `;
+        document.head.appendChild(highlightStyle);
+    </script>
+</body>
+</html>

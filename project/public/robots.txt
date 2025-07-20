@@ -1,0 +1,46 @@
+User-agent: *
+Allow: /
+
+# Block admin and development areas
+Disallow: /admin/
+Disallow: /private/
+Disallow: /.well-known/
+Disallow: /api/
+Disallow: /wp-admin/
+Disallow: /wp-includes/
+Disallow: /node_modules/
+
+# Block development and config files
+Disallow: /*.json$
+Disallow: /*.log$
+Disallow: /package.json
+Disallow: /yarn.lock
+Disallow: /.env
+Disallow: /src/
+Disallow: /build/
+
+# Allow important pages (explicit permissions)
+Allow: /about/
+Allow: /services/
+Allow: /service-areas/
+Allow: /testimonials/
+Allow: /faq/
+Allow: /blog/
+Allow: /contact/
+
+# Allow all media and asset files
+Allow: /*.css
+Allow: /*.js
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.webp
+Allow: /*.svg
+Allow: /*.gif
+Allow: /*.pdf
+
+# Sitemap location
+Sitemap: https://www.theorbittech.com/sitemap.xml
+
+# Crawl delay (be respectful to search engines)
+Crawl-delay: 1

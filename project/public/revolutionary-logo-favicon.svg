@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" width="56" height="56">
+  <defs>
+    <!-- Black background gradient -->
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a1a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#000000;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Shadow filter -->
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+  
+  <!-- Main container (rounded rectangle) -->
+  <rect x="0" y="0" width="56" height="56" rx="8" ry="8" 
+        fill="url(#bgGradient)" 
+        filter="url(#shadow)"
+        stroke="#333" 
+        stroke-width="1"/>
+  
+  <!-- WiFi icon centered -->
+  <g transform="translate(28, 28)">
+    <!-- Outer WiFi arc -->
+    <path d="M -18 6 A 25 25 0 0 1 18 6" 
+          fill="none" 
+          stroke="white" 
+          stroke-width="3" 
+          stroke-linecap="round" 
+          opacity="0.6"/>
+    
+    <!-- Middle WiFi arc -->
+    <path d="M -12 6 A 17 17 0 0 1 12 6" 
+          fill="none" 
+          stroke="white" 
+          stroke-width="3" 
+          stroke-linecap="round" 
+          opacity="0.8"/>
+    
+    <!-- Inner WiFi arc -->
+    <path d="M -6 6 A 8.5 8.5 0 0 1 6 6" 
+          fill="none" 
+          stroke="white" 
+          stroke-width="3" 
+          stroke-linecap="round"/>
+    
+    <!-- WiFi source dot -->
+    <circle cx="0" cy="10" r="2.5" fill="white"/>
+  </g>
+</svg>
+    <!-- Signal waves -->
+    <g stroke="white" fill="none" stroke-width="1.5" stroke-linecap="round" opacity="0.9">
+      <path d="M 6 -4 L 12 -7"/>
+      <path d="M 6 0 L 13 0"/>
+      <path d="M 6 4 L 12 7"/>
+    </g>
+    
+    <!-- Signal dots -->
+    <g fill="white" opacity="0.8">
+      <circle cx="12" cy="-7" r="1"/>
+      <circle cx="13" cy="0" r="1.2"/>
+      <circle cx="12" cy="7" r="1"/>
+    </g>
+    
+    <!-- Orbital ring -->
+    <circle cx="0" cy="0" r="14" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1" opacity="0.6"/>
+  </g>
+</svg>
