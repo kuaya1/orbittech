@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Orbit Tech Blog - Your Expert Guide to Satellite Internet in the DMV</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Expert insights on satellite internet installation, Starlink setup, and connectivity solutions in the DMV area. Professional guides from The Orbit Tech team.">
+    <meta name="keywords" content="Starlink blog, satellite internet DMV, The Orbit Tech, installation guides, connectivity tips">
+    <meta name="author" content="The Orbit Tech">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="The Orbit Tech Blog - Your Expert Guide to Satellite Internet">
+    <meta property="og:description" content="Expert insights on satellite internet installation, Starlink setup, and connectivity solutions in the DMV area.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.theorbittech.com/blog">
+    <meta property="og:image" content="https://www.theorbittech.com/orbittec.png">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/orbittec.png">
+    
+    <style>
+        /* CSS Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: #FFFFFF;
+            color: #1a1a1a;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Navigation */
+        .header {
+            background: #FFFFFF;
+            border-bottom: 1px solid #f0f0f0;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+        
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: #4a4a4a;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #1a1a1a;
+        }
+        
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 80px 0 60px 0;
+            background: #FFFFFF;
+        }
+        
+        .hero-title {
+            font-size: 56px;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+        
+        .hero-subtitle {
+            font-size: 24px;
+            font-weight: 400;
+            color: #6a6a6a;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.4;
+        }
+        
+        /* Blog Grid */
+        .blog-section {
+            padding: 60px 0 100px 0;
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        /* Blog Card */
+        .blog-card {
+            background: #FFFFFF;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-image {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            border-radius: 16px 16px 0 0;
+        }
+        
+        .card-content {
+            padding: 30px;
+        }
+        
+        .card-meta {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .card-date {
+            font-size: 14px;
+            color: #8a8a8a;
+            font-weight: 500;
+        }
+        
+        .card-category {
+            background: #f8f9fa;
+            color: #1a1a1a;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .card-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 15px;
+            line-height: 1.3;
+            text-decoration: none;
+            display: block;
+            transition: color 0.3s ease;
+        }
+        
+        .card-title:hover {
+            color: #4a4a4a;
+        }
+        
+        .card-excerpt {
+            font-size: 16px;
+            color: #5a5a5a;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+        
+        .card-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-top: 20px;
+            border-top: 1px solid #f0f0f0;
+        }
+        
+        .author-image {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #f0f0f0;
+        }
+        
+        .author-info {
+            flex: 1;
+        }
+        
+        .author-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 2px;
+        }
+        
+        .author-title {
+            font-size: 14px;
+            color: #8a8a8a;
+            font-weight: 400;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #f8f9fa;
+            border-top: 1px solid #f0f0f0;
+            padding: 50px 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .footer-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 15px;
+        }
+        
+        .footer-text {
+            font-size: 16px;
+            color: #6a6a6a;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .footer-cta {
+            display: inline-flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .btn-primary {
+            background: #1a1a1a;
+            color: #FFFFFF;
+            padding: 14px 28px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: #2a2a2a;
+            transform: translateY(-1px);
+        }
+        
+        .btn-secondary {
+            background: #FFFFFF;
+            color: #1a1a1a;
+            padding: 14px 28px;
+            border: 2px solid #1a1a1a;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background: #1a1a1a;
+            color: #FFFFFF;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 42px;
+            }
+            
+            .hero-subtitle {
+                font-size: 20px;
+            }
+            
+            .hero {
+                padding: 60px 0 40px 0;
+            }
+            
+            .blog-section {
+                padding: 40px 0 60px 0;
+            }
+            
+            .blog-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .card-content {
+                padding: 25px;
+            }
+            
+            .card-title {
+                font-size: 22px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .footer-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .hero-title {
+                font-size: 36px;
+            }
+            
+            .hero-subtitle {
+                font-size: 18px;
+            }
+            
+            .blog-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            .card-content {
+                padding: 20px;
+            }
+        }
+        
+        /* Card Image Placeholders */
+        .card-image-placeholder {
+            width: 100%;
+            height: 240px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .card-image-placeholder.starlink {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        }
+        
+        .card-image-placeholder.guide {
+            background: linear-gradient(135deg, #00b4db 0%, #0083b0 100%);
+        }
+        
+        .card-image-placeholder.tips {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        
+        /* Author Image Placeholders */
+        .author-placeholder {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 16px;
+            border: 2px solid #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="/" class="logo">The Orbit Tech</a>
+                <ul class="nav-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/services">Services</a></li>
+                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">The Orbit Tech Blog</h1>
+            <p class="hero-subtitle">Your Expert Guide to Satellite Internet in the DMV</p>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="blog-section">
+        <div class="container">
+            <div class="blog-grid">
+                <!-- Blog Post 1 -->
+                <article class="blog-card">
+                    <div class="card-image-placeholder starlink">
+                        Starlink vs. Kuiper Battle
+                    </div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span class="card-date">July 20, 2025</span>
+                            <span class="card-category">Industry News</span>
+                        </div>
+                        <a href="/blog/starlink-vs-kuiper-battle" class="card-title">
+                            Starlink vs. Kuiper: The Battle to Control Your Internet
+                        </a>
+                        <p class="card-excerpt">
+                            A deep dive into the two titans of satellite internet. We compare their technology, business models, and what their competition means for your connectivity.
+                        </p>
+                        <div class="card-author">
+                            <div class="author-placeholder">EE</div>
+                            <div class="author-info">
+                                <div class="author-name">Enkhbayar Enkhbaatar</div>
+                                <div class="author-title">Owner, The Orbit Tech</div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Blog Post 2 -->
+                <article class="blog-card">
+                    <div class="card-image-placeholder guide">
+                        Starlink Installation Guide
+                    </div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span class="card-date">July 18, 2025</span>
+                            <span class="card-category">How-To Guide</span>
+                        </div>
+                        <a href="/blog/starlink-installation-guide-dmv" class="card-title">
+                            The Ultimate Starlink Installation Guide for DMV Homeowners
+                        </a>
+                        <p class="card-excerpt">
+                            Everything you need to know about a successful Starlink installation in our region, from site surveys to weatherproofing for Mid-Atlantic conditions.
+                        </p>
+                        <div class="card-author">
+                            <div class="author-placeholder">OT</div>
+                            <div class="author-info">
+                                <div class="author-name">The Orbit Tech Team</div>
+                                <div class="author-title">Certified Installers</div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Blog Post 3 -->
+                <article class="blog-card">
+                    <div class="card-image-placeholder tips">
+                        Pre-Installation Tips
+                    </div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span class="card-date">July 15, 2025</span>
+                            <span class="card-category">Tips & Tricks</span>
+                        </div>
+                        <a href="/blog/pre-installation-checklist" class="card-title">
+                            5 Things to Do Before Your Installer Arrives
+                        </a>
+                        <p class="card-excerpt">
+                            A simple checklist to ensure your professional installation is as smooth and efficient as possible, helping you get online faster.
+                        </p>
+                        <div class="card-author">
+                            <div class="author-placeholder">EE</div>
+                            <div class="author-info">
+                                <div class="author-name">Enkhbayar Enkhbaatar</div>
+                                <div class="author-title">Owner, The Orbit Tech</div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer CTA -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <h2 class="footer-title">Ready for Professional Satellite Internet Installation?</h2>
+                <p class="footer-text">
+                    Get expert Starlink and Kuiper installation services throughout the DMV area. Our certified technicians ensure optimal performance and reliability.
+                </p>
+                <div class="footer-cta">
+                    <a href="tel:571-999-6915" class="btn-primary">Call (571) 999-6915</a>
+                    <a href="/contact" class="btn-secondary">Get Free Quote</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
