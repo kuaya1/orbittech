@@ -95,7 +95,7 @@ Customer Details:
 Additional Information:
 ${formData.message || 'No additional message provided'}`,
         time: new Date().toLocaleString(),
-        to_email: 'contact@orbittec.net',
+        to_email: 'contact@theorbittech.com',
         from_name: formData.name,
         from_email: formData.email,
         reply_to: formData.email,
@@ -347,8 +347,8 @@ ${formData.message || 'No additional message provided'}`,
                     <Mail className="w-8 h-8 text-[#976060]" />
                   </div>
                   <h4 className="font-bold text-white tracking-tight mb-2 uppercase">Email</h4>
-                  <a href="mailto:contact@orbittec.net" className="text-white/80 hover:text-white transition-colors font-medium">
-                    contact@orbittec.net
+                  <a href="mailto:contact@theorbittech.com" className="text-white/80 hover:text-white transition-colors font-medium">
+                    contact@theorbittech.com
                   </a>
                 </div>
 
@@ -411,8 +411,8 @@ ${formData.message || 'No additional message provided'}`,
                     <Mail className="w-8 h-8 text-[#976060]" />
                   </div>
                   <h4 className="font-bold text-white tracking-tight mb-2 uppercase">Email</h4>
-                  <a href="mailto:contact@orbittec.net" className="text-white/80 hover:text-white transition-colors font-medium">
-                    contact@orbittec.net
+                  <a href="mailto:contact@theorbittech.com" className="text-white/80 hover:text-white transition-colors font-medium">
+                    contact@theorbittech.com
                   </a>
                 </div>
 

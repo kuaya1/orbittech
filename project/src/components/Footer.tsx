@@ -38,10 +38,10 @@ const Footer = () => {
                 (571) 999-6915
               </a>
               <a 
-                href="mailto:contact@orbittec.net" 
+                href="mailto:contact@theorbittech.com" 
                 className="block text-white/95 hover:text-white transition-colors duration-200 font-normal"
               >
-                contact@orbittec.net
+                contact@theorbittech.com
               </a>
             </div>
           </div>

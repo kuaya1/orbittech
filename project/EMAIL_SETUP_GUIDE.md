@@ -11,11 +11,11 @@ Your contact form in `src/components/Contact.tsx` is already configured with Ema
 - **Public Key**: `cZxddkmZep5G_h86H` (already configured)
 
 ### Email Template Setup
-Your EmailJS template should be configured to send emails TO: `contact@orbittec.net`
+Your EmailJS template should be configured to send emails TO: `contact@theorbittech.com`
 
 ## 2. Template Variables
 The form sends these variables to your EmailJS template:
-- `{{to_email}}` - Set to "contact@orbittec.net"
+- `{{to_email}}` - Set to "contact@theorbittech.com"
 - `{{from_name}}` - Customer's name
 - `{{from_email}}` - Customer's email
 - `{{phone}}` - Customer's phone number
@@ -64,7 +64,7 @@ Orbittec Website
 
 2. **Test the Form**:
    - Submit a test request through your website
-   - Check if email arrives at contact@orbittec.net
+   - Check if email arrives at contact@theorbittech.com
    - Verify all form data is included
 
 3. **Gmail Settings**:
@@ -81,7 +81,7 @@ If emails aren't arriving:
    - Check the "Logs" section for failed sends
 
 2. **Verify Template**:
-   - Ensure `{{to_email}}` is set to "contact@orbittec.net"
+   - Ensure `{{to_email}}` is set to "contact@theorbittech.com"
    - Check all variable names match exactly
 
 3. **Gmail Issues**:
@@ -103,12 +103,12 @@ Your contact form already includes:
 
 The form also displays backup contact methods:
 - Phone: (571) 376-8077
-- Email: contact@orbittec.net
+- Email: contact@theorbittech.com
 
 ## Next Steps
 
 1. Log into your EmailJS account
-2. Verify the template is sending to contact@orbittec.net
+2. Verify the template is sending to contact@theorbittech.com
 3. Test the form with a real submission
 4. Check your Gmail inbox and spam folder
 
