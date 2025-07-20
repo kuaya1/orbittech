@@ -99,6 +99,14 @@ const Footer = () => {
               </li>
               <li>
                 <a 
+                  href="/blog" 
+                  className="text-white/95 hover:text-white transition-colors duration-200 font-normal block text-sm"
+                >
+                  Blog & Resources
+                </a>
+              </li>
+              <li>
+                <a 
                   href="/#featured-installations" 
                   className="text-white/95 hover:text-white transition-colors duration-200 font-normal block text-sm"
                 >
