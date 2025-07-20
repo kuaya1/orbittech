@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ShootingStars } from './ui/shooting-stars';
-import { StarsBackground } from './ui/star-backround';
+// import { ShootingStars } from './ui/shooting-stars';
+// import { StarsBackground } from './ui/star-backround';
 
 // Define the updated type for the ServiceCard props
 interface ServiceCardProps {
@@ -124,9 +124,9 @@ const Services = () => {
       id="services"
       className="pt-32 pb-20 md:pt-40 md:pb-20 bg-black relative overflow-hidden"
     >
-      {/* Shooting Stars Background */}
-      <ShootingStars />
-      <StarsBackground />
+      {/* Shooting Stars Background - DISABLED */}
+      {/* <ShootingStars />
+      <StarsBackground /> */}
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
-import { ShootingStars } from './ui/shooting-stars';
-import { StarsBackground } from './ui/star-backround';
+// import { ShootingStars } from './ui/shooting-stars';
+// import { StarsBackground } from './ui/star-backround';
 
 interface FAQItem {
   question: string;
@@ -52,9 +52,9 @@ const FAQ: React.FC = () => {
 
   return (
     <section className="py-20 bg-black relative overflow-hidden">
-      {/* Shooting Stars Background */}
-      <ShootingStars />
-      <StarsBackground />
+      {/* Shooting Stars Background - DISABLED */}
+      {/* <ShootingStars />
+      <StarsBackground /> */}
       
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         

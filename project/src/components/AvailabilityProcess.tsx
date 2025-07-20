@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { ArrowRight, CheckCircle, XCircle, MapPin, Loader2, Info, History, Shield, Clock, Wrench } from 'lucide-react';
-import { ShootingStars } from './ui/shooting-stars';
-import { StarsBackground } from './ui/star-backround';
+// import { ShootingStars } from './ui/shooting-stars';
+// import { StarsBackground } from './ui/star-backround';
 
 // Updated serviceableZips to include all regions within 150 miles of DC
 const serviceableZips = new Set([
@@ -322,9 +322,9 @@ const AvailabilityProcess = () => {
       id="availability-process" 
       className="pt-32 pb-20 md:pt-40 md:pb-32 bg-black relative overflow-hidden"
     >
-      {/* Shooting Stars Background */}
-      <ShootingStars />
-      <StarsBackground />
+      {/* Shooting Stars Background - DISABLED */}
+      {/* <ShootingStars />
+      <StarsBackground /> */}
       
       {/* Desktop Satellite Background Image with Parallax */}
       <div className="hidden md:block absolute inset-0 z-0">

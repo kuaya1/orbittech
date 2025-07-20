@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
-import { ShootingStars } from "./ui/shooting-stars";
-import { StarsBackground } from "./ui/stars-background";
+// import { ShootingStars } from "./ui/shooting-stars";
+// import { StarsBackground } from "./ui/stars-background";
 
 export default function ShootingStarsAndStarsBackgroundDemo() {
   return (
@@ -10,9 +10,10 @@ export default function ShootingStarsAndStarsBackgroundDemo() {
         <span>Shooting Star</span>
         <span className="text-white text-lg font-thin">x</span>
         <span>Star Background</span>
+        <span className="text-red-500 text-sm">(DISABLED)</span>
       </h2>
-      <ShootingStars />
-      <StarsBackground />
+      {/* <ShootingStars />
+      <StarsBackground /> */}
     </div>
   );
 }

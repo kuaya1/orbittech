@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { MapPin, Phone, Mail, Loader2, CheckCircle, XCircle } from 'lucide-react';
 import emailjs from '@emailjs/browser';
-import { ShootingStars, StarsBackground } from './ui';
+// import { ShootingStars, StarsBackground } from './ui';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -144,9 +144,9 @@ ${formData.message || 'No additional message provided'}`,
       id="contact" 
       className="py-20 bg-black relative"
     >
-      {/* Animated background */}
-      <ShootingStars />
-      <StarsBackground />
+      {/* Animated background - DISABLED */}
+      {/* <ShootingStars />
+      <StarsBackground /> */}
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         

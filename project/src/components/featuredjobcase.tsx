@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { ArrowLeft, ArrowRight, Star, Quote, MapPin, Calendar, Home, Building2, Truck } from 'lucide-react';
-import { ShootingStars } from './ui/shooting-stars';
-import { StarsBackground } from './ui/star-backround';
+// import { ShootingStars } from './ui/shooting-stars';
+// import { StarsBackground } from './ui/star-backround';
 
 // Simplified interface
 interface InstallationCase {
@@ -175,9 +175,9 @@ const FeaturedInstallations: React.FC = () => {
 
   return (
     <section id="featured-installations" className="py-20 bg-black relative overflow-hidden">
-      {/* Shooting Stars Background */}
-      <ShootingStars />
-      <StarsBackground />
+      {/* Shooting Stars Background - DISABLED */}
+      {/* <ShootingStars />
+      <StarsBackground /> */}
       
       {/* Subtle background effects */}
       <div className="absolute inset-0">
