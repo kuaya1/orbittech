@@ -1,4 +1,3 @@
-import React from 'react';
 import { BlogPost } from '../types/blog';
 import { Calendar, Clock, ArrowRight, Tag } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -7,7 +6,9 @@ interface BlogPageProps {
   posts: BlogPost[];
 }
 
-const BlogPage: React.FC<BlogPageProps> = ({ posts }) => {
+const BlogPage = ({ posts }: BlogPageProps) => {
+  console.log("BlogPage rendering with posts:", posts);
+  
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       {/* Hero Section */}

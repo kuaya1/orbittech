@@ -1,4 +1,3 @@
-import React from 'react';
 import blogPosts from '../data/blogPosts';
 import BlogPost from './BlogPost';
 import BlogPage from './BlogPage';
