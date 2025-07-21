@@ -128,6 +128,21 @@ const BlogPost: React.FC<BlogPostProps> = ({ post }) => {
                 <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-6 tracking-tight">
                   {post.title}
                 </h1>
+                
+                {/* Cover Image */}
+                {post.coverImage && (
+                  <div className="mb-8">
+                    <img 
+                      src={post.coverImage} 
+                      alt={post.title}
+                      className="w-full h-64 lg:h-96 object-cover rounded-lg shadow-lg"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.style.display = 'none';
+                      }}
+                    />
+                  </div>
+                )}
               </header>
 
               {/* Article Content */}
