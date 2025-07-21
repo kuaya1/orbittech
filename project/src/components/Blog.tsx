@@ -1,6 +1,7 @@
 import blogPosts from '../data/blogPosts';
 import BlogPost from './BlogPost';
 import BlogPage from './BlogPage';
+import BlogNavbar from './BlogNavbar';
 import { useLocation } from 'react-router-dom';
 import SEOMetadata from './SEOMetadata';
 
@@ -18,7 +19,8 @@ const Blog = () => {
   console.log("Found post:", currentPost);
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-white">
+      <BlogNavbar />
       {currentPost ? (
         <>
           <SEOMetadata 
