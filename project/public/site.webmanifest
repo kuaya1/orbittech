@@ -4,23 +4,23 @@
   "description": "Professional Starlink installation services in DC, Maryland & Virginia",
   "icons": [
     {
-      "src": "/orbittec.png",
+      "src": "/the-orbit-tech-favicon.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/favicon-32x32.png",
+      "src": "/the-orbit-tech-favicon.png",
       "sizes": "32x32",
       "type": "image/png"
     },
     {
-      "src": "/favicon-16x16.png",
+      "src": "/the-orbit-tech-favicon.png",
       "sizes": "16x16",
       "type": "image/png"
     },
     {
-      "src": "/apple-touch-icon.png",
+      "src": "/the-orbit-tech-favicon.png",
       "sizes": "180x180",
       "type": "image/png"
     }

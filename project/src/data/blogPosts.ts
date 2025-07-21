@@ -5,7 +5,7 @@ const blogPosts: BlogPost[] = [
     id: "starlink-vs-kuiper-battle-control-internet",
     title: "Starlink vs. Kuiper: The Battle to Control Your Internet",
     excerpt: "A deep dive into the two titans of satellite internet. We compare their technology, business models, and what their competition means for your connectivity.",
-    coverImage: "https://images.unsplash.com/photo-1446776877081-58393e1e8ce1?auto=format&fit=crop&w=2000&q=80",
+    coverImage: "https://www.flickr.com/photo_download.gne?id=54668057968&secret=401e1aa675&size=l&source=photoPageEngagement",
     date: "2025-07-20",
     readTime: 8,
     author: {
@@ -146,7 +146,7 @@ For complete installation details and professional guidance, contact The Orbit T
     id: "five-things-before-installer-arrives",
     title: "5 Things to Do Before Your Installer Arrives",
     excerpt: "A simple checklist to ensure your professional installation is as smooth and efficient as possible, helping you get online faster.",
-    coverImage: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?auto=format&fit=crop&w=2000&q=80",
+    coverImage: "https://www.flickr.com/photo_download.gne?id=54667002422&secret=2c19521cca&size=l&source=photoPageEngagement",
     date: "2025-07-15",
     readTime: 6,
     author: {
