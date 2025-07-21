@@ -23,22 +23,21 @@ const BlogNavbar = () => {
     e.preventDefault(); // Prevent default anchor tag behavior
     setIsMenuOpen(false);
     
-    // Handle hash links for smooth scrolling on the same page
-    if (path.startsWith('/#')) {
+    // Handle routing to different pages
+    if (path === '/') {
+      // Navigate to home page
+      window.location.href = '/';
+    } else if (path === '/contact') {
+      // Navigate to contact page
+      window.location.href = '/#contact';
+    } else if (path.startsWith('/#')) {
+      // Handle hash links for smooth scrolling on the same page
       const id = path.substring(2);
-      // Use a timeout to ensure the menu is closed before scrolling
-      setTimeout(() => {
-        const element = document.getElementById(id);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 0);
-    } else if (path === '/') {
-        // If it's the home link, scroll to the top of the page
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+      // For hash links, navigate to home page first, then scroll
+      window.location.href = path;
     } else {
-        // For other links like /faq, we just prevent default for now
-        // In a real multi-page app, you would handle navigation here.
+      // For other links, navigate directly
+      window.location.href = path;
     }
   };
 
@@ -93,9 +92,9 @@ const BlogNavbar = () => {
                 Call Us
               </a>
               <a
-                href="/#contact"
+                href="/contact"
                 className="bg-blue-600 text-white font-medium px-6 py-2 rounded text-sm hover:bg-blue-700 transition-colors duration-200"
-                onClick={(e) => handleLinkClick(e, '/#contact')}
+                onClick={(e) => handleLinkClick(e, '/contact')}
               >
                 Get Quote
               </a>
@@ -133,9 +132,9 @@ const BlogNavbar = () => {
                 Call Us: (571) 999-6915
               </a>
               <a
-                href="/#contact"
+                href="/contact"
                 className="block bg-blue-600 text-white px-6 py-3 rounded font-medium transition-colors text-center mt-4 hover:bg-blue-700"
-                onClick={(e) => handleLinkClick(e, '/#contact')}
+                onClick={(e) => handleLinkClick(e, '/contact')}
               >
                 ORDER NOW
               </a>

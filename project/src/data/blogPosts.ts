@@ -9,7 +9,7 @@ const blogPosts: BlogPost[] = [
     date: "2025-07-21",
     readTime: 15,
     author: {
-      name: "Enkhbayar Enkhbaatar",
+      name: "Eric Enk",
       image: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&h=150&q=80",
       role: "Owner, The Orbit Tech"
     },
@@ -115,7 +115,7 @@ The orbital revolution is here. It promises to connect our world in ways we've o
     date: "2025-07-20",
     readTime: 8,
     author: {
-      name: "Enkhbayar Enkhbaatar",
+      name: "Eric Enk",
       image: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&h=150&q=80",
       role: "Owner, The Orbit Tech"
     },
@@ -256,7 +256,7 @@ For complete installation details and professional guidance, contact The Orbit T
     date: "2025-07-15",
     readTime: 6,
     author: {
-      name: "Enkhbayar Enkhbaatar",
+      name: "Eric Enk",
       image: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&h=150&q=80",
       role: "Owner, The Orbit Tech"
     },
