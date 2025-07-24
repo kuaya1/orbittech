@@ -135,7 +135,13 @@ const Hero = () => {
   }, []);
 
   return (
+
    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
+      {/* High-definition light-to-dark overlay for contrast */}
+      <div className="absolute inset-0 z-0 pointer-events-none" style={{
+        background: 'linear-gradient(120deg, rgba(0,0,0,0.65) 0%, rgba(16,134,244,0.10) 60%, rgba(0,0,0,0.85) 100%)',
+        mixBlendMode: 'multiply',
+      }} />
       {/* The 3D background is placed here */}
       <Hero3DBackground />
 
