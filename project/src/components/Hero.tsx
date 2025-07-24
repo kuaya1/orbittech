@@ -60,7 +60,7 @@ const Hero = () => {
     });
 
     const calciteBlue = '#0079c1';
-    const backgroundImageUrl = '/satellite-earth.jpg';
+    const backgroundImageUrl = '/starlink-dmv-23.png';
 
     return (
         <section 
