@@ -116,8 +116,8 @@ const Hero3DBackground = () => {
 
     return (
         <div 
-            ref={mountRef} 
-            className="absolute inset-0 z-0"
+            ref={mountRef}
+            className="absolute inset-0 z-0 -mt-[0.5in] md:-mt-[1in]"
         />
     );
 };
@@ -141,9 +141,11 @@ const Hero = () => {
 
       {/* Content Container - z-10 ensures it's above the background */}
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
-        <div className={`max-w-4xl mx-auto text-center transition-all duration-1000 ease-out ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-        }`}>
+        <div
+          className={`max-w-4xl mx-auto text-center transition-all duration-1000 ease-out ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          } mt-[0.5in] md:mt-[1in]`}
+        >
           {/* Main Title */}
           <h1 className="text-4xl sm:text-6xl font-bold text-white tracking-tight font-sans leading-tight drop-shadow-xl mb-6">
             PROFESSIONAL STARLINK
