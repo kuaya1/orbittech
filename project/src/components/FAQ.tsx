@@ -1,36 +1,71 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-// --- Calcite Icon Component ---
-// A helper component to make using Calcite web components in React more convenient.
-const CalciteIcon = ({ icon, className = '', scale = 'm', ...props }) => {
-  return <calcite-icon icon={icon} class={className} scale={scale} {...props}></calcite-icon>;
+// A custom hook for the Intersection Observer API to handle scroll animations.
+const useIntersectionObserver = (options) => {
+    const [isVisible, setIsVisible] = useState(false);
+    const elementRef = useRef<HTMLElement>(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(([entry]) => {
+            if (entry.isIntersecting) {
+                setIsVisible(true);
+                observer.unobserve(entry.target);
+            }
+        }, options);
+
+        const currentElement = elementRef.current;
+        if (currentElement) {
+            observer.observe(currentElement);
+        }
+
+        return () => {
+            if (currentElement) {
+                observer.unobserve(currentElement);
+            }
+        };
+    }, [options]);
+
+    return [elementRef, isVisible];
 };
+
+// A dedicated component for the animated plus/minus icon.
+const PlusMinusIcon = ({ isOpen }) => (
+    <div className="relative flex-shrink-0 w-8 h-8 flex items-center justify-center">
+        <div 
+            className="absolute w-4 h-0.5 bg-neutral-500 transition-transform duration-300 ease-in-out" 
+            style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(90deg)' }}
+        ></div>
+        <div 
+            className="absolute w-4 h-0.5 bg-neutral-500 transition-transform duration-300 ease-in-out" 
+            style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}
+        ></div>
+    </div>
+);
 
 
 interface FAQItemProps {
   question: string;
   answer: string;
+  number: string;
   isOpen: boolean;
   onClick: () => void;
-  accentColor: string;
 }
 
-const FAQItem: React.FC<FAQItemProps> = ({ question, answer, isOpen, onClick, accentColor }) => {
+const FAQItem: React.FC<FAQItemProps> = ({ question, answer, number, isOpen, onClick }) => {
   const contentRef = useRef<HTMLDivElement>(null);
 
   return (
     <div className="border-b border-neutral-800 last:border-b-0">
       <button
-        className="w-full flex justify-between items-center text-left py-6 focus:outline-none"
+        className="w-full flex justify-between items-start text-left gap-6 py-8 focus:outline-none group"
         onClick={onClick}
       >
-        <h3 className="text-lg font-medium text-neutral-100 pr-4">{question}</h3>
-        <div className="flex-shrink-0">
-          <CalciteIcon 
-            icon="chevron-down" 
-            className={`transition-transform duration-300 ease-in-out ${isOpen ? 'rotate-180' : ''}`}
-            style={{ color: isOpen ? accentColor : 'currentColor' }}
-          />
+        <div className="flex items-start gap-6">
+            <span className="text-lg font-medium text-neutral-500 mt-1">{number}</span>
+            <h3 className={`text-xl font-medium pr-4 transition-colors duration-300 ${isOpen ? 'text-white' : 'text-neutral-300 group-hover:text-white'}`}>{question}</h3>
+        </div>
+        <div className="mt-1">
+            <PlusMinusIcon isOpen={isOpen} />
         </div>
       </button>
       <div
@@ -38,7 +73,7 @@ const FAQItem: React.FC<FAQItemProps> = ({ question, answer, isOpen, onClick, ac
         className="overflow-hidden transition-all duration-500 ease-in-out"
         style={{ maxHeight: isOpen ? `${contentRef.current?.scrollHeight}px` : '0px' }}
       >
-        <div className="pb-6 text-neutral-400 leading-relaxed">
+        <div className="pl-16 pr-12 pb-8 text-neutral-400 leading-relaxed">
           {answer}
         </div>
       </div>
@@ -49,104 +84,60 @@ const FAQItem: React.FC<FAQItemProps> = ({ question, answer, isOpen, onClick, ac
 
 const FAQ = () => {
     const [activeIndex, setActiveIndex] = useState<number | null>(0);
-    const [isVisible, setIsVisible] = useState(false);
-    const sectionRef = useRef<HTMLElement>(null);
+    const [sectionRef, isVisible] = useIntersectionObserver({ threshold: 0.1 });
 
     const faqData = [
         {
-          question: "Is it easy to install Starlink?",
-          answer: "Starlink, initially marketed as a DIY installation, now demands expertise for optimal performance. Many aren't aware that additional equipment such as ethernet adaptors, longer cables, mesh systems, and suitable mounts might be necessary to maximise speeds and ensure the longevity of the installation, thus protecting your monthly subscription. Our skilled engineers will meticulously choose the ideal spot on your house for the setup, emphasising a careful, discreet, and tidy installation to seamlessly blend with your home. As a result, many of our customers experience speeds in excess of 200 Mbps, showcasing the effectiveness of a professionally managed installation."
+          question: "Is professional installation necessary for Starlink?",
+          answer: "While Starlink is marketed for DIY setup, professional installation is key to unlocking its full potential. We ensure optimal placement, use necessary equipment like ethernet adapters and mounts, and provide a clean, discreet setup. This professional touch often results in speeds exceeding 200 Mbps, safeguarding your investment and subscription value."
         },
         {
-          question: "How much does Starlink installation cost?",
-          answer: "Professional Starlink installation costs vary based on complexity and location requirements. Standard residential installations typically range from $400-$800, which includes site assessment, professional mounting, cable routing, weatherproofing, and system setup. Complex installations with additional equipment or challenging roof access may cost more. We provide free consultations and transparent pricing with no hidden fees. Contact us for a personalized quote based on your specific needs and location in the DMV area."
+          question: "What is the cost of a Starlink installation?",
+          answer: "Costs vary by complexity, but standard residential installations typically range from $400-$800. This includes a site assessment, professional mounting, secure cable routing, and full system setup. We offer free consultations for a transparent, personalized quote with no hidden fees, tailored to your location in the DMV area."
         },
         {
-          question: "How long does it take to install Starlink?",
-          answer: "Most professional Starlink installations are completed within 2-4 hours. Standard residential installations typically take 2-3 hours, while more complex setups requiring additional equipment, extensive cable routing, or challenging mounting locations may take 3-5 hours. Commercial installations can take 4-6 hours depending on the scope. We'll provide you with an accurate time estimate during your free consultation based on your specific installation requirements."
+          question: "How long does the installation process take?",
+          answer: "A standard professional installation is usually completed within 2-4 hours. More complex projects might take 3-5 hours. We provide an accurate time estimate during your free consultation, ensuring a clear timeline based on your specific requirements."
         },
         {
-          question: "Does Starlink come with a router?",
-          answer: "Yes, Starlink comes with a built-in WiFi router in the power supply unit. However, for optimal performance in larger homes or commercial spaces, we often recommend additional networking equipment such as mesh systems, ethernet adapters, or enterprise-grade routers. Our professional installation includes WiFi optimization, network configuration, and recommendations for any additional equipment that might enhance your internet experience based on your property size and usage needs."
+          question: "Does the Starlink kit include a router?",
+          answer: "Yes, a Wi-Fi router is built into the power supply. However, for larger homes or commercial spaces, we often recommend mesh systems or enterprise-grade routers to ensure optimal coverage. Our service includes network configuration and recommendations for any necessary upgrades."
         },
         {
-          question: "What equipment is needed for Starlink installation?",
-          answer: "A complete Starlink installation includes the satellite dish, mounting hardware, power supply with built-in router, and cables. For professional installations, we often add weatherproof cable connectors, extended cables if needed, appropriate mounting systems (roof, pole, or ground mounts), and surge protection. Depending on your setup, we may also recommend ethernet adapters, mesh networking equipment, or upgraded mounting solutions for optimal performance and longevity."
+          question: "What does a professional installation include?",
+          answer: "Beyond the standard Starlink kit, our professional service includes weatherproof connectors, extended cables, appropriate roof or pole mounts, and surge protection. We tailor the equipment to your specific environment to ensure optimal performance and longevity."
         },
         {
-          question: "Do you provide warranty on your installation?",
-          answer: "Absolutely! We provide a comprehensive warranty on all our installation work. Our installation warranty covers workmanship, mounting hardware, cable routing, and weatherproofing for a full year. We also ensure all installations meet local building codes and safety standards. Additionally, all our installers are licensed, insured, and carry a minimum of one million dollars in liability insurance for your peace of mind."
+          question: "Is there a warranty on your installation work?",
+          answer: "Absolutely. We provide a full one-year warranty covering all aspects of our workmanship, including mounting, cable routing, and weatherproofing. Our licensed and insured technicians adhere to all local codes, giving you complete peace of mind."
         },
     ];
 
     const toggleFAQ = (index: number) => {
         setActiveIndex(activeIndex === index ? null : index);
     };
-
-    // Intersection Observer for scroll animations
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-        ([entry]) => {
-            if (entry.isIntersecting) {
-            setIsVisible(true);
-            observer.unobserve(entry.target);
-            }
-        },
-        { threshold: 0.1 }
-        );
-
-        const currentRef = sectionRef.current;
-        if (currentRef) {
-        observer.observe(currentRef);
-        }
-
-        return () => {
-        if (currentRef) {
-            observer.unobserve(currentRef);
-        }
-        };
-    }, []);
-
-    // Dynamically load Calcite Components script
-    useEffect(() => {
-        const calciteCss = document.createElement('link');
-        calciteCss.rel = 'stylesheet';
-        calciteCss.href = 'https://js.arcgis.com/calcite-components/2.8.0/calcite.css';
-        document.head.appendChild(calciteCss);
-
-        const calciteScript = document.createElement('script');
-        calciteScript.type = 'module';
-        calciteScript.src = 'https://js.arcgis.com/calcite-components/2.8.0/calcite.esm.js';
-        document.body.appendChild(calciteScript);
-        
-        return () => {
-            document.head.removeChild(calciteCss);
-            document.body.removeChild(calciteScript);
-        }
-    }, []);
     
     const animationStyle = (delay: number) => ({
         transition: 'opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1)',
         transitionDelay: `${delay}ms`,
         opacity: isVisible ? 1 : 0,
-        transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+        transform: isVisible ? 'translateY(0)' : 'translateY(40px)',
     });
-
-    const calciteBlue = '#0079c1';
 
     return (
         <section 
-            ref={sectionRef}
+            ref={sectionRef as React.RefObject<HTMLElement>}
             id="faq" 
-            className="min-h-screen w-full py-24 px-4 sm:px-6 lg:px-8 bg-black flex items-center justify-center font-sans"
+            className="w-full py-24 sm:py-32 px-4 sm:px-6 lg:px-8 bg-black flex items-center justify-center font-sans"
         >
+            {/* FIX: Reverted to a single-column layout */}
             <div className="w-full max-w-4xl mx-auto">
                 <div className="text-center" style={animationStyle(0)}>
                     <h2 className="text-4xl sm:text-5xl font-medium text-neutral-50 tracking-tighter">
                         Frequently Asked Questions
                     </h2>
                     <p className="mt-4 text-lg text-neutral-400 max-w-2xl mx-auto">
-                        Your questions, answered. Everything you need to know about our professional installation services.
+                        Everything you need to know about professional Starlink installation.
                     </p>
                 </div>
 
@@ -154,11 +145,11 @@ const FAQ = () => {
                     {faqData.map((faq, index) => (
                         <FAQItem
                             key={index}
+                            number={String(index + 1).padStart(2, '0')}
                             question={faq.question}
                             answer={faq.answer}
                             isOpen={activeIndex === index}
                             onClick={() => toggleFAQ(index)}
-                            accentColor={calciteBlue}
                         />
                     ))}
                 </div>
