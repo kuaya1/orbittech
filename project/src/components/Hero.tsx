@@ -105,8 +105,13 @@ const Hero = () => {
                             <img
                                 src={imageUrl}
                                 alt="Starlink hardware dish and router"
-                                className="w-full h-auto object-contain"
-                                onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/1200x700/000000/ffffff?text=Starlink+Hardware'; }}
+                                className="w-[175%] md:w-[130%] h-auto object-contain mx-auto"
+                                style={{ maxWidth: 'none' }}
+                                onError={(e) => {
+                                    const target = e.target as HTMLImageElement;
+                                    target.onerror = null;
+                                    target.src = 'https://placehold.co/1200x700/000000/ffffff?text=Starlink+Hardware';
+                                }}
                             />
                             {/* Gradient overlay to blend the top of the image into the black background */}
                             <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-black to-transparent pointer-events-none"></div>
