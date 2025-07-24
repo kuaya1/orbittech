@@ -332,10 +332,7 @@ const AvailabilityProcess = () => {
       {/* <ShootingStars />
       <StarsBackground /> */}
       
-      {/* Section-wide dark overlay for readability */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute inset-0 bg-black/80 md:bg-black/70" />
-      </div>
+
 
       {/* CSS for subtle animations */}
       <style jsx>{`
@@ -394,8 +391,8 @@ const AvailabilityProcess = () => {
         <div className={`max-w-3xl mx-auto transition-all duration-1000 delay-600 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}>
-          {/* Main availability checker card with hover effects */}
-          <div className="bg-black border border-neutral-800 rounded-2xl shadow-lg shadow-black/20 overflow-hidden hover:shadow-2xl hover:shadow-black/30 transition-all duration-500 hover:-translate-y-1">
+          {/* Main availability checker card with glassmorphism/transparent effect */}
+          <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl shadow-black/30 overflow-hidden hover:shadow-3xl hover:shadow-black/40 transition-all duration-500 hover:-translate-y-1" style={{boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.25)'}}>
             <div className="p-8 md:p-12">
               <div className="max-w-2xl mx-auto">
                 {/* Availability checker form */}
@@ -600,34 +597,7 @@ const AvailabilityProcess = () => {
             </div>
           </div>
 
-          {/* Trust indicators with staggered animations */}
-          <div className={`mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 transition-all duration-1000 delay-1400 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-          }`}>
-            <div className="text-center group">
-              <div className="w-16 h-16 bg-[#976060]/20 backdrop-blur-sm border border-[#976060]/30 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-500 group-hover:bg-[#976060]/30 group-hover:scale-110 group-hover:rotate-3 animate-subtleFloat">
-                <Wrench className="w-8 h-8 text-[#976060] transition-transform duration-300 group-hover:scale-110" />
-              </div>
-              <h4 className="text-white font-black mb-2 tracking-tight transition-colors duration-300 group-hover:text-[#976060]">Professional Installation</h4>
-              <p className="text-white/60 text-sm font-medium transition-colors duration-300 group-hover:text-white/80">Certified technicians with years of experience</p>
-            </div>
-            
-            <div className="text-center group">
-              <div className="w-16 h-16 bg-[#976060]/20 backdrop-blur-sm border border-[#976060]/30 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-500 group-hover:bg-[#976060]/30 group_hover:scale-110 group-hover:-rotate-3 animate-subtleFloat" style={{ animationDelay: '1s' }}>
-                <Shield className="w-8 h-8 text-[#976060] transition-transform duration-300 group-hover:scale-110" />
-              </div>
-              <h4 className="text-white font-black mb-2 tracking-tight transition-colors duration-300 group-hover:text-[#976060]">Licensed & Insured</h4>
-              <p className="text-white/60 text-sm font-medium transition-colors duration-300 group-hover:text-white/80">Fully licensed and insured for your protection</p>
-            </div>
-            
-            <div className="text-center group">
-              <div className="w-16 h-16 bg-[#976060]/20 backdrop-blur-sm border border-[#976060]/30 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-500 group-hover:bg-[#976060]/30 group_hover:scale-110 group-hover:rotate-3 animate-subtleFloat" style={{ animationDelay: '2s' }}>
-                <Clock className="w-8 h-8 text-[#976060] transition-transform duration-300 group-hover:scale-110" />
-              </div>
-              <h4 className="text-white font-black mb-2 tracking-tight transition-colors duration-300 group-hover:text-[#976060]">Same-Day Service</h4>
-              <p className="text-white/60 text-sm font-medium transition-colors duration-300 group-hover:text-white/80">Get connected the same day you call</p>
-            </div>
-          </div>
+
         </div>
       </div>
     </section>
