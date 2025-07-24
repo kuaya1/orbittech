@@ -17,10 +17,12 @@ const Hero3DBackground = () => {
         renderer.setSize(mount.clientWidth, mount.clientHeight);
         mount.appendChild(renderer.domElement);
 
-        // --- Custom Hemisphere Geometry ---
+        // --- Full Sphere with Random Point Distribution ---
+        // We are now creating points randomly on the surface of a full sphere
+        // to get the chaotic, less predictable look.
         const points = [];
-        const radius = 12;
-        const numPoints = 600;
+        const radius = 9; // Keeping the smaller radius
+        const numPoints = 1008; // Reduced number of points by 30% (from 1440)
 
         for (let i = 0; i < numPoints; i++) {
             const u = Math.random();
@@ -30,22 +32,21 @@ const Hero3DBackground = () => {
             const x = radius * Math.sin(phi) * Math.cos(theta);
             const y = radius * Math.sin(phi) * Math.sin(theta);
             const z = radius * Math.cos(phi);
-
-            if (z >= 0) { // Only add points on the upper hemisphere
-                points.push(x, y, z);
-            }
+            points.push(x, y, z);
         }
 
         const geometry = new THREE.BufferGeometry();
         geometry.setAttribute('position', new THREE.Float32BufferAttribute(points, 3));
         
-        const material = new THREE.PointsMaterial({ color: 0x0077ff, size: 0.06 });
+        // Updated color to #1086f4
+        const material = new THREE.PointsMaterial({ color: 0x1086f4, size: 0.05 }); 
         const sphere = new THREE.Points(geometry, material);
         scene.add(sphere);
 
         // --- Lines connecting the points ---
         const linesGeometry = new THREE.BufferGeometry();
-        const linesMaterial = new THREE.LineBasicMaterial({ color: 0x0077ff, transparent: true, opacity: 0.2 });
+        // Updated color to #1086f4
+        const linesMaterial = new THREE.LineBasicMaterial({ color: 0x1086f4, transparent: true, opacity: 0.15 }); 
         
         const linesPositions = [];
         const positions = geometry.attributes.position.array;
@@ -56,7 +57,8 @@ const Hero3DBackground = () => {
                 const p2 = new THREE.Vector3(positions[j], positions[j+1], positions[j+2]);
                 const distance = p1.distanceTo(p2);
 
-                if (distance < 3.0) {
+                // Adjusted distance threshold for the random distribution
+                if (distance < 1.8) { 
                     linesPositions.push(p1.x, p1.y, p1.z, p2.x, p2.y, p2.z);
                 }
             }
@@ -66,13 +68,17 @@ const Hero3DBackground = () => {
         const lines = new THREE.LineSegments(linesGeometry, linesMaterial);
         scene.add(lines);
 
-        camera.position.set(0, -4, 20);
+        // Adjusted camera position for the smaller sphere
+        camera.position.set(0, 0, 22);
         camera.lookAt(0, 0, 0);
 
         const animate = () => {
             requestAnimationFrame(animate);
+            // Slow rotation on both axes
             sphere.rotation.y += 0.0005;
+            sphere.rotation.x += 0.0002;
             lines.rotation.y = sphere.rotation.y;
+            lines.rotation.x = sphere.rotation.x;
             renderer.render(scene, camera);
         };
         animate();
@@ -123,7 +129,7 @@ const Hero = () => {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
           {/* Main Title */}
-          <h1 className="text-4xl sm:text-6xl font-bold text-white tracking-tight font-sans leading-tight drop-shadow-xl mb-6">
+          <h1 className="text-5xl sm:text-6xl font-bold text-white tracking-tight font-sans leading-tight drop-shadow-xl mb-6">
             PROFESSIONAL STARLINK
             <br />
             INSTALLATION
