@@ -53,7 +53,7 @@ const StarRating = () => (
 // --- Hero Section ---
 const Hero = () => {
     // Use the local image from public folder for the right side
-    const imageUrl = '/Untitled design (19).png';
+    const imageUrl = '/design (20).PNG';
 
     return (
         <section id="hero" className="w-full bg-black font-sans antialiased">
