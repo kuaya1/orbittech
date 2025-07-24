@@ -56,14 +56,14 @@ const Hero = () => {
     const imageUrl = '/Untitled design (19).png';
 
     return (
-        <section id="hero" className="w-full bg-black font-sans antialiased py-20 lg:py-0">
+        <section id="hero" className="w-full bg-black font-sans antialiased">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center lg:min-h-[700px]">
+                <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-16 items-center">
                     
-                    {/* Left Column: Content */}
-                    <div className="py-8 text-center lg:text-left">
+                    {/* Column 1: Content (Order 2 on mobile, Order 1 on desktop) */}
+                    <div className="py-20 text-center lg:text-left order-2 lg:order-1">
                         <AnimatedComponent>
-                            <h1 className="text-4xl md:text-6xl font-medium text-white tracking-tighter leading-tight">
+                            <h1 className="text-4xl md:text-5xl font-medium text-white tracking-tighter leading-tight">
                                 Professional Starlink Installation.
                             </h1>
                             <p className="mt-6 text-lg text-neutral-300 leading-relaxed max-w-lg mx-auto lg:mx-0">
@@ -82,27 +82,23 @@ const Hero = () => {
                                     <p className="text-sm text-neutral-400">Based on 140+ reviews</p>
                                 </div>
                             </div>
-
-                            <div className="mt-10">
-                                <a
-                                    href="#contact"
-                                    className="group inline-flex items-center justify-center px-8 py-4 text-lg bg-white text-black font-medium rounded-full
-                                               transition-all duration-300 ease-in-out shadow-lg hover:bg-neutral-200"
-                                >
-                                    <span>Get Your Quote</span>
-                                    <ArrowRight className="h-5 w-5 ml-2 transform transition-transform duration-300 group-hover:translate-x-1" />
-                                </a>
-                            </div>
                         </AnimatedComponent>
                     </div>
 
-                    {/* Right Column: Image */}
-                    <div className="w-full h-96 lg:h-[600px] rounded-2xl overflow-hidden">
+                    {/* Column 2: Image (Order 1 on mobile, Order 2 on desktop) */}
+                    <div className="relative w-full h-80 sm:h-96 lg:h-[600px] order-1 lg:order-2 rounded-2xl overflow-hidden">
                          <img 
                             src={imageUrl}
-                            alt="Starlink installation"
+                            alt="Starlink hardware"
                             className="w-full h-full object-cover"
                          />
+                         {/* Gradient overlay for smooth blending with left column */}
+                         <div 
+                            className="absolute inset-0 pointer-events-none"
+                            style={{
+                                background: 'linear-gradient(to left, rgba(16,16,20,0.85) 0%, rgba(16,16,20,0.35) 30%, rgba(16,16,20,0.0) 70%)'
+                            }}
+                         ></div>
                     </div>
 
                 </div>
