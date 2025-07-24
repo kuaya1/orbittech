@@ -16,61 +16,73 @@ import React, { useState, useEffect, useRef } from 'react';
 * fontFamily: {
 * sans: ['Inter', ...defaultTheme.fontFamily.sans],
 * },
+* colors: {
+* 'brand-dark': '#001419',
+* 'brand-light': '#f8f8f8',
+* }
 * },
 * },
 * plugins: [],
 * }
 *
+* By adding the colors to your config, you can use classes like `bg-brand-dark` and `text-brand-light`.
+* For this example, I will use arbitrary values like `bg-[#001419]`.
 */
 
 
-// A simple checkmark icon for the feature list for a cleaner look
-const CheckIcon = () => (
-    <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        strokeWidth={2}
-        stroke="currentColor"
-        className="w-5 h-5 text-neutral-400"
-    >
-        <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+// Calcite-style SVG icons for each service card with updated blue color
+const HomeIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8 mb-4 text-blue-500">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12l8.954-8.955a1.5 1.5 0 012.122 0l8.954 8.955M3 10.5V21h6V15h6v6h6v-10.5M12 2.25v2.25" />
     </svg>
 );
 
-// The props for the ServiceCard component remain the same
+const BusinessIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8 mb-4 text-blue-500">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h6M9 11.25h6m-6 4.5h6M3.75 6.75h.008v.008H3.75V6.75zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM20.25 6.75h.008v.008H20.25V6.75zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+    </svg>
+);
+
+const MarineIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8 mb-4 text-blue-500">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 3.75v16.5M3.75 12h16.5M4.5 6.75l15 10.5M4.5 17.25L19.5 6.75" />
+    </svg>
+);
+
+// The props for the ServiceCard component are updated to include an icon
 interface ServiceCardProps {
   title: string;
   description: string;
   features: string[];
+  icon: React.ReactNode;
 }
 
 const ServiceCard: React.FC<ServiceCardProps> = ({
   title,
   description,
-  features
+  features,
+  icon
 }) => {
   return (
-    // Card container: Increased glassmorphism effect with more transparency and blur
-    <div className="bg-neutral-900/40 backdrop-blur-xl border border-neutral-800 rounded-2xl p-8 h-full flex flex-col transition-all duration-300">
+    // Card container: Solid black background with a border to distinguish it.
+    <div className="bg-black border border-neutral-800 rounded-2xl p-8 h-full flex flex-col transition-all duration-300">
 
       {/* Content Area */}
       <div className="flex-grow">
+        {icon}
         <h4 className="font-semibold text-white mb-4 text-lg tracking-wide">
           {title}
         </h4>
-        <p className="text-neutral-300 mb-6 leading-relaxed text-base font-normal">
+        <p className="text-[#f8f8f8] mb-6 leading-relaxed text-base font-normal">
           {description}
         </p>
         
-        {/* Feature list with checkmark icons */}
+        {/* Feature list with simple bullet points */}
         <ul className="space-y-3 mb-8 text-left">
           {features.map((feature, index) => (
             <li key={index} className="flex items-center">
-              <div className="mr-3 flex-shrink-0">
-                <CheckIcon />
-              </div>
-              <span className="text-neutral-200 text-sm font-normal">
+              <div className="w-1.5 h-1.5 bg-neutral-600 rounded-full mr-3 flex-shrink-0"></div>
+              <span className="text-[#f8f8f8] text-sm font-normal">
                 {feature}
               </span>
             </li>
@@ -78,7 +90,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
         </ul>
       </div>
 
-      {/* Button Container: Updated button to be brighter */}
+      {/* Button Container */}
       <div className="mt-auto">
         <a
           href="#contact"
@@ -143,64 +155,69 @@ const Services = () => {
     };
   }, []);
 
+  const servicesData = [
+    {
+      title: "RESIDENTIAL",
+      description: "Complete home Starlink setup with optimal placement and reliable coverage.",
+      icon: <HomeIcon />,
+      features: [
+        "Site survey & consultation",
+        "Professional roof mounting",
+        "Wi-Fi network optimization",
+        "Same-day installation",
+        "Professional cable routing"
+      ]
+    },
+    {
+      title: "BUSINESS",
+      description: "Enterprise Starlink deployment for maximum uptime and business continuity.",
+      icon: <BusinessIcon />,
+      features: [
+        "Multi-terminal configuration",
+        "24/7 priority support",
+        "Network infrastructure setup",
+        "Bandwidth management",
+        "Commercial installation"
+      ]
+    },
+    {
+      title: "MOBILE & MARINE",
+      description: "Specialized mobile systems for RVs, boats, and remote work locations.",
+      icon: <MarineIcon />,
+      features: [
+        "Stabilized mounting systems",
+        "12V power integration",
+        "Quick-deploy setup",
+        "Marine weatherproofing",
+        "Portable configurations"
+      ]
+    }
+  ];
+
   return (
     <section
       ref={sectionRef}
       id="services"
-      // Updated background to pure black
+      // Updated background to black
       className="font-sans py-24 sm:py-32 bg-black relative overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
-        {/* Header: Simplified fonts and spacing */}
+        {/* Header: Uses pure white for heading and off-white for body text */}
         <div className={`text-center max-w-3xl mx-auto mb-16 transition-all duration-1000 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
           <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl leading-tight">
             Certified Starlink Installation Experts
           </h2>
-          <p className="mt-6 text-lg leading-8 text-neutral-400">
+          <p className="mt-6 text-lg leading-8 text-[#f8f8f8]">
             Expert setups for every need: residential, commercial, and mobile/RV.
           </p>
         </div>
 
         {/* Service Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
-          {[
-            {
-              title: "RESIDENTIAL",
-              description: "Complete home Starlink setup with optimal placement and reliable coverage.",
-              features: [
-                "Site survey & consultation",
-                "Professional roof mounting",
-                "Wi-Fi network optimization",
-                "Same-day installation",
-                "Professional cable routing"
-              ]
-            },
-            {
-              title: "BUSINESS",
-              description: "Enterprise Starlink deployment for maximum uptime and business continuity.",
-              features: [
-                "Multi-terminal configuration",
-                "24/7 priority support",
-                "Network infrastructure setup",
-                "Bandwidth management",
-                "Commercial installation"
-              ]
-            },
-            {
-              title: "MOBILE & MARINE",
-              description: "Specialized mobile systems for RVs, boats, and remote work locations.",
-              features: [
-                "Stabilized mounting systems",
-                "12V power integration",
-                "Quick-deploy setup",
-                "Marine weatherproofing",
-                "Portable configurations"
-              ]
-            }
-          ].map((service, index) => (
+          {servicesData.map((service, index) => (
             <div
               key={index}
               ref={el => cardRefs.current[index] = el}
@@ -214,21 +231,22 @@ const Services = () => {
                 title={service.title}
                 description={service.description}
                 features={service.features}
+                icon={service.icon}
               />
             </div>
           ))}
         </div>
 
-        {/* CTA section: Increased glassmorphism effect */}
+        {/* CTA section: Reverted to a solid black background */}
         <div className={`transition-all duration-1000 delay-300 ${ isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10' }`}>
-            <div className="relative group bg-neutral-900/40 backdrop-blur-xl border border-neutral-800 rounded-2xl p-8 sm:p-12 max-w-4xl mx-auto text-center overflow-hidden">
+            <div className="relative group bg-black border border-neutral-800 rounded-2xl p-8 sm:p-12 max-w-4xl mx-auto text-center overflow-hidden">
                 {/* Subtle hover effect for the border */}
                 <div className="absolute -inset-px rounded-2xl border border-transparent group-hover:border-neutral-700 transition-all duration-300" aria-hidden="true"></div>
                 
                 <h3 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
                     Ready for Professional Installation?
                 </h3>
-                <p className="mt-4 text-lg leading-8 text-neutral-300 max-w-2xl mx-auto">
+                <p className="mt-4 text-lg leading-8 text-[#f8f8f8] max-w-2xl mx-auto">
                     Get a free consultation and quote for your Starlink installation.
                 </p>
                 <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
