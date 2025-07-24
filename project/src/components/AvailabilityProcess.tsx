@@ -324,7 +324,7 @@ const AvailabilityProcess = () => {
       style={{
         backgroundImage: `url('https://www.spacelink-installations.co.uk/wp-content/uploads/2025/01/Starlink_Rural_Location_02a-scaled.jpg')`,
         backgroundSize: 'cover',
-        backgroundPosition: `center ${-scrollY * 0.2}px`, // Parallax effect (move opposite to scroll)
+        backgroundPosition: `${-scrollY * 0.2}px center`, // Parallax effect: right to left
         backgroundRepeat: 'no-repeat',
         willChange: 'background-position',
         transition: 'background-position 0.2s cubic-bezier(0.4,0,0.2,1)'
