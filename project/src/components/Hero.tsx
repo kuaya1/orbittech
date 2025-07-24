@@ -61,7 +61,7 @@ const Hero = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-2 items-center lg:min-h-screen">
                     
                     {/* Column 1: Content */}
-                    <div className="py-24 px-4 sm:px-6 lg:px-12 text-center lg:text-left">
+                    <div className="py-24 px-4 sm:px-6 lg:px-12 text-center lg:text-left lg:relative lg:left-[1in]">
                         <AnimatedComponent>
                             <h1 className="text-5xl md:text-7xl font-medium text-white tracking-tighter leading-tight">
                                 Professional Starlink Installation.
@@ -88,7 +88,7 @@ const Hero = () => {
                     </div>
 
                     {/* Column 2: Image */}
-                    <div className="relative w-full h-[400px] sm:h-[480px] lg:h-screen -mt-36 lg:mt-0">
+                    <div className="relative w-full h-[400px] sm:h-[480px] lg:h-screen -mt-[0.5in] sm:mt-0 lg:mt-0 lg:-left-[1in]">
                          <img 
                             src={imageUrl}
                             alt="Starlink hardware"
