@@ -379,12 +379,6 @@ const AvailabilityProcess = () => {
                   type="submit"
                   disabled={serviceStatus === 'loading' || zipCode.length !== 5}
                   className="w-full px-8 py-3 rounded-md bg-white text-black font-bold text-base hover:bg-neutral-200 transition disabled:bg-neutral-500 disabled:cursor-not-allowed"
-                >
-                  {serviceStatus === 'loading' ? (
-                    <Loader2 className="h-5 w-5 animate-spin mx-auto" />
-                  ) : (
-                    'CHECK'
-                  )}
                 <button
                   type="submit"
                   disabled={serviceStatus === 'loading' || zipCode.length !== 5}
@@ -396,11 +390,6 @@ const AvailabilityProcess = () => {
                     'CHECK'
                   )}
                 </button>
-            {errorMessage && (
-              <div className="mt-3 text-red-300 text-sm flex items-center justify-center gap-2 font-medium" role="alert">
-                <Info className="h-4 w-4 flex-shrink-0" />
-                {errorMessage}
-              </div>
             )}
             
             {serviceStatus !== 'loading' && serviceStatus !== null && showResults && (
