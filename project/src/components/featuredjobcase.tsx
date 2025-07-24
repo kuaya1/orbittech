@@ -187,12 +187,12 @@ const FeaturedInstallations: React.FC = () => {
 
       <div className="container mx-auto px-6 sm:px-8 lg:px-12 relative z-10 max-w-7xl">
         {/* Simplified header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight mb-8 leading-tight text-white">
+        <div className="text-center max-w-3xl mx-auto mb-16 font-sans">
+          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-8 leading-tight text-white font-sans">
             Real Results for Real People
           </h2>
 
-          <p className="text-xl md:text-2xl text-white/90 leading-relaxed max-w-3xl mx-auto font-medium">
+          <p className="text-lg text-neutral-300 leading-8 max-w-3xl mx-auto font-normal font-sans">
             See how we've helped families across the DMV area solve their internet problems for good.
           </p>
         </div>

@@ -62,14 +62,14 @@ const Hero = () => {
           {/* Top Content - Title and Subtitle */}
           <div className="mobile-top-content">
             {/* Main Title */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-white tracking-tight leading-tight drop-shadow-xl mb-6 mt-2">
+            <h1 className="text-5xl sm:text-6xl font-bold text-white tracking-tight font-sans leading-tight drop-shadow-xl mb-6 mt-2">
               PROFESSIONAL STARLINK
               <br />
               INSTALLATION
             </h1>
 
             {/* Subtitle */}
-            <p className="text-lg md:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed drop-shadow-lg mb-10">
+            <p className="text-lg text-neutral-300 max-w-3xl mx-auto leading-8 font-normal font-sans drop-shadow-lg mb-10">
               Expert installation services across the DMV region, connecting your home or business with reliable high-speed internet.
             </p>
           </div>
@@ -79,15 +79,14 @@ const Hero = () => {
             {/* Call to Action Button */}
             <a
               href="#contact"
-              className="inline-block bg-white text-black font-bold text-lg px-10 py-4 rounded-lg
-                         transition-all duration-300 hover:bg-neutral-200 hover:scale-105 shadow-2xl mb-8"
+              className="inline-block bg-white text-black font-semibold rounded-md text-lg px-10 py-4 transition-all duration-300 hover:bg-neutral-200 hover:scale-105 shadow-2xl mb-8 font-sans"
             >
               Get Quote
             </a>
             
             {/* Service Area */}
             <div className="text-center mt-2">
-              <p className="text-white font-semibold tracking-wider drop-shadow-md">
+              <p className="text-neutral-200 font-normal text-sm font-sans tracking-wide drop-shadow-md">
                 WASHINGTON DC • MARYLAND • VIRGINIA
               </p>
             </div>

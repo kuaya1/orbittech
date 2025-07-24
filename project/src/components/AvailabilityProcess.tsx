@@ -406,12 +406,12 @@ const AvailabilityProcess = () => {
         {/* Header section with enhanced animation */}
         <div className={`text-center mb-16 transition-all duration-1000 delay-200 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-        }`}>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight mb-8 leading-tight text-white animate-subtleFloat">
+        } font-sans`}>
+          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-8 leading-tight text-white font-sans animate-subtleFloat">
             Check Availability
           </h2>
           
-          <p className={`text-xl md:text-2xl text-white/80 leading-relaxed max-w-3xl mx-auto font-medium transition-all duration-1000 delay-400 ${
+          <p className={`text-lg text-neutral-300 leading-8 max-w-3xl mx-auto font-normal font-sans transition-all duration-1000 delay-400 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
             Enter your ZIP code to see if our professional Starlink installation 
@@ -435,8 +435,8 @@ const AvailabilityProcess = () => {
                       <MapPin className="h-5 w-5 text-[#976060]" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-black text-white tracking-tight">Check Your Location</h3>
-                      <p className="text-white/60 text-sm font-medium">Enter your ZIP code to get started</p>
+                      <h3 className="text-lg font-semibold text-white tracking-wide font-sans">Check Your Location</h3>
+                      <p className="text-neutral-200 text-sm font-normal font-sans">Enter your ZIP code to get started</p>
                     </div>
                   </div>
                   

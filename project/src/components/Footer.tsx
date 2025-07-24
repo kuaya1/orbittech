@@ -30,7 +30,7 @@ const Footer = () => {
   // Reusable link component for footer links
   const FooterLink = ({ href, children }) => (
     <li>
-      <a href={href} className="text-neutral-400 hover:text-white transition-colors duration-200 font-normal block text-sm">
+      <a href={href} className="text-neutral-400 hover:text-white transition-colors duration-200 font-normal block text-sm font-sans">
         {children}
       </a>
     </li>
@@ -38,13 +38,13 @@ const Footer = () => {
   
   // Reusable link component for bottom bar links
   const BottomBarLink = ({ href, children }) => (
-     <a href={href} className="text-neutral-400 hover:text-white text-sm transition-colors duration-200 font-normal">
+     <a href={href} className="text-neutral-400 hover:text-white text-sm transition-colors duration-200 font-normal font-sans">
         {children}
       </a>
   );
 
   return (
-    <footer className="bg-black text-white">
+    <footer className="bg-black text-white font-sans">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         
         {/* Main footer content grid */}
@@ -58,7 +58,7 @@ const Footer = () => {
                 alt="Orbittec Logo" 
                 className="h-10 w-auto mb-2"
               />
-              <p className="text-neutral-400 text-xs font-normal tracking-wide">
+              <p className="text-neutral-400 text-xs font-normal tracking-wide font-sans">
                 Professional Installation
               </p>
             </div>
@@ -66,7 +66,7 @@ const Footer = () => {
           
           {/* Link Columns */}
           <div>
-            <h4 className="font-semibold text-white mb-4 tracking-tight text-sm">Services</h4>
+            <h4 className="font-semibold text-white mb-4 tracking-wide text-lg font-sans">Services</h4>
             <ul className="space-y-3">
               <FooterLink href="/#services">Residential Installation</FooterLink>
               <FooterLink href="/#services">Business Solutions</FooterLink>
@@ -75,7 +75,7 @@ const Footer = () => {
           </div>
           
           <div>
-            <h4 className="font-semibold text-white mb-4 tracking-tight text-sm">Company</h4>
+            <h4 className="font-semibold text-white mb-4 tracking-wide text-lg font-sans">Company</h4>
             <ul className="space-y-3">
               <FooterLink href="/">Home</FooterLink>
               <FooterLink href="/blog">Blog & Resources</FooterLink>
@@ -84,7 +84,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="font-semibold text-white mb-4 tracking-tight text-sm">More</h4>
+            <h4 className="font-semibold text-white mb-4 tracking-wide text-lg font-sans">More</h4>
             <ul className="space-y-3">
                 <FooterLink href="/#contact">Contact Us</FooterLink>
                 <FooterLink href="/#availability-process">Check Coverage</FooterLink>
@@ -100,7 +100,7 @@ const Footer = () => {
                 
                 {/* Newsletter */}
                 <div className="w-full lg:w-auto">
-                    <h4 className="font-semibold text-white mb-2 text-sm">Subscribe to the newsletter</h4>
+                    <h4 className="font-semibold text-white mb-2 text-lg font-sans tracking-wide">Subscribe to the newsletter</h4>
                     <form className="flex flex-col sm:flex-row gap-2 max-w-md">
                         <input 
                             type="email"
@@ -110,7 +110,7 @@ const Footer = () => {
                         />
                         <button 
                             type="submit"
-                            className="bg-neutral-200 text-black font-semibold px-6 py-2 rounded-md hover:bg-white transition-colors duration-200 whitespace-nowrap"
+                            className="bg-neutral-200 text-black font-semibold rounded-md px-6 py-2 hover:bg-white transition-colors duration-200 whitespace-nowrap font-sans"
                         >
                             Sign up
                         </button>
@@ -119,7 +119,7 @@ const Footer = () => {
 
                 {/* Bottom bar with copyright and social links */}
                 <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 mt-8 lg:mt-0 w-full lg:w-auto justify-between">
-                    <div className="text-neutral-400 text-sm font-normal order-2 sm:order-1">
+                    <div className="text-neutral-400 text-sm font-normal order-2 sm:order-1 font-sans">
                         © {year}
                     </div>
                     

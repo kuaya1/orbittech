@@ -51,8 +51,8 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   features
 }) => {
   return (
-    // Card container: Updated with glassmorphism effect (backdrop blur and semi-transparent background)
-    <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-8 h-full flex flex-col transition-all duration-300">
+    // Card container: Increased glassmorphism effect with more transparency and blur
+    <div className="bg-neutral-900/40 backdrop-blur-xl border border-neutral-800 rounded-2xl p-8 h-full flex flex-col transition-all duration-300">
 
       {/* Content Area */}
       <div className="flex-grow">
@@ -147,8 +147,8 @@ const Services = () => {
     <section
       ref={sectionRef}
       id="services"
-      // Updated background to a darker neutral shade
-      className="font-sans py-24 sm:py-32 bg-neutral-950 relative overflow-hidden"
+      // Updated background to pure black
+      className="font-sans py-24 sm:py-32 bg-black relative overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
@@ -219,11 +219,11 @@ const Services = () => {
           ))}
         </div>
 
-        {/* CTA section: Updated with glassmorphism effect */}
+        {/* CTA section: Increased glassmorphism effect */}
         <div className={`transition-all duration-1000 delay-300 ${ isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10' }`}>
-            <div className="relative group bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-8 sm:p-12 max-w-4xl mx-auto text-center overflow-hidden">
+            <div className="relative group bg-neutral-900/40 backdrop-blur-xl border border-neutral-800 rounded-2xl p-8 sm:p-12 max-w-4xl mx-auto text-center overflow-hidden">
                 {/* Subtle hover effect for the border */}
-                <div className="absolute -inset-px rounded-2xl border border-transparent group-hover:border-white/20 transition-all duration-300" aria-hidden="true"></div>
+                <div className="absolute -inset-px rounded-2xl border border-transparent group-hover:border-neutral-700 transition-all duration-300" aria-hidden="true"></div>
                 
                 <h3 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
                     Ready for Professional Installation?
@@ -233,10 +233,16 @@ const Services = () => {
                 </p>
                 <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
                     <a 
-                        href="tel:+15719996915" 
+                        href="#contact" 
                         className="inline-block bg-white text-black font-semibold px-8 py-3 rounded-md hover:bg-neutral-200 transition-all duration-300 shadow-lg hover:scale-105 transform"
                     >
-                        Call (571) 999-6915
+                        Get a Free Quote
+                    </a>
+                    <a 
+                        href="tel:+15719996915" 
+                        className="inline-block bg-white/10 border border-white/20 text-white font-semibold px-8 py-3 rounded-md hover:bg-white/20 transition-all duration-300 hover:scale-105 transform"
+                    >
+                        Call Us
                     </a>
                 </div>
             </div>

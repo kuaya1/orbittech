@@ -154,10 +154,10 @@ ${formData.message || 'No additional message provided'}`,
         <div className={`text-center max-w-3xl mx-auto mb-16 transition-all duration-1000 delay-200 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight mb-8 leading-tight text-white">
+          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-8 leading-tight text-white font-sans">
             GET QUOTE
           </h2>
-          <p className="text-xl md:text-2xl text-white/90 leading-relaxed max-w-3xl mx-auto font-medium">
+          <p className="text-lg text-neutral-300 leading-8 max-w-3xl mx-auto font-normal font-sans">
             Ready to get connected? Fill out the form below and we'll contact you within 24-48 hours to schedule your professional Starlink installation.
           </p>
         </div>
@@ -176,6 +176,7 @@ ${formData.message || 'No additional message provided'}`,
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-bold text-white mb-2 tracking-tight uppercase">
+                    <label htmlFor="name" className="block text-sm font-semibold text-white mb-2 tracking-tight uppercase font-sans">
                       Full Name *
                     </label>
                     <input
@@ -186,7 +187,7 @@ ${formData.message || 'No additional message provided'}`,
                       onChange={handleChange}
                       required
                       className="w-full px-4 py-3 bg-black border border-neutral-800 rounded-lg 
-                               text-white placeholder-neutral-400 font-medium
+                               text-white placeholder-neutral-400 font-normal font-sans
                                focus:ring-2 focus:ring-neutral-600 focus:border-neutral-600 transition-all duration-300
                                hover:bg-neutral-900 hover:border-neutral-700"
                       placeholder="Your name"
@@ -195,6 +196,7 @@ ${formData.message || 'No additional message provided'}`,
 
                   <div>
                     <label htmlFor="email" className="block text-sm font-black text-white mb-2 tracking-tight">
+                    <label htmlFor="email" className="block text-sm font-semibold text-white mb-2 tracking-tight font-sans">
                       Email Address *
                     </label>
                     <input
@@ -205,7 +207,7 @@ ${formData.message || 'No additional message provided'}`,
                       onChange={handleChange}
                       required
                       className="w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg 
-                               text-white placeholder-white/60 font-medium
+                               text-white placeholder-white/60 font-normal font-sans
                                focus:ring-2 focus:ring-white/50 focus:border-white/40 transition-all duration-300
                                hover:bg-white/15 hover:border-white/30"
                       placeholder="your@email.com"
@@ -216,6 +218,7 @@ ${formData.message || 'No additional message provided'}`,
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="phone" className="block text-sm font-black text-white mb-2 tracking-tight">
+                    <label htmlFor="phone" className="block text-sm font-semibold text-white mb-2 tracking-tight font-sans">
                       Phone Number *
                     </label>
                     <input
@@ -226,7 +229,7 @@ ${formData.message || 'No additional message provided'}`,
                       onChange={handleChange}
                       required
                       className="w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg 
-                               text-white placeholder-white/60 font-medium
+                               text-white placeholder-white/60 font-normal font-sans
                                focus:ring-2 focus:ring-white/50 focus:border-white/40 transition-all duration-300
                                hover:bg-white/15 hover:border-white/30"
                       placeholder="(571) 123-4567"
@@ -235,6 +238,7 @@ ${formData.message || 'No additional message provided'}`,
 
                   <div>
                     <label htmlFor="service" className="block text-sm font-black text-white mb-2 tracking-tight">
+                    <label htmlFor="service" className="block text-sm font-semibold text-white mb-2 tracking-tight font-sans">
                       Service Type
                     </label>
                     <select
@@ -243,7 +247,7 @@ ${formData.message || 'No additional message provided'}`,
                       value={formData.service}
                       onChange={handleChange}
                       className="w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg 
-                               text-white font-medium
+                               text-white font-normal font-sans
                                focus:ring-2 focus:ring-white/50 focus:border-white/40 transition-all duration-300
                                hover:bg-white/15 hover:border-white/30"
                     >
@@ -256,6 +260,7 @@ ${formData.message || 'No additional message provided'}`,
 
                 <div>
                   <label htmlFor="address" className="block text-sm font-black text-white mb-2 tracking-tight">
+                    <label htmlFor="address" className="block text-sm font-semibold text-white mb-2 tracking-tight font-sans">
                     Installation Address *
                   </label>
                   <input
@@ -266,7 +271,7 @@ ${formData.message || 'No additional message provided'}`,
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg 
-                             text-white placeholder-white/60 font-medium
+                               text-white placeholder-white/60 font-normal font-sans
                              focus:ring-2 focus:ring-white/50 focus:border-white/40 transition-all duration-300
                              hover:bg-white/15 hover:border-white/30"
                     placeholder="Full address for installation"
@@ -275,6 +280,7 @@ ${formData.message || 'No additional message provided'}`,
 
                 <div>
                   <label htmlFor="message" className="block text-sm font-black text-white mb-2 tracking-tight">
+                    <label htmlFor="message" className="block text-sm font-semibold text-white mb-2 tracking-tight font-sans">
                     Additional Information
                   </label>
                   <textarea
@@ -284,7 +290,7 @@ ${formData.message || 'No additional message provided'}`,
                     value={formData.message}
                     onChange={handleChange}
                     className="w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg 
-                             text-white placeholder-white/60 font-medium
+                               text-white placeholder-white/60 font-normal font-sans
                              focus:ring-2 focus:ring-white/50 focus:border-white/40 transition-all duration-300
                              hover:bg-white/15 hover:border-white/30"
                     placeholder="Any specific requirements or questions..."
@@ -304,13 +310,14 @@ ${formData.message || 'No additional message provided'}`,
                     {formStatus === 'success' && <CheckCircle className="h-5 w-5 flex-shrink-0" />}
                     {formStatus === 'error' && <XCircle className="h-5 w-5 flex-shrink-0" />}
                     <span className="text-sm font-medium">{statusMessage}</span>
+                    <span className="text-sm font-normal font-sans">{statusMessage}</span>
                   </div>
                 )}
 
                 <button
                   type="submit"
                   disabled={formStatus === 'loading'}
-                  className="w-full bg-white text-black font-bold py-4 px-6 rounded-lg 
+                  className="w-full bg-white text-black font-semibold rounded-md py-4 px-6 hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center gap-3 tracking-tight uppercase font-sans"
                            hover:scale-105 transition-all duration-300 
                            disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100
                            flex items-center justify-center gap-3 tracking-tight uppercase"
@@ -329,15 +336,15 @@ ${formData.message || 'No additional message provided'}`,
 
             {/* Contact Information - Mobile Second */}
             <div>
-              <h3 className="text-2xl font-black text-white mb-8 tracking-tight">Contact Information</h3>
+              <h3 className="text-3xl font-bold tracking-tight text-white sm:text-4xl font-sans mb-8">Contact Information</h3>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="text-center">
                   <div className="w-16 h-16 bg-[#976060]/20 border border-[#976060]/30 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300">
                     <Phone className="w-8 h-8 text-[#976060]" />
                   </div>
-                  <h4 className="font-bold text-white tracking-tight mb-2 uppercase">Phone</h4>
-                  <a href="tel:+15719996915" className="text-white/80 hover:text-white transition-colors font-medium">
+                  <h4 className="font-semibold text-white tracking-wide mb-2 uppercase font-sans">Phone</h4>
+                  <a href="tel:+15719996915" className="text-neutral-200 hover:text-white transition-colors font-normal font-sans">
                     (571) 999-6915
                   </a>
                 </div>
@@ -346,8 +353,8 @@ ${formData.message || 'No additional message provided'}`,
                   <div className="w-16 h-16 bg-[#976060]/20 border border-[#976060]/30 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300">
                     <Mail className="w-8 h-8 text-[#976060]" />
                   </div>
-                  <h4 className="font-bold text-white tracking-tight mb-2 uppercase">Email</h4>
-                  <a href="mailto:contact@theorbittech.com" className="text-white/80 hover:text-white transition-colors font-medium">
+                  <h4 className="font-semibold text-white tracking-wide mb-2 uppercase font-sans">Email</h4>
+                  <a href="mailto:contact@theorbittech.com" className="text-neutral-200 hover:text-white transition-colors font-normal font-sans">
                     contact@theorbittech.com
                   </a>
                 </div>
@@ -356,8 +363,8 @@ ${formData.message || 'No additional message provided'}`,
                   <div className="w-16 h-16 bg-[#976060]/20 border border-[#976060]/30 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300">
                     <MapPin className="w-8 h-8 text-[#976060]" />
                   </div>
-                  <h4 className="font-bold text-white tracking-tight mb-2 uppercase">Service Area</h4>
-                  <p className="text-white/80 font-medium">
+                  <h4 className="font-semibold text-white tracking-wide mb-2 uppercase font-sans">Service Area</h4>
+                  <p className="text-neutral-200 font-normal font-sans">
                     Washington DC, Maryland, Virginia
                   </p>
                 </div>
@@ -366,23 +373,23 @@ ${formData.message || 'No additional message provided'}`,
 
             {/* Why Choose Us Card - Mobile Last */}
             <div className="p-8 bg-black border border-neutral-800 rounded-xl shadow-lg shadow-black/20 hover:bg-neutral-900 hover:border-neutral-700 transition-all duration-300">
-              <h4 className="font-black text-white mb-4 tracking-tight uppercase">Why Choose Professional Installation?</h4>
-              <ul className="space-y-3 text-white/90">
+              <h4 className="font-bold text-white mb-4 tracking-tight uppercase font-sans">Why Choose Professional Installation?</h4>
+              <ul className="space-y-3 text-neutral-200 font-normal font-sans">
                 <li className="flex items-center">
                   <CheckCircle className="h-5 w-5 text-white mr-3 flex-shrink-0" />
-                  <span className="font-medium">Licensed and insured professionals</span>
+                  <span className="font-normal font-sans">Licensed and insured professionals</span>
                 </li>
                 <li className="flex items-center">
                   <CheckCircle className="h-5 w-5 text-white mr-3 flex-shrink-0" />
-                  <span className="font-medium">Optimal placement for maximum performance</span>
+                  <span className="font-normal font-sans">Optimal placement for maximum performance</span>
                 </li>
                 <li className="flex items-center">
                   <CheckCircle className="h-5 w-5 text-white mr-3 flex-shrink-0" />
-                  <span className="font-medium">Same-day installation available</span>
+                  <span className="font-normal font-sans">Same-day installation available</span>
                 </li>
                 <li className="flex items-center">
                   <CheckCircle className="h-5 w-5 text-white mr-3 flex-shrink-0" />
-                  <span className="font-medium">Professional cable routing and setup</span>
+                  <span className="font-normal font-sans">Professional cable routing and setup</span>
                 </li>
               </ul>
             </div>
@@ -393,15 +400,15 @@ ${formData.message || 'No additional message provided'}`,
             
             {/* Contact Information */}
             <div>
-              <h3 className="text-2xl font-black text-white mb-8 tracking-tight">Contact Information</h3>
+              <h3 className="text-3xl font-bold tracking-tight text-white sm:text-4xl font-sans mb-8">Contact Information</h3>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="text-center">
                   <div className="w-16 h-16 bg-[#976060]/20 border border-[#976060]/30 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300">
                     <Phone className="w-8 h-8 text-[#976060]" />
                   </div>
-                  <h4 className="font-bold text-white tracking-tight mb-2 uppercase">Phone</h4>
-                  <a href="tel:+15719996915" className="text-white/80 hover:text-white transition-colors font-medium">
+                  <h4 className="font-semibold text-white tracking-wide mb-2 uppercase font-sans">Phone</h4>
+                  <a href="tel:+15719996915" className="text-neutral-200 hover:text-white transition-colors font-normal font-sans">
                     (571) 999-6915
                   </a>
                 </div>
@@ -410,8 +417,8 @@ ${formData.message || 'No additional message provided'}`,
                   <div className="w-16 h-16 bg-[#976060]/20 border border-[#976060]/30 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300">
                     <Mail className="w-8 h-8 text-[#976060]" />
                   </div>
-                  <h4 className="font-bold text-white tracking-tight mb-2 uppercase">Email</h4>
-                  <a href="mailto:contact@theorbittech.com" className="text-white/80 hover:text-white transition-colors font-medium">
+                  <h4 className="font-semibold text-white tracking-wide mb-2 uppercase font-sans">Email</h4>
+                  <a href="mailto:contact@theorbittech.com" className="text-neutral-200 hover:text-white transition-colors font-normal font-sans">
                     contact@theorbittech.com
                   </a>
                 </div>
@@ -420,31 +427,31 @@ ${formData.message || 'No additional message provided'}`,
                   <div className="w-16 h-16 bg-[#976060]/20 border border-[#976060]/30 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300">
                     <MapPin className="w-8 h-8 text-[#976060]" />
                   </div>
-                  <h4 className="font-bold text-white tracking-tight mb-2 uppercase">Service Area</h4>
-                  <p className="text-white/80 font-medium">
+                  <h4 className="font-semibold text-white tracking-wide mb-2 uppercase font-sans">Service Area</h4>
+                  <p className="text-neutral-200 font-normal font-sans">
                     Washington DC, Maryland, Virginia
                   </p>
                 </div>
               </div>
 
               <div className="mt-12 p-8 bg-black border border-neutral-800 rounded-xl shadow-lg shadow-black/20 hover:bg-neutral-900 hover:border-neutral-700 transition-all duration-300">
-                <h4 className="font-black text-white mb-4 tracking-tight uppercase">Why Choose Professional Installation?</h4>
-                <ul className="space-y-3 text-white/90">
+                <h4 className="font-bold text-white mb-4 tracking-tight uppercase font-sans">Why Choose Professional Installation?</h4>
+                <ul className="space-y-3 text-neutral-200 font-normal font-sans">
                   <li className="flex items-center">
                     <CheckCircle className="h-5 w-5 text-white mr-3 flex-shrink-0" />
-                    <span className="font-medium">Licensed and insured professionals</span>
+                    <span className="font-normal font-sans">Licensed and insured professionals</span>
                   </li>
                   <li className="flex items-center">
                     <CheckCircle className="h-5 w-5 text-white mr-3 flex-shrink-0" />
-                    <span className="font-medium">Optimal placement for maximum performance</span>
+                    <span className="font-normal font-sans">Optimal placement for maximum performance</span>
                   </li>
                   <li className="flex items-center">
                     <CheckCircle className="h-5 w-5 text-white mr-3 flex-shrink-0" />
-                    <span className="font-medium">Same-day installation available</span>
+                    <span className="font-normal font-sans">Same-day installation available</span>
                   </li>
                   <li className="flex items-center">
                     <CheckCircle className="h-5 w-5 text-white mr-3 flex-shrink-0" />
-                    <span className="font-medium">Professional cable routing and setup</span>
+                    <span className="font-normal font-sans">Professional cable routing and setup</span>
                   </li>
                 </ul>
               </div>
@@ -591,7 +598,7 @@ ${formData.message || 'No additional message provided'}`,
                 <button
                   type="submit"
                   disabled={formStatus === 'loading'}
-                  className="w-full bg-white text-black font-bold py-4 px-6 rounded-lg 
+                  className="w-full bg-white text-black font-semibold rounded-md py-4 px-6 hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center gap-3 tracking-tight uppercase font-sans"
                            hover:scale-105 transition-all duration-300 
                            disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100
                            flex items-center justify-center gap-3 tracking-tight uppercase"

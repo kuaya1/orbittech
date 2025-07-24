@@ -80,7 +80,7 @@ const Navbar = () => {
                 <a
                   key={link.href}
                   href={link.href}
-                  className="text-white/90 hover:text-white text-sm font-medium transition-colors duration-200"
+                  className="text-neutral-200 hover:text-white text-sm font-normal tracking-tight transition-colors duration-200 font-sans"
                   onClick={(e) => handleLinkClick(e, link.href)}
                 >
                   {link.label}
@@ -92,13 +92,13 @@ const Navbar = () => {
             <div className="hidden lg:flex items-center space-x-4">
               <a
                 href="tel:+15719996915"
-                className="text-white/90 hover:text-white text-sm font-medium transition-colors duration-200 border border-white/30 hover:border-white/50 px-4 py-2 rounded"
+                className="bg-white/10 border border-white/20 text-white font-semibold rounded-md text-sm px-4 py-2 hover:bg-white/20 transition-all duration-200 font-sans"
               >
                 Call Us
               </a>
               <a
                 href="/#contact"
-                className="bg-white text-black font-medium px-6 py-2 rounded text-sm hover:bg-gray-100 transition-colors duration-200"
+                className="bg-white text-black font-semibold rounded-md text-sm px-6 py-2 hover:bg-neutral-200 transition-all duration-200 font-sans"
                 onClick={(e) => handleLinkClick(e, '/#contact')}
               >
                 Get Quote
@@ -108,7 +108,7 @@ const Navbar = () => {
             {/* Mobile Menu Toggle - Only Visible on Mobile/Tablet */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="lg:hidden p-2 text-white hover:text-white/80 transition-colors duration-200"
+              className="lg:hidden p-2 text-white hover:text-white/80 transition-colors duration-200 font-sans"
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             >
               {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -124,7 +124,7 @@ const Navbar = () => {
                 <a
                   key={link.href}
                   href={link.href}
-                  className="block text-white text-base font-medium transition-colors"
+                  className="block text-white text-lg font-normal tracking-tight transition-colors font-sans"
                   onClick={(e) => handleLinkClick(e, link.href)}
                 >
                   {link.label}
@@ -132,13 +132,13 @@ const Navbar = () => {
               ))}
               <a
                 href="tel:+15719996915"
-                className="block text-white text-base font-medium transition-colors border border-white/30 hover:border-white/50 px-4 py-3 rounded text-center mt-6"
+                className="block bg-white/10 border border-white/20 text-white font-semibold rounded-md text-lg px-4 py-3 text-center mt-6 hover:bg-white/20 transition-all font-sans"
               >
                 Call Us: (571) 999-6915
               </a>
               <a
                 href="/#contact"
-                className="block bg-white text-black px-6 py-3 rounded font-medium transition-colors text-center mt-4"
+                className="block bg-white text-black font-semibold rounded-md text-lg px-6 py-3 text-center mt-4 hover:bg-neutral-200 transition-all font-sans"
                 onClick={(e) => handleLinkClick(e, '/#contact')}
               >
                 ORDER NOW
