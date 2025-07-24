@@ -177,7 +177,7 @@ const App = () => {
       >
         
         {/* --- Left Column: Info --- */}
-        <div className="p-8 lg:p-12">
+        <div className="p-8 lg:p-12" style={{ background: '#121212' }}>
             <h1 className="text-4xl sm:text-5xl font-medium text-neutral-50 tracking-tighter">
                 Let's Get in Touch
             </h1>

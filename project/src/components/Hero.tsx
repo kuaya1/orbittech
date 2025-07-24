@@ -88,22 +88,11 @@ const Hero = () => {
                 <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4" style={animationStyle(400)}>
                     <a
                         href="#contact"
-                        className="group inline-flex items-center justify-center px-8 py-4 text-lg text-white font-medium rounded-full
-                                   transition-all duration-300 ease-in-out disabled:bg-neutral-800 disabled:text-neutral-500 disabled:cursor-not-allowed"
-                        style={{ backgroundColor: calciteBlue, '--hover-bg': '#005a9e' }}
-                        onMouseOver={e => e.currentTarget.style.backgroundColor = getComputedStyle(e.currentTarget).getPropertyValue('--hover-bg')}
-                        onMouseOut={e => e.currentTarget.style.backgroundColor = calciteBlue}
+                        className="group inline-flex items-center justify-center px-8 py-4 text-lg bg-white text-black font-medium rounded-full
+                                   transition-all duration-300 ease-in-out shadow-lg hover:bg-neutral-200 disabled:bg-neutral-800 disabled:text-neutral-500 disabled:cursor-not-allowed"
                     >
                         <span>Get a Quote</span>
                         <ArrowRight className="h-5 w-5 ml-2 transform transition-transform duration-300 group-hover:translate-x-1" />
-                    </a>
-                    <a
-                        href="#faq"
-                        className="group inline-flex items-center justify-center px-8 py-4 text-lg text-neutral-200 font-medium rounded-full
-                                   bg-black/20 hover:bg-black/40 backdrop-blur-sm
-                                   transition-all duration-300 ease-in-out"
-                    >
-                        <span>Learn More</span>
                     </a>
                 </div>
             </div>
