@@ -168,64 +168,59 @@ const App = () => {
     <section 
       ref={sectionRef}
       id="contact" 
-      className="min-h-[400px] w-full pt-16 pb-10 px-4 sm:px-6 lg:px-8 bg-black flex items-center justify-center font-sans"
+      className="min-h-[400px] w-full pt-16 pb-10 px-4 sm:px-6 lg:px-8 bg-white flex items-center justify-center font-sans"
       style={{
-        backgroundImage: "url('/Starlink_Rural_Location_02a-scaled.jpg')",
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        backgroundAttachment: 'fixed'
+        background: '#fff',
       }}
     >
       {/* --- Unified Contact Module --- */}
       <div 
-        className="w-full max-w-7xl mx-auto bg-neutral-900/90 border border-neutral-800 rounded-2xl grid grid-cols-1 lg:grid-cols-2 shadow-2xl shadow-black/30 overflow-hidden"
+        className="w-full max-w-5xl mx-auto bg-white border border-neutral-200 rounded-3xl grid grid-cols-1 lg:grid-cols-2 shadow-xl overflow-hidden"
         style={animationStyle}
       >
         
         {/* --- Left Column: Info --- */}
         <div 
-          className="p-8 lg:p-12 backdrop-blur-xl border border-white/10 bg-[#101014]/90 rounded-2xl shadow-xl"
-          style={{ background: 'rgba(16, 16, 20, 0.92)' }}
+          className="p-8 lg:p-12 bg-white rounded-3xl flex flex-col justify-center shadow-none border-r border-neutral-100"
         >
-            <h1 className="text-4xl sm:text-5xl font-medium text-neutral-50 tracking-tighter">
+            <h1 className="text-4xl sm:text-5xl font-semibold text-neutral-900 tracking-tighter">
                 Let's Get in Touch
             </h1>
-            <p className="mt-4 text-lg text-neutral-400">
+            <p className="mt-4 text-lg text-neutral-500">
                 We’ll get back to you within 24 hours.
             </p>
 
             <div className="mt-12 space-y-8">
                 <ContactInfoItem icon="envelope" title="Email" href="mailto:contact@theorbittech.com" color={calciteBlue}>
-                    contact@theorbittech.com
+                    <span className="text-neutral-900">contact@theorbittech.com</span>
                 </ContactInfoItem>
                 <ContactInfoItem icon="phone" title="Phone" href="tel:+15719996915" color={calciteBlue}>
-                    (571) 999-6915
+                    <span className="text-neutral-900">(571) 999-6915</span>
                 </ContactInfoItem>
                 <ContactInfoItem icon="locator" title="Service Area" color={calciteBlue}>
-                    DC, Maryland, Virginia
+                    <span className="text-neutral-900">DC, Maryland, Virginia</span>
                 </ContactInfoItem>
             </div>
         </div>
 
-        {/* --- Right Column: Form (Dark Background) --- */}
-        <div className="p-8 lg:p-12 bg-black border border-neutral-800 rounded-2xl">
-            <form onSubmit={handleSubmit} className="space-y-6">
+        {/* --- Right Column: Form (White Background) --- */}
+        <div className="p-8 lg:p-12 bg-white rounded-3xl flex flex-col justify-center">
+            <form onSubmit={handleSubmit} className="space-y-8">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <InputField label="Full Name" id="name" name="name" value={formData.name} onChange={handleChange} required accentColor={calciteBlue} />
-                    <InputField label="Email Address" id="email" name="email" type="email" value={formData.email} onChange={handleChange} required accentColor={calciteBlue} />
+                    <InputField label="Full Name" id="name" name="name" value={formData.name} onChange={handleChange} required accentColor={calciteBlue} theme="light" />
+                    <InputField label="Email Address" id="email" name="email" type="email" value={formData.email} onChange={handleChange} required accentColor={calciteBlue} theme="light" />
                 </div>
-                <InputField label="Phone Number" id="phone" name="phone" type="tel" value={formData.phone} onChange={handleChange} required accentColor={calciteBlue} />
-                <TextareaField label="Your Message" id="message" name="message" value={formData.message} onChange={handleChange} rows={5} accentColor={calciteBlue} />
+                <InputField label="Phone Number" id="phone" name="phone" type="tel" value={formData.phone} onChange={handleChange} required accentColor={calciteBlue} theme="light" />
+                <TextareaField label="Your Message" id="message" name="message" value={formData.message} onChange={handleChange} rows={5} accentColor={calciteBlue} theme="light" />
                 
-                <div className="pt-4">
+                <div className="pt-2">
                     <div className="flex items-center justify-between">
                         <div className="h-6">
                             {formStatus !== 'idle' && (
                                 <div className={`flex items-center gap-2 text-sm transition-opacity duration-300 ${
-                                    formStatus === 'success' ? 'text-green-400' :
-                                    formStatus === 'error' ? 'text-red-400' :
-                                    'text-neutral-400'
+                                    formStatus === 'success' ? 'text-green-500' :
+                                    formStatus === 'error' ? 'text-red-500' :
+                                    'text-neutral-500'
                                 }`}>
                                     {formStatus === 'loading' && <Loader2 className="h-4 w-4 animate-spin" />}
                                     {formStatus === 'success' && <CheckCircle className="h-4 w-4" />}
@@ -237,7 +232,7 @@ const App = () => {
                         <button
                             type="submit"
                             disabled={formStatus === 'loading' || !isEmailServiceReady}
-                            className="inline-flex items-center justify-center px-6 py-3 bg-white text-black font-semibold rounded-full transition-all duration-300 ease-in-out disabled:bg-neutral-800 disabled:text-neutral-500 disabled:cursor-not-allowed"
+                            className="inline-flex items-center justify-center px-7 py-3 bg-neutral-900 text-white font-semibold rounded-full shadow-md transition-all duration-300 ease-in-out disabled:bg-neutral-200 disabled:text-neutral-400 disabled:cursor-not-allowed hover:bg-neutral-800 focus:ring-2 focus:ring-offset-2 focus:ring-neutral-900"
                         >
                             <span>Send Message</span>
                         </button>
@@ -257,10 +252,10 @@ const InputField = ({ label, id, accentColor, theme = 'dark', ...props }) => (
     <input 
       id={id} 
       {...props} 
-      className={`peer w-full px-1 py-3 bg-transparent border-b-2 placeholder-transparent focus:outline-none transition-colors ${
+      className={`peer w-full px-4 py-3 bg-white border border-neutral-200 rounded-xl shadow-sm placeholder-transparent focus:outline-none focus:border-[${accentColor}] transition-colors text-neutral-900 ${
         theme === 'light' 
-        ? 'border-neutral-300 text-black' 
-        : 'border-neutral-700 text-white'
+        ? '' 
+        : 'bg-transparent border-neutral-700 text-white'
       }`}
       style={{'--accent-color': accentColor}}
       onFocus={e => e.target.style.borderColor = accentColor}
@@ -269,11 +264,7 @@ const InputField = ({ label, id, accentColor, theme = 'dark', ...props }) => (
     />
     <label 
       htmlFor={id} 
-      className={`absolute left-1 -top-5 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:-top-5 peer-focus:text-sm ${
-        theme === 'light'
-        ? 'text-neutral-600 peer-placeholder-shown:text-neutral-600 peer-focus:text-neutral-600'
-        : 'text-neutral-500 peer-placeholder-shown:text-neutral-400 peer-focus:text-neutral-500'
-      }`}
+      className={`absolute left-4 -top-5 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:-top-5 peer-focus:text-sm text-neutral-500`}
       style={{'--accent-color': accentColor}}
     >
       {label}
@@ -286,10 +277,10 @@ const TextareaField = ({ label, id, accentColor, theme = 'dark', ...props }) => 
       <textarea 
         id={id} 
         {...props} 
-        className={`peer w-full px-1 py-3 bg-transparent border-b-2 placeholder-transparent focus:outline-none transition-colors resize-none ${
+        className={`peer w-full px-4 py-3 bg-white border border-neutral-200 rounded-xl shadow-sm placeholder-transparent focus:outline-none focus:border-[${accentColor}] transition-colors resize-none text-neutral-900 ${
           theme === 'light' 
-          ? 'border-neutral-300 text-black' 
-          : 'border-neutral-700 text-white'
+          ? '' 
+          : 'bg-transparent border-neutral-700 text-white'
         }`}
         style={{'--accent-color': accentColor}}
         onFocus={e => e.target.style.borderColor = accentColor}
@@ -298,11 +289,7 @@ const TextareaField = ({ label, id, accentColor, theme = 'dark', ...props }) => 
       />
       <label 
         htmlFor={id} 
-        className={`absolute left-1 -top-5 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:-top-5 peer-focus:text-sm ${
-          theme === 'light'
-          ? 'text-neutral-600 peer-placeholder-shown:text-neutral-600 peer-focus:text-neutral-600'
-          : 'text-neutral-500 peer-placeholder-shown:text-neutral-400 peer-focus:text-neutral-500'
-        }`}
+        className={`absolute left-4 -top-5 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:-top-5 peer-focus:text-sm text-neutral-500`}
         style={{'--accent-color': accentColor}}
       >
         {label}
