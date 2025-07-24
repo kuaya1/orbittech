@@ -1,11 +1,9 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { ArrowRight, CheckCircle, XCircle, MapPin, Loader2, Info, History, Shield, Clock, Wrench } from 'lucide-react';
-// import { ShootingStars } from './ui/shooting-stars';
-// import { StarsBackground } from './ui/star-backround';
+import { CheckCircle, XCircle, Loader2, Info, History, Target } from 'lucide-react';
 
 // Updated serviceableZips to include all regions within 150 miles of DC
 const serviceableZips = new Set([
-        // Original DC/VA/MD zip codes
+    // Original DC/VA/MD zip codes
     "20191","20192","20190","22096","20196","20171","20172","20195","22095","22124","20194","22181","20170","22033","22182",
     "22185","20041","22183","22066","22035","20102","20189","22180","20164","20151","20166","20163","20167","22038","22030",
     "22034","20104","20103","22067","22102","20101","22031","22027","20122","22081","22082","22116","22118","22119","20165",
@@ -157,7 +155,7 @@ const AvailabilityProcess = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   
-  // Availability check state with enhanced functionality from AvailabilityCheck
+  // Availability check state
   const [zipCode, setZipCode] = useState('');
   const [serviceStatus, setServiceStatus] = useState<null | boolean | 'loading'>(null);
   const [errorMessage, setErrorMessage] = useState('');
@@ -175,6 +173,7 @@ const AvailabilityProcess = () => {
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
+          observer.unobserve(entry.target);
         }
       },
       { threshold: 0.1 }
@@ -190,8 +189,6 @@ const AvailabilityProcess = () => {
       }
     };
   }, []);
-
-  // Parallax scroll effect removed
 
   // Load recent searches from localStorage on component mount
   useEffect(() => {
@@ -209,7 +206,7 @@ const AvailabilityProcess = () => {
     }
   }, []);
 
-  // Save a zip code to recent searches with improved implementation
+  // Save a zip code to recent searches
   const saveToRecent = useCallback((zip: string) => {
     if (!zip || zip.length !== 5) return;
     
@@ -224,7 +221,6 @@ const AvailabilityProcess = () => {
   const checkServiceArea = useCallback((e: React.FormEvent) => {
     e.preventDefault();
     
-    // Form validation
     if (zipCode.length !== 5) {
       setErrorMessage('Please enter a valid 5-digit ZIP code');
       return;
@@ -232,47 +228,39 @@ const AvailabilityProcess = () => {
     
     setErrorMessage('');
     setServiceStatus('loading');
-    setShowRecent(false); // Hide recent list on check
+    setShowRecent(false);
     
-    // Simulate API call with timeout
     setTimeout(() => {
       try {
         const isServiceable = serviceableZips.has(zipCode);
-        console.log(`Checking ZIP: ${zipCode}, Available: ${isServiceable}`);
-        
         setServiceStatus(isServiceable);
         saveToRecent(zipCode);
-        setShowResults(true); // Always show results after checking
+        setShowResults(true);
       } catch (error) {
         setErrorMessage('Something went wrong. Please try again.');
         setServiceStatus(null);
       }
-    }, 800); // Shorter delay for better UX
+    }, 800);
   }, [zipCode, saveToRecent]);
 
   const handleZipChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.replace(/[^\d]/g, '').slice(0, 5);
     setZipCode(value);
     
-    // Clear error when user starts typing
     if (errorMessage) {
       setErrorMessage('');
     }
     
-    // Hide results when user changes the ZIP code
     if (showResults) {
       setShowResults(false);
     }
     
-    // Keep recent searches visible while typing
     if (!showRecent) {
       setShowRecent(true);
     }
   };
 
-  // Handle focusing the input
   const handleFocus = () => {
-    // Clear any existing blur timeout
     if (blurTimeoutRef.current) {
         clearTimeout(blurTimeoutRef.current);
         blurTimeoutRef.current = null;
@@ -280,25 +268,22 @@ const AvailabilityProcess = () => {
     setShowRecent(true);
   };
 
-  // Handle blurring the input (with delay to allow clicking recent items)
   const handleBlur = () => {
-     blurTimeoutRef.current = setTimeout(() => {
-       setShowRecent(false);
-     }, 150); // 150ms delay
+    blurTimeoutRef.current = window.setTimeout(() => {
+        setShowRecent(false);
+    }, 150);
   };
 
   const selectRecentZip = (zip: string) => {
-    // Clear the blur timeout because we are interacting with the component
     if (blurTimeoutRef.current) {
       clearTimeout(blurTimeoutRef.current);
       blurTimeoutRef.current = null;
     }
     setZipCode(zip);
     setShowRecent(false);
-    inputRef.current?.focus(); // Keep focus on input after selection
+    inputRef.current?.focus();
   };
   
-  // Cleanup timeout on unmount
   useEffect(() => {
     return () => {
       if (blurTimeoutRef.current) {
@@ -311,34 +296,20 @@ const AvailabilityProcess = () => {
     <section 
       ref={sectionRef}
       id="availability-process" 
-      className="pt-32 pb-20 md:pt-40 md:pb-32 bg-black relative overflow-hidden"
+      className="pt-32 pb-20 md:pt-40 md:pb-32 bg-black relative overflow-hidden flex items-center justify-center"
       style={{
         backgroundImage: `url('/backround.jpeg')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat'
+        backgroundRepeat: 'no-repeat',
+        minHeight: '80vh',
       }}
     >
-      {/* Dark overlay for contrast */}
-      <div className="absolute inset-0 z-0 pointer-events-none" style={{background: 'rgba(0,0,0,0.10)'}} />
-      {/* Shooting Stars Background - DISABLED */}
-      {/* <ShootingStars />
-      <StarsBackground /> */}
+      {/* Dark gradient overlay for contrast */}
+      <div className="absolute inset-0 z-0 pointer-events-none" style={{background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%)'}} />
       
-
-
-      {/* CSS for subtle animations */}
+      {/* Animation styles */}
       <style jsx>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0px) scale(1); }
-          50% { transform: translateY(-20px) scale(1.05); }
-        }
-        
-        @keyframes breathe {
-          0%, 100% { opacity: 0.4; }
-          50% { opacity: 0.7; }
-        }
-        
         @keyframes fadeInUp {
           from {
             opacity: 0;
@@ -349,254 +320,118 @@ const AvailabilityProcess = () => {
             transform: translateY(0);
           }
         }
-        
-        @keyframes subtleFloat {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-5px); }
-        }
-        
         .animate-fadeInUp {
           animation: fadeInUp 0.8s ease-out forwards;
         }
-        
-        .animate-subtleFloat {
-          animation: subtleFloat 3s ease-in-out infinite;
-        }
       `}</style>
 
-      <div className="container mx-auto px-6 sm:px-8 lg:px-12 max-w-6xl relative z-10">
-        {/* Header section with enhanced animation */}
-        <div className={`text-center mb-16 transition-all duration-1000 delay-200 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-        } font-sans`}>
-          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-8 leading-tight text-white font-sans animate-subtleFloat">
-            Check Availability
-          </h2>
-          
-          <p className={`text-lg text-neutral-300 leading-8 max-w-3xl mx-auto font-normal font-sans transition-all duration-1000 delay-400 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}>
-            Enter your ZIP code to see if our professional Starlink installation 
-            services are available in your area.
-          </p>
-        </div>
-
-        <div className={`max-w-3xl mx-auto transition-all duration-1000 delay-600 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-        }`}>
-          {/* Main availability checker card with glassmorphism/transparent effect */}
-          <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl shadow-black/30 overflow-hidden hover:shadow-3xl hover:shadow-black/40 transition-all duration-500 hover:-translate-y-1" style={{boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.25)'}}>
-            <div className="p-8 md:p-12">
-              <div className="max-w-2xl mx-auto">
-                {/* Availability checker form */}
-                <div className="mb-8">
-                  <div className={`flex items-center gap-3 mb-6 transition-all duration-700 delay-800 ${
-                    isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'
-                  }`}>
-                    <div className="w-10 h-10 bg-white/10 border border-neutral-800 rounded-xl flex items-center justify-center animate-subtleFloat">
-                      <MapPin className="h-5 w-5 text-[#1086f4]" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-white tracking-wide font-sans">Check Your Location</h3>
-                      <p className="text-neutral-200 text-sm font-normal font-sans">Enter your ZIP code to get started</p>
-                    </div>
-                  </div>
+      <div className={`container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl relative z-10 transition-all duration-1000 delay-200 ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+      }`}>
+        <div className="max-w-3xl mx-auto">
+          <form onSubmit={checkServiceArea} className="w-full animate-fadeInUp" style={{animationDelay: '200ms'}}>
+            <div className="flex flex-col sm:flex-row items-end gap-3">
+              <div className="w-full sm:flex-grow">
+                <label htmlFor="zipInput" className="block text-sm font-semibold text-white mb-2">Service Address</label>
+                <div className="relative">
+                  <input
+                    id="zipInput"
+                    ref={inputRef}
+                    type="text"
+                    value={zipCode}
+                    onChange={handleZipChange}
+                    onFocus={handleFocus}
+                    onBlur={handleBlur}
+                    placeholder="TYPE AND SELECT"
+                    maxLength={5}
+                    inputMode="numeric"
+                    pattern="[0-9]*"
+                    className="w-full px-4 py-3 pr-12 rounded-md bg-slate-500/30 backdrop-blur-sm border border-white/30 text-white placeholder-neutral-300 focus:outline-none focus:ring-2 focus:ring-white/50 transition"
+                    aria-label="Enter your ZIP code"
+                    required
+                  />
+                  <Target className="absolute right-4 top-1/2 -translate-y-1/2 h-5 w-5 text-white/70 pointer-events-none"/>
                   
-                  <form onSubmit={checkServiceArea} className="relative">
-                    <div className={`relative transition-all duration-700 delay-1000 ${
-                      isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-                    }`}>
-                      <input 
-                        ref={inputRef}
-                        type="text" 
-                        value={zipCode}
-                        onChange={handleZipChange}
-                        onFocus={handleFocus}
-                        onBlur={handleBlur}
-                        maxLength={5}
-                        inputMode="numeric"
-                        pattern="[0-9]*"
-                        placeholder="Enter ZIP Code" 
-                        className="w-full px-4 py-3 pl-10 pr-20 sm:px-6 sm:py-4 sm:pl-12 sm:pr-32 rounded-xl 
-                                 bg-black border border-neutral-800 
-                                 text-white placeholder-neutral-400 text-sm sm:text-base font-medium
-                                 focus:outline-none focus:ring-2 focus:ring-neutral-600 focus:border-neutral-600
-                                 transition-all duration-300 hover:bg-neutral-900 hover:border-neutral-700
-                                 focus:scale-[1.02] hover:scale-[1.01]"
-                        aria-label="Enter your ZIP code"
-                        required
-                      />
-                      
-                      {/* Input icon with subtle animation */}
-                      <MapPin className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-white/60 transition-all duration-300" />
-                      {/* Updated icon color to match Services section */}
-                      <MapPin className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-[#1086f4] transition-all duration-300" />
-                      
-                      {/* Submit button with enhanced hover effects */}
-                      <button 
-                        type="submit" 
-                        disabled={serviceStatus === 'loading' || zipCode.length !== 5}
-                        className="absolute right-1 sm:right-2 top-1/2 -translate-y-1/2 
-                                 bg-white text-black font-bold 
-                                 disabled:bg-neutral-600 disabled:cursor-not-allowed disabled:text-neutral-400
-                                 px-3 py-3 sm:px-6 sm:py-3 rounded-lg tracking-tight text-sm sm:text-lg
-                                 transition-all duration-300 hover:scale-110 hover:bg-neutral-100 hover:shadow-lg
-                                 active:bg-white/20 active:backdrop-blur-sm active:border active:border-white/30
-                                 flex items-center gap-1 shadow-lg group"
-                        style={{
-                          backdropFilter: serviceStatus === 'loading' ? 'blur(8px)' : 'none',
-                          backgroundColor: serviceStatus === 'loading' ? 'rgba(255, 255, 255, 0.1)' : '#ffffff'
-                        }}
-                      >
-                        {serviceStatus === 'loading' ? (
-                          <>
-                            <Loader2 className="h-4 w-4 sm:h-5 sm:w-5 animate-spin text-white" />
-                            <span className="hidden sm:inline text-white">Checking</span>
-                          </>
-                        ) : (
-                          <>
-                            <span className="text-black text-sm sm:text-lg font-bold">Check</span>
-                            <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5 text-black transition-transform duration-300 group-hover:translate-x-1" />
-                          </>
-                        )}
-                      </button>
+                  {showRecent && recentSearches.length > 0 && (
+                    <div className="absolute top-full left-0 right-0 mt-2 bg-black/70 backdrop-blur-md border border-white/20 rounded-xl shadow-2xl z-20 overflow-hidden animate-fadeInUp">
+                      <div className="p-2 text-xs text-white/60 border-b border-white/10 font-bold tracking-wide">
+                        Recent searches
+                      </div>
+                      {recentSearches.map((zip, index) => (
+                        <button
+                          key={index}
+                          type="button"
+                          onClick={() => selectRecentZip(zip)}
+                          onMouseDown={(e) => e.preventDefault()}
+                          className="w-full text-left px-3 py-2.5 hover:bg-white/10 text-white transition-colors duration-200 flex items-center gap-2"
+                        >
+                          <History className="h-4 w-4 text-white/60"/>
+                          <span className="font-medium tracking-tight">{zip}</span>
+                        </button>
+                      ))}
                     </div>
-                    
-                    {/* Recent searches dropdown with smooth animation */}
-                    {showRecent && recentSearches.length > 0 && (
-                      <div className="absolute top-full left-0 right-0 mt-2 
-                                    bg-white/10 backdrop-blur-md border border-white/20 rounded-xl 
-                                    shadow-2xl shadow-black/50 z-20 overflow-hidden
-                                    animate-fadeInUp">
-                        <div className="p-3 text-xs text-white/60 border-b border-white/10 font-black tracking-tight">
-                          Recent searches
-                        </div>
-                        {recentSearches.map((zip, index) => (
-                          <button
-                            key={index}
-                            type="button"
-                            onClick={() => selectRecentZip(zip)}
-                            onMouseDown={(e) => e.preventDefault()}
-                            className="w-full text-left px-4 py-3 hover:bg-white/10 
-                                     text-white transition-all duration-200 flex items-center gap-3"
-                          >
-                            <History className="h-4 w-4 text-white/60"/>
-                          {/* Updated icon color to match Services section */}
-                          <History className="h-4 w-4 text-[#1086f4]"/>
-                            <span className="font-black tracking-tight">{zip}</span>
-                          </button>
-                        ))}
-                      </div>
-                    )}
-                    
-                    {errorMessage && (
-                      <div className="mt-3 text-red-300 text-sm flex items-center gap-2 font-medium" role="alert">
-                        <Info className="h-4 w-4 flex-shrink-0" />
-                      {/* Updated icon color to match Services section */}
-                      <Info className="h-4 w-4 flex-shrink-0 text-[#1086f4]" />
-                        {errorMessage}
-                      </div>
-                    )}
-                  </form>
-                </div>
-
-                {/* Results section with enhanced animations */}
-                {serviceStatus !== 'loading' && serviceStatus !== null && showResults && (
-                  <div className={`rounded-xl p-6 backdrop-blur-sm border transition-all duration-700 animate-fadeInUp ${
-                    serviceStatus === true
-                      ? 'bg-white/10 border-white/30' 
-                      : 'bg-white/5 border-white/20'
-                  }`}>
-                    <div className="flex items-start gap-4">
-                      <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 backdrop-blur-sm border ${
-                        serviceStatus === true ? 'bg-white/20 border-white/30' : 'bg-white/10 border-white/20'
-                      }`}>
-                        {serviceStatus === true ? (
-                          <CheckCircle className="h-5 w-5 text-[#1086f4]" /> // Updated icon color to match Services section
-                        ) : (
-                          <XCircle className="h-5 w-5 text-[#1086f4]" /> // Updated icon color to match Services section
-                        )}
-                      </div>
-                      
-                      <div className="flex-grow">
-                        <h4 className="text-lg font-black text-white mb-2 tracking-tight">
-                          {serviceStatus === true ? 'Service Available!' : 'Not Available Yet'}
-                        </h4>
-                        <p className="text-white/80 mb-4 leading-relaxed font-medium">
-                          {serviceStatus === true
-                            ? `Great! We provide professional Starlink installation services in ${zipCode}. You can get high-speed satellite internet with same-day installation.` 
-                            : `We're not currently servicing ${zipCode}, but we're expanding rapidly. Join our waitlist to be notified when service becomes available.`}
-                        </p>
-                        
-                        {/* Action buttons */}
-                        <div className="flex flex-col sm:flex-row gap-3">
-                          {serviceStatus === true ? (
-                            <>
-                              <a 
-                                href="#contact" 
-                                className="inline-flex items-center justify-center gap-2 
-                                         bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30
-                                         text-white font-black px-6 py-3 rounded-lg tracking-tight
-                                         transition-all duration-300 hover:scale-105"
-                              >
-                                <span>Schedule Installation</span>
-                                <ArrowRight className="h-4 w-4" />
-                              </a>
-                              <a 
-                                href="tel:+15719996915" 
-                                className="inline-flex items-center justify-center gap-2
-                                         bg-white/5 hover:bg-white/10 backdrop-blur-sm border border-white/20
-                                         text-white font-black px-6 py-3 rounded-lg tracking-tight
-                                         transition-all duration-300 hover:scale-105"
-                              >
-                                Call (571) 999-6915
-                              </a>
-                            </>
-                          ) : (
-                            <>
-                              <button 
-                                type="button"
-                                onClick={() => window.location.href = '#contact'}
-                                className="inline-flex items-center justify-center gap-2
-                                         bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30
-                                         text-white font-black px-6 py-3 rounded-lg tracking-tight
-                                         transition-all duration-300 hover:scale-105"
-                              >
-                                <span>Join Waitlist</span>
-                                <ArrowRight className="h-4 w-4" />
-                              </button>
-                              <button 
-                                type="button"
-                                onClick={() => window.location.href = '#contact'}
-                                className="inline-flex items-center justify-center gap-2
-                                         bg-white/5 hover:bg-white/10 backdrop-blur-sm border border-white/20
-                                         text-white font-black px-6 py-3 rounded-lg tracking-tight
-                                         transition-all duration-300 hover:scale-105"
-                              >
-                                Get Updates
-                              </button>
-                            </>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {/* Service area info with delayed animation */}
-                <div className={`mt-8 text-center transition-all duration-700 delay-1200 ${
-                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-                }`}>
-                  <p className="text-white/60 text-sm leading-relaxed font-medium">
-                    Currently serving the <span className="text-white font-black">Washington DC Metro area</span> including 
-                    Maryland, Virginia, Pennsylvania, Delaware, and West Virginia within 150 miles of DC.
-                  </p>
+                  )}
                 </div>
               </div>
+
+              <div className="w-full sm:w-auto">
+                <button
+                  type="submit"
+                  disabled={serviceStatus === 'loading' || zipCode.length !== 5}
+                  className="w-full px-8 py-3 rounded-md bg-white text-black font-bold text-base hover:bg-neutral-200 transition disabled:bg-neutral-500 disabled:cursor-not-allowed"
+                >
+                  {serviceStatus === 'loading' ? (
+                    <Loader2 className="h-5 w-5 animate-spin mx-auto" />
+                  ) : (
+                    'CHECK'
+                  )}
+                </button>
+              </div>
             </div>
+          </form>
+
+          <div className="mt-6 text-center">
+            {errorMessage && (
+              <div className="mt-3 text-red-300 text-sm flex items-center justify-center gap-2 font-medium" role="alert">
+                <Info className="h-4 w-4 flex-shrink-0" />
+                {errorMessage}
+              </div>
+            )}
+            
+            {serviceStatus !== 'loading' && serviceStatus !== null && showResults && (
+              <div className={`rounded-xl p-6 backdrop-blur-sm border transition-all duration-700 animate-fadeInUp bg-black/40 ${
+                serviceStatus === true
+                  ? 'border-green-500/50' 
+                  : 'border-red-500/50'
+              }`}>
+                <div className="flex items-start gap-4">
+                  <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 backdrop-blur-sm border ${
+                    serviceStatus === true ? 'bg-green-500/20 border-green-500/30' : 'bg-red-500/20 border-red-500/30'
+                  }`}>
+                    {serviceStatus === true ? (
+                      <CheckCircle className="h-5 w-5 text-green-400" />
+                    ) : (
+                      <XCircle className="h-5 w-5 text-red-400" />
+                    )}
+                  </div>
+                  <div className="flex-grow text-left">
+                    <h4 className="text-lg font-bold text-white mb-1">
+                      {serviceStatus === true ? 'Service Available!' : 'Not Available Yet'}
+                    </h4>
+                    <p className="text-white/80 leading-relaxed">
+                      {serviceStatus === true
+                        ? `Great! We provide professional Starlink installation services in ${zipCode}. You can get high-speed satellite internet with same-day installation.` 
+                        : `We're not currently servicing ${zipCode}, but we're expanding rapidly. Join our waitlist to be notified when service becomes available.`}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+             <p className="text-white/60 text-sm leading-relaxed font-medium mt-8">
+              Currently serving the <span className="text-white font-semibold">Washington DC Metro area</span> including 
+              Maryland, Virginia, Pennsylvania, Delaware, and West Virginia within 150 miles of DC.
+            </p>
           </div>
-
-
         </div>
       </div>
     </section>

@@ -52,7 +52,7 @@ const StarRating = () => (
 
 // --- Hero Section ---
 const Hero = () => {
-    const imageUrl = '/Untitled design (20).png';
+    const imageUrl = 'https://placehold.co/1000x1200/000000/FFFFFF?text=Starlink+Dish';
     
     return (
         <section id="hero" className="w-full bg-black font-sans antialiased overflow-hidden lg:overflow-visible">
@@ -73,33 +73,35 @@ const Hero = () => {
                             </p>
                         </AnimatedComponent>
                         <AnimatedComponent delay={400}>
-                             <div className="mt-8 flex items-center gap-4 justify-center lg:justify-start">
-                                <div className="text-blue-500 font-bold text-lg">G</div>
-                                <div>
-                                    <p className="font-semibold text-white">Google Rating</p>
-                                    <div className="flex items-center gap-2">
-                                        <span className="font-bold text-white">5.0</span>
-                                        <StarRating />
+                               <div className="mt-8 flex items-center gap-4 justify-center lg:justify-start">
+                                    <div className="text-blue-500 font-bold text-lg">G</div>
+                                    <div>
+                                        <p className="font-semibold text-white">Google Rating</p>
+                                        <div className="flex items-center gap-2">
+                                            <span className="font-bold text-white">5.0</span>
+                                            <StarRating />
+                                        </div>
+                                        <p className="text-sm text-neutral-400">Based on 140+ reviews</p>
                                     </div>
-                                    <p className="text-sm text-neutral-400">Based on 140+ reviews</p>
                                 </div>
-                            </div>
                         </AnimatedComponent>
                     </div>
 
                     {/* Column 2: Image */}
-                    <div className="relative w-full h-[400px] sm:h-[480px] lg:h-screen -mt-24 lg:mt-0 lg:-ml-36">
+                    {/* UPDATED: Increased the negative top margin on mobile (-mt-40) to move the image up more. Shift right by 1 inch (24px) on desktop. */}
+                    <div className="relative w-full h-[400px] sm:h-[480px] lg:h-screen -mt-40 lg:mt-0 lg:-ml-36 lg:translate-x-6">
                          <img 
-                            src={imageUrl}
-                            alt="Starlink hardware"
-                            className="w-full h-full object-cover"
+                             src={imageUrl}
+                             alt="Starlink hardware"
+                             className="w-full h-full object-cover"
+                             onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/1000x1200/1a202c/ffffff?text=Image+Not+Found'; }}
                          />
                          {/* Gradient overlay for smooth blending */}
                          <div 
-                            className="absolute inset-0 pointer-events-none"
-                            style={{
-                                background: 'linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 20%, rgba(0,0,0,0) 50%)'
-                            }}
+                             className="absolute inset-0 pointer-events-none"
+                             style={{
+                                 background: 'linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 20%, rgba(0,0,0,0) 50%)'
+                             }}
                          ></div>
                     </div>
 
