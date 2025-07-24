@@ -73,7 +73,7 @@ const Hero = () => {
             <div className="relative z-20 text-center px-4">
                 <div style={animationStyle(0)}>
                     {/* FIX: Updated the main headline */}
-                    <h1 className="text-[2.42rem] md:text-7xl font-medium text-white tracking-tighter max-w-4xl mx-auto leading-tight">
+                    <h1 className="text-[2.54rem] md:text-7xl font-medium text-white tracking-tighter max-w-4xl mx-auto leading-tight">
                         The Ultimate Starlink Experience, Professionally Installed.
                     </h1>
                 </div>
@@ -81,7 +81,7 @@ const Hero = () => {
                 <div style={animationStyle(200)}>
                     {/* FIX: Updated the subtitle to complement the new headline */}
                     <p className="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-neutral-200 leading-relaxed">
-                        From unboxing to full-speed browsing, we handle every detail for a flawless, high-performance Starlink connection in your home or business.
+                        From unboxing to full-speed browsing across the DMV area. We handle every detail for flawless, high-performance connections in your home or business.
                     </p>
                 </div>
 

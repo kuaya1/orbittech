@@ -168,7 +168,7 @@ const App = () => {
     <section 
       ref={sectionRef}
       id="contact" 
-      className="min-h-[400px] w-full py-10 px-4 sm:px-6 lg:px-8 bg-black flex items-center justify-center font-sans"
+      className="min-h-[400px] w-full pt-16 pb-10 px-4 sm:px-6 lg:px-8 bg-black flex items-center justify-center font-sans"
     >
       {/* --- Unified Contact Module --- */}
       <div 
@@ -177,7 +177,10 @@ const App = () => {
       >
         
         {/* --- Left Column: Info --- */}
-        <div className="p-8 lg:p-12" style={{ background: '#121212' }}>
+        <div 
+          className="p-8 lg:p-12 backdrop-blur-xl border border-white/10 bg-[#101014]/90 rounded-2xl shadow-xl"
+          style={{ background: 'rgba(16, 16, 20, 0.92)' }}
+        >
             <h1 className="text-4xl sm:text-5xl font-medium text-neutral-50 tracking-tighter">
                 Let's Get in Touch
             </h1>
