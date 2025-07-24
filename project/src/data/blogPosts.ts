@@ -61,8 +61,6 @@ Ready to ensure your Starlink installation is perfect? Contact us today for a fr
     tags: ["starlink", "dmv", "installation", "diy", "risks", "virginia", "maryland", "dc", "satellite internet"],
     featuredImage: "/Starlink_Rural_Location_02a-scaled.jpg"
   },
-export const blogPosts = [
-  // ...existing blog posts...
   {
     title: "The Ultimate Guide to Starlink Installation in the DMV (Virginia, Maryland & DC)",
     slug: "starlink-installation-dmv-guide",
@@ -229,56 +227,7 @@ const blogPosts: BlogPost[] = [
     id: "complete-satellite-internet-installation-dmv-guide",
     title: "The Complete Guide to Satellite Internet Installation in the DMV Area: Starlink, Kuiper & Professional Setup Services",
     excerpt: "Everything you need to know about satellite internet installation in Washington DC, Virginia, and Maryland. From Starlink to Amazon Kuiper, discover why professional installation is essential for optimal performance.",
-    coverImage: "https://www.flickr.com/photo_download.gne?id=54394043543&secret=e8036650ef&size=l&source=photoPageEngagement",
-    date: "2025-07-21",
-    readTime: 18,
-    author: {
-      name: "Eric Enk",
-      image: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&h=150&q=80",
-      role: "Owner, The Orbit Tech"
-    },
-    content: `# The Complete Guide to Satellite Internet Installation in the DMV Area: Starlink, Kuiper & Professional Setup Services
 
-*Last Updated: July 2025 | The Orbit Tech - DMV's #1 Satellite Internet Installation Experts*
-
-The satellite internet revolution has arrived in the DMV area, transforming how residents and businesses in Washington DC, Virginia, and Maryland access high-speed internet. Whether you're in rural Loudoun County, urban Arlington, or suburban Montgomery County, satellite internet offers unprecedented connectivity options that were unimaginable just a few years ago.
-
-As the leading satellite internet installation company serving the entire DMV region, The Orbit Tech has completed over 2,000 professional installations across Virginia, Maryland, and Washington DC. This comprehensive guide represents everything we've learned about delivering optimal satellite internet performance in our unique Mid-Atlantic environment.
-
-## Why Professional Satellite Internet Installation Matters in the DMV
-
-The DMV area presents unique installation challenges that require local expertise:
-
-**Geographic Challenges:**
-- **Virginia's Rolling Hills:** Northern Virginia's terrain requires precise satellite positioning for optimal signal strength
-- **Maryland's Varied Topography:** From urban Baltimore to rural Western Maryland, each location demands custom installation approaches  
-- **DC's Urban Density:** High-rise buildings and urban interference require sophisticated installation techniques
-- **Mid-Atlantic Weather:** Our region's storms, humidity, and seasonal changes demand weatherproof installations
-
-**Regulatory Considerations:**
-- **HOA Requirements:** Many DMV communities have strict aesthetic guidelines we navigate expertly
-- **Local Permits:** Virginia, Maryland, and DC each have specific permitting requirements for satellite installations
-- **Historical Districts:** Special considerations for installations in DC's numerous historical areas
-
-## Starlink Installation in the DMV: What You Need to Know
-
-### Why Choose Professional Starlink Installation?
-
-Starlink's Low Earth Orbit (LEO) constellation delivers speeds of 100-200 Mbps throughout the DMV area, but optimal performance requires expert installation:
-
-**Site Survey Excellence:**
-- **Obstruction Analysis:** Our certified technicians use professional tools to identify trees, buildings, and other obstacles that could affect your Starlink signal
-- **Mounting Solutions:** From roof mounts to ground-based installations, we customize solutions for DMV homes
-- **Weather Protection:** Essential for Maryland's humid summers and Virginia's ice storms
-
-**DMV-Specific Starlink Performance:**
-- **Northern Virginia:** Excellent coverage from Fairfax to Loudoun County
-- **Maryland Suburbs:** Strong performance in Montgomery and Prince George's Counties  
-- **Washington DC:** Urban installation expertise for row homes and condominiums
-
-### Starlink Installation Process: The Orbit Tech Advantage
-
-**Phase 1: Pre-Installation Assessment**
 - Comprehensive site survey using professional signal analyzers
 - HOA approval assistance and permit handling
 - Weather window planning for optimal installation conditions
