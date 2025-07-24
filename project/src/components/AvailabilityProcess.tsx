@@ -321,48 +321,20 @@ const AvailabilityProcess = () => {
       ref={sectionRef}
       id="availability-process" 
       className="pt-32 pb-20 md:pt-40 md:pb-32 bg-black relative overflow-hidden"
+      style={{
+        backgroundImage: `url('https://www.spacelink-installations.co.uk/wp-content/uploads/2025/01/Starlink_Rural_Location_02a-scaled.jpg')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+      }}
     >
       {/* Shooting Stars Background - DISABLED */}
       {/* <ShootingStars />
       <StarsBackground /> */}
       
-      {/* Desktop Satellite Background Image with Parallax */}
-      <div className="hidden md:block absolute inset-0 z-0">
-        {/* Base gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-black/70"></div>
-        
-        {/* Satellite image container with parallax effect */}
-        <div 
-          className="absolute top-0 right-0 w-full md:w-1/2 lg:w-1/3 h-full"
-          style={{
-            transform: `translateY(${scrollY * 0.1}px)`,
-            transition: 'transform 0.1s ease-out'
-          }}
-        >
-          <img 
-            src="/satellite-bg.jpg" 
-            alt="Satellite in orbit" 
-            className="w-full h-full object-cover opacity-25 md:opacity-30 transition-opacity duration-700"
-            style={{
-              maskImage: 'linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,0.9) 20%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.2) 80%, rgba(0,0,0,0) 100%)',
-              WebkitMaskImage: 'linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,0.9) 20%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.2) 80%, rgba(0,0,0,0) 100%)',
-              filter: 'brightness(0.8) contrast(1.1) saturate(0.9)'
-            }}
-          />
-        </div>
-        
-        {/* Enhanced gradient overlays for smooth blending */}
-        <div className="absolute inset-0 bg-gradient-to-l from-transparent via-black/30 to-black/60"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40"></div>
-        
-        {/* Floating glow effect with breathing animation */}
-        <div 
-          className="absolute top-1/4 right-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl opacity-60"
-          style={{
-            animation: 'float 6s ease-in-out infinite, breathe 4s ease-in-out infinite',
-            transform: `translateY(${scrollY * -0.05}px)`
-          }}
-        ></div>
+      {/* Section-wide dark overlay for readability */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="absolute inset-0 bg-black/80 md:bg-black/70" />
       </div>
 
       {/* CSS for subtle animations */}
