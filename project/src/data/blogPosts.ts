@@ -11,7 +11,7 @@ So, your Starlink kit has arrived. The clean white box holds the promise of high
 
 But what's the true cost of a DIY installation?
 
-As certified Starlink installers working across Virginia, Maryland, and DC, we've been called in to fix dozens of DIY jobs that have gone wrong. A simple mistake made on a Saturday afternoon can lead to thousands of dollars in home repairs, a damaged Starlink dish, or—worst of all—a serious personal injury.
+As certified Starlink installers working across Virginia, Maryland, and DC, we've been called in to fix dozens of DIY jobs that have gone wrong. [Read our Ultimate Guide to Starlink Installation in the DMV](#/blog/starlink-installation-dmv-guide)
 
 Before you decide to go it alone, here are the five hidden risks you need to consider.
 
@@ -157,6 +157,7 @@ A perfect installation is one you barely notice.
 The Starlink kit is designed to be user-friendly, and for those with a simple, obstruction-free location, a DIY setup is possible. However, for most properties in the DMV, achieving a permanent, reliable, and safe installation presents significant challenges.
 
 Here’s a clear-eyed look at what to consider before you get out the ladder.
+For a deeper dive, you can read our full article on the [5 hidden risks of DIY installation](#/blog/starlink-diy-installation-risks).
 
 #### 4.1 When DIY Might Work
 A do-it-yourself installation may be suitable if:
