@@ -140,7 +140,7 @@ const Hero = () => {
       className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black"
       style={{
         backgroundImage: "url('/Premium_Module_01.webp')",
-        backgroundSize: 'cover',
+        backgroundSize: '60%',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
       }}
