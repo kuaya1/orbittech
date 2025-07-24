@@ -199,7 +199,7 @@ const App = () => {
         </div>
 
         {/* --- Right Column: Form (Dark Background) --- */}
-        <div className="p-8 lg:p-12" style={{ backgroundColor: 'rgb(15,15,15)' }}>
+        <div className="p-8 lg:p-12 bg-black border border-neutral-800 rounded-2xl">
             <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <InputField label="Full Name" id="name" name="name" value={formData.name} onChange={handleChange} required accentColor={calciteBlue} />
