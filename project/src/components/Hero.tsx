@@ -52,13 +52,13 @@ const StarRating = () => (
 
 // --- Hero Section ---
 const Hero = () => {
-    // Use the local image from public folder for the right side
-    const imageUrl = '/design (20).PNG';
+    const imageUrl = 'https://i.imgur.com/gYf3nME.jpeg';
 
     return (
         <section id="hero" className="w-full bg-black font-sans antialiased">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-16 items-center">
+                {/* Updated to be full screen on desktop */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-16 items-center lg:min-h-screen">
                     
                     {/* Column 1: Content (Order 2 on mobile, Order 1 on desktop) */}
                     <div className="py-20 text-center lg:text-left order-2 lg:order-1">
@@ -79,14 +79,13 @@ const Hero = () => {
                                         <span className="font-bold text-white">5.0</span>
                                         <StarRating />
                                     </div>
-                                    <p className="text-sm text-neutral-400">Based on 140+ reviews</p>
                                 </div>
                             </div>
                         </AnimatedComponent>
                     </div>
 
                     {/* Column 2: Image (Order 1 on mobile, Order 2 on desktop) */}
-                    <div className="relative w-full h-80 sm:h-96 lg:h-[600px] order-1 lg:order-2 rounded-2xl overflow-hidden">
+                    <div className="relative w-full h-80 sm:h-96 lg:h-full order-1 lg:order-2">
                          <img 
                             src={imageUrl}
                             alt="Starlink hardware"
@@ -96,7 +95,7 @@ const Hero = () => {
                          <div 
                             className="absolute inset-0 pointer-events-none"
                             style={{
-                                background: 'linear-gradient(to left, rgba(16,16,20,0.85) 0%, rgba(16,16,20,0.35) 30%, rgba(16,16,20,0.0) 70%)'
+                                background: 'linear-gradient(to left, rgba(0,0,0,0) 20%, rgba(0,0,0,0.8) 80%, rgba(0,0,0,1) 100%)'
                             }}
                          ></div>
                     </div>
