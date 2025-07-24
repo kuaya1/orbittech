@@ -66,13 +66,13 @@ const Hero = () => {
                     {/* Content Block */}
                     <div className="w-full max-w-4xl md:mt-[1.5in]">
                         <AnimatedComponent>
-                            <h1 className="text-[3.75rem] md:text-[4.5rem] font-bold text-white tracking-tight leading-tight">
+                            <h1 className="text-[2.8rem] md:text-[4.5rem] font-bold text-white tracking-tight leading-tight">
                                 Professional Starlink Installation.
                             </h1>
                         </AnimatedComponent>
 
                         <AnimatedComponent delay={200}>
-                           <p className="mt-8 text-[1.25rem] md:text-[1.5625rem] text-neutral-300 leading-relaxed max-w-2xl mx-auto">
+                           <p className="mt-8 text-[1.0625rem] md:text-[1.5625rem] text-neutral-300 leading-relaxed max-w-2xl mx-auto">
                                 Complete Starlink installation service—from dish alignment to speed optimization.
                             </p>
                         </AnimatedComponent>
@@ -107,13 +107,27 @@ const Hero = () => {
                                     src={imageUrl}
                                     alt="Starlink hardware dish and router"
                                     className="w-[195%] md:w-[130%] h-auto object-contain mx-auto"
-                                    style={{ maxWidth: 'none', display: 'block', marginLeft: 'auto', marginRight: 'auto' }}
+                                    style={{
+                                        maxWidth: 'none',
+                                        display: 'block',
+                                        marginLeft: 'auto',
+                                        marginRight: 'auto',
+                                        marginTop: '-2.5rem', // move up for mobile
+                                        marginBottom: '0',
+                                    }}
                                     onError={(e) => {
                                         const target = e.target as HTMLImageElement;
                                         target.onerror = null;
                                         target.src = 'https://placehold.co/1200x700/000000/ffffff?text=Starlink+Hardware';
                                     }}
                                 />
+                                <style>{`
+                                    @media (min-width: 768px) {
+                                        img[alt='Starlink hardware dish and router'] {
+                                            margin-top: -1in !important;
+                                        }
+                                    }
+                                `}</style>
                             </div>
                             {/* Gradient overlay to blend the top of the image into the black background */}
                             <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-black to-transparent pointer-events-none"></div>
