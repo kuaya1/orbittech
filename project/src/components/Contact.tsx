@@ -175,7 +175,6 @@ ${formData.message || 'No additional message provided'}`,
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-bold text-white mb-2 tracking-tight uppercase">
                     <label htmlFor="name" className="block text-sm font-semibold text-white mb-2 tracking-tight uppercase font-sans">
                       Full Name *
                     </label>
@@ -186,16 +185,13 @@ ${formData.message || 'No additional message provided'}`,
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 bg-black border border-neutral-800 rounded-lg 
-                               text-white placeholder-neutral-400 font-normal font-sans
-                               focus:ring-2 focus:ring-neutral-600 focus:border-neutral-600 transition-all duration-300
-                               hover:bg-neutral-900 hover:border-neutral-700"
+                      className="w-full px-4 py-3 bg-black border border-neutral-800 rounded-lg \
+                               text-white placeholder-neutral-400 font-normal font-sans\n+                               focus:ring-2 focus:ring-neutral-600 focus:border-neutral-600 transition-all duration-300\n+                               hover:bg-neutral-900 hover:border-neutral-700"
                       placeholder="Your name"
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="email" className="block text-sm font-black text-white mb-2 tracking-tight">
                     <label htmlFor="email" className="block text-sm font-semibold text-white mb-2 tracking-tight font-sans">
                       Email Address *
                     </label>
@@ -206,10 +202,8 @@ ${formData.message || 'No additional message provided'}`,
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg 
-                               text-white placeholder-white/60 font-normal font-sans
-                               focus:ring-2 focus:ring-white/50 focus:border-white/40 transition-all duration-300
-                               hover:bg-white/15 hover:border-white/30"
+                      className="w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg \
+                               text-white placeholder-white/60 font-normal font-sans\n+                               focus:ring-2 focus:ring-white/50 focus:border-white/40 transition-all duration-300\n+                               hover:bg-white/15 hover:border-white/30"
                       placeholder="your@email.com"
                     />
                   </div>
@@ -217,7 +211,6 @@ ${formData.message || 'No additional message provided'}`,
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="phone" className="block text-sm font-black text-white mb-2 tracking-tight">
                     <label htmlFor="phone" className="block text-sm font-semibold text-white mb-2 tracking-tight font-sans">
                       Phone Number *
                     </label>
@@ -228,16 +221,13 @@ ${formData.message || 'No additional message provided'}`,
                       value={formData.phone}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg 
-                               text-white placeholder-white/60 font-normal font-sans
-                               focus:ring-2 focus:ring-white/50 focus:border-white/40 transition-all duration-300
-                               hover:bg-white/15 hover:border-white/30"
+                      className="w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg \
+                               text-white placeholder-white/60 font-normal font-sans\n+                               focus:ring-2 focus:ring-white/50 focus:border-white/40 transition-all duration-300\n+                               hover:bg-white/15 hover:border-white/30"
                       placeholder="(571) 123-4567"
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="service" className="block text-sm font-black text-white mb-2 tracking-tight">
                     <label htmlFor="service" className="block text-sm font-semibold text-white mb-2 tracking-tight font-sans">
                       Service Type
                     </label>
@@ -246,10 +236,8 @@ ${formData.message || 'No additional message provided'}`,
                       name="service"
                       value={formData.service}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg 
-                               text-white font-normal font-sans
-                               focus:ring-2 focus:ring-white/50 focus:border-white/40 transition-all duration-300
-                               hover:bg-white/15 hover:border-white/30"
+                      className="w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg \
+                               text-white font-normal font-sans\n+                               focus:ring-2 focus:ring-white/50 focus:border-white/40 transition-all duration-300\n+                               hover:bg-white/15 hover:border-white/30"
                     >
                       <option value="residential">Residential</option>
                       <option value="business">Business</option>
@@ -259,8 +247,7 @@ ${formData.message || 'No additional message provided'}`,
                 </div>
 
                 <div>
-                  <label htmlFor="address" className="block text-sm font-black text-white mb-2 tracking-tight">
-                    <label htmlFor="address" className="block text-sm font-semibold text-white mb-2 tracking-tight font-sans">
+                  <label htmlFor="address" className="block text-sm font-semibold text-white mb-2 tracking-tight font-sans">
                     Installation Address *
                   </label>
                   <input
@@ -270,17 +257,14 @@ ${formData.message || 'No additional message provided'}`,
                     value={formData.address}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg 
-                               text-white placeholder-white/60 font-normal font-sans
-                             focus:ring-2 focus:ring-white/50 focus:border-white/40 transition-all duration-300
-                             hover:bg-white/15 hover:border-white/30"
+                    className="w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg \
+                             text-white placeholder-white/60 font-normal font-sans\n+                             focus:ring-2 focus:ring-white/50 focus:border-white/40 transition-all duration-300\n+                             hover:bg-white/15 hover:border-white/30"
                     placeholder="Full address for installation"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-black text-white mb-2 tracking-tight">
-                    <label htmlFor="message" className="block text-sm font-semibold text-white mb-2 tracking-tight font-sans">
+                  <label htmlFor="message" className="block text-sm font-semibold text-white mb-2 tracking-tight font-sans">
                     Additional Information
                   </label>
                   <textarea
@@ -289,10 +273,8 @@ ${formData.message || 'No additional message provided'}`,
                     rows={4}
                     value={formData.message}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg 
-                               text-white placeholder-white/60 font-normal font-sans
-                             focus:ring-2 focus:ring-white/50 focus:border-white/40 transition-all duration-300
-                             hover:bg-white/15 hover:border-white/30"
+                    className="w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg \
+                             text-white placeholder-white/60 font-normal font-sans\n+                             focus:ring-2 focus:ring-white/50 focus:border-white/40 transition-all duration-300\n+                             hover:bg-white/15 hover:border-white/30"
                     placeholder="Any specific requirements or questions..."
                   />
                 </div>
@@ -318,9 +300,6 @@ ${formData.message || 'No additional message provided'}`,
                   type="submit"
                   disabled={formStatus === 'loading'}
                   className="w-full bg-white text-black font-semibold rounded-md py-4 px-6 hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center gap-3 tracking-tight uppercase font-sans"
-                           hover:scale-105 transition-all duration-300 
-                           disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100
-                           flex items-center justify-center gap-3 tracking-tight uppercase"
                 >
                   {formStatus === 'loading' ? (
                     <>
