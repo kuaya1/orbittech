@@ -52,41 +52,42 @@ const StarRating = () => (
 
 // --- Hero Section ---
 const Hero = () => {
-    const backgroundImageUrl = '/Untitled design (19).png';
+    // Use the local image from public folder for the right side
+    const imageUrl = '/Untitled design (19).png';
 
     return (
-        <section id="hero" className="w-full bg-white font-sans antialiased">
-            <div className="max-w-7xl mx-auto">
-                <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
+        <section id="hero" className="w-full bg-black font-sans antialiased py-20 lg:py-0">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center lg:min-h-[700px]">
                     
                     {/* Left Column: Content */}
-                    <div className="flex flex-col justify-center p-8 sm:p-12 lg:p-16">
+                    <div className="py-8 text-center lg:text-left">
                         <AnimatedComponent>
-                            <h1 className="text-4xl md:text-6xl font-medium text-black tracking-tighter leading-tight">
+                            <h1 className="text-4xl md:text-6xl font-medium text-white tracking-tighter leading-tight">
                                 Professional Starlink Installation.
                             </h1>
-                            <p className="mt-6 text-lg text-neutral-600 leading-relaxed">
+                            <p className="mt-6 text-lg text-neutral-300 leading-relaxed max-w-lg mx-auto lg:mx-0">
                                 Experience flawless, high-performance internet with our expert installation service. We handle everything.
                             </p>
                             
                             {/* Social Proof Section */}
-                            <div className="mt-8 flex items-center gap-4">
-                                <div className="text-blue-600 font-bold text-lg">G</div>
+                            <div className="mt-8 flex items-center gap-4 justify-center lg:justify-start">
+                                <div className="text-blue-500 font-bold text-lg">G</div>
                                 <div>
-                                    <p className="font-semibold text-black">Google Rating</p>
+                                    <p className="font-semibold text-white">Google Rating</p>
                                     <div className="flex items-center gap-2">
-                                        <span className="font-bold text-black">5.0</span>
+                                        <span className="font-bold text-white">5.0</span>
                                         <StarRating />
                                     </div>
-                                    <p className="text-sm text-neutral-500">Based on 140+ reviews</p>
+                                    <p className="text-sm text-neutral-400">Based on 140+ reviews</p>
                                 </div>
                             </div>
 
                             <div className="mt-10">
                                 <a
                                     href="#contact"
-                                    className="group inline-flex items-center justify-center px-8 py-4 text-lg bg-black text-white font-medium rounded-full
-                                               transition-all duration-300 ease-in-out shadow-lg hover:bg-neutral-800"
+                                    className="group inline-flex items-center justify-center px-8 py-4 text-lg bg-white text-black font-medium rounded-full
+                                               transition-all duration-300 ease-in-out shadow-lg hover:bg-neutral-200"
                                 >
                                     <span>Get Your Quote</span>
                                     <ArrowRight className="h-5 w-5 ml-2 transform transition-transform duration-300 group-hover:translate-x-1" />
@@ -96,11 +97,12 @@ const Hero = () => {
                     </div>
 
                     {/* Right Column: Image */}
-                    <div className="relative w-full h-96 lg:h-full bg-black">
-                         <div 
-                            className="absolute inset-0 bg-cover bg-center"
-                            style={{ backgroundImage: `url(${backgroundImageUrl})` }}
-                         ></div>
+                    <div className="w-full h-96 lg:h-[600px] rounded-2xl overflow-hidden">
+                         <img 
+                            src={imageUrl}
+                            alt="Starlink installation"
+                            className="w-full h-full object-cover"
+                         />
                     </div>
 
                 </div>
@@ -113,7 +115,7 @@ const Hero = () => {
 // --- Main App Component (to render the Hero section) ---
 const App = () => {
     return (
-        <div className="bg-white">
+        <div className="bg-black">
             <Hero />
             {/* Other sections would go here */}
         </div>
