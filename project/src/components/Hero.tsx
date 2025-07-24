@@ -52,7 +52,7 @@ const StarRating = () => (
 
 // --- Hero Section ---
 const Hero = () => {
-    const imageUrl = 'https://i.imgur.com/gYf3nME.jpeg';
+    const imageUrl = '/Untitled design (20).png';
 
     return (
         <section id="hero" className="w-full bg-black font-sans antialiased">
