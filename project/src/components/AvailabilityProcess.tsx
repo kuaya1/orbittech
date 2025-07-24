@@ -293,6 +293,23 @@ const AvailabilityProcess = () => {
   }, []);
 
   return (
+    <section
+      ref={sectionRef}
+      id="availability-process"
+      className="pt-32 pb-20 md:pt-40 md:pb-32 bg-black relative overflow-hidden flex items-center justify-center"
+      style={{
+        backgroundImage: "url('/backround.jpeg')",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        minHeight: '80vh'
+      }}>
+      {/* Dark gradient overlay for contrast */}
+      <div className="absolute inset-0 z-0 pointer-events-none" style={{background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%)'}} />
+      
+      {/* Animation styles */}
+      <style jsx>{`
+        @keyframes fadeInUp {
     <section 
       ref={sectionRef}
       id="availability-process" 
@@ -307,9 +324,8 @@ const AvailabilityProcess = () => {
     >
       {/* Dark gradient overlay for contrast */}
       <div className="absolute inset-0 z-0 pointer-events-none" style={{background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%)'}} />
-      
       {/* Animation styles */}
-      <style jsx>{`
+      <style>{`
         @keyframes fadeInUp {
           from {
             opacity: 0;
@@ -324,7 +340,6 @@ const AvailabilityProcess = () => {
           animation: fadeInUp 0.8s ease-out forwards;
         }
       `}</style>
-
       <div className={`container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl relative z-10 transition-all duration-1000 delay-200 ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
       }`}>
@@ -351,7 +366,6 @@ const AvailabilityProcess = () => {
                     required
                   />
                   <Target className="absolute right-4 top-1/2 -translate-y-1/2 h-5 w-5 text-white/70 pointer-events-none"/>
-                  
                   {showRecent && recentSearches.length > 0 && (
                     <div className="absolute top-full left-0 right-0 mt-2 bg-black/70 backdrop-blur-md border border-white/20 rounded-xl shadow-2xl z-20 overflow-hidden animate-fadeInUp">
                       <div className="p-2 text-xs text-white/60 border-b border-white/10 font-bold tracking-wide">
@@ -373,7 +387,6 @@ const AvailabilityProcess = () => {
                   )}
                 </div>
               </div>
-
               <div className="w-full sm:w-auto">
                 <button
                   type="submit"
@@ -386,8 +399,16 @@ const AvailabilityProcess = () => {
                     'CHECK'
                   )}
                 </button>
-            {/* End of button container */}
-            
+              </div>
+            </div>
+          </form>
+          <div className="mt-6 text-center">
+            {errorMessage && (
+              <div className="mt-3 text-red-300 text-sm flex items-center justify-center gap-2 font-medium" role="alert">
+                <Info className="h-4 w-4 flex-shrink-0" />
+                {errorMessage}
+              </div>
+            )}
             {serviceStatus !== 'loading' && serviceStatus !== null && showResults && (
               <div className={`rounded-xl p-6 backdrop-blur-sm border transition-all duration-700 animate-fadeInUp bg-black/40 ${
                 serviceStatus === true
@@ -417,7 +438,7 @@ const AvailabilityProcess = () => {
                 </div>
               </div>
             )}
-             <p className="text-white/60 text-sm leading-relaxed font-medium mt-8">
+            <p className="text-white/60 text-sm leading-relaxed font-medium mt-8">
               Currently serving the <span className="text-white font-semibold">Washington DC Metro area</span> including 
               Maryland, Virginia, Pennsylvania, Delaware, and West Virginia within 150 miles of DC.
             </p>
