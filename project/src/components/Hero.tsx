@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ArrowRight, Star } from 'lucide-react';
+import { Star } from 'lucide-react';
 
 // --- Custom Hook for Animations ---
+// This hook detects when an element is visible in the viewport
 const useIntersectionObserver = (options) => {
     const [isVisible, setIsVisible] = useState(false);
     const elementRef = useRef(null);
@@ -29,6 +30,8 @@ const useIntersectionObserver = (options) => {
     return [elementRef, isVisible];
 };
 
+// --- Animated Component Wrapper ---
+// This component applies a subtle fade-in and slide-up animation
 const AnimatedComponent = ({ children, delay = 0 }) => {
     const [ref, isVisible] = useIntersectionObserver({ threshold: 0.1 });
     const style = {
@@ -44,7 +47,7 @@ const AnimatedComponent = ({ children, delay = 0 }) => {
 const StarRating = () => (
     <div className="flex items-center">
         {[...Array(5)].map((_, i) => (
-            <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
+            <Star key={i} className="h-4 w-4 text-yellow-400 fill-current" />
         ))}
     </div>
 );
@@ -55,54 +58,59 @@ const Hero = () => {
     const imageUrl = '/Untitled design (20).png';
 
     return (
-        <section id="hero" className="w-full bg-black font-sans antialiased overflow-hidden lg:overflow-visible">
-            <div className="lg:max-w-none">
-                {/* Updated to be full screen on desktop */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 items-center lg:min-h-screen">
-                    
-                    {/* Column 1: Content */}
-                    <div className="py-24 px-4 sm:px-6 lg:px-12 text-center lg:text-left lg:pl-48">
+        <section id="hero" className="w-full bg-black font-sans antialiased">
+            <div className="container mx-auto px-6 sm:px-8">
+                {/* Main content container - single column, centered layout */}
+                <div className="min-h-screen flex flex-col items-center justify-center text-center gap-12 py-20">
+
+                    {/* Content Block */}
+                    <div className="w-full max-w-4xl">
                         <AnimatedComponent>
-                            <h1 className="text-5xl md:text-7xl font-medium text-white tracking-tighter leading-tight">
+                            <h1 className="text-5xl md:text-6xl font-bold text-white tracking-tight leading-tight">
                                 Professional Starlink Installation.
                             </h1>
                         </AnimatedComponent>
+
                         <AnimatedComponent delay={200}>
-                           <p className="mt-6 text-lg text-neutral-300 leading-relaxed max-w-xl mx-auto lg:mx-0">
+                           <p className="mt-6 text-lg text-neutral-300 leading-relaxed max-w-2xl mx-auto">
                                 Complete Starlink installation service—from dish alignment to speed optimization.
                             </p>
                         </AnimatedComponent>
+
                         <AnimatedComponent delay={400}>
-                               <div className="mt-8 flex items-center gap-4 justify-center lg:justify-start">
-                                    <div className="text-blue-500 font-bold text-lg">G</div>
-                                    <div>
-                                        <p className="font-semibold text-white">Google Rating</p>
-                                        <div className="flex items-center gap-2">
-                                            <span className="font-bold text-white">5.0</span>
-                                            <StarRating />
-                                        </div>
-                                        <p className="text-sm text-neutral-400">Based on 140+ reviews</p>
+                            <div className="mt-8 flex items-center gap-3 justify-center">
+                                {/* Google 'G' icon stylized */}
+                                <div className="flex-shrink-0">
+                                    <svg className="w-6 h-6" viewBox="0 0 24 24">
+                                         <path fill="#4285F4" d="M22.56,12.25C22.56,11.42,22.49,10.63,22.35,9.86H12.24V14.4H18.06C17.74,16.07,16.83,17.43,15.45,18.33V21.09H19.34C21.43,19.16,22.56,15.99,22.56,12.25Z"/>
+                                         <path fill="#34A853" d="M12.24,23C15.11,23,17.5,22.1,19.34,20.55L15.45,17.79C14.51,18.44,13.46,18.8,12.24,18.8C9.89,18.8,7.91,17.2,7.1,15.08H3.14V17.94C4.98,21.05,8.32,23,12.24,23Z"/>
+                                         <path fill="#FBBC05" d="M7.1,15.08C6.88,14.43,6.75,13.73,6.75,13C6.75,12.27,6.88,11.57,7.1,10.92V8.06H3.14C2.34,9.6,1.9,11.25,1.9,13C1.9,14.75,2.34,16.4,3.14,17.94L7.1,15.08Z"/>
+                                         <path fill="#EA4335" d="M12.24,7.2C13.6,7.2,14.78,7.69,15.81,8.66L19.43,5.05C17.5,3.24,15.11,2,12.24,2C8.32,2,4.98,4.95,3.14,8.06L7.1,10.92C7.91,8.8,9.89,7.2,12.24,7.2Z"/>
+                                     </svg>
+                                </div>
+                                <div className="text-left">
+                                    <p className="font-semibold text-white text-sm">Google Rating</p>
+                                    <div className="flex items-center gap-2">
+                                        <span className="font-bold text-white text-sm">5.0</span>
+                                        <StarRating />
                                     </div>
                                 </div>
+                            </div>
                         </AnimatedComponent>
                     </div>
 
-                    {/* Column 2: Image */}
-                    {/* UPDATED: Set mobile top margin to mt-36 and shift right by 0.5 inch (12px) on desktop. */}
-                    <div className="relative w-full h-[400px] sm:h-[480px] lg:h-screen mt-36 lg:mt-0 lg:-ml-36 lg:translate-x-3">
-                         <img 
-                             src={imageUrl}
-                             alt="Starlink hardware"
-                             className="w-full h-full object-cover"
-                             onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/1000x1200/1a202c/ffffff?text=Image+Not+Found'; }}
-                         />
-                         {/* Gradient overlay for smooth blending */}
-                         <div 
-                             className="absolute inset-0 pointer-events-none"
-                             style={{
-                                 background: 'linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 20%, rgba(0,0,0,0) 50%)'
-                             }}
-                         ></div>
+                    {/* Image Block */}
+                    <div className="relative w-full max-w-5xl">
+                        <AnimatedComponent delay={600}>
+                            <img
+                                src={imageUrl}
+                                alt="Starlink hardware dish and router"
+                                className="w-full h-auto object-contain"
+                                onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/1200x700/000000/ffffff?text=Starlink+Hardware'; }}
+                            />
+                            {/* Gradient overlay to blend the top of the image into the black background */}
+                            <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-black to-transparent pointer-events-none"></div>
+                        </AnimatedComponent>
                     </div>
 
                 </div>
@@ -112,12 +120,12 @@ const Hero = () => {
 };
 
 
-// --- Main App Component (to render the Hero section) ---
+// --- Main App Component ---
 const App = () => {
     return (
         <div className="bg-black">
             <Hero />
-            {/* Other sections would go here */}
+            {/* You can add other sections of your website here */}
         </div>
     );
 };
