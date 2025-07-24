@@ -53,9 +53,9 @@ const StarRating = () => (
 // --- Hero Section ---
 const Hero = () => {
     const imageUrl = '/Untitled design (20).png';
-
+    
     return (
-        <section id="hero" className="w-full bg-black font-sans antialiased">
+        <section id="hero" className="w-full bg-black font-sans antialiased overflow-hidden lg:overflow-visible">
             <div className="lg:max-w-none">
                 {/* Updated to be full screen on desktop */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 items-center lg:min-h-screen">
@@ -69,7 +69,7 @@ const Hero = () => {
                         </AnimatedComponent>
                         <AnimatedComponent delay={200}>
                            <p className="mt-6 text-lg text-neutral-300 leading-relaxed max-w-xl mx-auto lg:mx-0">
-                                Experience flawless, high-performance internet with our expert installation service. We handle everything.
+                                Complete Starlink setup service—from dish alignment to speed optimization.
                             </p>
                         </AnimatedComponent>
                         <AnimatedComponent delay={400}>
@@ -81,13 +81,14 @@ const Hero = () => {
                                         <span className="font-bold text-white">5.0</span>
                                         <StarRating />
                                     </div>
+                                    <p className="text-sm text-neutral-400">Based on 140+ reviews</p>
                                 </div>
                             </div>
                         </AnimatedComponent>
                     </div>
 
                     {/* Column 2: Image */}
-                    <div className="relative w-full h-[400px] sm:h-[480px] lg:h-screen">
+                    <div className="relative w-full h-[400px] sm:h-[480px] lg:h-screen -mt-36 lg:mt-0">
                          <img 
                             src={imageUrl}
                             alt="Starlink hardware"
