@@ -1,21 +1,22 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Loader2, CheckCircle, XCircle } from 'lucide-react';
 // Calcite Icons SVGs (inline for Phone, Mail, MapPin)
+// Minimal Calcite-style icons (matching service section)
 const CalcitePhone = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" {...props}>
-    <path d="M6.5 3.5A2 2 0 0 1 8.5 2h7a2 2 0 0 1 2 1.5l1.5 6a2 2 0 0 1-1.5 2.5l-2.5.5a2 2 0 0 0-1.5 2.5l.5 2.5a2 2 0 0 1-2.5 1.5l-6-1.5A2 2 0 0 1 2 15.5v-7a2 2 0 0 1 1.5-2z" />
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.86 19.86 0 0 1 3.08 4.18 2 2 0 0 1 5 2h3a2 2 0 0 1 2 1.72c.13 1.13.37 2.23.72 3.28a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6.29 6.29l1.27-1.27a2 2 0 0 1 2.11-.45c1.05.35 2.15.59 3.28.72A2 2 0 0 1 22 16.92z" />
   </svg>
 );
 const CalciteMail = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" {...props}>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" {...props}>
     <rect x="3" y="5" width="18" height="14" rx="2" />
     <polyline points="3 7 12 13 21 7" />
   </svg>
 );
 const CalciteMapPin = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" {...props}>
-    <path d="M12 21s-6-5.686-6-10A6 6 0 0 1 18 11c0 4.314-6 10-6 10z" />
-    <circle cx="12" cy="11" r="2.5" />
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M12 21C12 21 5 13.5 5 9.5C5 6.46243 7.46243 4 10.5 4C13.5376 4 16 6.46243 16 9.5C16 13.5 12 21 12 21Z" />
+    <circle cx="12" cy="9.5" r="2" />
   </svg>
 );
 import emailjs from '@emailjs/browser';
@@ -340,8 +341,8 @@ ${formData.message || 'No additional message provided'}`,
                   <div className="w-16 h-16 bg-[#1086f4]/10 border border-[#1086f4]/20 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300">
                     <CalcitePhone className="w-8 h-8 text-[#1086f4]" />
                   </div>
-                  <h4 className="font-semibold text-white tracking-wide mb-2 uppercase font-sans">Phone</h4>
-                  <a href="tel:+15719996915" className="text-neutral-200 hover:text-white transition-colors font-normal font-sans">
+                  <h4 className="font-semibold text-white tracking-wide mb-2 uppercase font-sans text-base lg:text-lg xl:text-[1.125rem]" style={{fontSize: '70%'}}>Phone</h4>
+                  <a href="tel:+15719996915" className="text-neutral-200 hover:text-white transition-colors font-normal font-sans text-base lg:text-lg xl:text-[1.125rem]" style={{fontSize: '70%'}}>
                     (571) 999-6915
                   </a>
                 </div>
@@ -350,8 +351,8 @@ ${formData.message || 'No additional message provided'}`,
                   <div className="w-16 h-16 bg-[#1086f4]/10 border border-[#1086f4]/20 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300">
                     <CalciteMail className="w-8 h-8 text-[#1086f4]" />
                   </div>
-                  <h4 className="font-semibold text-white tracking-wide mb-2 uppercase font-sans">Email</h4>
-                  <a href="mailto:contact@theorbittech.com" className="text-neutral-200 hover:text-white transition-colors font-normal font-sans">
+                  <h4 className="font-semibold text-white tracking-wide mb-2 uppercase font-sans text-base lg:text-lg xl:text-[1.125rem]" style={{fontSize: '70%'}}>Email</h4>
+                  <a href="mailto:contact@theorbittech.com" className="text-neutral-200 hover:text-white transition-colors font-normal font-sans text-base lg:text-lg xl:text-[1.125rem]" style={{fontSize: '70%'}}>
                     contact@theorbittech.com
                   </a>
                 </div>
@@ -360,8 +361,8 @@ ${formData.message || 'No additional message provided'}`,
                   <div className="w-16 h-16 bg-[#1086f4]/10 border border-[#1086f4]/20 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300">
                     <CalciteMapPin className="w-8 h-8 text-[#1086f4]" />
                   </div>
-                  <h4 className="font-semibold text-white tracking-wide mb-2 uppercase font-sans">Service Area</h4>
-                  <p className="text-neutral-200 font-normal font-sans">
+                  <h4 className="font-semibold text-white tracking-wide mb-2 uppercase font-sans text-base lg:text-lg xl:text-[1.125rem]" style={{fontSize: '70%'}}>Service Area</h4>
+                  <p className="text-neutral-200 font-normal font-sans text-base lg:text-lg xl:text-[1.125rem]" style={{fontSize: '70%'}}>
                     Washington DC, Maryland, Virginia
                   </p>
                 </div>
@@ -404,30 +405,30 @@ ${formData.message || 'No additional message provided'}`,
                   <div className="w-16 h-16 bg-[#1086f4]/10 border border-[#1086f4]/20 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300">
                     <CalcitePhone className="w-8 h-8 text-[#1086f4]" />
                   </div>
-                  <h4 className="font-semibold text-white tracking-wide mb-2 uppercase font-sans">Phone</h4>
-                  <a href="tel:+15719996915" className="text-neutral-200 hover:text-white transition-colors font-normal font-sans">
-                    (571) 999-6915
-                  </a>
+              <h4 className="font-semibold text-white tracking-wide mb-2 uppercase font-sans text-sm sm:text-base" style={{fontSize: '90%'}}>Phone</h4>
+              <a href="tel:+15719996915" className="text-neutral-200 hover:text-white transition-colors font-normal font-sans text-sm sm:text-base" style={{fontSize: '90%'}}>
+                (571) 999-6915
+              </a>
                 </div>
 
                 <div className="text-center">
                   <div className="w-16 h-16 bg-[#1086f4]/10 border border-[#1086f4]/20 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300">
                     <CalciteMail className="w-8 h-8 text-[#1086f4]" />
                   </div>
-                  <h4 className="font-semibold text-white tracking-wide mb-2 uppercase font-sans">Email</h4>
-                  <a href="mailto:contact@theorbittech.com" className="text-neutral-200 hover:text-white transition-colors font-normal font-sans">
-                    contact@theorbittech.com
-                  </a>
+              <h4 className="font-semibold text-white tracking-wide mb-2 uppercase font-sans text-sm sm:text-base" style={{fontSize: '90%'}}>Email</h4>
+              <a href="mailto:contact@theorbittech.com" className="text-neutral-200 hover:text-white transition-colors font-normal font-sans text-sm sm:text-base" style={{fontSize: '90%'}}>
+                contact@theorbittech.com
+              </a>
                 </div>
 
                 <div className="text-center">
                   <div className="w-16 h-16 bg-[#1086f4]/10 border border-[#1086f4]/20 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300">
                     <CalciteMapPin className="w-8 h-8 text-[#1086f4]" />
                   </div>
-                  <h4 className="font-semibold text-white tracking-wide mb-2 uppercase font-sans">Service Area</h4>
-                  <p className="text-neutral-200 font-normal font-sans">
-                    Washington DC, Maryland, Virginia
-                  </p>
+              <h4 className="font-semibold text-white tracking-wide mb-2 uppercase font-sans text-sm sm:text-base" style={{fontSize: '90%'}}>Service Area</h4>
+              <p className="text-neutral-200 font-normal font-sans text-sm sm:text-base" style={{fontSize: '90%'}}>
+                Washington DC, Maryland, Virginia
+              </p>
                 </div>
               </div>
 
