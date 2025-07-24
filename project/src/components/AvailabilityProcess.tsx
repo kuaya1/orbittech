@@ -324,13 +324,14 @@ const AvailabilityProcess = () => {
       style={{
         backgroundImage: `url('https://www.spacelink-installations.co.uk/wp-content/uploads/2025/01/Starlink_Rural_Location_02a-scaled.jpg')`,
         backgroundSize: 'cover',
-        backgroundPosition: `center ${scrollY * 0.2}px`, // Parallax effect
+        backgroundPosition: `center ${-scrollY * 0.2}px`, // Parallax effect (move opposite to scroll)
         backgroundRepeat: 'no-repeat',
-        transition: 'background-position 0.3s cubic-bezier(0.4,0,0.2,1)'
+        willChange: 'background-position',
+        transition: 'background-position 0.2s cubic-bezier(0.4,0,0.2,1)'
       }}
     >
       {/* Dark overlay for contrast */}
-      <div className="absolute inset-0 z-0 pointer-events-none" style={{background: 'rgba(0,0,0,0.20)'}} />
+      <div className="absolute inset-0 z-0 pointer-events-none" style={{background: 'rgba(0,0,0,0.10)'}} />
       {/* Shooting Stars Background - DISABLED */}
       {/* <ShootingStars />
       <StarsBackground /> */}
