@@ -88,7 +88,7 @@ const Hero = () => {
                     </div>
 
                     {/* Column 2: Image */}
-                    <div className="relative w-full h-[400px] sm:h-[480px] lg:h-screen -mt-[0.5in] sm:mt-0 lg:mt-0 lg:-left-[1in]">
+                    <div className="relative w-full h-[400px] sm:h-[480px] lg:h-screen mt-[1.5in] sm:mt-0 lg:mt-0 lg:-left-[1in]">
                          <img 
                             src={imageUrl}
                             alt="Starlink hardware"
