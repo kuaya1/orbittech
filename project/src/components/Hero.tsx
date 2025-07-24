@@ -5,24 +5,42 @@ import * as THREE from 'three';
 // It creates the animated globe.
 const Hero3DBackground = () => {
     const mountRef = useRef(null);
+    const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
+    // This effect runs once to set up the resize listener.
+    useEffect(() => {
+        const updateDimensions = () => {
+            setDimensions({ width: window.innerWidth, height: window.innerHeight });
+        };
+        updateDimensions(); // Set initial dimensions
+        window.addEventListener('resize', updateDimensions);
+        return () => window.removeEventListener('resize', updateDimensions);
+    }, []);
+
+    // This effect re-creates the scene whenever the dimensions change.
     useEffect(() => {
         const mount = mountRef.current;
-        if (!mount) return;
+        if (!mount || dimensions.width === 0) return;
+
+        // --- Responsive Sizing ---
+        const isMobile = dimensions.width < 768;
+        const radius = isMobile ? 9 * 1.1 : 9 * 1.2; // 10% bigger for mobile, 20% for desktop
+        const connectionDistance = isMobile ? 1.98 : 2.16; // Proportional connection distance
 
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, mount.clientWidth / mount.clientHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 
         renderer.setSize(mount.clientWidth, mount.clientHeight);
+        // Clear previous canvas if it exists
+        while (mount.firstChild) {
+            mount.removeChild(mount.firstChild);
+        }
         mount.appendChild(renderer.domElement);
 
         // --- Full Sphere with Random Point Distribution ---
-        // We are now creating points randomly on the surface of a full sphere
-        // to get the chaotic, less predictable look.
         const points = [];
-        const radius = 9; // Keeping the smaller radius
-        const numPoints = 1008; // Reduced number of points by 30% (from 1440)
+        const numPoints = 857; // Reduced by 15% from 1008
 
         for (let i = 0; i < numPoints; i++) {
             const u = Math.random();
@@ -45,8 +63,8 @@ const Hero3DBackground = () => {
 
         // --- Lines connecting the points ---
         const linesGeometry = new THREE.BufferGeometry();
-        // Updated color to #1086f4
-        const linesMaterial = new THREE.LineBasicMaterial({ color: 0x1086f4, transparent: true, opacity: 0.15 }); 
+        // Brightened up lines by increasing opacity
+        const linesMaterial = new THREE.LineBasicMaterial({ color: 0x1086f4, transparent: true, opacity: 0.2 }); 
         
         const linesPositions = [];
         const positions = geometry.attributes.position.array;
@@ -57,8 +75,7 @@ const Hero3DBackground = () => {
                 const p2 = new THREE.Vector3(positions[j], positions[j+1], positions[j+2]);
                 const distance = p1.distanceTo(p2);
 
-                // Adjusted distance threshold for the random distribution
-                if (distance < 1.8) { 
+                if (distance < connectionDistance) { 
                     linesPositions.push(p1.x, p1.y, p1.z, p2.x, p2.y, p2.z);
                 }
             }
@@ -68,13 +85,12 @@ const Hero3DBackground = () => {
         const lines = new THREE.LineSegments(linesGeometry, linesMaterial);
         scene.add(lines);
 
-        // Adjusted camera position for the smaller sphere
-        camera.position.set(0, 0, 22);
+        // Adjust camera distance based on sphere radius
+        camera.position.set(0, 0, radius * 2.5);
         camera.lookAt(0, 0, 0);
 
         const animate = () => {
             requestAnimationFrame(animate);
-            // Slow rotation on both axes
             sphere.rotation.y += 0.0005;
             sphere.rotation.x += 0.0002;
             lines.rotation.y = sphere.rotation.y;
@@ -96,7 +112,7 @@ const Hero3DBackground = () => {
                 mount.removeChild(renderer.domElement);
             }
         };
-    }, []);
+    }, [dimensions]); // Re-run effect when dimensions change
 
     return (
         <div 
@@ -129,14 +145,14 @@ const Hero = () => {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
           {/* Main Title */}
-          <h1 className="text-5xl sm:text-6xl font-bold text-white tracking-tight font-sans leading-tight drop-shadow-xl mb-6">
+          <h1 className="text-4xl sm:text-6xl font-bold text-white tracking-tight font-sans leading-tight drop-shadow-xl mb-6">
             PROFESSIONAL STARLINK
             <br />
             INSTALLATION
           </h1>
 
           {/* Subtitle */}
-          <p className="text-lg text-neutral-300 max-w-3xl mx-auto leading-8 font-normal font-sans drop-shadow-lg mb-10">
+          <p className="text-lg text-white max-w-3xl mx-auto leading-8 font-normal font-sans drop-shadow-lg mb-10">
             Expert installation services across the DMV region, connecting your home or business with reliable high-speed internet.
           </p>
 
