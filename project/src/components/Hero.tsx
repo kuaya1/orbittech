@@ -61,7 +61,7 @@ const Hero = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-2 items-center lg:min-h-screen">
                     
                     {/* Column 1: Content */}
-                    <div className="py-24 px-4 sm:px-6 lg:px-12 text-center lg:text-left lg:relative lg:left-[1in]">
+                    <div className="py-24 px-4 sm:px-6 lg:px-12 text-center lg:text-left lg:pl-48">
                         <AnimatedComponent>
                             <h1 className="text-5xl md:text-7xl font-medium text-white tracking-tighter leading-tight">
                                 Professional Starlink Installation.
@@ -69,7 +69,7 @@ const Hero = () => {
                         </AnimatedComponent>
                         <AnimatedComponent delay={200}>
                            <p className="mt-6 text-lg text-neutral-300 leading-relaxed max-w-xl mx-auto lg:mx-0">
-                                Complete Starlink setup service—from dish alignment to speed optimization.
+                                Complete Starlink installation service—from dish alignment to speed optimization.
                             </p>
                         </AnimatedComponent>
                         <AnimatedComponent delay={400}>
@@ -88,7 +88,7 @@ const Hero = () => {
                     </div>
 
                     {/* Column 2: Image */}
-                    <div className="relative w-full h-[400px] sm:h-[480px] lg:h-screen mt-[1.5in] sm:mt-0 lg:mt-0 lg:-left-[1in]">
+                    <div className="relative w-full h-[400px] sm:h-[480px] lg:h-screen -mt-24 lg:mt-0 lg:-ml-36">
                          <img 
                             src={imageUrl}
                             alt="Starlink hardware"
