@@ -302,44 +302,28 @@ const AvailabilityProcess = () => {
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
-        minHeight: '80vh'
+        minHeight: '80vh',
+        backgroundAttachment: 'fixed'
       }}>
       {/* Dark gradient overlay for contrast */}
       <div className="absolute inset-0 z-0 pointer-events-none" style={{background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%)'}} />
       
-      {/* Animation styles */}
-      <style jsx>{`
-        @keyframes fadeInUp {
-    <section 
-      ref={sectionRef}
-      id="availability-process" 
-      className="pt-32 pb-20 md:pt-40 md:pb-32 bg-black relative overflow-hidden flex items-center justify-center"
-      style={{
-        backgroundImage: `url('/backround.jpeg')`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        minHeight: '80vh',
-      }}
-    >
-      {/* Dark gradient overlay for contrast */}
-      <div className="absolute inset-0 z-0 pointer-events-none" style={{background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%)'}} />
-      {/* Animation styles */}
-      <style>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
+    {/* Animation styles */}
+    <style jsx>{`
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
         }
-        .animate-fadeInUp {
-          animation: fadeInUp 0.8s ease-out forwards;
+        to {
+          opacity: 1;
+          transform: translateY(0);
         }
-      `}</style>
+      }
+      .animate-fadeInUp {
+        animation: fadeInUp 0.8s ease-out forwards;
+      }
+    `}</style>
       <div className={`container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl relative z-10 transition-all duration-1000 delay-200 ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
       }`}>
