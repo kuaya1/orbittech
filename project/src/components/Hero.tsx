@@ -64,24 +64,24 @@ const Hero = () => {
                 <div className="min-h-screen flex flex-col items-center justify-center text-center gap-12 py-20">
 
                     {/* Content Block */}
-                    <div className="w-full max-w-4xl">
+                    <div className="w-full max-w-4xl md:mt-[1.5in]">
                         <AnimatedComponent>
-                            <h1 className="text-5xl md:text-6xl font-bold text-white tracking-tight leading-tight">
+                            <h1 className="text-[3.75rem] md:text-[4.5rem] font-bold text-white tracking-tight leading-tight">
                                 Professional Starlink Installation.
                             </h1>
                         </AnimatedComponent>
 
                         <AnimatedComponent delay={200}>
-                           <p className="mt-6 text-lg text-neutral-300 leading-relaxed max-w-2xl mx-auto">
+                           <p className="mt-8 text-[1.25rem] md:text-[1.5625rem] text-neutral-300 leading-relaxed max-w-2xl mx-auto">
                                 Complete Starlink installation service—from dish alignment to speed optimization.
                             </p>
                         </AnimatedComponent>
 
                         <AnimatedComponent delay={400}>
-                            <div className="mt-8 flex items-center gap-3 justify-center">
+                            <div className="mt-10 flex items-center gap-4 justify-center">
                                 {/* Google 'G' icon stylized */}
                                 <div className="flex-shrink-0">
-                                    <svg className="w-6 h-6" viewBox="0 0 24 24">
+                                    <svg className="w-7 h-7 md:w-8 md:h-8" viewBox="0 0 24 24">
                                          <path fill="#4285F4" d="M22.56,12.25C22.56,11.42,22.49,10.63,22.35,9.86H12.24V14.4H18.06C17.74,16.07,16.83,17.43,15.45,18.33V21.09H19.34C21.43,19.16,22.56,15.99,22.56,12.25Z"/>
                                          <path fill="#34A853" d="M12.24,23C15.11,23,17.5,22.1,19.34,20.55L15.45,17.79C14.51,18.44,13.46,18.8,12.24,18.8C9.89,18.8,7.91,17.2,7.1,15.08H3.14V17.94C4.98,21.05,8.32,23,12.24,23Z"/>
                                          <path fill="#FBBC05" d="M7.1,15.08C6.88,14.43,6.75,13.73,6.75,13C6.75,12.27,6.88,11.57,7.1,10.92V8.06H3.14C2.34,9.6,1.9,11.25,1.9,13C1.9,14.75,2.34,16.4,3.14,17.94L7.1,15.08Z"/>
@@ -89,9 +89,9 @@ const Hero = () => {
                                      </svg>
                                 </div>
                                 <div className="text-left">
-                                    <p className="font-semibold text-white text-sm">Google Rating</p>
-                                    <div className="flex items-center gap-2">
-                                        <span className="font-bold text-white text-sm">5.0</span>
+                                    <p className="font-semibold text-white text-lg md:text-xl">Google Rating</p>
+                                    <div className="flex items-center gap-3">
+                                        <span className="font-bold text-white text-lg md:text-xl">5.0</span>
                                         <StarRating />
                                     </div>
                                 </div>
@@ -102,17 +102,19 @@ const Hero = () => {
                     {/* Image Block */}
                     <div className="relative w-full max-w-5xl">
                         <AnimatedComponent delay={600}>
-                            <img
-                                src={imageUrl}
-                                alt="Starlink hardware dish and router"
-                                className="w-[175%] md:w-[130%] h-auto object-contain mx-auto"
-                                style={{ maxWidth: 'none' }}
-                                onError={(e) => {
-                                    const target = e.target as HTMLImageElement;
-                                    target.onerror = null;
-                                    target.src = 'https://placehold.co/1200x700/000000/ffffff?text=Starlink+Hardware';
-                                }}
-                            />
+                            <div className="flex justify-center items-center w-full">
+                                <img
+                                    src={imageUrl}
+                                    alt="Starlink hardware dish and router"
+                                    className="w-[195%] md:w-[130%] h-auto object-contain mx-auto"
+                                    style={{ maxWidth: 'none', display: 'block', marginLeft: 'auto', marginRight: 'auto' }}
+                                    onError={(e) => {
+                                        const target = e.target as HTMLImageElement;
+                                        target.onerror = null;
+                                        target.src = 'https://placehold.co/1200x700/000000/ffffff?text=Starlink+Hardware';
+                                    }}
+                                />
+                            </div>
                             {/* Gradient overlay to blend the top of the image into the black background */}
                             <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-black to-transparent pointer-events-none"></div>
                         </AnimatedComponent>
