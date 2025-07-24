@@ -378,10 +378,6 @@ const AvailabilityProcess = () => {
                 <button
                   type="submit"
                   disabled={serviceStatus === 'loading' || zipCode.length !== 5}
-                  className="w-full px-8 py-3 rounded-md bg-white text-black font-bold text-base hover:bg-neutral-200 transition disabled:bg-neutral-500 disabled:cursor-not-allowed"
-                <button
-                  type="submit"
-                  disabled={serviceStatus === 'loading' || zipCode.length !== 5}
                   className="w-full px-8 py-3 rounded-md bg-white text-white font-bold text-base hover:bg-neutral-200 hover:text-black transition disabled:bg-neutral-500 disabled:cursor-not-allowed"
                 >
                   {serviceStatus === 'loading' ? (
@@ -390,7 +386,7 @@ const AvailabilityProcess = () => {
                     'CHECK'
                   )}
                 </button>
-            )}
+            {/* End of button container */}
             
             {serviceStatus !== 'loading' && serviceStatus !== null && showResults && (
               <div className={`rounded-xl p-6 backdrop-blur-sm border transition-all duration-700 animate-fadeInUp bg-black/40 ${
