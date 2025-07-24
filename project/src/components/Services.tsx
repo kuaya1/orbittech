@@ -1,8 +1,44 @@
 import React, { useState, useEffect, useRef } from 'react';
-// import { ShootingStars } from './ui/shooting-stars';
-// import { StarsBackground } from './ui/star-backround';
 
-// Define the updated type for the ServiceCard props
+/*
+* To use the "Inter" font like in the reference image, add the following
+* line to the <head> section of your main public/index.html file:
+*
+* <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+*
+* Then, add 'Inter' to your font family in your tailwind.config.js file:
+*
+* const defaultTheme = require('tailwindcss/defaultTheme')
+*
+* module.exports = {
+* theme: {
+* extend: {
+* fontFamily: {
+* sans: ['Inter', ...defaultTheme.fontFamily.sans],
+* },
+* },
+* },
+* plugins: [],
+* }
+*
+*/
+
+
+// A simple checkmark icon for the feature list for a cleaner look
+const CheckIcon = () => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth={2}
+        stroke="currentColor"
+        className="w-5 h-5 text-neutral-400"
+    >
+        <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+    </svg>
+);
+
+// The props for the ServiceCard component remain the same
 interface ServiceCardProps {
   title: string;
   description: string;
@@ -15,24 +51,26 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   features
 }) => {
   return (
-    // Card container: Solid black background with darker borders
-    <div className="bg-black border border-neutral-800 hover:border-neutral-600 rounded-xl p-8 h-full flex flex-col shadow-2xl shadow-black/40 transition-all duration-300 hover:shadow-neutral-500/20 group">
+    // Card container: Updated with glassmorphism effect (backdrop blur and semi-transparent background)
+    <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-8 h-full flex flex-col transition-all duration-300">
 
       {/* Content Area */}
       <div className="flex-grow">
-        <h4 className="font-bold text-white mb-6 text-xl uppercase tracking-widest group-hover:text-gray-100 transition-colors duration-300">
+        <h4 className="font-semibold text-white mb-4 text-lg tracking-wide">
           {title}
         </h4>
-        <p className="text-gray-100 mb-8 leading-relaxed text-lg font-normal">
+        <p className="text-neutral-300 mb-6 leading-relaxed text-base font-normal">
           {description}
         </p>
         
-        {/* Feature list */}
-        <ul className="space-y-4 mb-8 text-left">
+        {/* Feature list with checkmark icons */}
+        <ul className="space-y-3 mb-8 text-left">
           {features.map((feature, index) => (
-            <li key={index} className="flex items-start group-hover:translate-x-1 transition-transform duration-300">
-              <div className="w-3 h-3 bg-white rounded-full mr-4 flex-shrink-0 mt-1.5 group-hover:bg-gray-100 transition-colors duration-300"></div>
-              <span className="text-gray-200 leading-relaxed text-base font-normal group-hover:text-white transition-colors duration-300">
+            <li key={index} className="flex items-center">
+              <div className="mr-3 flex-shrink-0">
+                <CheckIcon />
+              </div>
+              <span className="text-neutral-200 text-sm font-normal">
                 {feature}
               </span>
             </li>
@@ -40,11 +78,11 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
         </ul>
       </div>
 
-      {/* Button Container: Pushed to the bottom of the card */}
+      {/* Button Container: Updated button to be brighter */}
       <div className="mt-auto">
         <a
           href="#contact"
-          className="bg-white text-black font-black uppercase text-sm px-6 py-3 rounded-lg w-full text-center transition-all duration-300 hover:scale-105 hover:bg-neutral-200 hover:shadow-lg block tracking-wider group-hover:shadow-white/20"
+          className="bg-white text-black font-semibold text-sm px-6 py-2.5 rounded-md w-full text-center transition-all duration-300 hover:bg-neutral-200 block"
         >
           Schedule Now
         </a>
@@ -54,35 +92,27 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
 };
 
 const Services = () => {
-  // Scroll animation state
+  // Scroll animation state (hooks remain the same)
   const [isVisible, setIsVisible] = useState(false);
   const [cardVisibility, setCardVisibility] = useState([false, false, false]);
   const sectionRef = useRef<HTMLElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  // Intersection Observer for scroll animations
+  // Intersection Observer for scroll animations (logic remains the same)
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
+        if (entry.isIntersecting) setIsVisible(true);
       },
       { threshold: 0.1 }
     );
     const currentRef = sectionRef.current;
-    if (currentRef) {
-      observer.observe(currentRef);
-    }
-
+    if (currentRef) observer.observe(currentRef);
     return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef);
-      }
+      if (currentRef) observer.unobserve(currentRef);
     };
   }, []);
 
-  // Mobile-optimized card animations
   useEffect(() => {
     const cardObserver = new IntersectionObserver(
       (entries) => {
@@ -96,21 +126,16 @@ const Services = () => {
                   newVisibility[index] = true;
                   return newVisibility;
                 });
-              }, index * 150); // Staggered animation delay
+              }, index * 150);
             }
           }
         });
       },
-      { 
-        threshold: 0.15,
-        rootMargin: '-20px 0px'
-      }
+      { threshold: 0.15, rootMargin: '-20px 0px' }
     );
-
     cardRefs.current.forEach(ref => {
       if (ref) cardObserver.observe(ref);
     });
-
     return () => {
       cardRefs.current.forEach(ref => {
         if (ref) cardObserver.unobserve(ref);
@@ -122,28 +147,25 @@ const Services = () => {
     <section
       ref={sectionRef}
       id="services"
-      className="pt-32 pb-20 md:pt-40 md:pb-20 bg-black relative overflow-hidden"
+      // Updated background to a darker neutral shade
+      className="font-sans py-24 sm:py-32 bg-neutral-950 relative overflow-hidden"
     >
-      {/* Shooting Stars Background - DISABLED */}
-      {/* <ShootingStars />
-      <StarsBackground /> */}
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
-        {/* Header (enhanced) */}
-        <div className={`text-center max-w-4xl mx-auto mb-20 transition-all duration-1000 delay-200 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+        {/* Header: Simplified fonts and spacing */}
+        <div className={`text-center max-w-3xl mx-auto mb-16 transition-all duration-1000 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
-          <h2 className="text-4xl md:text-5xl lg:text-7xl font-black text-white mb-8 leading-tight tracking-tight drop-shadow-lg">
+          <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl leading-tight">
             Certified Starlink Installation Experts
           </h2>
-          <p className="text-xl md:text-2xl text-white/90 leading-relaxed max-w-3xl mx-auto font-semibold drop-shadow-md">
+          <p className="mt-6 text-lg leading-8 text-neutral-400">
             Expert setups for every need: residential, commercial, and mobile/RV.
           </p>
         </div>
 
-        {/* Service Cards Grid with mobile-optimized animations */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+        {/* Service Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
           {[
             {
               title: "RESIDENTIAL",
@@ -184,12 +206,9 @@ const Services = () => {
               ref={el => cardRefs.current[index] = el}
               className={`transform transition-all duration-700 ease-out ${
                 cardVisibility[index] 
-                  ? 'opacity-100 translate-y-0 scale-100' 
-                  : 'opacity-0 translate-y-8 scale-95'
+                  ? 'opacity-100 translate-y-0' 
+                  : 'opacity-0 translate-y-8'
               }`}
-              style={{
-                transitionDelay: `${index * 100}ms`
-              }}
             >
               <ServiceCard
                 title={service.title}
@@ -200,27 +219,29 @@ const Services = () => {
           ))}
         </div>
 
-        {/* CTA section (enhanced) */}
-        <div className={`text-center transition-all duration-1000 delay-600 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-        }`}>
-          <div className="bg-neutral-900/55 backdrop-blur-sm border border-neutral-800 hover:border-neutral-600 rounded-2xl p-12 max-w-4xl mx-auto shadow-2xl shadow-black/40 transition-all duration-300 hover:shadow-neutral-500/20">
-            <h3 className="text-3xl md:text-4xl font-black text-white mb-6 tracking-tight drop-shadow-lg">
-              Ready for Professional Installation?
-            </h3>
-            <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto font-semibold drop-shadow-md">
-              Get a free consultation and quote for your Starlink installation.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="#contact" className="bg-white text-black font-black px-8 py-4 rounded-lg hover:scale-105 transition-transform duration-300 tracking-widest shadow-lg hover:shadow-white/20">
-                GET QUOTE
-              </a>
-              <a href="tel:+15719996915" className="bg-neutral-800/70 border-2 border-neutral-600 hover:bg-neutral-700 hover:border-neutral-500 text-white font-black px-8 py-4 rounded-lg hover:scale-105 transition-all duration-300 tracking-widest shadow-lg hover:shadow-neutral-400/20">
-                CALL (571) 999-6915
-              </a>
+        {/* CTA section: Updated with glassmorphism effect */}
+        <div className={`transition-all duration-1000 delay-300 ${ isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10' }`}>
+            <div className="relative group bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-8 sm:p-12 max-w-4xl mx-auto text-center overflow-hidden">
+                {/* Subtle hover effect for the border */}
+                <div className="absolute -inset-px rounded-2xl border border-transparent group-hover:border-white/20 transition-all duration-300" aria-hidden="true"></div>
+                
+                <h3 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+                    Ready for Professional Installation?
+                </h3>
+                <p className="mt-4 text-lg leading-8 text-neutral-300 max-w-2xl mx-auto">
+                    Get a free consultation and quote for your Starlink installation.
+                </p>
+                <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+                    <a 
+                        href="tel:+15719996915" 
+                        className="inline-block bg-white text-black font-semibold px-8 py-3 rounded-md hover:bg-neutral-200 transition-all duration-300 shadow-lg hover:scale-105 transform"
+                    >
+                        Call (571) 999-6915
+                    </a>
+                </div>
             </div>
-          </div>
         </div>
+
       </div>
     </section>
   );
