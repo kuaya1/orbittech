@@ -199,7 +199,7 @@ const App = () => {
         </div>
 
         {/* --- Right Column: Form (Dark Background) --- */}
-        <div className="p-8 lg:p-12 bg-neutral-900">
+        <div className="p-8 lg:p-12" style={{ backgroundColor: 'rgb(15,15,15)' }}>
             <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <InputField label="Full Name" id="name" name="name" value={formData.name} onChange={handleChange} required accentColor={calciteBlue} />
@@ -227,17 +227,9 @@ const App = () => {
                         <button
                             type="submit"
                             disabled={formStatus === 'loading' || !isEmailServiceReady}
-                            className="group inline-flex items-center justify-center px-6 py-3 text-white font-medium rounded-full
-                                       transition-all duration-300 ease-in-out disabled:bg-neutral-800 disabled:text-neutral-500 disabled:cursor-not-allowed"
-                            style={{ 
-                                backgroundColor: (formStatus === 'loading' || !isEmailServiceReady) ? '' : calciteBlue, 
-                                '--hover-bg': '#005a9e' 
-                            }}
-                            onMouseOver={e => e.currentTarget.style.backgroundColor = getComputedStyle(e.currentTarget).getPropertyValue('--hover-bg')}
-                            onMouseOut={e => e.currentTarget.style.backgroundColor = calciteBlue}
+                            className="inline-flex items-center justify-center px-6 py-3 bg-white text-black font-semibold rounded-full transition-all duration-300 ease-in-out disabled:bg-neutral-800 disabled:text-neutral-500 disabled:cursor-not-allowed"
                         >
                             <span>Send Message</span>
-                            <ArrowRight className="h-4 w-4 ml-2 text-white transform transition-transform duration-300 group-hover:translate-x-1" />
                         </button>
                     </div>
                 </div>
