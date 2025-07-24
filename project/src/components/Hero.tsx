@@ -112,7 +112,7 @@ const Hero = () => {
                                         display: 'block',
                                         marginLeft: 'auto',
                                         marginRight: 'auto',
-                                        marginTop: '-4.5rem', // move up more for mobile
+                                        marginTop: '-6.5rem', // move up more for mobile
                                         marginBottom: '0',
                                     }}
                                     onError={(e) => {

@@ -169,6 +169,13 @@ const App = () => {
       ref={sectionRef}
       id="contact" 
       className="min-h-[400px] w-full pt-16 pb-10 px-4 sm:px-6 lg:px-8 bg-black flex items-center justify-center font-sans"
+      style={{
+        backgroundImage: "url('/Starlink_Rural_Location_02a-scaled.jpg')",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundAttachment: 'fixed'
+      }}
     >
       {/* --- Unified Contact Module --- */}
       <div 
