@@ -168,11 +168,11 @@ const App = () => {
     <section 
       ref={sectionRef}
       id="contact" 
-      className="min-h-screen w-full py-24 px-4 sm:px-6 lg:px-8 bg-black flex items-center justify-center font-sans"
+      className="min-h-[400px] w-full py-10 px-4 sm:px-6 lg:px-8 bg-black flex items-center justify-center font-sans"
     >
       {/* --- Unified Contact Module --- */}
       <div 
-        className="w-full max-w-7xl mx-auto bg-neutral-900/50 border border-neutral-800 rounded-2xl grid grid-cols-1 lg:grid-cols-2 shadow-2xl shadow-black/30 overflow-hidden"
+        className="w-full max-w-7xl mx-auto bg-neutral-900/90 border border-neutral-800 rounded-2xl grid grid-cols-1 lg:grid-cols-2 shadow-2xl shadow-black/30 overflow-hidden"
         style={animationStyle}
       >
         

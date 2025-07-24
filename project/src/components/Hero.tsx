@@ -66,14 +66,14 @@ const Hero = () => {
         <section 
             ref={sectionRef as React.RefObject<HTMLElement>}
             id="hero" 
-            className="relative w-full h-screen min-h-[700px] flex items-center justify-center overflow-hidden bg-black font-sans"
+            className="relative w-full flex items-center justify-center overflow-hidden bg-black font-sans min-h-[80vh] sm:min-h-[700px]"
         >
             <BackgroundImage imageUrl={backgroundImageUrl} />
             
             <div className="relative z-20 text-center px-4">
                 <div style={animationStyle(0)}>
                     {/* FIX: Updated the main headline */}
-                    <h1 className="text-5xl md:text-7xl font-medium text-white tracking-tighter max-w-4xl mx-auto leading-tight">
+            <h1 className="text-[2.55rem] md:text-7xl font-medium text-white tracking-tighter max-w-4xl mx-auto leading-tight">
                         Get Your Starlink Installed by Experts.
                     </h1>
                 </div>

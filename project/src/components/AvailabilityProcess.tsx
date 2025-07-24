@@ -394,7 +394,7 @@ const AvailabilityProcess = () => {
                     isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'
                   }`}>
                     <div className="w-10 h-10 bg-white/10 border border-neutral-800 rounded-xl flex items-center justify-center animate-subtleFloat">
-                      <MapPin className="h-5 w-5 text-[#976060]" />
+                      <MapPin className="h-5 w-5 text-[#1086f4]" />
                     </div>
                     <div>
                       <h3 className="text-lg font-semibold text-white tracking-wide font-sans">Check Your Location</h3>
@@ -429,6 +429,8 @@ const AvailabilityProcess = () => {
                       
                       {/* Input icon with subtle animation */}
                       <MapPin className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-white/60 transition-all duration-300" />
+                      {/* Updated icon color to match Services section */}
+                      <MapPin className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-[#1086f4] transition-all duration-300" />
                       
                       {/* Submit button with enhanced hover effects */}
                       <button 
@@ -479,6 +481,8 @@ const AvailabilityProcess = () => {
                                      text-white transition-all duration-200 flex items-center gap-3"
                           >
                             <History className="h-4 w-4 text-white/60"/>
+                          {/* Updated icon color to match Services section */}
+                          <History className="h-4 w-4 text-[#1086f4]"/>
                             <span className="font-black tracking-tight">{zip}</span>
                           </button>
                         ))}
@@ -488,6 +492,8 @@ const AvailabilityProcess = () => {
                     {errorMessage && (
                       <div className="mt-3 text-red-300 text-sm flex items-center gap-2 font-medium" role="alert">
                         <Info className="h-4 w-4 flex-shrink-0" />
+                      {/* Updated icon color to match Services section */}
+                      <Info className="h-4 w-4 flex-shrink-0 text-[#1086f4]" />
                         {errorMessage}
                       </div>
                     )}
@@ -506,9 +512,9 @@ const AvailabilityProcess = () => {
                         serviceStatus === true ? 'bg-white/20 border-white/30' : 'bg-white/10 border-white/20'
                       }`}>
                         {serviceStatus === true ? (
-                          <CheckCircle className="h-5 w-5 text-green-300" />
+                          <CheckCircle className="h-5 w-5 text-[#1086f4]" /> // Updated icon color to match Services section
                         ) : (
-                          <XCircle className="h-5 w-5 text-red-300" />
+                          <XCircle className="h-5 w-5 text-[#1086f4]" /> // Updated icon color to match Services section
                         )}
                       </div>
                       

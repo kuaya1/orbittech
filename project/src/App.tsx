@@ -19,8 +19,8 @@ function App() {
           <Route path="/" element={
             <main className="bg-black text-white">
               <Hero />
-              <AvailabilityProcess />
               <Services />
+              <AvailabilityProcess />
               <Contact />
               <FeaturedInstallations />
               <FAQ />
