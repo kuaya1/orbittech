@@ -64,22 +64,42 @@ const App = () => {
     calciteScript.src = 'https://js.arcgis.com/calcite-components/2.8.0/calcite.esm.js';
     document.body.appendChild(calciteScript);
 
+    // FIX: Replaced dynamic import with a script tag loader for better compatibility.
     // --- Load and initialize EmailJS ---
-    import('https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js')
-      .then(module => {
-        emailjsRef.current = module;
-        emailjsRef.current.init({ publicKey: "cZxddkmZep5G_h86H" });
-        setIsEmailServiceReady(true);
-      })
-      .catch(error => {
-        console.error('EmailJS dynamic import failed:', error);
+    const emailjsScript = document.createElement('script');
+    emailjsScript.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+    emailjsScript.async = true;
+
+    emailjsScript.onload = () => {
+        // The library attaches itself to the window object
+        if (window.emailjs) {
+            emailjsRef.current = window.emailjs;
+            try {
+                emailjsRef.current.init({ publicKey: "cZxddkmZep5G_h86H" });
+                setIsEmailServiceReady(true);
+            } catch (initError) {
+                console.error('EmailJS initialization failed:', initError);
+                setFormStatus('error');
+            }
+        } else {
+            console.error('EmailJS script loaded but window.emailjs is not available.');
+            setFormStatus('error');
+        }
+    };
+
+    emailjsScript.onerror = (error) => {
+        console.error('Failed to load EmailJS script:', error);
         setFormStatus('error');
-        setStatusMessage('Could not connect to the email service.');
-      });
+    };
+    
+    document.body.appendChild(emailjsScript);
       
     return () => {
         document.head.removeChild(calciteCss);
         document.body.removeChild(calciteScript);
+        if (document.body.contains(emailjsScript)) {
+            document.body.removeChild(emailjsScript);
+        }
     }
   }, []);
 
@@ -111,13 +131,7 @@ const App = () => {
       setStatusMessage('Please fill in all required fields.');
       return;
     }
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.email)) {
-      setFormStatus('error');
-      setStatusMessage('Please enter a valid email address.');
-      return;
-    }
-
+    
     try {
       const serviceID = "service_a1n7ph9";
       const templateID = "template_si8q63h";
@@ -158,7 +172,7 @@ const App = () => {
     >
       {/* --- Unified Contact Module --- */}
       <div 
-        className="w-full max-w-5xl mx-auto bg-neutral-900/50 border border-neutral-800 rounded-2xl grid grid-cols-1 lg:grid-cols-2 shadow-2xl shadow-black/30 overflow-hidden"
+        className="w-full max-w-7xl mx-auto bg-neutral-900/50 border border-neutral-800 rounded-2xl grid grid-cols-1 lg:grid-cols-2 shadow-2xl shadow-black/30 overflow-hidden"
         style={animationStyle}
       >
         
@@ -184,24 +198,24 @@ const App = () => {
             </div>
         </div>
 
-        {/* --- Right Column: Form (White Background) --- */}
-        <div className="p-8 lg:p-12 bg-white">
+        {/* --- Right Column: Form (Dark Background) --- */}
+        <div className="p-8 lg:p-12 bg-neutral-900">
             <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <InputField theme="light" label="Full Name" id="name" name="name" value={formData.name} onChange={handleChange} required accentColor={calciteBlue} />
-                    <InputField theme="light" label="Email Address" id="email" name="email" type="email" value={formData.email} onChange={handleChange} required accentColor={calciteBlue} />
+                    <InputField label="Full Name" id="name" name="name" value={formData.name} onChange={handleChange} required accentColor={calciteBlue} />
+                    <InputField label="Email Address" id="email" name="email" type="email" value={formData.email} onChange={handleChange} required accentColor={calciteBlue} />
                 </div>
-                <InputField theme="light" label="Phone Number" id="phone" name="phone" type="tel" value={formData.phone} onChange={handleChange} required accentColor={calciteBlue} />
-                <TextareaField theme="light" label="Your Message" id="message" name="message" value={formData.message} onChange={handleChange} rows={5} accentColor={calciteBlue} />
+                <InputField label="Phone Number" id="phone" name="phone" type="tel" value={formData.phone} onChange={handleChange} required accentColor={calciteBlue} />
+                <TextareaField label="Your Message" id="message" name="message" value={formData.message} onChange={handleChange} rows={5} accentColor={calciteBlue} />
                 
                 <div className="pt-4">
                     <div className="flex items-center justify-between">
                         <div className="h-6">
                             {formStatus !== 'idle' && (
                                 <div className={`flex items-center gap-2 text-sm transition-opacity duration-300 ${
-                                    formStatus === 'success' ? 'text-green-600' :
-                                    formStatus === 'error' ? 'text-red-600' :
-                                    'text-neutral-600'
+                                    formStatus === 'success' ? 'text-green-400' :
+                                    formStatus === 'error' ? 'text-red-400' :
+                                    'text-neutral-400'
                                 }`}>
                                     {formStatus === 'loading' && <Loader2 className="h-4 w-4 animate-spin" />}
                                     {formStatus === 'success' && <CheckCircle className="h-4 w-4" />}
@@ -214,15 +228,16 @@ const App = () => {
                             type="submit"
                             disabled={formStatus === 'loading' || !isEmailServiceReady}
                             className="group inline-flex items-center justify-center px-6 py-3 text-white font-medium rounded-full
-                                       transition-all duration-300 ease-in-out disabled:bg-neutral-300 disabled:text-neutral-500 disabled:cursor-not-allowed"
-                            style={{ backgroundColor: formStatus === 'loading' ? '#ccc' : calciteBlue, '--hover-bg': '#005a9e' }}
+                                       transition-all duration-300 ease-in-out disabled:bg-neutral-800 disabled:text-neutral-500 disabled:cursor-not-allowed"
+                            style={{ 
+                                backgroundColor: (formStatus === 'loading' || !isEmailServiceReady) ? '' : calciteBlue, 
+                                '--hover-bg': '#005a9e' 
+                            }}
                             onMouseOver={e => e.currentTarget.style.backgroundColor = getComputedStyle(e.currentTarget).getPropertyValue('--hover-bg')}
                             onMouseOut={e => e.currentTarget.style.backgroundColor = calciteBlue}
                         >
-                            {/* FIX: Explicitly set span text color to white */}
-                            <span className="text-white">Send Message</span>
-                            {/* FIX: Explicitly set icon color to white */}
-                            <ArrowRight color="white" className="h-4 w-4 ml-2 transform transition-transform duration-300 group-hover:translate-x-1" />
+                            <span>Send Message</span>
+                            <ArrowRight className="h-4 w-4 ml-2 text-white transform transition-transform duration-300 group-hover:translate-x-1" />
                         </button>
                     </div>
                 </div>
@@ -247,7 +262,7 @@ const InputField = ({ label, id, accentColor, theme = 'dark', ...props }) => (
       }`}
       style={{'--accent-color': accentColor}}
       onFocus={e => e.target.style.borderColor = accentColor}
-      onBlur={e => e.target.style.borderColor = theme === 'light' ? '' : ''}
+      onBlur={e => e.target.style.borderColor = ''}
       placeholder={label} 
     />
     <label 
@@ -276,7 +291,7 @@ const TextareaField = ({ label, id, accentColor, theme = 'dark', ...props }) => 
         }`}
         style={{'--accent-color': accentColor}}
         onFocus={e => e.target.style.borderColor = accentColor}
-        onBlur={e => e.target.style.borderColor = theme === 'light' ? '' : ''}
+        onBlur={e => e.target.style.borderColor = ''}
         placeholder={label} 
       />
       <label 

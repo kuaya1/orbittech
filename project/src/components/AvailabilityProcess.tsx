@@ -155,7 +155,6 @@ const serviceableZips = new Set([
 const AvailabilityProcess = () => {
   // Scroll animation state
   const [isVisible, setIsVisible] = useState(false);
-  const [scrollY, setScrollY] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
   
   // Availability check state with enhanced functionality from AvailabilityCheck
@@ -192,15 +191,7 @@ const AvailabilityProcess = () => {
     };
   }, []);
 
-  // Scroll effect for parallax
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  // Parallax scroll effect removed
 
   // Load recent searches from localStorage on component mount
   useEffect(() => {
@@ -322,12 +313,10 @@ const AvailabilityProcess = () => {
       id="availability-process" 
       className="pt-32 pb-20 md:pt-40 md:pb-32 bg-black relative overflow-hidden"
       style={{
-        backgroundImage: `url('https://www.spacelink-installations.co.uk/wp-content/uploads/2025/01/Starlink_Rural_Location_02a-scaled.jpg')`,
+        backgroundImage: `url('/backround.jpeg')`,
         backgroundSize: 'cover',
-        backgroundPosition: `${-scrollY * 0.2}px center`, // Parallax effect: right to left
-        backgroundRepeat: 'no-repeat',
-        willChange: 'background-position',
-        transition: 'background-position 0.2s cubic-bezier(0.4,0,0.2,1)'
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
       }}
     >
       {/* Dark overlay for contrast */}
