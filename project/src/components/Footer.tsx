@@ -122,17 +122,10 @@ const Footer = () => {
                     <div className="text-neutral-400 text-sm font-normal order-2 sm:order-1 font-sans">
                         © {year}
                     </div>
-                    
                     <div className="flex items-center space-x-4 order-1 sm:order-2">
                          <BottomBarLink href="/imprint.html">Imprint</BottomBarLink>
                          <BottomBarLink href="/privacy-policy.html">Privacy Policy</BottomBarLink>
                          <BottomBarLink href="/terms-of-service.html">Terms of Service</BottomBarLink>
-                    </div>
-
-                    <div className="flex space-x-4 text-neutral-400 order-3">
-                      <a href="#" className="hover:text-white transition-colors"><LinkedInIcon /></a>
-                      <a href="#" className="hover:text-white transition-colors"><InstagramIcon /></a>
-                      <a href="#" className="hover:text-white transition-colors"><FacebookIcon /></a>
                     </div>
                 </div>
             </div>
