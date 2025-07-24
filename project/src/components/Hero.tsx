@@ -56,22 +56,24 @@ const Hero = () => {
 
     return (
         <section id="hero" className="w-full bg-black font-sans antialiased">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="lg:max-w-none">
                 {/* Updated to be full screen on desktop */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-16 items-center lg:min-h-screen">
+                <div className="grid grid-cols-1 lg:grid-cols-2 items-center lg:min-h-screen">
                     
-                    {/* Column 1: Content (Order 2 on mobile, Order 1 on desktop) */}
-                    <div className="py-20 text-center lg:text-left order-2 lg:order-1">
+                    {/* Column 1: Content */}
+                    <div className="py-24 px-4 sm:px-6 lg:px-12 text-center lg:text-left">
                         <AnimatedComponent>
-                            <h1 className="text-4xl md:text-5xl font-medium text-white tracking-tighter leading-tight">
+                            <h1 className="text-5xl md:text-7xl font-medium text-white tracking-tighter leading-tight">
                                 Professional Starlink Installation.
                             </h1>
-                            <p className="mt-6 text-lg text-neutral-300 leading-relaxed max-w-lg mx-auto lg:mx-0">
+                        </AnimatedComponent>
+                        <AnimatedComponent delay={200}>
+                           <p className="mt-6 text-lg text-neutral-300 leading-relaxed max-w-xl mx-auto lg:mx-0">
                                 Experience flawless, high-performance internet with our expert installation service. We handle everything.
                             </p>
-                            
-                            {/* Social Proof Section */}
-                            <div className="mt-8 flex items-center gap-4 justify-center lg:justify-start">
+                        </AnimatedComponent>
+                        <AnimatedComponent delay={400}>
+                             <div className="mt-8 flex items-center gap-4 justify-center lg:justify-start">
                                 <div className="text-blue-500 font-bold text-lg">G</div>
                                 <div>
                                     <p className="font-semibold text-white">Google Rating</p>
@@ -84,18 +86,18 @@ const Hero = () => {
                         </AnimatedComponent>
                     </div>
 
-                    {/* Column 2: Image (Order 1 on mobile, Order 2 on desktop) */}
-                    <div className="relative w-full h-80 sm:h-96 lg:h-full order-1 lg:order-2">
+                    {/* Column 2: Image */}
+                    <div className="relative w-full h-[400px] sm:h-[480px] lg:h-screen">
                          <img 
                             src={imageUrl}
                             alt="Starlink hardware"
                             className="w-full h-full object-cover"
                          />
-                         {/* Gradient overlay for smooth blending with left column */}
+                         {/* Gradient overlay for smooth blending */}
                          <div 
                             className="absolute inset-0 pointer-events-none"
                             style={{
-                                background: 'linear-gradient(to left, rgba(0,0,0,0) 20%, rgba(0,0,0,0.8) 80%, rgba(0,0,0,1) 100%)'
+                                background: 'linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 20%, rgba(0,0,0,0) 50%)'
                             }}
                          ></div>
                     </div>
