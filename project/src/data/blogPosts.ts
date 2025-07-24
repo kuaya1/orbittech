@@ -1,3 +1,4 @@
+export const blogPosts = [
   {
     title: "The True Cost of DIY: 5 Hidden Risks of a DIY Starlink Installation",
     slug: "starlink-diy-installation-risks",
