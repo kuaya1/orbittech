@@ -1,5 +1,23 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { MapPin, Phone, Mail, Loader2, CheckCircle, XCircle } from 'lucide-react';
+import { Loader2, CheckCircle, XCircle } from 'lucide-react';
+// Calcite Icons SVGs (inline for Phone, Mail, MapPin)
+const CalcitePhone = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M6.5 3.5A2 2 0 0 1 8.5 2h7a2 2 0 0 1 2 1.5l1.5 6a2 2 0 0 1-1.5 2.5l-2.5.5a2 2 0 0 0-1.5 2.5l.5 2.5a2 2 0 0 1-2.5 1.5l-6-1.5A2 2 0 0 1 2 15.5v-7a2 2 0 0 1 1.5-2z" />
+  </svg>
+);
+const CalciteMail = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <rect x="3" y="5" width="18" height="14" rx="2" />
+    <polyline points="3 7 12 13 21 7" />
+  </svg>
+);
+const CalciteMapPin = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M12 21s-6-5.686-6-10A6 6 0 0 1 18 11c0 4.314-6 10-6 10z" />
+    <circle cx="12" cy="11" r="2.5" />
+  </svg>
+);
 import emailjs from '@emailjs/browser';
 // import { ShootingStars, StarsBackground } from './ui';
 
@@ -319,8 +337,8 @@ ${formData.message || 'No additional message provided'}`,
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="text-center">
-                  <div className="w-16 h-16 bg-[#976060]/20 border border-[#976060]/30 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300">
-                    <Phone className="w-8 h-8 text-[#976060]" />
+                  <div className="w-16 h-16 bg-[#1086f4]/10 border border-[#1086f4]/20 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300">
+                    <CalcitePhone className="w-8 h-8 text-[#1086f4]" />
                   </div>
                   <h4 className="font-semibold text-white tracking-wide mb-2 uppercase font-sans">Phone</h4>
                   <a href="tel:+15719996915" className="text-neutral-200 hover:text-white transition-colors font-normal font-sans">
@@ -329,8 +347,8 @@ ${formData.message || 'No additional message provided'}`,
                 </div>
 
                 <div className="text-center">
-                  <div className="w-16 h-16 bg-[#976060]/20 border border-[#976060]/30 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300">
-                    <Mail className="w-8 h-8 text-[#976060]" />
+                  <div className="w-16 h-16 bg-[#1086f4]/10 border border-[#1086f4]/20 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300">
+                    <CalciteMail className="w-8 h-8 text-[#1086f4]" />
                   </div>
                   <h4 className="font-semibold text-white tracking-wide mb-2 uppercase font-sans">Email</h4>
                   <a href="mailto:contact@theorbittech.com" className="text-neutral-200 hover:text-white transition-colors font-normal font-sans">
@@ -339,8 +357,8 @@ ${formData.message || 'No additional message provided'}`,
                 </div>
 
                 <div className="text-center">
-                  <div className="w-16 h-16 bg-[#976060]/20 border border-[#976060]/30 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300">
-                    <MapPin className="w-8 h-8 text-[#976060]" />
+                  <div className="w-16 h-16 bg-[#1086f4]/10 border border-[#1086f4]/20 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300">
+                    <CalciteMapPin className="w-8 h-8 text-[#1086f4]" />
                   </div>
                   <h4 className="font-semibold text-white tracking-wide mb-2 uppercase font-sans">Service Area</h4>
                   <p className="text-neutral-200 font-normal font-sans">
@@ -383,8 +401,8 @@ ${formData.message || 'No additional message provided'}`,
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="text-center">
-                  <div className="w-16 h-16 bg-[#976060]/20 border border-[#976060]/30 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300">
-                    <Phone className="w-8 h-8 text-[#976060]" />
+                  <div className="w-16 h-16 bg-[#1086f4]/10 border border-[#1086f4]/20 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300">
+                    <CalcitePhone className="w-8 h-8 text-[#1086f4]" />
                   </div>
                   <h4 className="font-semibold text-white tracking-wide mb-2 uppercase font-sans">Phone</h4>
                   <a href="tel:+15719996915" className="text-neutral-200 hover:text-white transition-colors font-normal font-sans">
@@ -393,8 +411,8 @@ ${formData.message || 'No additional message provided'}`,
                 </div>
 
                 <div className="text-center">
-                  <div className="w-16 h-16 bg-[#976060]/20 border border-[#976060]/30 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300">
-                    <Mail className="w-8 h-8 text-[#976060]" />
+                  <div className="w-16 h-16 bg-[#1086f4]/10 border border-[#1086f4]/20 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300">
+                    <CalciteMail className="w-8 h-8 text-[#1086f4]" />
                   </div>
                   <h4 className="font-semibold text-white tracking-wide mb-2 uppercase font-sans">Email</h4>
                   <a href="mailto:contact@theorbittech.com" className="text-neutral-200 hover:text-white transition-colors font-normal font-sans">
@@ -403,8 +421,8 @@ ${formData.message || 'No additional message provided'}`,
                 </div>
 
                 <div className="text-center">
-                  <div className="w-16 h-16 bg-[#976060]/20 border border-[#976060]/30 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300">
-                    <MapPin className="w-8 h-8 text-[#976060]" />
+                  <div className="w-16 h-16 bg-[#1086f4]/10 border border-[#1086f4]/20 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300">
+                    <CalciteMapPin className="w-8 h-8 text-[#1086f4]" />
                   </div>
                   <h4 className="font-semibold text-white tracking-wide mb-2 uppercase font-sans">Service Area</h4>
                   <p className="text-neutral-200 font-normal font-sans">
