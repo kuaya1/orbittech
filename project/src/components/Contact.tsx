@@ -578,9 +578,6 @@ ${formData.message || 'No additional message provided'}`,
                   type="submit"
                   disabled={formStatus === 'loading'}
                   className="w-full bg-white text-black font-semibold rounded-md py-4 px-6 hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center gap-3 tracking-tight uppercase font-sans"
-                           hover:scale-105 transition-all duration-300 
-                           disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100
-                           flex items-center justify-center gap-3 tracking-tight uppercase"
                 >
                   {formStatus === 'loading' ? (
                     <>
