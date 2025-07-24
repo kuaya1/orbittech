@@ -52,7 +52,7 @@ const StarRating = () => (
 
 // --- Hero Section ---
 const Hero = () => {
-    const imageUrl = '/design (20)1.PNG';
+    const imageUrl = '/Untitled design (20).png';
 
     return (
         <section id="hero" className="w-full bg-black font-sans antialiased overflow-hidden lg:overflow-visible">
@@ -88,8 +88,8 @@ const Hero = () => {
                     </div>
 
                     {/* Column 2: Image */}
-                    {/* UPDATED: Increased the negative top margin on mobile (-mt-40) to move the image up more. Shift right by 0.5 inch (12px) on desktop. */}
-                    <div className="relative w-full h-[400px] sm:h-[480px] lg:h-screen -mt-40 lg:mt-0 lg:-ml-36 lg:translate-x-3">
+                    {/* UPDATED: Set mobile top margin to mt-36 and shift right by 0.5 inch (12px) on desktop. */}
+                    <div className="relative w-full h-[400px] sm:h-[480px] lg:h-screen mt-36 lg:mt-0 lg:-ml-36 lg:translate-x-3">
                          <img 
                              src={imageUrl}
                              alt="Starlink hardware"
