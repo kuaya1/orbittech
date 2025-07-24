@@ -1,28 +1,40 @@
 import React from 'react';
-import SchemaInjector from './components/SchemaInjector'; // 1. IMPORT THE NEW COMPONENT
+import SchemaInjector from './components/SchemaInjector';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Services from './components/Services';
-import Process from './components/Process';
-import FAQ from './components/FAQ';
+import Blog from './components/Blog';
+import AvailabilityProcess from './components/AvailabilityProcess';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import FeaturedInstallations from './components/featuredjobcase';
+import FAQ from './components/FAQ';
 
-const App = () => {
-    return (
-        <div className="bg-black">
-            <SchemaInjector /> {/* 2. PLACE THE COMPONENT HERE */}
-            <Navbar />
-            <main>
-                <Hero />
-                <Services />
-                <Process />
-                <FAQ />
-                <Contact />
+function App() {
+  return (
+    <Router>
+      <div className="min-h-screen bg-black">
+        <SchemaInjector />
+        <Navbar />
+        <Routes>
+          <Route path="/" element={
+            <main className="bg-black text-white">
+              <Hero />
+              <AvailabilityProcess />
+              <Services />
+              <Contact />
+              <FeaturedInstallations />
+              <FAQ />
             </main>
-            <Footer />
-        </div>
-    );
-};
+          } />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/faq" element={<FAQ />} />
+        </Routes>
+        <Footer />
+      </div>
+    </Router>
+  );
+}
 
 export default App;

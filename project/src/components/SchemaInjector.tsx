@@ -1,5 +1,52 @@
 import React from 'react';
 
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "The Orbit Tech",
+  "image": "https://theorbittech.com/logo.png",
+  "@id": "https://theorbittech.com",
+  "url": "https://theorbittech.com",
+  "telephone": "+15719996915",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "123 Main St",
+    "addressLocality": "Fairfax",
+    "addressRegion": "VA",
+    "postalCode": "22030",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 38.8462,
+    "longitude": -77.3064
+  },
+  "openingHoursSpecification": [{
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "opens": "08:00",
+    "closes": "18:00"
+  }],
+  "sameAs": [
+    "https://www.facebook.com/theorbittech",
+    "https://www.instagram.com/theorbittech"
+  ]
+};
+
+const SchemaInjector: React.FC = () => (
+  <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+);
+
+export default SchemaInjector;
+import React from 'react';
+
 const SchemaInjector = () => {
   const schemaData = {
     "@context": "https://schema.org",
