@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
 
 // Modern Intersection Observer Hook for Scroll Effects
 const useScrollReveal = (threshold = 0.1) => {
@@ -140,6 +141,51 @@ const Services = () => {
   const [cardsRef, cardsVisible] = useScrollReveal(0.1);
   const [ctaRef, ctaVisible] = useScrollReveal(0.3);
 
+  // Framer Motion variants for smoother animations
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.1
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 50,
+      scale: 0.95
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        type: "spring" as const,
+        damping: 25,
+        stiffness: 100,
+        duration: 0.6
+      }
+    }
+  };
+
+  const headerVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring" as const,
+        damping: 25,
+        stiffness: 100,
+        duration: 0.8
+      }
+    }
+  };
+
   const servicesData = [
     {
       title: "HOME INSTALLATION",
@@ -180,97 +226,19 @@ const Services = () => {
   ];
 
   return (
-    <section
+    <motion.section
       id="services"
       className="font-sans py-24 sm:py-32 bg-black relative overflow-hidden"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+      variants={containerVariants}
     >
-      {/* Enhanced CSS Animation Styles for Scroll Effects */}
-      <style>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(40px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
-        @keyframes fadeInScale {
-          from {
-            opacity: 0;
-            transform: translateY(30px) scale(0.95);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-          }
-        }
-        
-        @keyframes slideInLeft {
-          from {
-            opacity: 0;
-            transform: translateX(-40px);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
-        
-        @keyframes slideInRight {
-          from {
-            opacity: 0;
-            transform: translateX(40px);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
-        
-        /* Scroll-triggered animations */
-        .scroll-reveal {
-          opacity: 0;
-          transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        
-        .scroll-reveal.visible {
-          opacity: 1;
-        }
-        
-        .animate-fade-in-up {
-          animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-        
-        .animate-fade-in-scale {
-          animation: fadeInScale 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-        
-        .animate-slide-in-left {
-          animation: slideInLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-        
-        .animate-slide-in-right {
-          animation: slideInRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-        
-        /* Staggered delays for cards */
-        .delay-100 { animation-delay: 100ms; }
-        .delay-200 { animation-delay: 200ms; }
-        .delay-300 { animation-delay: 300ms; }
-        .delay-400 { animation-delay: 400ms; }
-        .delay-500 { animation-delay: 500ms; }
-        .delay-600 { animation-delay: 600ms; }
-      `}</style>
-      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div 
+        <motion.div 
           ref={headerRef}
-          className={`text-center max-w-3xl mx-auto mb-16 scroll-reveal ${
-            headerVisible ? 'visible animate-fade-in-up' : ''
-          }`}
+          className="text-center max-w-3xl mx-auto mb-16"
+          variants={headerVariants}
         >
           <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl leading-tight">
             Professional Starlink Installation in the DMV
@@ -278,49 +246,38 @@ const Services = () => {
           <p className="mt-6 text-lg leading-8 text-[#f8f8f8]">
             Expert installation by certified professionals. Get speeds up to 250 Mbps across VA, MD & DC and expanding.
           </p>
-        </div>
+        </motion.div>
 
-        <div 
+        <motion.div 
           ref={cardsRef}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24"
+          variants={containerVariants}
         >
-          {servicesData.map((service, index) => {
-            // Different animation styles for each card
-            const animationClass = index === 0 ? 'animate-slide-in-left' 
-                                 : index === 1 ? 'animate-fade-in-scale'
-                                 : 'animate-slide-in-right';
-            
-            const delayClass = `delay-${(index + 1) * 200}`;
-            
-            return (
-              <div
-                key={index}
-                className={`scroll-reveal ${
-                  cardsVisible ? `visible ${animationClass} ${delayClass}` : ''
-                } transform transition-all duration-700 ease-out hover:scale-105 hover:-translate-y-2`}
-                style={{ 
-                  opacity: cardsVisible ? 1 : 0,
-                  transform: cardsVisible 
-                    ? 'translateY(0) scale(1)' 
-                    : 'translateY(30px) scale(0.95)'
-                }}
-              >
-                <ServiceCard
-                  title={service.title}
-                  description={service.description}
-                  features={service.features}
-                  icon={service.icon}
-                />
-              </div>
-            );
-          })}
-        </div>
+          {servicesData.map((service, index) => (
+            <motion.div
+              key={index}
+              variants={cardVariants}
+              whileHover={{ 
+                scale: 1.05, 
+                y: -10,
+                transition: { type: "spring", stiffness: 300, damping: 20 }
+              }}
+              className="cursor-pointer"
+            >
+              <ServiceCard
+                title={service.title}
+                description={service.description}
+                features={service.features}
+                icon={service.icon}
+              />
+            </motion.div>
+          ))}
+        </motion.div>
 
-        <div 
+        <motion.div 
           ref={ctaRef}
-          className={`text-center scroll-reveal ${
-            ctaVisible ? 'visible animate-fade-in-up delay-300' : ''
-          }`}
+          className="text-center"
+          variants={headerVariants}
         >
           <h3 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
             Ready for Professional Installation?
@@ -329,22 +286,33 @@ const Services = () => {
             Get a free consultation and quote for your Starlink installation.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-            <a 
+            <motion.a 
               href="#contact" 
-              className="inline-block bg-white text-black font-semibold px-8 py-3 rounded-md hover:bg-neutral-200 transition-all duration-300 shadow-lg hover:scale-105 transform"
+              className="inline-block bg-white text-black font-semibold px-8 py-3 rounded-md transition-all duration-300 shadow-lg"
+              whileHover={{ 
+                scale: 1.05,
+                backgroundColor: "#f5f5f5",
+                boxShadow: "0 10px 25px rgba(255,255,255,0.2)"
+              }}
+              whileTap={{ scale: 0.95 }}
             >
               Get a Free Quote
-            </a>
-            <a 
+            </motion.a>
+            <motion.a 
               href="tel:+15719996915" 
-              className="inline-block bg-white/10 border border-white/20 text-white font-semibold px-8 py-3 rounded-md hover:bg-white/20 transition-all duration-300 hover:scale-105 transform"
+              className="inline-block bg-white/10 border border-white/20 text-white font-semibold px-8 py-3 rounded-md transition-all duration-300"
+              whileHover={{ 
+                scale: 1.05,
+                backgroundColor: "rgba(255,255,255,0.2)"
+              }}
+              whileTap={{ scale: 0.95 }}
             >
               Call Us
-            </a>
+            </motion.a>
           </div>
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
