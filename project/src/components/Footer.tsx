@@ -135,7 +135,7 @@ const Footer = () => {
                 {/* Modern bottom bar */}
                 <div className="flex flex-col sm:flex-row items-start sm:items-center gap-8 w-full lg:w-auto">
                     <div className="text-neutral-500 text-sm uppercase tracking-wider order-2 sm:order-1">
-                        © {year} Orbittec
+                        © {year} OrbitTech
                     </div>
                     <div className="flex items-center space-x-6 order-1 sm:order-2">
                          <BottomBarLink href="/privacy-policy.html">Privacy</BottomBarLink>

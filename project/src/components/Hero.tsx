@@ -1,5 +1,4 @@
 import { Star } from 'lucide-react';
-import { motion } from 'motion/react';
 
 // --- Star Rating Component for Social Proof ---
 const StarRating = () => (
@@ -10,13 +9,121 @@ const StarRating = () => (
     </div>
 );
 
-
-// --- Hero Section with Enhanced Aceternity Design ---
+// --- Hero Section with Pure CSS Animations ---
 const Hero = () => {
     const imageUrl = '/Untitled design (20) resized.PNG';
 
     return (
-        <section id="hero" className="w-full bg-black font-sans antialiased relative">
+        <section id="hero" className="w-full bg-black relative overflow-hidden">
+            {/* Modern CSS Animations */}
+            <style>{`
+                @keyframes fadeInUp {
+                    from {
+                        opacity: 0;
+                        transform: translateY(30px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+                
+                @keyframes fadeInLeft {
+                    from {
+                        opacity: 0;
+                        transform: translateX(-30px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateX(0);
+                    }
+                }
+                
+                @keyframes fadeInRight {
+                    from {
+                        opacity: 0;
+                        transform: translateX(30px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateX(0);
+                    }
+                }
+                
+                @keyframes wordReveal {
+                    from {
+                        opacity: 0;
+                        filter: blur(4px);
+                        transform: translateY(10px);
+                    }
+                    to {
+                        opacity: 1;
+                        filter: blur(0px);
+                        transform: translateY(0);
+                    }
+                }
+                
+                @keyframes scaleIn {
+                    from {
+                        opacity: 0;
+                        transform: scale(0.8);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: scale(1);
+                    }
+                }
+                
+                .animate-fade-in-up {
+                    animation: fadeInUp 0.8s ease-out forwards;
+                }
+                
+                .animate-fade-in-left {
+                    animation: fadeInLeft 0.8s ease-out forwards;
+                }
+                
+                .animate-fade-in-right {
+                    animation: fadeInRight 1s ease-out forwards;
+                }
+                
+                .animate-scale-in {
+                    animation: scaleIn 0.8s ease-out forwards;
+                }
+                
+                .word-reveal {
+                    animation: wordReveal 0.4s ease-in-out forwards;
+                    opacity: 0;
+                }
+                
+                /* Staggered word animations */
+                .word-1 { animation-delay: 0.1s; }
+                .word-2 { animation-delay: 0.2s; }
+                .word-3 { animation-delay: 0.3s; }
+                .word-4 { animation-delay: 0.4s; }
+                .word-5 { animation-delay: 0.5s; }
+                
+                /* Component delays */
+                .delay-800 { animation-delay: 0.8s; }
+                .delay-1000 { animation-delay: 1.0s; }
+                .delay-1200 { animation-delay: 1.2s; }
+                .delay-1400 { animation-delay: 1.4s; }
+                .delay-500 { animation-delay: 0.5s; }
+                
+                /* Hover effects */
+                .hover-lift:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 10px 25px rgba(255,255,255,0.1);
+                }
+                
+                .hover-scale:hover {
+                    transform: scale(1.05);
+                }
+                
+                .hover-rotate:hover {
+                    transform: scale(1.1) rotate(5deg);
+                }
+            `}</style>
+
             {/* Aceternity-inspired decorative lines */}
             <div className="absolute inset-y-0 left-0 h-full w-px bg-neutral-800/80">
                 <div className="absolute top-20 h-40 w-px bg-gradient-to-b from-transparent via-blue-500 to-transparent" />
@@ -28,165 +135,83 @@ const Hero = () => {
                 <div className="absolute mx-auto h-px w-40 bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
             </div>
 
-            <div className="container mx-auto px-6 sm:px-8">
-                {/* Main content container - mobile optimized layout */}
-                <div className="min-h-screen flex flex-col items-center justify-center text-center py-20 relative z-10">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                {/* Mobile-First Responsive Layout */}
+                <div className="min-h-screen flex flex-col items-center justify-center text-center py-16 sm:py-20 relative z-10">
 
-                    {/* Mobile Layout: Title, Subtitle, Image, Button, Rating */}
-                    <div className="w-full max-w-4xl md:mt-[1.5in] flex flex-col md:flex-row md:items-center md:gap-12">
+                    {/* Responsive Grid Layout */}
+                    <div className="w-full max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
                         
-                        {/* Content Block - Desktop Left, Mobile Top */}
-                        <div className="w-full md:w-1/2 md:text-left">
-                            {/* 1. Enhanced Animated Title - moved down 0.8in on mobile */}
-                            <motion.h1 
-                                className="text-[2.2rem] md:text-[4.5rem] font-bold text-white tracking-tight leading-tight mt-[0.8in] md:mt-0"
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.8, ease: "easeOut" }}
-                            >
+                        {/* Content Block - Mobile First */}
+                        <div className="order-1 lg:order-1 space-y-6 sm:space-y-8 text-center lg:text-left animate-fade-in-left">
+                            {/* Enhanced Animated Title */}
+                            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white tracking-tight leading-tight">
                                 {"Professional Starlink Installation Service"
                                     .split(" ")
                                     .map((word, index) => (
-                                        <motion.span
+                                        <span
                                             key={index}
-                                            initial={{ opacity: 0, filter: "blur(4px)", y: 10 }}
-                                            animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
-                                            transition={{
-                                                duration: 0.4,
-                                                delay: index * 0.1,
-                                                ease: "easeInOut",
-                                            }}
-                                            className="mr-2 inline-block"
+                                            className={`word-reveal word-${Math.min(index + 1, 5)} inline-block mr-2`}
                                         >
                                             {word}
-                                        </motion.span>
+                                        </span>
                                     ))}
-                            </motion.h1>
+                            </h1>
 
-                            {/* 2. Enhanced Animated Subtitle */}
-                            <motion.p 
-                                className="mt-6 md:mt-8 text-[0.95rem] md:text-[1.5625rem] text-neutral-300 leading-relaxed"
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.6, delay: 0.8, ease: "easeOut" }}
-                            >
+                            {/* Enhanced Subtitle */}
+                            <p className="text-base sm:text-lg lg:text-xl text-neutral-300 leading-relaxed max-w-2xl mx-auto lg:mx-0 animate-fade-in-up delay-800">
                                 Get your Starlink professionally installed by certified experts serving the DMV area and beyond.
-                            </motion.p>
+                            </p>
 
-                            {/* Mobile Image Block - positioned after subtitle on mobile */}
-                            <div className="md:hidden relative w-full mt-8 mb-8">
-                                <motion.div
-                                    initial={{ opacity: 0, scale: 0.8 }}
-                                    animate={{ opacity: 1, scale: 1 }}
-                                    transition={{ duration: 0.8, delay: 1.0, ease: "easeOut" }}
-                                >
-                                    <div className="flex justify-center items-center w-full">
-                                        <img
-                                            src={imageUrl}
-                                            alt="Starlink hardware dish and router"
-                                            className="w-[150%] h-auto object-contain mx-auto"
-                                            style={{
-                                                maxWidth: 'none',
-                                                display: 'block',
-                                                marginLeft: 'auto',
-                                                marginRight: 'auto',
-                                            }}
-                                            onError={(e) => {
-                                                const target = e.target as HTMLImageElement;
-                                                target.onerror = null;
-                                                target.src = 'https://placehold.co/1200x700/000000/ffffff?text=Starlink+Hardware';
-                                            }}
-                                        />
-                                    </div>
-                                    {/* Gradient overlay for mobile */}
-                                    <div className="absolute top-0 left-0 right-0 h-1/3 bg-gradient-to-b from-black to-transparent pointer-events-none"></div>
-                                </motion.div>
-                            </div>
-
-                            {/* 4. Enhanced Get Quote Button */}
-                            <motion.div 
-                                className="mt-6 md:mt-8"
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.6, delay: 1.2, ease: "easeOut" }}
-                            >
-                                <motion.a 
+                            {/* Enhanced Get Quote Button */}
+                            <div className="animate-fade-in-up delay-1200">
+                                <a 
                                     href="#contact" 
-                                    className="inline-block bg-white text-black font-semibold px-6 py-3 md:px-8 md:py-3 rounded-md hover:bg-neutral-100 transition-all duration-300 text-base md:text-lg shadow-lg"
-                                    whileHover={{ 
-                                        y: -2, 
-                                        boxShadow: "0 10px 25px rgba(255,255,255,0.1)" 
-                                    }}
-                                    whileTap={{ scale: 0.98 }}
+                                    className="inline-block bg-white text-black font-semibold px-6 py-3 sm:px-8 sm:py-4 rounded-lg hover:bg-neutral-100 active:bg-neutral-200 transition-all duration-300 text-base sm:text-lg shadow-lg hover-lift active:scale-95"
                                 >
                                     Get Your Free Quote →
-                                </motion.a>
-                            </motion.div>
+                                </a>
+                            </div>
 
-                            {/* 5. Enhanced Google Rating */}
-                            <motion.div 
-                                className="mt-8 md:mt-10 flex items-center gap-3 md:gap-4 justify-center md:justify-start"
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.6, delay: 1.4, ease: "easeOut" }}
-                            >
+                            {/* Enhanced Google Rating */}
+                            <div className="flex items-center gap-3 sm:gap-4 justify-center lg:justify-start animate-fade-in-up delay-1400">
                                 {/* Google 'G' icon stylized */}
-                                <motion.div 
-                                    className="flex-shrink-0"
-                                    whileHover={{ scale: 1.1, rotate: 5 }}
-                                    transition={{ type: "spring", stiffness: 300 }}
-                                >
-                                    <svg className="w-6 h-6 md:w-8 md:h-8" viewBox="0 0 24 24">
+                                <div className="flex-shrink-0 transition-transform duration-300 hover-rotate">
+                                    <svg className="w-6 h-6 sm:w-8 sm:h-8" viewBox="0 0 24 24">
                                          <path fill="#4285F4" d="M22.56,12.25C22.56,11.42,22.49,10.63,22.35,9.86H12.24V14.4H18.06C17.74,16.07,16.83,17.43,15.45,18.33V21.09H19.34C21.43,19.16,22.56,15.99,22.56,12.25Z"/>
                                          <path fill="#34A853" d="M12.24,23C15.11,23,17.5,22.1,19.34,20.55L15.45,17.79C14.51,18.44,13.46,18.8,12.24,18.8C9.89,18.8,7.91,17.2,7.1,15.08H3.14V17.94C4.98,21.05,8.32,23,12.24,23Z"/>
                                          <path fill="#FBBC05" d="M7.1,15.08C6.88,14.43,6.75,13.73,6.75,13C6.75,12.27,6.88,11.57,7.1,10.92V8.06H3.14C2.34,9.6,1.9,11.25,1.9,13C1.9,14.75,2.34,16.4,3.14,17.94L7.1,15.08Z"/>
                                          <path fill="#EA4335" d="M12.24,7.2C13.6,7.2,14.78,7.69,15.81,8.66L19.43,5.05C17.5,3.24,15.11,2,12.24,2C8.32,2,4.98,4.95,3.14,8.06L7.1,10.92C7.91,8.8,9.89,7.2,12.24,7.2Z"/>
                                      </svg>
-                                </motion.div>
+                                </div>
                                 <div className="text-left">
-                                    <p className="font-semibold text-white text-sm md:text-xl">Google Rating</p>
-                                    <div className="flex items-center gap-2 md:gap-3">
-                                        <span className="font-bold text-white text-base md:text-xl">5.0</span>
-                                        <motion.div
-                                            initial={{ opacity: 0 }}
-                                            animate={{ opacity: 1 }}
-                                            transition={{ delay: 1.6, duration: 0.5 }}
-                                        >
+                                    <p className="font-semibold text-white text-sm sm:text-base lg:text-lg">Google Rating</p>
+                                    <div className="flex items-center gap-2 sm:gap-3">
+                                        <span className="font-bold text-white text-base sm:text-lg lg:text-xl">5.0</span>
+                                        <div className="animate-fade-in-up delay-1400">
                                             <StarRating />
-                                        </motion.div>
+                                        </div>
                                     </div>
                                 </div>
-                            </motion.div>
+                            </div>
                         </div>
 
-                        {/* Desktop Image Block - redesigned order, no container, 200% bigger */}
-                        <div className="hidden md:block relative w-full md:w-1/2 max-w-5xl">
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0.8, x: 50 }}
-                                animate={{ opacity: 1, scale: 1, x: 0 }}
-                                transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
-                                className="relative"
-                            >
-                                {/* Remove container - direct image display at 200% size */}
+                        {/* Responsive Image Block */}
+                        <div className="order-2 lg:order-2 relative animate-fade-in-right delay-500">
+                            <div className="relative w-full max-w-lg mx-auto lg:max-w-none">
                                 <img
                                     src={imageUrl}
                                     alt="Starlink hardware dish and router"
-                                    className="w-[200%] h-auto object-contain mx-auto transition-transform duration-700 hover:scale-105"
-                                    style={{
-                                        maxWidth: 'none',
-                                        display: 'block',
-                                        marginLeft: 'auto',
-                                        marginRight: 'auto',
-                                    }}
+                                    className="w-full h-auto object-contain transition-transform duration-700 hover-scale"
                                     onError={(e) => {
                                         const target = e.target as HTMLImageElement;
                                         target.onerror = null;
-                                        target.src = 'https://placehold.co/1200x700/000000/ffffff?text=Starlink+Hardware';
+                                        target.src = 'https://placehold.co/800x600/000000/ffffff?text=Starlink+Hardware';
                                     }}
                                 />
-                                {/* Simplified gradient overlay */}
-                                <div className="absolute top-0 left-0 right-0 h-1/3 bg-gradient-to-b from-black/30 to-transparent pointer-events-none"></div>
-                            </motion.div>
+                                {/* Subtle gradient overlay */}
+                                <div className="absolute top-0 left-0 right-0 h-1/3 bg-gradient-to-b from-black/20 to-transparent pointer-events-none"></div>
+                            </div>
                         </div>
                     </div>
 

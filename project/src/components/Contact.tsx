@@ -6,6 +6,15 @@ const Contact = () => {
             id="contact" 
             className="py-24 sm:py-32 relative overflow-hidden bg-black"
         >
+            {/* Full Background Image - Desktop Only */}
+            <div className="absolute inset-0 hidden lg:block">
+                <img 
+                    src="/satellit.png" 
+                    alt="Starlink satellite dish on roof"
+                    className="w-full h-full object-cover opacity-30 scale-110"
+                />
+                <div className="absolute inset-0 bg-black/60"></div>
+            </div>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 {/* Header */}
                 <div className="text-center mb-20">
@@ -85,8 +94,8 @@ const Contact = () => {
                         </div>
                     </div>
 
-                    {/* Modern Contact Form */}
-                    <div className="bg-white/[0.02] border border-white/10 rounded-2xl p-8 sm:p-12 backdrop-blur-sm">
+                    {/* Modern Contact Form - Removed Glassmorphism */}
+                    <div className="bg-white/5 border border-white/20 rounded-2xl p-8 sm:p-12">
                         <form action="#" method="POST" className="space-y-8">
                             <div>
                                 <label htmlFor="name" className="block text-sm font-medium text-neutral-400 mb-3 uppercase tracking-wider">
@@ -154,9 +163,10 @@ const Contact = () => {
                             <div className="pt-8">
                                 <button
                                     type="submit"
-                                    className="w-full py-4 px-8 bg-white text-black font-medium text-lg
-                                             hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-white/20 focus:ring-offset-2 focus:ring-offset-black
-                                             transition-all duration-300 rounded-lg tracking-wide uppercase"
+                                    className="w-full py-4 px-8 bg-white text-black font-semibold text-lg
+                                             hover:bg-neutral-100 active:bg-neutral-200 focus:outline-none 
+                                             transition-all duration-300 rounded-lg tracking-wide shadow-lg hover:shadow-xl
+                                             transform hover:-translate-y-0.5 active:scale-95"
                                 >
                                     Send Message
                                 </button>

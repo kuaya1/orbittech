@@ -191,22 +191,6 @@ const FeaturedInstallations: React.FC = () => {
           <p className="text-lg text-neutral-400 leading-8 max-w-2xl mx-auto mb-12">
             Real installations, real results. See how we transform connectivity for families and businesses across the DMV area.
           </p>
-          
-          {/* Stats with premium minimal design */}
-          <div className="flex flex-wrap justify-center gap-12 text-white">
-            <div className="text-center">
-              <div className="text-3xl font-medium text-white mb-1">250+</div>
-              <div className="text-sm text-neutral-500 uppercase tracking-wider">Mbps Average</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-medium text-white mb-1">5,000+</div>
-              <div className="text-sm text-neutral-500 uppercase tracking-wider">Installations</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-medium text-white mb-1">4.9★</div>
-              <div className="text-sm text-neutral-500 uppercase tracking-wider">Rating</div>
-            </div>
-          </div>
         </div>
 
         <div className="max-w-6xl mx-auto">

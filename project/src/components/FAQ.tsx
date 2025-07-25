@@ -83,7 +83,7 @@ const FAQItem: React.FC<FAQItemProps> = ({ question, answer, number, isOpen, onC
 
 
 const FAQ = () => {
-    const [activeIndex, setActiveIndex] = useState<number | null>(0);
+    const [activeIndex, setActiveIndex] = useState<number | null>(null);
     const [sectionRef, isVisible] = useIntersectionObserver({ threshold: 0.1 });
 
     const faqData = [
