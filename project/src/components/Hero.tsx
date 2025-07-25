@@ -184,7 +184,7 @@ const Hero = () => {
                                     <motion.img
                                         src={imageUrl}
                                         alt="Starlink hardware dish and router"
-                                        className="w-full h-auto object-contain scale-[1.36]"
+                                        className="w-full h-auto object-contain scale-[1.25]"
                                         onError={(e) => {
                                             const target = e.target as HTMLImageElement;
                                             target.onerror = null;
@@ -287,7 +287,7 @@ const Hero = () => {
                                 <motion.img
                                     src={imageUrl}
                                     alt="Starlink hardware dish and router"
-                                    className="w-full h-auto object-contain scale-[1.37]"
+                                    className="w-full h-auto object-contain scale-[1.26]"
                                     onError={(e) => {
                                         const target = e.target as HTMLImageElement;
                                         target.onerror = null;
