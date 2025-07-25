@@ -13,7 +13,7 @@ const StarRating = () => (
 
 // --- Hero Section with Enhanced Aceternity Design ---
 const Hero = () => {
-    const imageUrl = '/Untitled design (20).png';
+    const imageUrl = '/Untitled design (20) resized.PNG';
 
     return (
         <section id="hero" className="w-full bg-black font-sans antialiased relative">
@@ -112,10 +112,9 @@ const Hero = () => {
                             >
                                 <motion.a 
                                     href="#contact" 
-                                    className="inline-block bg-white text-black font-semibold px-6 py-3 md:px-8 md:py-3 rounded-md hover:bg-neutral-100 transition-all duration-300 text-base md:text-lg shadow-lg"
+                                    className="inline-block shadow-[0_4px_14px_0_rgb(0,118,255,39%)] hover:shadow-[0_6px_20px_rgba(0,118,255,23%)] hover:bg-[rgba(0,118,255,0.9)] px-6 py-3 md:px-8 md:py-3 bg-[#0070f3] rounded-md text-white font-light transition duration-200 ease-linear text-base md:text-lg"
                                     whileHover={{ 
-                                        y: -2, 
-                                        boxShadow: "0 10px 25px rgba(255,255,255,0.1)" 
+                                        y: -2
                                     }}
                                     whileTap={{ scale: 0.98 }}
                                 >
@@ -159,7 +158,7 @@ const Hero = () => {
                             </motion.div>
                         </div>
 
-                        {/* Desktop Image Block - hidden on mobile with enhanced animations */}
+                        {/* Desktop Image Block - redesigned order, no container, 200% bigger */}
                         <div className="hidden md:block relative w-full md:w-1/2 max-w-5xl">
                             <motion.div
                                 initial={{ opacity: 0, scale: 0.8, x: 50 }}
@@ -167,29 +166,25 @@ const Hero = () => {
                                 transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
                                 className="relative"
                             >
-                                {/* Enhanced image container with border effect */}
-                                <div className="relative rounded-2xl border border-neutral-800/50 bg-neutral-900/20 p-2 shadow-2xl backdrop-blur-sm">
-                                    <div className="overflow-hidden rounded-xl">
-                                        <img
-                                            src={imageUrl}
-                                            alt="Starlink hardware dish and router"
-                                            className="w-full h-auto object-contain mx-auto transition-transform duration-700 hover:scale-105"
-                                            style={{
-                                                maxWidth: 'none',
-                                                display: 'block',
-                                                marginLeft: 'auto',
-                                                marginRight: 'auto',
-                                            }}
-                                            onError={(e) => {
-                                                const target = e.target as HTMLImageElement;
-                                                target.onerror = null;
-                                                target.src = 'https://placehold.co/1200x700/000000/ffffff?text=Starlink+Hardware';
-                                            }}
-                                        />
-                                    </div>
-                                </div>
-                                {/* Enhanced gradient overlay for desktop */}
-                                <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-black/50 to-transparent pointer-events-none rounded-t-2xl"></div>
+                                {/* Remove container - direct image display at 200% size */}
+                                <img
+                                    src={imageUrl}
+                                    alt="Starlink hardware dish and router"
+                                    className="w-[200%] h-auto object-contain mx-auto transition-transform duration-700 hover:scale-105"
+                                    style={{
+                                        maxWidth: 'none',
+                                        display: 'block',
+                                        marginLeft: 'auto',
+                                        marginRight: 'auto',
+                                    }}
+                                    onError={(e) => {
+                                        const target = e.target as HTMLImageElement;
+                                        target.onerror = null;
+                                        target.src = 'https://placehold.co/1200x700/000000/ffffff?text=Starlink+Hardware';
+                                    }}
+                                />
+                                {/* Simplified gradient overlay */}
+                                <div className="absolute top-0 left-0 right-0 h-1/3 bg-gradient-to-b from-black/30 to-transparent pointer-events-none"></div>
                             </motion.div>
                         </div>
                     </div>

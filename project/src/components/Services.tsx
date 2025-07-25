@@ -194,7 +194,7 @@ const Services = () => {
           <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
             <a 
               href="#contact" 
-              className="inline-block bg-white text-black font-semibold px-8 py-3 rounded-md hover:bg-neutral-200 transition-all duration-300 shadow-lg hover:scale-105 transform"
+              className="inline-block shadow-[0_4px_14px_0_rgb(0,118,255,39%)] hover:shadow-[0_6px_20px_rgba(0,118,255,23%)] hover:bg-[rgba(0,118,255,0.9)] px-8 py-3 bg-[#0070f3] rounded-md text-white font-light transition duration-200 ease-linear"
             >
               Get a Free Quote
             </a>
