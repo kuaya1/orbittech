@@ -14,70 +14,76 @@ const StarRating = () => (
 const Hero = () => {
     const imageUrl = '/Untitled design (20) resized.PNG';
 
-    // Animation variants for smoother motion
+    // Animation variants for slower, smoother motion
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
             transition: {
-                staggerChildren: 0.2,
-                delayChildren: 0.1
+                staggerChildren: 0.4,
+                delayChildren: 0.3,
+                duration: 1.2
             }
         }
     };
 
     const slideInLeft = {
-        hidden: { opacity: 0, x: -50 },
+        hidden: { opacity: 0, x: -80, scale: 0.95 },
         visible: {
             opacity: 1,
             x: 0,
+            scale: 1,
             transition: {
                 type: "spring" as const,
-                damping: 25,
-                stiffness: 100,
-                duration: 0.8
+                damping: 35,
+                stiffness: 60,
+                duration: 1.8
             }
         }
     };
 
     const slideInRight = {
-        hidden: { opacity: 0, x: 50 },
+        hidden: { opacity: 0, x: 80, scale: 0.95 },
         visible: {
             opacity: 1,
             x: 0,
+            scale: 1,
             transition: {
                 type: "spring" as const,
-                damping: 25,
-                stiffness: 100,
-                duration: 1.0,
-                delay: 0.5
+                damping: 35,
+                stiffness: 60,
+                duration: 2.0,
+                delay: 0.8
             }
         }
     };
 
     const fadeInUp = {
-        hidden: { opacity: 0, y: 30 },
+        hidden: { opacity: 0, y: 50, scale: 0.98 },
         visible: {
             opacity: 1,
             y: 0,
+            scale: 1,
             transition: {
                 type: "spring" as const,
-                damping: 25,
-                stiffness: 100
+                damping: 30,
+                stiffness: 50,
+                duration: 1.5
             }
         }
     };
 
     const wordReveal = {
-        hidden: { opacity: 0, y: 10 },
+        hidden: { opacity: 0, y: 20, rotateX: -10 },
         visible: {
             opacity: 1,
             y: 0,
+            rotateX: 0,
             transition: {
                 type: "spring" as const,
-                damping: 25,
-                stiffness: 200,
-                duration: 0.4
+                damping: 30,
+                stiffness: 80,
+                duration: 1.0
             }
         }
     };
@@ -90,44 +96,44 @@ const Hero = () => {
             animate="visible"
             variants={containerVariants}
         >
-            {/* Aceternity-inspired decorative lines */}
+            {/* Aceternity-inspired decorative lines with slower animations */}
             <motion.div 
                 className="absolute inset-y-0 left-0 h-full w-px bg-neutral-800/80"
                 initial={{ opacity: 0, scaleY: 0 }}
                 animate={{ opacity: 1, scaleY: 1 }}
-                transition={{ duration: 1, delay: 0.2 }}
+                transition={{ duration: 2.0, delay: 0.5, ease: "easeOut" }}
             >
                 <motion.div 
                     className="absolute top-20 h-40 w-px bg-gradient-to-b from-transparent via-blue-500 to-transparent"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ duration: 0.8, delay: 0.5 }}
+                    transition={{ duration: 1.5, delay: 1.0, ease: "easeOut" }}
                 />
             </motion.div>
             <motion.div 
                 className="absolute inset-y-0 right-0 h-full w-px bg-neutral-800/80"
                 initial={{ opacity: 0, scaleY: 0 }}
                 animate={{ opacity: 1, scaleY: 1 }}
-                transition={{ duration: 1, delay: 0.3 }}
+                transition={{ duration: 2.0, delay: 0.7, ease: "easeOut" }}
             >
                 <motion.div 
                     className="absolute top-20 h-40 w-px bg-gradient-to-b from-transparent via-blue-500 to-transparent"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ duration: 0.8, delay: 0.6 }}
+                    transition={{ duration: 1.5, delay: 1.2, ease: "easeOut" }}
                 />
             </motion.div>
             <motion.div 
                 className="absolute inset-x-0 bottom-0 h-px w-full bg-neutral-800/80"
                 initial={{ opacity: 0, scaleX: 0 }}
                 animate={{ opacity: 1, scaleX: 1 }}
-                transition={{ duration: 1, delay: 0.4 }}
+                transition={{ duration: 2.0, delay: 0.9, ease: "easeOut" }}
             >
                 <motion.div 
                     className="absolute mx-auto h-px w-40 bg-gradient-to-r from-transparent via-blue-500 to-transparent"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ duration: 0.8, delay: 0.7 }}
+                    transition={{ duration: 1.5, delay: 1.4, ease: "easeOut" }}
                 />
             </motion.div>
 
@@ -163,7 +169,7 @@ const Hero = () => {
                             <motion.p 
                                 className="text-base sm:text-lg lg:text-xl text-neutral-300 leading-relaxed max-w-2xl mx-auto lg:mx-0"
                                 variants={fadeInUp}
-                                transition={{ delay: 0.8 }}
+                                transition={{ delay: 1.5 }}
                             >
                                 Get your Starlink professionally installed by certified experts serving the DMV area and beyond.
                             </motion.p>
@@ -172,15 +178,18 @@ const Hero = () => {
                             <motion.div 
                                 className="block lg:hidden relative"
                                 variants={fadeInUp}
-                                transition={{ delay: 1.0 }}
+                                transition={{ delay: 1.8 }}
                             >
                                 <div className="relative w-full max-w-lg mx-auto">
                                     <motion.img
                                         src={imageUrl}
                                         alt="Starlink hardware dish and router"
                                         className="w-full h-auto object-contain scale-[1.2]"
-                                        whileHover={{ scale: 1.3 }}
-                                        transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                                        whileHover={{ 
+                                            scale: 1.35,
+                                            rotate: 1,
+                                            transition: { type: "spring", stiffness: 200, damping: 20, duration: 0.6 }
+                                        }}
                                         onError={(e) => {
                                             const target = e.target as HTMLImageElement;
                                             target.onerror = null;
@@ -195,17 +204,19 @@ const Hero = () => {
                             {/* 4. Enhanced Get Quote Button */}
                             <motion.div 
                                 variants={fadeInUp}
-                                transition={{ delay: 1.2 }}
+                                transition={{ delay: 2.2 }}
                             >
                                 <motion.a 
                                     href="#contact" 
                                     className="inline-block bg-white text-black font-semibold px-6 py-3 sm:px-8 sm:py-4 rounded-lg transition-all duration-300 text-base sm:text-lg shadow-lg"
                                     whileHover={{ 
-                                        y: -2, 
-                                        boxShadow: "0 10px 25px rgba(255,255,255,0.1)",
-                                        backgroundColor: "#f5f5f5"
+                                        y: -3, 
+                                        scale: 1.02,
+                                        boxShadow: "0 15px 35px rgba(255,255,255,0.15)",
+                                        backgroundColor: "#f5f5f5",
+                                        transition: { duration: 0.3, ease: "easeOut" }
                                     }}
-                                    whileTap={{ scale: 0.95 }}
+                                    whileTap={{ scale: 0.98, transition: { duration: 0.1 } }}
                                 >
                                     Get Your Free Quote →
                                 </motion.a>
@@ -215,13 +226,16 @@ const Hero = () => {
                             <motion.div 
                                 className="flex items-center gap-3 sm:gap-4 justify-center lg:justify-start"
                                 variants={fadeInUp}
-                                transition={{ delay: 1.4 }}
+                                transition={{ delay: 2.6 }}
                             >
                                 {/* Google 'G' icon stylized */}
                                 <motion.div 
                                     className="flex-shrink-0"
-                                    whileHover={{ scale: 1.1, rotate: 5 }}
-                                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                                    whileHover={{ 
+                                        scale: 1.15, 
+                                        rotate: 8,
+                                        transition: { type: "spring", stiffness: 400, damping: 15 }
+                                    }}
                                 >
                                     <svg className="w-6 h-6 sm:w-8 sm:h-8" viewBox="0 0 24 24">
                                          <path fill="#4285F4" d="M22.56,12.25C22.56,11.42,22.49,10.63,22.35,9.86H12.24V14.4H18.06C17.74,16.07,16.83,17.43,15.45,18.33V21.09H19.34C21.43,19.16,22.56,15.99,22.56,12.25Z"/>
@@ -237,7 +251,7 @@ const Hero = () => {
                                         <motion.div
                                             initial={{ opacity: 0 }}
                                             animate={{ opacity: 1 }}
-                                            transition={{ delay: 1.6 }}
+                                            transition={{ delay: 3.0, duration: 0.8 }}
                                         >
                                             <StarRating />
                                         </motion.div>
@@ -256,8 +270,11 @@ const Hero = () => {
                                     src={imageUrl}
                                     alt="Starlink hardware dish and router"
                                     className="w-full h-auto object-contain scale-[1.14]"
-                                    whileHover={{ scale: 1.24 }}
-                                    transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                                    whileHover={{ 
+                                        scale: 1.3,
+                                        rotate: -1,
+                                        transition: { type: "spring", stiffness: 200, damping: 20, duration: 0.6 }
+                                    }}
                                     onError={(e) => {
                                         const target = e.target as HTMLImageElement;
                                         target.onerror = null;
