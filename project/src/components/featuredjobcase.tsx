@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { ArrowLeft, ArrowRight, Star, Quote, MapPin, Calendar, Home, Building2, Truck } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Star, MapPin, Calendar, Home, Building2, Truck } from 'lucide-react';
 // import { ShootingStars } from './ui/shooting-stars';
 // import { StarsBackground } from './ui/star-backround';
 
@@ -174,64 +174,59 @@ const FeaturedInstallations: React.FC = () => {
   };
 
   return (
-    <section id="featured-installations" className="py-20 bg-black relative overflow-hidden">
-      {/* Shooting Stars Background - DISABLED */}
-      {/* <ShootingStars />
-      <StarsBackground /> */}
-      
-      {/* Subtle background effects */}
+    <section id="featured-installations" className="py-24 sm:py-32 bg-black relative overflow-hidden">
+      {/* Minimal background effects */}
       <div className="absolute inset-0">
-        <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/3 left-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/4 right-1/3 w-96 h-96 bg-white/[0.02] rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 left-1/3 w-96 h-96 bg-white/[0.02] rounded-full blur-3xl"></div>
       </div>
 
       <div className="container mx-auto px-6 sm:px-8 lg:px-12 relative z-10 max-w-7xl">
-        {/* Simplified header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 font-sans">
-          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-8 leading-tight text-white font-sans">
-            See What Fast Internet Feels Like
+        {/* Modern minimal header */}
+        <div className="text-center max-w-4xl mx-auto mb-20">
+          <h2 className="text-4xl sm:text-5xl font-medium text-neutral-50 tracking-tighter leading-tight mb-6">
+            Installation Excellence
           </h2>
 
-          <div className="flex flex-col items-center gap-6">
-            <p className="text-lg text-neutral-300 leading-8 max-w-3xl mx-auto font-normal font-sans">
-              Join hundreds of DMV families who now enjoy lightning-fast internet, anywhere they live.
-            </p>
-            
-            <div className="flex flex-wrap justify-center gap-8 text-white">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-blue-500">250+</div>
-                <div className="text-sm text-neutral-400">Mbps Average Speed</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-blue-500">5,000+</div>
-                <div className="text-sm text-neutral-400">Happy Customers</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-blue-500">4.9★</div>
-                <div className="text-sm text-neutral-400">Google Rating</div>
-              </div>
+          <p className="text-lg text-neutral-400 leading-8 max-w-2xl mx-auto mb-12">
+            Real installations, real results. See how we transform connectivity for families and businesses across the DMV area.
+          </p>
+          
+          {/* Stats with premium minimal design */}
+          <div className="flex flex-wrap justify-center gap-12 text-white">
+            <div className="text-center">
+              <div className="text-3xl font-medium text-white mb-1">250+</div>
+              <div className="text-sm text-neutral-500 uppercase tracking-wider">Mbps Average</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-medium text-white mb-1">5,000+</div>
+              <div className="text-sm text-neutral-500 uppercase tracking-wider">Installations</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-medium text-white mb-1">4.9★</div>
+              <div className="text-sm text-neutral-500 uppercase tracking-wider">Rating</div>
             </div>
           </div>
         </div>
 
         <div className="max-w-6xl mx-auto">
-            {/* Main case display */}
-            <div ref={contentRef} className="transition-opacity duration-200" style={{ opacity: 1 }}>
-              <div className="bg-neutral-900/50 backdrop-blur-sm rounded-2xl border border-neutral-800 overflow-hidden">
+            {/* Modern case display with minimal design */}
+            <div ref={contentRef} className="transition-opacity duration-300" style={{ opacity: 1 }}>
+              <div className="bg-white/[0.02] border border-white/10 rounded-2xl overflow-hidden backdrop-blur-sm">
                 
-                {/* Image section */}
-                <div className="relative h-80 bg-slate-100">
+                {/* Premium image section */}
+                <div className="relative h-96 bg-black">
                   <img
                     src={activeImage}
                     alt={`Installation for ${activeCase.title}`}
                     className="w-full h-full object-cover"
                   />
                   
-                  {/* Navigation arrows */}
+                  {/* Minimal navigation */}
                   <button
                     onClick={handlePrevCase}
                     disabled={isTransitioning || filteredCases.length <= 1}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-2 rounded-full border border-white/20 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="absolute left-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/50 hover:bg-black/70 backdrop-blur-sm text-white rounded-full border border-white/20 transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center"
                   >
                     <ArrowLeft className="w-5 h-5" />
                   </button>
@@ -239,114 +234,112 @@ const FeaturedInstallations: React.FC = () => {
                   <button
                     onClick={handleNextCase}
                     disabled={isTransitioning || filteredCases.length <= 1}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-2 rounded-full border border-white/20 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="absolute right-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/50 hover:bg-black/70 backdrop-blur-sm text-white rounded-full border border-white/20 transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center"
                   >
                     <ArrowRight className="w-5 h-5" />
                   </button>
 
-                  {/* Case counter */}
-                  <div className="absolute top-4 right-4 bg-black/70 text-white text-sm px-3 py-1 rounded-full">
-                    {activeIndex + 1} of {filteredCases.length}
+                  {/* Minimal counter */}
+                  <div className="absolute top-6 right-6 bg-black/70 text-white text-sm px-4 py-2 rounded-full backdrop-blur-sm border border-white/20">
+                    {activeIndex + 1} / {filteredCases.length}
                   </div>
 
-                  {/* Image gallery dots */}
-                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                  {/* Clean image gallery indicators */}
+                  <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
                     {activeCase.images.gallery.map((img, index) => (
                       <button
                         key={index}
                         onClick={() => setActiveImage(img)}
-                        className={`w-2 h-2 rounded-full transition-all duration-200 ${
-                          activeImage === img ? 'bg-white' : 'bg-white/50 hover:bg-white/80'
+                        className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                          activeImage === img ? 'bg-white' : 'bg-white/30 hover:bg-white/60'
                         }`}
                       />
                     ))}
                   </div>
                 </div>
 
-                {/* Content section */}
-                <div className="p-8">
-                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                {/* Premium content section */}
+                <div className="p-8 sm:p-12">
+                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
                     
-                    {/* Main content */}
-                    <div className="lg:col-span-2">
-                      {/* Case meta */}
-                      <div className="flex flex-wrap items-center gap-4 mb-6 text-sm text-white/70">
-                        <div className="flex items-center gap-1">
+                    {/* Main content with modern typography */}
+                    <div className="lg:col-span-2 space-y-8">
+                      {/* Clean meta information */}
+                      <div className="flex flex-wrap items-center gap-6 text-sm text-neutral-500">
+                        <div className="flex items-center gap-2">
                           {getClientTypeIcon(activeCase.clientType)}
-                          <span className="font-medium">{getClientTypeLabel(activeCase.clientType)}</span>
+                          <span className="uppercase tracking-wider">{getClientTypeLabel(activeCase.clientType)}</span>
                         </div>
-                        <div className="flex items-center gap-1">
+                        <div className="flex items-center gap-2">
                           <MapPin className="w-4 h-4" />
-                          <span>{activeCase.location}</span>
+                          <span className="uppercase tracking-wider">{activeCase.location}</span>
                         </div>
-                        <div className="flex items-center gap-1">
+                        <div className="flex items-center gap-2">
                           <Calendar className="w-4 h-4" />
-                          <span>{activeCase.date}</span>
+                          <span className="uppercase tracking-wider">{activeCase.date}</span>
                         </div>
                       </div>
 
-                      <h3 className="text-2xl font-black text-white mb-4 tracking-tight">
+                      <h3 className="text-2xl font-medium text-neutral-50 tracking-tighter leading-tight">
                         {activeCase.title}
                       </h3>
 
-                      <p className="text-white/90 text-lg mb-8 leading-relaxed font-medium">
+                      <p className="text-neutral-300 text-lg leading-relaxed">
                         {activeCase.description}
                       </p>
 
-                      {/* Speed improvement highlight */}
-                      <div className="bg-neutral-900/50 backdrop-blur-sm rounded-xl p-6 mb-8 border border-neutral-800">
-                        <h4 className="font-black text-white mb-3 tracking-tight">From Dial-Up Speeds to Light Speed</h4>
-                        <div className="flex items-center justify-between">
+                      {/* Minimal speed improvement display */}
+                      <div className="bg-white/[0.02] border border-white/10 rounded-xl p-8">
+                        <h4 className="font-medium text-neutral-50 mb-6 tracking-tighter">Performance Enhancement</h4>
+                        <div className="flex items-center justify-between max-w-md">
                           <div className="text-center">
-                            <div className="text-2xl font-black text-red-400">{activeCase.beforeSpeed}</div>
-                            <div className="text-sm text-white/90 font-medium">Before</div>
+                            <div className="text-2xl font-medium text-red-400 mb-1">{activeCase.beforeSpeed}</div>
+                            <div className="text-xs text-neutral-500 uppercase tracking-wider">Before</div>
                           </div>
-                          <div className="px-4">
-                            <ArrowRight className="w-6 h-6 text-white/40" />
+                          <div className="px-8">
+                            <ArrowRight className="w-5 h-5 text-neutral-600" />
                           </div>
                           <div className="text-center">
-                            <div className="text-2xl font-black text-green-400">{activeCase.afterSpeed}</div>
-                            <div className="text-sm text-white/90 font-medium">After</div>
+                            <div className="text-2xl font-medium text-green-400 mb-1">{activeCase.afterSpeed}</div>
+                            <div className="text-xs text-neutral-500 uppercase tracking-wider">After</div>
                           </div>
                         </div>
                       </div>
 
-                      {/* Simple process */}
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                        <div>
-                          <h4 className="font-black text-white mb-2 tracking-tight">The Challenge</h4>
-                          <p className="text-white/90 text-sm leading-relaxed font-medium">{activeCase.challenge}</p>
+                      {/* Clean three-column layout */}
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div className="space-y-3">
+                          <h4 className="font-medium text-neutral-50 tracking-tighter">Challenge</h4>
+                          <p className="text-sm text-neutral-400 leading-relaxed">{activeCase.challenge}</p>
                         </div>
-                        <div>
-                          <h4 className="font-black text-white mb-2 tracking-tight">The Solution</h4>
-                          <p className="text-white/90 text-sm leading-relaxed font-medium">{activeCase.solution}</p>
+                        <div className="space-y-3">
+                          <h4 className="font-medium text-neutral-50 tracking-tighter">Solution</h4>
+                          <p className="text-sm text-neutral-400 leading-relaxed">{activeCase.solution}</p>
                         </div>
-                        <div>
-                          <h4 className="font-black text-white mb-2 tracking-tight">The Result</h4>
-                          <p className="text-white/90 text-sm leading-relaxed font-medium">{activeCase.result}</p>
+                        <div className="space-y-3">
+                          <h4 className="font-medium text-neutral-50 tracking-tighter">Result</h4>
+                          <p className="text-sm text-neutral-400 leading-relaxed">{activeCase.result}</p>
                         </div>
                       </div>
                     </div>
 
-                    {/* Testimonial sidebar */}
-                    <div className="bg-neutral-900/50 backdrop-blur-sm rounded-xl p-6 border border-neutral-800">
-                      <div className="flex items-center mb-4">
+                    {/* Premium testimonial card */}
+                    <div className="bg-white/[0.02] border border-white/10 rounded-xl p-8 h-fit">
+                      <div className="flex items-center mb-6">
                         {[...Array(5)].map((_, idx) => (
                           <Star
                             key={idx}
-                            className={`w-4 h-4 ${idx < activeCase.testimonial.rating ? "text-yellow-400 fill-current" : "text-white/30"}`}
+                            className={`w-4 h-4 ${idx < activeCase.testimonial.rating ? "text-yellow-400 fill-current" : "text-neutral-600"}`}
                           />
                         ))}
                       </div>
                       
-                      <Quote className="w-8 h-8 text-white/30 mb-4" />
-                      
-                      <blockquote className="text-white/90 mb-4 leading-relaxed font-medium">
+                      <blockquote className="text-neutral-300 mb-6 leading-relaxed text-base">
                         "{activeCase.testimonial.quote}"
                       </blockquote>
                       
-                      <p className="font-black text-white tracking-tight">
-                        — {activeCase.testimonial.author}
+                      <p className="font-medium text-neutral-50 tracking-tighter">
+                        {activeCase.testimonial.author}
                       </p>
                     </div>
                   </div>
@@ -354,14 +347,14 @@ const FeaturedInstallations: React.FC = () => {
               </div>
             </div>
 
-            {/* Case navigation dots */}
-            <div className="flex justify-center mt-8 gap-2">
+            {/* Minimal case navigation dots */}
+            <div className="flex justify-center mt-12 gap-2">
               {filteredCases.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => changeCase(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-200 ${
-                    activeIndex === index ? 'bg-white' : 'bg-white/30 hover:bg-white/50'
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                    activeIndex === index ? 'bg-white w-8' : 'bg-white/30 hover:bg-white/60'
                   }`}
                 />
               ))}

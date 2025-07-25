@@ -298,7 +298,7 @@ const AvailabilityProcess = () => {
       id="availability-process"
       className="pt-32 pb-20 md:pt-40 md:pb-32 bg-black relative overflow-hidden flex items-center justify-center"
       style={{
-        backgroundImage: "url('/backround.jpeg')",
+        backgroundImage: "url('/satellit.png')",
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
@@ -375,7 +375,7 @@ const AvailabilityProcess = () => {
                 <button
                   type="submit"
                   disabled={serviceStatus === 'loading' || zipCode.length !== 5}
-                  className="w-full px-8 py-3 rounded-lg bg-white text-black font-semibold text-base hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-white/20 focus:ring-offset-2 focus:ring-offset-transparent transition-all duration-300 disabled:bg-white/50 disabled:text-black/50 disabled:cursor-not-allowed shadow-lg"
+                  className="w-full px-8 py-3 rounded-lg bg-white text-black font-semibold text-base hover:bg-neutral-200 active:bg-neutral-300 focus:outline-none focus:ring-2 focus:ring-white/30 focus:ring-offset-2 focus:ring-offset-transparent transition-all duration-200 disabled:bg-white/50 disabled:text-black/50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl active:shadow-md active:scale-95"
                 >
                   {serviceStatus === 'loading' ? (
                     <Loader2 className="h-5 w-5 animate-spin mx-auto" />

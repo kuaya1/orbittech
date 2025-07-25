@@ -27,46 +27,58 @@ const FacebookIcon = () => (
 const Footer = () => {
   const year = new Date().getFullYear();
 
-  // Reusable link component for footer links
-  const FooterLink = ({ href, children }) => (
+  // Modern minimal link component for footer links
+  const FooterLink = ({ href, children, target, rel }: { href: string; children: React.ReactNode; target?: string; rel?: string }) => (
     <li>
-      <a href={href} className="text-neutral-400 hover:text-white transition-colors duration-200 font-normal block text-sm font-sans">
+      <a href={href} target={target} rel={rel} className="text-neutral-400 hover:text-neutral-50 transition-all duration-300 text-sm tracking-wide group relative">
         {children}
+        <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-neutral-50 transition-all duration-300 group-hover:w-full"></span>
       </a>
     </li>
   );
   
-  // Reusable link component for bottom bar links
-  const BottomBarLink = ({ href, children }) => (
-     <a href={href} className="text-neutral-400 hover:text-white text-sm transition-colors duration-200 font-normal font-sans">
+  // Modern minimal link component for bottom bar links
+  const BottomBarLink = ({ href, children }: { href: string; children: React.ReactNode }) => (
+     <a href={href} className="text-neutral-500 hover:text-neutral-300 text-sm transition-all duration-300 uppercase tracking-wider">
         {children}
       </a>
   );
 
   return (
-    <footer className="bg-black text-white font-sans">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <footer className="bg-black border-t border-white/10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         
-        {/* Main footer content grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
+        {/* Modern minimal footer content grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-16 mb-16">
           
-          {/* Logo and description */}
-          <div className="lg:col-span-2">
-            <div className="mb-4">
+          {/* Logo and description with modern styling */}
+          <div className="lg:col-span-2 space-y-6">
+            <div>
               <img 
                 src="/Starlink Dmv (20).png" 
                 alt="Orbittec Logo" 
-                className="h-10 w-auto mb-2"
+                className="h-12 w-auto mb-4 transition-all duration-300 hover:scale-105"
               />
-              <p className="text-neutral-400 text-xs font-normal tracking-wide font-sans">
-                Professional Installation
+              <p className="text-neutral-400 text-base leading-relaxed max-w-md">
+                Professional Starlink installation services across the DMV area and beyond. 
+                Connecting you to the future of internet.
               </p>
+            </div>
+            
+            {/* Contact info with minimal design */}
+            <div className="space-y-3">
+              <a href="tel:+15719996915" className="flex items-center text-neutral-400 hover:text-neutral-50 transition-all duration-300 group">
+                <span className="text-sm tracking-wide">(571) 999-6915</span>
+              </a>
+              <a href="mailto:contact@theorbittech.com" className="flex items-center text-neutral-400 hover:text-neutral-50 transition-all duration-300 group">
+                <span className="text-sm tracking-wide">contact@theorbittech.com</span>
+              </a>
             </div>
           </div>
           
-          {/* Link Columns */}
-          <div>
-            <h4 className="font-semibold text-white mb-4 tracking-wide text-lg font-sans">Services</h4>
+          {/* Modern link columns */}
+          <div className="space-y-4">
+            <h4 className="font-medium text-neutral-50 tracking-tighter text-lg">Services</h4>
             <ul className="space-y-3">
               <FooterLink href="/#services">Residential Installation</FooterLink>
               <FooterLink href="/#services">Business Solutions</FooterLink>
@@ -74,8 +86,8 @@ const Footer = () => {
             </ul>
           </div>
           
-          <div>
-            <h4 className="font-semibold text-white mb-4 tracking-wide text-lg font-sans">Company</h4>
+          <div className="space-y-4">
+            <h4 className="font-medium text-neutral-50 tracking-tighter text-lg">Company</h4>
             <ul className="space-y-3">
               <FooterLink href="/">Home</FooterLink>
               <FooterLink href="/blog">Blog & Resources</FooterLink>
@@ -83,8 +95,8 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div>
-            <h4 className="font-semibold text-white mb-4 tracking-wide text-lg font-sans">More</h4>
+          <div className="space-y-4">
+            <h4 className="font-medium text-neutral-50 tracking-tighter text-lg">Support</h4>
             <ul className="space-y-3">
                 <FooterLink href="/#contact">Contact Us</FooterLink>
                 <FooterLink href="/#availability-process">Check Coverage</FooterLink>
@@ -94,38 +106,41 @@ const Footer = () => {
 
         </div>
 
-        {/* Newsletter and Bottom section */}
-        <div className="border-t border-neutral-800 pt-8">
-            <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8">
+        {/* Modern newsletter and bottom section */}
+        <div className="border-t border-white/10 pt-12">
+            <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-12">
                 
-                {/* Newsletter */}
-                <div className="w-full lg:w-auto">
-                    <h4 className="font-semibold text-white mb-2 text-lg font-sans tracking-wide">Subscribe to the newsletter</h4>
-                    <form className="flex flex-col sm:flex-row gap-2 max-w-md">
+                {/* Premium newsletter design */}
+                <div className="w-full lg:w-auto max-w-md">
+                    <h4 className="font-medium text-neutral-50 mb-4 text-lg tracking-tighter">Stay Updated</h4>
+                    <p className="text-neutral-400 text-sm mb-6 leading-relaxed">
+                        Get the latest updates on Starlink technology and installation tips.
+                    </p>
+                    <form className="flex flex-col sm:flex-row gap-3">
                         <input 
                             type="email"
-                            placeholder="E-Mail"
-                            className="bg-neutral-800 text-white placeholder-neutral-500 px-4 py-2 rounded-md border border-neutral-700 focus:ring-2 focus:ring-blue-500 focus:outline-none w-full flex-grow"
+                            placeholder="Enter your email"
+                            className="bg-white/[0.02] border border-white/20 text-neutral-50 placeholder-neutral-500 px-4 py-3 rounded-lg focus:ring-2 focus:ring-white/20 focus:border-white/30 focus:outline-none w-full flex-grow transition-all duration-300"
                             aria-label="Email for newsletter"
                         />
                         <button 
                             type="submit"
-                            className="bg-neutral-200 text-black font-semibold rounded-md px-6 py-2 hover:bg-white transition-colors duration-200 whitespace-nowrap font-sans"
+                            className="bg-white text-black font-semibold rounded-lg px-6 py-3 hover:bg-neutral-100 transition-all duration-300 whitespace-nowrap shadow-lg hover:shadow-xl"
                         >
-                            Sign up
+                            Subscribe
                         </button>
                     </form>
                 </div>
 
-                {/* Bottom bar with copyright and social links */}
-                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 mt-8 lg:mt-0 w-full lg:w-auto justify-between">
-                    <div className="text-neutral-400 text-sm font-normal order-2 sm:order-1 font-sans">
-                        © {year}
+                {/* Modern bottom bar */}
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-8 w-full lg:w-auto">
+                    <div className="text-neutral-500 text-sm uppercase tracking-wider order-2 sm:order-1">
+                        © {year} Orbittec
                     </div>
-                    <div className="flex items-center space-x-4 order-1 sm:order-2">
-                         <BottomBarLink href="/imprint.html">Imprint</BottomBarLink>
-                         <BottomBarLink href="/privacy-policy.html">Privacy Policy</BottomBarLink>
-                         <BottomBarLink href="/terms-of-service.html">Terms of Service</BottomBarLink>
+                    <div className="flex items-center space-x-6 order-1 sm:order-2">
+                         <BottomBarLink href="/privacy-policy.html">Privacy</BottomBarLink>
+                         <BottomBarLink href="/terms-of-service.html">Terms</BottomBarLink>
+                         <BottomBarLink href="/imprint.html">Legal</BottomBarLink>
                     </div>
                 </div>
             </div>
