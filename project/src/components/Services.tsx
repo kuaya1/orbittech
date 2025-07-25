@@ -1,5 +1,37 @@
 import React, { useState, useEffect, useRef } from 'react';
 
+// Modern Intersection Observer Hook for Scroll Effects
+const useScrollReveal = (threshold = 0.1) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const elementRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          // Optional: Unobserve after first intersection for performance
+          // observer.unobserve(entry.target);
+        }
+      },
+      { threshold, rootMargin: '50px' }
+    );
+
+    const currentElement = elementRef.current;
+    if (currentElement) {
+      observer.observe(currentElement);
+    }
+
+    return () => {
+      if (currentElement) {
+        observer.unobserve(currentElement);
+      }
+    };
+  }, [threshold]);
+
+  return [elementRef, isVisible] as const;
+};
+
 /*
 * To use the "Inter" font like in the reference image, add the following
 * line to the <head> section of your main public/index.html file:
@@ -104,6 +136,10 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
 };
 
 const Services = () => {
+  const [headerRef, headerVisible] = useScrollReveal(0.2);
+  const [cardsRef, cardsVisible] = useScrollReveal(0.1);
+  const [ctaRef, ctaVisible] = useScrollReveal(0.3);
+
   const servicesData = [
     {
       title: "HOME INSTALLATION",
@@ -148,12 +184,12 @@ const Services = () => {
       id="services"
       className="font-sans py-24 sm:py-32 bg-black relative overflow-hidden"
     >
-      {/* CSS Animation Styles */}
+      {/* Enhanced CSS Animation Styles for Scroll Effects */}
       <style>{`
         @keyframes fadeInUp {
           from {
             opacity: 0;
-            transform: translateY(32px);
+            transform: translateY(40px);
           }
           to {
             opacity: 1;
@@ -161,13 +197,81 @@ const Services = () => {
           }
         }
         
-        .animate-fade-in-up {
-          animation: fadeInUp 0.8s ease-out forwards;
+        @keyframes fadeInScale {
+          from {
+            opacity: 0;
+            transform: translateY(30px) scale(0.95);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
         }
+        
+        @keyframes slideInLeft {
+          from {
+            opacity: 0;
+            transform: translateX(-40px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        
+        @keyframes slideInRight {
+          from {
+            opacity: 0;
+            transform: translateX(40px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        
+        /* Scroll-triggered animations */
+        .scroll-reveal {
+          opacity: 0;
+          transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .scroll-reveal.visible {
+          opacity: 1;
+        }
+        
+        .animate-fade-in-up {
+          animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        
+        .animate-fade-in-scale {
+          animation: fadeInScale 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        
+        .animate-slide-in-left {
+          animation: slideInLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        
+        .animate-slide-in-right {
+          animation: slideInRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        
+        /* Staggered delays for cards */
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .delay-400 { animation-delay: 400ms; }
+        .delay-500 { animation-delay: 500ms; }
+        .delay-600 { animation-delay: 600ms; }
       `}</style>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div 
+          ref={headerRef}
+          className={`text-center max-w-3xl mx-auto mb-16 scroll-reveal ${
+            headerVisible ? 'visible animate-fade-in-up' : ''
+          }`}
+        >
           <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl leading-tight">
             Professional Starlink Installation in the DMV
           </h2>
@@ -176,27 +280,48 @@ const Services = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
-          {servicesData.map((service, index) => (
-            <div
-              key={index}
-              className="opacity-0 translate-y-8 animate-fade-in-up transform transition-all duration-700 ease-out"
-              style={{ 
-                animationDelay: `${index * 200}ms`,
-                animationFillMode: 'forwards'
-              }}
-            >
-              <ServiceCard
-                title={service.title}
-                description={service.description}
-                features={service.features}
-                icon={service.icon}
-              />
-            </div>
-          ))}
+        <div 
+          ref={cardsRef}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24"
+        >
+          {servicesData.map((service, index) => {
+            // Different animation styles for each card
+            const animationClass = index === 0 ? 'animate-slide-in-left' 
+                                 : index === 1 ? 'animate-fade-in-scale'
+                                 : 'animate-slide-in-right';
+            
+            const delayClass = `delay-${(index + 1) * 200}`;
+            
+            return (
+              <div
+                key={index}
+                className={`scroll-reveal ${
+                  cardsVisible ? `visible ${animationClass} ${delayClass}` : ''
+                } transform transition-all duration-700 ease-out hover:scale-105 hover:-translate-y-2`}
+                style={{ 
+                  opacity: cardsVisible ? 1 : 0,
+                  transform: cardsVisible 
+                    ? 'translateY(0) scale(1)' 
+                    : 'translateY(30px) scale(0.95)'
+                }}
+              >
+                <ServiceCard
+                  title={service.title}
+                  description={service.description}
+                  features={service.features}
+                  icon={service.icon}
+                />
+              </div>
+            );
+          })}
         </div>
 
-        <div className="text-center">
+        <div 
+          ref={ctaRef}
+          className={`text-center scroll-reveal ${
+            ctaVisible ? 'visible animate-fade-in-up delay-300' : ''
+          }`}
+        >
           <h3 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
             Ready for Professional Installation?
           </h3>

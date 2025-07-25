@@ -144,7 +144,7 @@ const Hero = () => {
                         
                         {/* Content Block - Mobile First */}
                         <div className="order-1 lg:order-1 space-y-6 sm:space-y-8 text-center lg:text-left animate-fade-in-left">
-                            {/* Enhanced Animated Title */}
+                            {/* 1. Enhanced Animated Title */}
                             <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white tracking-tight leading-tight">
                                 {"Professional Starlink Installation Service"
                                     .split(" ")
@@ -158,12 +158,30 @@ const Hero = () => {
                                     ))}
                             </h1>
 
-                            {/* Enhanced Subtitle */}
+                            {/* 2. Enhanced Subtitle */}
                             <p className="text-base sm:text-lg lg:text-xl text-neutral-300 leading-relaxed max-w-2xl mx-auto lg:mx-0 animate-fade-in-up delay-800">
                                 Get your Starlink professionally installed by certified experts serving the DMV area and beyond.
                             </p>
 
-                            {/* Enhanced Get Quote Button */}
+                            {/* 3. Mobile Image Block - Shows only on mobile */}
+                            <div className="block lg:hidden relative animate-fade-in-up delay-1000">
+                                <div className="relative w-full max-w-lg mx-auto">
+                                    <img
+                                        src={imageUrl}
+                                        alt="Starlink hardware dish and router"
+                                        className="w-full h-auto object-contain transition-transform duration-700 hover-scale"
+                                        onError={(e) => {
+                                            const target = e.target as HTMLImageElement;
+                                            target.onerror = null;
+                                            target.src = 'https://placehold.co/800x600/000000/ffffff?text=Starlink+Hardware';
+                                        }}
+                                    />
+                                    {/* Subtle gradient overlay */}
+                                    <div className="absolute top-0 left-0 right-0 h-1/3 bg-gradient-to-b from-black/20 to-transparent pointer-events-none"></div>
+                                </div>
+                            </div>
+
+                            {/* 4. Enhanced Get Quote Button */}
                             <div className="animate-fade-in-up delay-1200">
                                 <a 
                                     href="#contact" 
@@ -173,7 +191,7 @@ const Hero = () => {
                                 </a>
                             </div>
 
-                            {/* Enhanced Google Rating */}
+                            {/* 5. Enhanced Google Rating */}
                             <div className="flex items-center gap-3 sm:gap-4 justify-center lg:justify-start animate-fade-in-up delay-1400">
                                 {/* Google 'G' icon stylized */}
                                 <div className="flex-shrink-0 transition-transform duration-300 hover-rotate">
@@ -196,8 +214,8 @@ const Hero = () => {
                             </div>
                         </div>
 
-                        {/* Responsive Image Block */}
-                        <div className="order-2 lg:order-2 relative animate-fade-in-right delay-500">
+                        {/* Desktop Image Block - Hidden on mobile */}
+                        <div className="order-2 lg:order-2 relative animate-fade-in-right delay-500 hidden lg:block">
                             <div className="relative w-full max-w-lg mx-auto lg:max-w-none">
                                 <img
                                     src={imageUrl}
