@@ -146,11 +146,11 @@ const Hero = () => {
                         
                         {/* Content Block - Mobile First */}
                         <motion.div 
-                            className="order-1 lg:order-1 space-y-6 sm:space-y-8 text-center lg:text-left"
+                            className="order-1 lg:order-1 space-y-6 sm:space-y-8 text-center lg:text-left -mt-10 lg:mt-0"
                             variants={slideInLeft}
                         >
-                            {/* 1. Enhanced Animated Title - 10% bigger on mobile */}
-                            <motion.h1 className="text-[2rem] sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white tracking-tight leading-tight">
+                            {/* 1. Enhanced Animated Title - 15% bigger on mobile */}
+                            <motion.h1 className="text-[2.3rem] sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white tracking-tight leading-tight">
                                 {"Professional Starlink Installation Service"
                                     .split(" ")
                                     .map((word, index) => (
@@ -203,7 +203,7 @@ const Hero = () => {
 
                             {/* 4. Enhanced Get Quote Button - Mobile Only */}
                             <motion.div 
-                                className="block lg:hidden mt-12"
+                                className="block lg:hidden fixed bottom-8 left-1/2 transform -translate-x-1/2 z-20"
                                 variants={fadeInUp}
                                 transition={{ delay: 2.2 }}
                             >
