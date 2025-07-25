@@ -345,7 +345,7 @@ const AvailabilityProcess = () => {
                     maxLength={5}
                     inputMode="numeric"
                     pattern="[0-9]*"
-                    className="w-full px-4 py-3 pr-12 rounded-md bg-slate-500/30 backdrop-blur-sm border border-white/30 text-white placeholder-neutral-300 focus:outline-none focus:ring-2 focus:ring-white/50 transition"
+                    className="w-full px-4 py-3 pr-12 rounded-md bg-slate-500/30 backdrop-blur-sm border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50 transition"
                     aria-label="Enter your ZIP code"
                     required
                   />
@@ -375,7 +375,7 @@ const AvailabilityProcess = () => {
                 <button
                   type="submit"
                   disabled={serviceStatus === 'loading' || zipCode.length !== 5}
-                  className="w-full px-8 py-3 rounded-md bg-white text-white font-bold text-base hover:bg-neutral-200 hover:text-black transition disabled:bg-neutral-500 disabled:cursor-not-allowed"
+                  className="w-full px-8 py-3 rounded-lg bg-white text-black font-semibold text-base hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-white/20 focus:ring-offset-2 focus:ring-offset-transparent transition-all duration-300 disabled:bg-white/50 disabled:text-black/50 disabled:cursor-not-allowed shadow-lg"
                 >
                   {serviceStatus === 'loading' ? (
                     <Loader2 className="h-5 w-5 animate-spin mx-auto" />

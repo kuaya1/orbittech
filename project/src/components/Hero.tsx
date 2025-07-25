@@ -44,7 +44,7 @@ const Hero = () => {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.8, ease: "easeOut" }}
                             >
-                                {"Expert Starlink Installation in the DMV"
+                                {"Professional Starlink Installation Service"
                                     .split(" ")
                                     .map((word, index) => (
                                         <motion.span
@@ -70,7 +70,7 @@ const Hero = () => {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.6, delay: 0.8, ease: "easeOut" }}
                             >
-                                Guaranteed perfect installation by certified professionals. Get speeds up to 250 Mbps with same-day service across VA, MD & DC.
+                                Get your Starlink professionally installed by certified experts serving the DMV area and beyond.
                             </motion.p>
 
                             {/* Mobile Image Block - positioned after subtitle on mobile */}
