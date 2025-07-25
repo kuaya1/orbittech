@@ -37,9 +37,9 @@ const Hero = () => {
                         
                         {/* Content Block - Desktop Left, Mobile Top */}
                         <div className="w-full md:w-1/2 md:text-left">
-                            {/* 1. Enhanced Animated Title */}
+                            {/* 1. Enhanced Animated Title - moved down 0.8in on mobile */}
                             <motion.h1 
-                                className="text-[2.2rem] md:text-[4.5rem] font-bold text-white tracking-tight leading-tight"
+                                className="text-[2.2rem] md:text-[4.5rem] font-bold text-white tracking-tight leading-tight mt-[0.8in] md:mt-0"
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.8, ease: "easeOut" }}
@@ -112,9 +112,10 @@ const Hero = () => {
                             >
                                 <motion.a 
                                     href="#contact" 
-                                    className="inline-block shadow-[0_4px_14px_0_rgb(0,118,255,39%)] hover:shadow-[0_6px_20px_rgba(0,118,255,23%)] hover:bg-[rgba(0,118,255,0.9)] px-6 py-3 md:px-8 md:py-3 bg-[#0070f3] rounded-md text-white font-light transition duration-200 ease-linear text-base md:text-lg"
+                                    className="inline-block bg-white text-black font-semibold px-6 py-3 md:px-8 md:py-3 rounded-md hover:bg-neutral-100 transition-all duration-300 text-base md:text-lg shadow-lg"
                                     whileHover={{ 
-                                        y: -2
+                                        y: -2, 
+                                        boxShadow: "0 10px 25px rgba(255,255,255,0.1)" 
                                     }}
                                     whileTap={{ scale: 0.98 }}
                                 >

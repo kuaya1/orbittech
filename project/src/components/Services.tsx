@@ -157,10 +157,10 @@ const Services = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl leading-tight">
-            DMV's Most Trusted Starlink Installers
+            Professional Starlink Installation in the DMV
           </h2>
           <p className="mt-6 text-lg leading-8 text-[#f8f8f8]">
-            5,000+ successful installations. Certified experts serving Virginia, Maryland & DC since 2023.
+            Expert installation by certified professionals. Get speeds up to 250 Mbps across VA, MD & DC and expanding.
           </p>
         </div>
 
@@ -194,7 +194,7 @@ const Services = () => {
           <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
             <a 
               href="#contact" 
-              className="inline-block shadow-[0_4px_14px_0_rgb(0,118,255,39%)] hover:shadow-[0_6px_20px_rgba(0,118,255,23%)] hover:bg-[rgba(0,118,255,0.9)] px-8 py-3 bg-[#0070f3] rounded-md text-white font-light transition duration-200 ease-linear"
+              className="inline-block bg-white text-black font-semibold px-8 py-3 rounded-md hover:bg-neutral-200 transition-all duration-300 shadow-lg hover:scale-105 transform"
             >
               Get a Free Quote
             </a>
