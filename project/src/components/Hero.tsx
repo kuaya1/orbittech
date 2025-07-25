@@ -184,9 +184,9 @@ const Hero = () => {
                                     <motion.img
                                         src={imageUrl}
                                         alt="Starlink hardware dish and router"
-                                        className="w-full h-auto object-contain scale-[1.38]"
+                                        className="w-full h-auto object-contain scale-[1.17]"
                                         whileHover={{ 
-                                            scale: 1.55,
+                                            scale: 1.32,
                                             rotate: 1,
                                             transition: { type: "spring", stiffness: 200, damping: 20, duration: 0.6 }
                                         }}
@@ -292,9 +292,9 @@ const Hero = () => {
                                 <motion.img
                                     src={imageUrl}
                                     alt="Starlink hardware dish and router"
-                                    className="w-full h-auto object-contain scale-[1.14]"
+                                    className="w-full h-auto object-contain scale-[1.31]"
                                     whileHover={{ 
-                                        scale: 1.3,
+                                        scale: 1.50,
                                         rotate: -1,
                                         transition: { type: "spring", stiffness: 200, damping: 20, duration: 0.6 }
                                     }}
