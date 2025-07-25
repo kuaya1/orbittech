@@ -176,7 +176,7 @@ const Hero = () => {
 
                             {/* 3. Mobile Image Block - Shows only on mobile - 15% bigger */}
                             <motion.div 
-                                className="block lg:hidden relative"
+                                className="block lg:hidden relative -mt-5"
                                 variants={fadeInUp}
                                 transition={{ delay: 1.8 }}
                             >
@@ -203,7 +203,7 @@ const Hero = () => {
 
                             {/* 4. Enhanced Get Quote Button - Mobile Only */}
                             <motion.div 
-                                className="block lg:hidden"
+                                className="block lg:hidden -mt-10"
                                 variants={fadeInUp}
                                 transition={{ delay: 2.2 }}
                             >
