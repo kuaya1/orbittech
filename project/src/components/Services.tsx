@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
 
 /*
 * To use the "Inter" font like in the reference image, add the following
@@ -104,128 +105,74 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
 };
 
 const Services = () => {
-  // Scroll animation state (hooks remain the same)
-  const [isVisible, setIsVisible] = useState(false);
-  const [cardVisibility, setCardVisibility] = useState([false, false, false]);
-  const sectionRef = useRef<HTMLElement>(null);
-  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
-
-  // Intersection Observer for scroll animations (logic remains the same)
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setIsVisible(true);
-      },
-      { threshold: 0.1 }
-    );
-    const currentRef = sectionRef.current;
-    if (currentRef) observer.observe(currentRef);
-    return () => {
-      if (currentRef) observer.unobserve(currentRef);
-    };
-  }, []);
-
-  useEffect(() => {
-    const cardObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const index = cardRefs.current.findIndex(ref => ref === entry.target);
-            if (index !== -1) {
-              setTimeout(() => {
-                setCardVisibility(prev => {
-                  const newVisibility = [...prev];
-                  newVisibility[index] = true;
-                  return newVisibility;
-                });
-              }, index * 150);
-            }
-          }
-        });
-      },
-      { threshold: 0.15, rootMargin: '-20px 0px' }
-    );
-    cardRefs.current.forEach(ref => {
-      if (ref) cardObserver.observe(ref);
-    });
-    return () => {
-      cardRefs.current.forEach(ref => {
-        if (ref) cardObserver.unobserve(ref);
-      });
-    };
-  }, []);
-
   const servicesData = [
     {
-      title: "RESIDENTIAL",
-      description: "Complete home Starlink setup with optimal placement and reliable coverage.",
+      title: "HOME INSTALLATION",
+      description: "Perfect internet for your entire home, guaranteed. Expert installation with lifetime support.",
       icon: <HomeIcon />,
       features: [
-        "Site survey & consultation",
-        "Professional roof mounting",
-        "Wi-Fi network optimization",
-        "Same-day installation",
-        "Professional cable routing"
+        "Free site survey & speed analysis",
+        "Storm-proof roof mounting system",
+        "Whole-home WiFi coverage guarantee",
+        "Same-day installation available",
+        "Hidden cable routing included"
       ]
     },
     {
-      title: "BUSINESS",
-      description: "Enterprise Starlink deployment for maximum uptime and business continuity.",
+      title: "BUSINESS SOLUTIONS",
+      description: "Enterprise-grade reliability for businesses that can't afford downtime.",
       icon: <BusinessIcon />,
       features: [
-        "Multi-terminal configuration",
-        "24/7 priority support",
-        "Network infrastructure setup",
-        "Bandwidth management",
-        "Commercial installation"
+        "Redundant backup systems",
+        "1-hour emergency response",
+        "Business-grade networking",
+        "Priority bandwidth allocation",
+        "Commercial compliance certified"
       ]
     },
     {
       title: "MOBILE & MARINE",
-      description: "Specialized mobile systems for RVs, boats, and remote work locations.",
+      description: "Stay connected anywhere with our specialized mobile installations.",
       icon: <MarineIcon />,
       features: [
-        "Stabilized mounting systems",
-        "12V power integration",
-        "Quick-deploy setup",
-        "Marine weatherproofing",
-        "Portable configurations"
+        "Military-grade mounting",
+        "Custom power solutions",
+        "30-minute deployment system",
+        "All-weather protection",
+        "GPS-optimized setup"
       ]
     }
   ];
 
+  const cardVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  };
+
   return (
     <section
-      ref={sectionRef}
       id="services"
-      // Updated background to black
       className="font-sans py-24 sm:py-32 bg-black relative overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-
-        {/* Header: Uses pure white for heading and off-white for body text */}
-        <div className={`text-center max-w-3xl mx-auto mb-16 transition-all duration-1000 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}>
+        <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl leading-tight">
-            Certified Starlink Installation Experts
+            DMV's Most Trusted Starlink Installers
           </h2>
           <p className="mt-6 text-lg leading-8 text-[#f8f8f8]">
-            Expert setups for every need: residential, commercial, and mobile/RV.
+            5,000+ successful installations. Certified experts serving Virginia, Maryland & DC since 2023.
           </p>
         </div>
 
-        {/* Service Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
           {servicesData.map((service, index) => (
-            <div
+            <motion.div
               key={index}
-              ref={el => cardRefs.current[index] = el}
-              className={`transform transition-all duration-700 ease-out ${
-                cardVisibility[index] 
-                  ? 'opacity-100 translate-y-0' 
-                  : 'opacity-0 translate-y-8'
-              }`}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              variants={cardVariants}
+              className="transform transition-all duration-700 ease-out"
             >
               <ServiceCard
                 title={service.title}
@@ -233,39 +180,32 @@ const Services = () => {
                 features={service.features}
                 icon={service.icon}
               />
-            </div>
+            </motion.div>
           ))}
         </div>
 
-        {/* CTA section: Reverted to a solid black background */}
-        <div className={`transition-all duration-1000 delay-300 ${ isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10' }`}>
-            <div className="relative group bg-black border border-neutral-800 rounded-2xl p-8 sm:p-12 max-w-4xl mx-auto text-center overflow-hidden">
-                {/* Subtle hover effect for the border */}
-                <div className="absolute -inset-px rounded-2xl border border-transparent group-hover:border-neutral-700 transition-all duration-300" aria-hidden="true"></div>
-                
-                <h3 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-                    Ready for Professional Installation?
-                </h3>
-                <p className="mt-4 text-lg leading-8 text-[#f8f8f8] max-w-2xl mx-auto">
-                    Get a free consultation and quote for your Starlink installation.
-                </p>
-                <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-                    <a 
-                        href="#contact" 
-                        className="inline-block bg-white text-black font-semibold px-8 py-3 rounded-md hover:bg-neutral-200 transition-all duration-300 shadow-lg hover:scale-105 transform"
-                    >
-                        Get a Free Quote
-                    </a>
-                    <a 
-                        href="tel:+15719996915" 
-                        className="inline-block bg-white/10 border border-white/20 text-white font-semibold px-8 py-3 rounded-md hover:bg-white/20 transition-all duration-300 hover:scale-105 transform"
-                    >
-                        Call Us
-                    </a>
-                </div>
-            </div>
+        <div className="text-center">
+          <h3 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            Ready for Professional Installation?
+          </h3>
+          <p className="mt-4 text-lg leading-8 text-[#f8f8f8] max-w-2xl mx-auto">
+            Get a free consultation and quote for your Starlink installation.
+          </p>
+          <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+            <a 
+              href="#contact" 
+              className="inline-block bg-white text-black font-semibold px-8 py-3 rounded-md hover:bg-neutral-200 transition-all duration-300 shadow-lg hover:scale-105 transform"
+            >
+              Get a Free Quote
+            </a>
+            <a 
+              href="tel:+15719996915" 
+              className="inline-block bg-white/10 border border-white/20 text-white font-semibold px-8 py-3 rounded-md hover:bg-white/20 transition-all duration-300 hover:scale-105 transform"
+            >
+              Call Us
+            </a>
+          </div>
         </div>
-
       </div>
     </section>
   );

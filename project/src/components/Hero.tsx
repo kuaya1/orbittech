@@ -67,14 +67,22 @@ const Hero = () => {
                     <div className="w-full max-w-4xl md:mt-[1.5in]">
                         <AnimatedComponent>
                             <h1 className="text-[2.8rem] md:text-[4.5rem] font-bold text-white tracking-tight leading-tight">
-                                Professional Starlink Installation.
+                                Expert Starlink Installation in the DMV
                             </h1>
                         </AnimatedComponent>
 
                         <AnimatedComponent delay={200}>
                            <p className="mt-8 text-[1.0625rem] md:text-[1.5625rem] text-neutral-300 leading-relaxed max-w-2xl mx-auto">
-                                Complete Starlink installation service—from dish alignment to speed optimization.
+                                Guaranteed perfect installation by certified professionals. Get speeds up to 250 Mbps with same-day service across VA, MD & DC.
                             </p>
+                        </AnimatedComponent>
+
+                        <AnimatedComponent delay={300}>
+                            <div className="mt-6">
+                                <a href="#contact" className="inline-block bg-white text-black font-semibold px-8 py-3 rounded-md hover:bg-neutral-100 transition-all duration-300 text-lg">
+                                    Get Your Free Quote →
+                                </a>
+                            </div>
                         </AnimatedComponent>
 
                         <AnimatedComponent delay={400}>

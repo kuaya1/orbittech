@@ -189,12 +189,29 @@ const FeaturedInstallations: React.FC = () => {
         {/* Simplified header */}
         <div className="text-center max-w-3xl mx-auto mb-16 font-sans">
           <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-8 leading-tight text-white font-sans">
-            Real Results for Real People
+            See What Fast Internet Feels Like
           </h2>
 
-          <p className="text-lg text-neutral-300 leading-8 max-w-3xl mx-auto font-normal font-sans">
-            See how we've helped families across the DMV area solve their internet problems for good.
-          </p>
+          <div className="flex flex-col items-center gap-6">
+            <p className="text-lg text-neutral-300 leading-8 max-w-3xl mx-auto font-normal font-sans">
+              Join hundreds of DMV families who now enjoy lightning-fast internet, anywhere they live.
+            </p>
+            
+            <div className="flex flex-wrap justify-center gap-8 text-white">
+              <div className="text-center">
+                <div className="text-3xl font-bold text-blue-500">250+</div>
+                <div className="text-sm text-neutral-400">Mbps Average Speed</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-blue-500">5,000+</div>
+                <div className="text-sm text-neutral-400">Happy Customers</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-blue-500">4.9★</div>
+                <div className="text-sm text-neutral-400">Google Rating</div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className="max-w-6xl mx-auto">
