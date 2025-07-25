@@ -149,8 +149,8 @@ const Hero = () => {
                             className="order-1 lg:order-1 space-y-6 sm:space-y-8 text-center lg:text-left"
                             variants={slideInLeft}
                         >
-                            {/* 1. Enhanced Animated Title */}
-                            <motion.h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white tracking-tight leading-tight">
+                            {/* 1. Enhanced Animated Title - 10% bigger on mobile */}
+                            <motion.h1 className="text-[2rem] sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white tracking-tight leading-tight">
                                 {"Professional Starlink Installation Service"
                                     .split(" ")
                                     .map((word, index) => (
@@ -174,7 +174,7 @@ const Hero = () => {
                                 Get your Starlink professionally installed by certified experts serving the DMV area and beyond.
                             </motion.p>
 
-                            {/* 3. Mobile Image Block - Shows only on mobile */}
+                            {/* 3. Mobile Image Block - Shows only on mobile - 15% bigger */}
                             <motion.div 
                                 className="block lg:hidden relative"
                                 variants={fadeInUp}
@@ -184,9 +184,9 @@ const Hero = () => {
                                     <motion.img
                                         src={imageUrl}
                                         alt="Starlink hardware dish and router"
-                                        className="w-full h-auto object-contain scale-[1.2]"
+                                        className="w-full h-auto object-contain scale-[1.38]"
                                         whileHover={{ 
-                                            scale: 1.35,
+                                            scale: 1.55,
                                             rotate: 1,
                                             transition: { type: "spring", stiffness: 200, damping: 20, duration: 0.6 }
                                         }}
@@ -201,8 +201,9 @@ const Hero = () => {
                                 </div>
                             </motion.div>
 
-                            {/* 4. Enhanced Get Quote Button */}
+                            {/* 4. Enhanced Get Quote Button - Mobile Only */}
                             <motion.div 
+                                className="block lg:hidden"
                                 variants={fadeInUp}
                                 transition={{ delay: 2.2 }}
                             >
@@ -222,9 +223,31 @@ const Hero = () => {
                                 </motion.a>
                             </motion.div>
 
-                            {/* 5. Enhanced Google Rating */}
+                            {/* 5. Enhanced Get Quote Button - Desktop Only */}
                             <motion.div 
-                                className="flex items-center gap-3 sm:gap-4 justify-center lg:justify-start"
+                                className="hidden lg:block"
+                                variants={fadeInUp}
+                                transition={{ delay: 2.2 }}
+                            >
+                                <motion.a 
+                                    href="#contact" 
+                                    className="inline-block bg-white text-black font-semibold px-6 py-3 sm:px-8 sm:py-4 rounded-lg transition-all duration-300 text-base sm:text-lg shadow-lg"
+                                    whileHover={{ 
+                                        y: -3, 
+                                        scale: 1.02,
+                                        boxShadow: "0 15px 35px rgba(255,255,255,0.15)",
+                                        backgroundColor: "#f5f5f5",
+                                        transition: { duration: 0.3, ease: "easeOut" }
+                                    }}
+                                    whileTap={{ scale: 0.98, transition: { duration: 0.1 } }}
+                                >
+                                    Get Your Free Quote →
+                                </motion.a>
+                            </motion.div>
+
+                            {/* 6. Enhanced Google Rating - Desktop Only */}
+                            <motion.div 
+                                className="hidden lg:flex items-center gap-3 sm:gap-4 justify-center lg:justify-start"
                                 variants={fadeInUp}
                                 transition={{ delay: 2.6 }}
                             >
