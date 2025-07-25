@@ -198,7 +198,7 @@ const Hero = () => {
 
                             {/* 4. Enhanced Get Quote Button - Mobile Only */}
                             <motion.div 
-                                className="block lg:hidden mt-28"
+                                className="block lg:hidden mt-32"
                                 variants={fadeInUp}
                                 transition={{ delay: 2.2 }}
                             >
@@ -287,7 +287,7 @@ const Hero = () => {
                                 <motion.img
                                     src={imageUrl}
                                     alt="Starlink hardware dish and router"
-                                    className="w-full h-auto object-contain scale-[1.4]"
+                                    className="w-full h-auto object-contain scale-[1.37]"
                                     onError={(e) => {
                                         const target = e.target as HTMLImageElement;
                                         target.onerror = null;
