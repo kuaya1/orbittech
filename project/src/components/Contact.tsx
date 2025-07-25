@@ -31,11 +31,6 @@ const Contact = () => {
         transition: 'transform 0.3s ease-out'
     };
 
-    const cardTransform = {
-        transform: `perspective(1000px) rotateX(${scrollY * 5}deg) translateZ(${scrollY * 20}px)`,
-        transition: 'transform 0.3s ease-out'
-    };
-
     return (
         <section 
             ref={sectionRef}
@@ -44,7 +39,7 @@ const Contact = () => {
             style={backgroundStyle}
         >
             {/* Light gradient filter for contrast */}
-            <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-white/20 to-black/40 backdrop-blur-[1px]" />
+            <div className="absolute inset-0 bg-gradient-to-br from-white/15 via-white/10 to-black/20 backdrop-blur-[1px]" />
             
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 {/* Header */}
@@ -61,7 +56,6 @@ const Contact = () => {
                 <div 
                     className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 rounded-2xl overflow-hidden
                                bg-white/25 backdrop-filter backdrop-blur-xl shadow-2xl border border-white/40"
-                    style={cardTransform}
                 >
                     
                     {/* Information Card (Left Side) */}
