@@ -1,11 +1,12 @@
 import React from 'react';
 import { Phone, Mail, MapPin, Building, Clock } from 'lucide-react';
-import backgroundImage from '../assets/images/satelite-bg.jpg'; // Using a suitable background for the effect
+// The background image is now referenced directly from the public folder, no import needed.
 
 const Contact = () => {
     // Main container style to apply the background image
     const sectionStyle: React.CSSProperties = {
-        backgroundImage: `url(${backgroundImage})`,
+        // Corrected path to the background image in the public directory
+        backgroundImage: `url('/satelite-bg.jpg')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed'
@@ -51,7 +52,7 @@ const Contact = () => {
                                 <div>
                                     <h4 className="font-semibold text-black">Business Hours</h4>
                                     <p className="text-gray-600">Mon - Fri: 9:00 AM - 6:00 PM</p>
-                                    <p className="text-gray-600">Sat: 10:00 AM - 4:00 PM</p>
+                                    <p className="text-gray-600">Sat: 10:00 AM - 5:00 PM</p>
                                     <p className="text-gray-600">Sun: Closed</p>
                                 </div>
                             </div>
