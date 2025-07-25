@@ -81,14 +81,14 @@ const sampleCases: InstallationCase[] = [
     }
   },
   {
-    id: 'bethesda-family-home',
-    title: 'Ending Years of Internet Frustration for a Bethesda Family',
-    location: 'Bethesda, MD',
+    id: 'annapolis-family-home',
+    title: 'Ending Years of Internet Frustration for an Annapolis Family',
+    location: 'Annapolis, MD',
     date: 'January 2025',
     clientType: 'residential',
     beforeSpeed: '8 Mbps',
     afterSpeed: '180 Mbps',
-    description: 'For years, the Johnson family in Bethesda struggled with slow, unreliable internet. With parents working from home and kids attending online classes, their connection was a constant source of stress and frustration.',
+    description: 'For years, the Johnson family in Annapolis struggled with slow, unreliable internet. With parents working from home and kids attending online classes, their connection was a constant source of stress and frustration.',
     challenge: 'Their property had heavy tree coverage, which had made previous attempts at satellite internet unsuccessful. The local DSL infrastructure was outdated and couldn\'t handle the demands of a modern family.',
     solution: 'Our experienced technicians performed a detailed site analysis and found the perfect location on the roof with a clear line of sight to the sky. We used a specialized mounting system to ensure a secure and weatherproof installation.',
     result: 'The Johnson family now has fast, reliable internet that can handle multiple video calls, online classes, and streaming services simultaneously. Their home is now a productive and stress-free environment for work and school.',
@@ -98,9 +98,9 @@ const sampleCases: InstallationCase[] = [
       rating: 5
     },
     images: {
-      main: "https://www.flickr.com/photo_download.gne?id=54622875683&secret=aee2d33785&size=l&source=photoPageEngagement",
+      main: "/PXL_20250720_180602716.jpg",
       gallery: [
-       
+        "/PXL_20250720_180602716.jpg"
       ]
     }
   }

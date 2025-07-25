@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
 
 /*
 * To use the "Inter" font like in the reference image, add the following
@@ -144,16 +143,29 @@ const Services = () => {
     }
   ];
 
-  const cardVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
-  };
-
   return (
     <section
       id="services"
       className="font-sans py-24 sm:py-32 bg-black relative overflow-hidden"
     >
+      {/* CSS Animation Styles */}
+      <style>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(32px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        .animate-fade-in-up {
+          animation: fadeInUp 0.8s ease-out forwards;
+        }
+      `}</style>
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl leading-tight">
@@ -166,13 +178,13 @@ const Services = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
           {servicesData.map((service, index) => (
-            <motion.div
+            <div
               key={index}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
-              variants={cardVariants}
-              className="transform transition-all duration-700 ease-out"
+              className="opacity-0 translate-y-8 animate-fade-in-up transform transition-all duration-700 ease-out"
+              style={{ 
+                animationDelay: `${index * 200}ms`,
+                animationFillMode: 'forwards'
+              }}
             >
               <ServiceCard
                 title={service.title}
@@ -180,7 +192,7 @@ const Services = () => {
                 features={service.features}
                 icon={service.icon}
               />
-            </motion.div>
+            </div>
           ))}
         </div>
 
