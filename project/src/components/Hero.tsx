@@ -184,12 +184,7 @@ const Hero = () => {
                                     <motion.img
                                         src={imageUrl}
                                         alt="Starlink hardware dish and router"
-                                        className="w-full h-auto object-contain scale-[1.17]"
-                                        whileHover={{ 
-                                            scale: 1.32,
-                                            rotate: 1,
-                                            transition: { type: "spring", stiffness: 200, damping: 20, duration: 0.6 }
-                                        }}
+                                        className="w-full h-auto object-contain scale-[1.6]"
                                         onError={(e) => {
                                             const target = e.target as HTMLImageElement;
                                             target.onerror = null;
@@ -203,7 +198,7 @@ const Hero = () => {
 
                             {/* 4. Enhanced Get Quote Button - Mobile Only */}
                             <motion.div 
-                                className="block lg:hidden mt-23"
+                                className="block lg:hidden mt-28"
                                 variants={fadeInUp}
                                 transition={{ delay: 2.2 }}
                             >
@@ -292,12 +287,7 @@ const Hero = () => {
                                 <motion.img
                                     src={imageUrl}
                                     alt="Starlink hardware dish and router"
-                                    className="w-full h-auto object-contain scale-[1.51]"
-                                    whileHover={{ 
-                                        scale: 1.73,
-                                        rotate: -1,
-                                        transition: { type: "spring", stiffness: 200, damping: 20, duration: 0.6 }
-                                    }}
+                                    className="w-full h-auto object-contain scale-[1.485]"
                                     onError={(e) => {
                                         const target = e.target as HTMLImageElement;
                                         target.onerror = null;
