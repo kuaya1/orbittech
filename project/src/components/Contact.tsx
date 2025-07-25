@@ -38,8 +38,8 @@ const Contact = () => {
             className="py-24 sm:py-32 relative overflow-hidden"
             style={backgroundStyle}
         >
-            {/* Light gradient filter for contrast */}
-            <div className="absolute inset-0 bg-gradient-to-br from-white/15 via-white/10 to-black/20 backdrop-blur-[1px]" />
+            {/* High definition light-dark gradient filter */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/35 via-gray-200/25 to-black/60 backdrop-blur-[2px] backdrop-contrast-125 backdrop-brightness-110" />
             
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 {/* Header */}
