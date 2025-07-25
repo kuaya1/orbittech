@@ -146,7 +146,7 @@ const Hero = () => {
                         
                         {/* Content Block - Mobile First */}
                         <motion.div 
-                            className="order-1 lg:order-1 space-y-6 sm:space-y-8 text-center lg:text-left -mt-10 lg:mt-0"
+                            className="order-1 lg:order-1 space-y-6 sm:space-y-8 text-center lg:text-left -mt-17 lg:mt-0"
                             variants={slideInLeft}
                         >
                             {/* 1. Enhanced Animated Title - 15% bigger on mobile */}
@@ -203,13 +203,13 @@ const Hero = () => {
 
                             {/* 4. Enhanced Get Quote Button - Mobile Only */}
                             <motion.div 
-                                className="block lg:hidden fixed bottom-8 left-1/2 transform -translate-x-1/2 z-20"
+                                className="block lg:hidden mt-16"
                                 variants={fadeInUp}
                                 transition={{ delay: 2.2 }}
                             >
                                 <motion.a 
                                     href="#contact" 
-                                    className="inline-block bg-white text-black font-semibold px-6 py-3 sm:px-8 sm:py-4 rounded-lg transition-all duration-300 text-base sm:text-lg shadow-lg"
+                                    className="inline-block bg-white text-black font-semibold px-6 py-3 rounded-lg transition-all duration-300 text-base shadow-lg"
                                     whileHover={{ 
                                         y: -3, 
                                         scale: 1.02,
