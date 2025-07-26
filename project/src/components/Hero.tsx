@@ -157,7 +157,7 @@ const Hero = () => {
 
                             {/* 4. Enhanced Get Quote Button - Mobile Only */}
                             <motion.div 
-                                className="block lg:hidden mt-44"
+                                className="block lg:hidden mt-56"
                                 variants={fadeInUp}
                                 transition={{ delay: 1.6 }}
                             >
