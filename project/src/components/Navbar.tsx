@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation();
+  
+  // Check if we're on a blog page
+  const isBlogPage = location.pathname.includes('/blog');
 
   // --- Effects and Handlers ---
 
@@ -72,7 +77,11 @@ const Navbar = () => {
 
   return (
     <>
-      <header className={`navbar-container fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-transparent`}>
+      <header className={`navbar-container fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isBlogPage 
+          ? 'bg-white/10 backdrop-blur-md border-b border-white/20' 
+          : 'bg-transparent'
+      }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Modern Logo */}

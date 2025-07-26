@@ -298,14 +298,15 @@ const AvailabilityProcess = () => {
       id="availability-process"
       className="pt-32 pb-20 md:pt-40 md:pb-32 bg-black relative overflow-hidden flex items-center justify-center"
       style={{
-        backgroundImage: "url('/satellit.png')",
+        backgroundImage: "url('/satellit2.PNG')",
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
-        minHeight: '80vh'
+        minHeight: '80vh',
+        backgroundAttachment: 'fixed'
       }}>
       {/* Dark gradient overlay for contrast */}
-      <div className="absolute inset-0 z-0 pointer-events-none" style={{background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 50%)'}} />
+      <div className="absolute inset-0 z-0 pointer-events-none" style={{background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%)'}} />
       
     {/* Animation styles */}
     <style jsx>{`
