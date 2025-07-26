@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { CheckCircle, XCircle, Loader2, Info, History, Target } from 'lucide-react';
-import { motion, useScroll, useTransform } from 'framer-motion';
 
 // Updated serviceableZips to include all regions within 150 miles of DC
 const serviceableZips = new Set([
@@ -152,17 +151,9 @@ const serviceableZips = new Set([
 ]);
 
 const AvailabilityProcess = () => {
+  // Scroll animation state
+  const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
-  
-  // Scroll effects for background image
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"]
-  });
-  
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
-  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.8]);
   
   // Availability check state
   const [zipCode, setZipCode] = useState('');
@@ -175,6 +166,29 @@ const AvailabilityProcess = () => {
   // Input references for better focus management
   const inputRef = useRef<HTMLInputElement>(null);
   const blurTimeoutRef = useRef<number | null>(null);
+
+  // Intersection Observer for scroll animations
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
 
   // Load recent searches from localStorage on component mount
   useEffect(() => {
@@ -279,34 +293,23 @@ const AvailabilityProcess = () => {
   }, []);
 
   return (
-  <motion.section
-    ref={sectionRef}
-    id="availability-process"
-    className="pt-32 pb-20 md:pt-40 md:pb-32 relative overflow-hidden flex items-center justify-center"
-    style={{
-      minHeight: '80vh'
-    }}
-    initial={{ opacity: 0 }}
-    whileInView={{ opacity: 1 }}
-    viewport={{ once: true, margin: "-100px" }}
-    transition={{ duration: 0.8 }}
-  >
-    {/* Full Background Image with Framer Motion Scroll Effects */}
-    <div className="absolute inset-0">
-      <motion.img 
-        src="/satellit.png" 
-        alt="Starlink satellite installation"
-        className="w-full h-full object-cover"
-        style={{ 
-          y: backgroundY,
-          scale: scale,
-          opacity: opacity
-        }}
-      />
+    <section
+      ref={sectionRef}
+      id="availability-process"
+      className="pt-32 pb-20 md:pt-40 md:pb-32 bg-black relative overflow-hidden flex items-center justify-center"
+      style={{
+        backgroundImage: "url('/backround.jpeg')",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        minHeight: '80vh',
+        backgroundAttachment: 'fixed'
+      }}>
       {/* Dark gradient overlay for contrast */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-black/40"></div>
-    </div>    {/* Animation styles */}
-    <style>{`
+      <div className="absolute inset-0 z-0 pointer-events-none" style={{background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%)'}} />
+      
+    {/* Animation styles */}
+    <style jsx>{`
       @keyframes fadeInUp {
         from {
           opacity: 0;
@@ -321,12 +324,10 @@ const AvailabilityProcess = () => {
         animation: fadeInUp 0.8s ease-out forwards;
       }
     `}</style>
-      <motion.div 
-        className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl relative z-10"
-      >
-        <div 
-          className="max-w-3xl mx-auto"
-        >
+      <div className={`container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl relative z-10 transition-all duration-1000 delay-200 ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+      }`}>
+        <div className="max-w-3xl mx-auto">
           <form onSubmit={checkServiceArea} className="w-full animate-fadeInUp" style={{animationDelay: '200ms'}}>
             <div className="flex flex-col sm:flex-row items-end gap-3">
               <div className="w-full sm:flex-grow">
@@ -344,7 +345,7 @@ const AvailabilityProcess = () => {
                     maxLength={5}
                     inputMode="numeric"
                     pattern="[0-9]*"
-                    className="w-full px-4 py-3 pr-12 rounded-md bg-slate-500/30 backdrop-blur-sm border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50 transition"
+                    className="w-full px-4 py-3 pr-12 rounded-md bg-slate-500/30 backdrop-blur-sm border border-white/30 text-white placeholder-neutral-300 focus:outline-none focus:ring-2 focus:ring-white/50 transition"
                     aria-label="Enter your ZIP code"
                     required
                   />
@@ -374,12 +375,12 @@ const AvailabilityProcess = () => {
                 <button
                   type="submit"
                   disabled={serviceStatus === 'loading' || zipCode.length !== 5}
-                  className="group relative inline-flex items-center justify-center px-8 py-4 bg-white text-black font-semibold rounded-xl transition-all duration-300 text-lg shadow-2xl overflow-hidden disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed hover:bg-gray-50"
+                  className="w-full px-8 py-3 rounded-md bg-white text-white font-bold text-base hover:bg-neutral-200 hover:text-black transition disabled:bg-neutral-500 disabled:cursor-not-allowed"
                 >
                   {serviceStatus === 'loading' ? (
                     <Loader2 className="h-5 w-5 animate-spin mx-auto" />
                   ) : (
-                    <span className="relative z-10">CHECK</span>
+                    'CHECK'
                   )}
                 </button>
               </div>
@@ -427,8 +428,8 @@ const AvailabilityProcess = () => {
             </p>
           </div>
         </div>
-      </motion.div>
-    </motion.section>
+      </div>
+    </section>
   );
 };
 
