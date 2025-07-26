@@ -381,13 +381,19 @@ const AvailabilityProcess = () => {
                 <button
                   type="submit"
                   disabled={serviceStatus === 'loading' || zipCode.length !== 5}
-                  className="w-full px-8 py-3 rounded-lg bg-white text-black font-semibold text-base hover:bg-gray-100 active:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-white/30 focus:ring-offset-2 focus:ring-offset-transparent transition-all duration-200 disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed shadow-lg hover:shadow-xl active:shadow-md active:scale-95"
+                  className="group relative inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-xl transition-all duration-300 text-lg shadow-2xl overflow-hidden disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed"
                 >
                   {serviceStatus === 'loading' ? (
                     <Loader2 className="h-5 w-5 animate-spin mx-auto" />
                   ) : (
-                    'CHECK'
+                    <span className="relative z-10">CHECK</span>
                   )}
+                  <motion.div 
+                    className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-700"
+                    initial={{ x: '-100%' }}
+                    whileHover={{ x: 0 }}
+                    transition={{ duration: 0.3 }}
+                  />
                 </button>
               </div>
             </div>
