@@ -96,47 +96,6 @@ const Hero = () => {
             animate="visible"
             variants={containerVariants}
         >
-            {/* Aceternity-inspired decorative lines with slower animations */}
-            <motion.div 
-                className="absolute inset-y-0 left-0 h-full w-px bg-neutral-800/80"
-                initial={{ opacity: 0, scaleY: 0 }}
-                animate={{ opacity: 1, scaleY: 1 }}
-                transition={{ duration: 2.0, delay: 0.5, ease: "easeOut" }}
-            >
-                <motion.div 
-                    className="absolute top-20 h-40 w-px bg-gradient-to-b from-transparent via-blue-500 to-transparent"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 1.5, delay: 1.0, ease: "easeOut" }}
-                />
-            </motion.div>
-            <motion.div 
-                className="absolute inset-y-0 right-0 h-full w-px bg-neutral-800/80"
-                initial={{ opacity: 0, scaleY: 0 }}
-                animate={{ opacity: 1, scaleY: 1 }}
-                transition={{ duration: 2.0, delay: 0.7, ease: "easeOut" }}
-            >
-                <motion.div 
-                    className="absolute top-20 h-40 w-px bg-gradient-to-b from-transparent via-blue-500 to-transparent"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 1.5, delay: 1.2, ease: "easeOut" }}
-                />
-            </motion.div>
-            <motion.div 
-                className="absolute inset-x-0 bottom-0 h-px w-full bg-neutral-800/80"
-                initial={{ opacity: 0, scaleX: 0 }}
-                animate={{ opacity: 1, scaleX: 1 }}
-                transition={{ duration: 2.0, delay: 0.9, ease: "easeOut" }}
-            >
-                <motion.div 
-                    className="absolute mx-auto h-px w-40 bg-gradient-to-r from-transparent via-blue-500 to-transparent"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 1.5, delay: 1.4, ease: "easeOut" }}
-                />
-            </motion.div>
-
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Mobile-First Responsive Layout */}
                 <div className="min-h-screen flex flex-col items-center justify-center text-center py-16 sm:py-20 relative z-10">
@@ -169,7 +128,7 @@ const Hero = () => {
                             <motion.p 
                                 className="text-base sm:text-lg lg:text-xl text-neutral-300 leading-relaxed max-w-2xl mx-auto lg:mx-0"
                                 variants={fadeInUp}
-                                transition={{ delay: 1.5 }}
+                                transition={{ delay: 0.8 }}
                             >
                                 Get your Starlink professionally installed by certified experts serving the DMV area and beyond.
                             </motion.p>
@@ -178,7 +137,7 @@ const Hero = () => {
                             <motion.div 
                                 className="block lg:hidden relative -mt-12"
                                 variants={fadeInUp}
-                                transition={{ delay: 1.8 }}
+                                transition={{ delay: 1.2 }}
                             >
                                 <div className="relative w-full max-w-lg mx-auto">
                                     <motion.img
@@ -200,7 +159,7 @@ const Hero = () => {
                             <motion.div 
                                 className="block lg:hidden mt-44"
                                 variants={fadeInUp}
-                                transition={{ delay: 2.2 }}
+                                transition={{ delay: 1.6 }}
                             >
                                 <motion.a 
                                     href="#contact" 
@@ -222,7 +181,7 @@ const Hero = () => {
                             <motion.div 
                                 className="hidden lg:block"
                                 variants={fadeInUp}
-                                transition={{ delay: 2.2 }}
+                                transition={{ delay: 1.6 }}
                             >
                                 <motion.a 
                                     href="#contact" 
@@ -244,7 +203,7 @@ const Hero = () => {
                             <motion.div 
                                 className="hidden lg:flex items-center gap-3 sm:gap-4 justify-center lg:justify-start"
                                 variants={fadeInUp}
-                                transition={{ delay: 2.6 }}
+                                transition={{ delay: 2.0 }}
                             >
                                 {/* Google 'G' icon stylized */}
                                 <motion.div 
@@ -269,7 +228,7 @@ const Hero = () => {
                                         <motion.div
                                             initial={{ opacity: 0 }}
                                             animate={{ opacity: 1 }}
-                                            transition={{ delay: 3.0, duration: 0.8 }}
+                                            transition={{ delay: 2.4, duration: 0.8 }}
                                         >
                                             <StarRating />
                                         </motion.div>
