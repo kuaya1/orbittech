@@ -72,17 +72,13 @@ const Navbar = () => {
 
   return (
     <>
-      <header className={`navbar-container fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled || isMenuOpen 
-          ? 'bg-black/90 backdrop-blur-xl border-b border-white/10' 
-          : 'bg-transparent'
-      }`}>
+      <header className={`navbar-container fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-transparent`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Modern Logo */}
             <a href="/" className="flex items-center group transition-transform duration-300 hover:scale-105" onClick={(e) => handleLinkClick(e, '/')}>
               <img 
-                src="/Orbit.png" 
+                src="/Orbit (2).png" 
                 alt="Orbittec Logo" 
                 className="h-10 w-auto transition-all duration-300"
               />
