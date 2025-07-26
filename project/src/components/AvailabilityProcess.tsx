@@ -281,7 +281,7 @@ const AvailabilityProcess = () => {
     <motion.section
       ref={sectionRef}
       id="availability-process"
-      className="pt-32 pb-20 md:pt-40 md:pb-32 bg-black relative overflow-hidden flex items-center justify-center"
+      className="pt-32 pb-20 md:pt-40 md:pb-32 bg-transparent relative overflow-hidden flex items-center justify-center"
       style={{
         minHeight: '80vh'
       }}
@@ -301,7 +301,7 @@ const AvailabilityProcess = () => {
             opacity: backgroundOpacity
           }}
         />
-        <div className="absolute inset-0 bg-black/60"></div>
+        <div className="absolute inset-0 bg-transparent"></div>
       </div>
       
     {/* Animation styles */}

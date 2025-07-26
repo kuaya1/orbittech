@@ -16,20 +16,20 @@ const Contact = () => {
         <motion.section 
             ref={sectionRef}
             id="contact" 
-            className="py-24 sm:py-32 relative overflow-hidden bg-black"
+            className="py-24 sm:py-32 relative overflow-hidden bg-black lg:bg-transparent"
         >
-            {/* Full Background Image - Desktop Only with Scroll Effect */}
-            <div className="absolute inset-0 hidden lg:block">
+            {/* Background Image with Scroll Effects */}
+            <div className="absolute inset-0">
                 <motion.img 
-                    src="/Starlink_Rural_Location_02a-scaled.jpg" 
-                    alt="Starlink satellite dish on roof"
-                    className="w-full h-full object-cover scale-110"
+                    src="/satellit.png" 
+                    alt="Starlink satellite installation"
+                    className="w-full h-full object-cover scale-110 hidden lg:block"
                     style={{ 
                         y: backgroundY,
                         opacity: opacity
                     }}
                 />
-                <div className="absolute inset-0 bg-black/60"></div>
+                <div className="absolute inset-0 bg-black/30 lg:bg-transparent"></div>
             </div>
             <motion.div 
                 className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
