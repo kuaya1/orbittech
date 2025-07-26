@@ -108,8 +108,8 @@ const Hero = () => {
                             className="order-1 lg:order-1 space-y-6 sm:space-y-8 text-center lg:text-left -mt-17 lg:mt-0"
                             variants={slideInLeft}
                         >
-                            {/* 1. Enhanced Animated Title - 15% bigger on mobile */}
-                            <motion.h1 className="text-[2.3rem] sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white tracking-tight leading-tight">
+                            {/* 1. Enhanced Animated Title - 10% bigger */}
+                            <motion.h1 className="text-[2.5rem] sm:text-[2.6rem] lg:text-[3.3rem] xl:text-[4rem] font-bold text-white tracking-tight leading-tight">
                                 {"Professional Starlink Installation Service"
                                     .split(" ")
                                     .map((word, index) => (
@@ -135,7 +135,7 @@ const Hero = () => {
 
                             {/* 3. Mobile Image Block - Shows only on mobile - 15% bigger */}
                             <motion.div 
-                                className="block lg:hidden relative -mt-12"
+                                className="block lg:hidden relative -mt-12 pb-4"
                                 variants={fadeInUp}
                                 transition={{ delay: 1.2 }}
                             >
@@ -157,7 +157,7 @@ const Hero = () => {
 
                             {/* 4. Enhanced Get Quote Button - Mobile Only */}
                             <motion.div 
-                                className="block lg:hidden mt-44"
+                                className="block lg:hidden mt-40 pt-2"
                                 variants={fadeInUp}
                                 transition={{ delay: 1.6 }}
                             >
