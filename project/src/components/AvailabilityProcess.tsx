@@ -329,18 +329,10 @@ const AvailabilityProcess = () => {
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          {/* Starlink-style Service Address Check */}
-          <div className="bg-white rounded-xl p-8 shadow-2xl max-w-2xl mx-auto animate-fadeInUp" style={{animationDelay: '200ms'}}>
-            <div className="text-center mb-6">
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">Check Service Availability</h3>
-              <p className="text-gray-600">Enter your service address to see if Starlink is available in your area</p>
-            </div>
-            
-            <form onSubmit={checkServiceArea} className="space-y-4">
-              <div className="relative">
-                <label htmlFor="zipInput" className="block text-sm font-medium text-gray-700 mb-2">
-                  Service Address
-                </label>
+          <form onSubmit={checkServiceArea} className="w-full animate-fadeInUp" style={{animationDelay: '200ms'}}>
+            <div className="flex flex-col sm:flex-row items-end gap-3">
+              <div className="w-full sm:flex-grow">
+                <label htmlFor="zipInput" className="block text-sm font-semibold text-white mb-2">Service Address</label>
                 <div className="relative">
                   <input
                     id="zipInput"
@@ -350,18 +342,18 @@ const AvailabilityProcess = () => {
                     onChange={handleZipChange}
                     onFocus={handleFocus}
                     onBlur={handleBlur}
-                    placeholder="Enter ZIP code"
+                    placeholder="TYPE AND SELECT"
                     maxLength={5}
                     inputMode="numeric"
                     pattern="[0-9]*"
-                    className="w-full px-4 py-4 pr-12 text-lg border-2 border-gray-200 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all duration-200"
+                    className="w-full px-4 py-3 pr-12 rounded-md bg-slate-500/30 backdrop-blur-sm border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50 transition"
                     aria-label="Enter your ZIP code"
                     required
                   />
-                  <Target className="absolute right-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400 pointer-events-none"/>
+                  <Target className="absolute right-4 top-1/2 -translate-y-1/2 h-5 w-5 text-white/70 pointer-events-none"/>
                   {showRecent && recentSearches.length > 0 && (
-                    <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg z-20 overflow-hidden animate-fadeInUp">
-                      <div className="p-3 text-xs text-gray-500 border-b border-gray-100 font-semibold uppercase tracking-wide">
+                    <div className="absolute top-full left-0 right-0 mt-2 bg-black/70 backdrop-blur-md border border-white/20 rounded-xl shadow-2xl z-20 overflow-hidden animate-fadeInUp">
+                      <div className="p-2 text-xs text-white/60 border-b border-white/10 font-bold tracking-wide">
                         Recent searches
                       </div>
                       {recentSearches.map((zip, index) => (
@@ -370,43 +362,31 @@ const AvailabilityProcess = () => {
                           type="button"
                           onClick={() => selectRecentZip(zip)}
                           onMouseDown={(e) => e.preventDefault()}
-                          className="w-full text-left px-4 py-3 hover:bg-gray-50 text-gray-900 transition-colors duration-200 flex items-center gap-3"
+                          className="w-full text-left px-3 py-2.5 hover:bg-white/10 text-white transition-colors duration-200 flex items-center gap-2"
                         >
-                          <History className="h-4 w-4 text-gray-400"/>
-                          <span className="font-medium">{zip}</span>
+                          <History className="h-4 w-4 text-white/60"/>
+                          <span className="font-medium tracking-tight">{zip}</span>
                         </button>
                       ))}
                     </div>
                   )}
                 </div>
               </div>
-              
-              <button
-                type="submit"
-                disabled={serviceStatus === 'loading' || zipCode.length !== 5}
-                className="group w-full bg-white hover:bg-gray-50 disabled:bg-gray-100 disabled:cursor-not-allowed border-2 border-gray-900 hover:border-gray-700 disabled:border-gray-300 text-gray-900 disabled:text-gray-400 font-medium py-3.5 px-6 rounded-full text-base transition-all duration-300 flex items-center justify-center gap-2 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0"
-              >
-                {serviceStatus === 'loading' ? (
-                  <>
-                    <Loader2 className="h-4 w-4 animate-spin" />
-                    <span>Checking</span>
-                  </>
-                ) : (
-                  <>
-                    <span>Check Availability</span>
-                    <svg 
-                      className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" 
-                      fill="none" 
-                      stroke="currentColor" 
-                      viewBox="0 0 24 24"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </>
-                )}
-              </button>
-            </form>
-          </div>
+              <div className="w-full sm:w-auto">
+                <button
+                  type="submit"
+                  disabled={serviceStatus === 'loading' || zipCode.length !== 5}
+                  className="group relative inline-flex items-center justify-center px-8 py-4 bg-white text-black font-semibold rounded-xl transition-all duration-300 text-lg shadow-2xl overflow-hidden disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed hover:bg-gray-50"
+                >
+                  {serviceStatus === 'loading' ? (
+                    <Loader2 className="h-5 w-5 animate-spin mx-auto" />
+                  ) : (
+                    <span className="relative z-10">CHECK</span>
+                  )}
+                </button>
+              </div>
+            </div>
+          </form>
           <div className="mt-6 text-center">
             {errorMessage && (
               <div className="mt-3 text-red-300 text-sm flex items-center justify-center gap-2 font-medium" role="alert">
