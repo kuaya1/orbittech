@@ -82,7 +82,7 @@ const Navbar = () => {
             {/* Modern Logo */}
             <a href="/" className="flex items-center group transition-transform duration-300 hover:scale-105" onClick={(e) => handleLinkClick(e, '/')}>
               <img 
-                src="/Starlink Dmv (20).png" 
+                src="/Orbit.png" 
                 alt="Orbittec Logo" 
                 className="h-10 w-auto transition-all duration-300"
               />
