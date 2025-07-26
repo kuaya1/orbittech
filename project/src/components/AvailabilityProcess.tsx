@@ -341,11 +341,11 @@ const AvailabilityProcess = () => {
                     onChange={handleZipChange}
                     onFocus={handleFocus}
                     onBlur={handleBlur}
-                    placeholder="TYPE AND SELECT"
+                    placeholder="Enter ZIP code"
                     maxLength={5}
                     inputMode="numeric"
                     pattern="[0-9]*"
-                    className="w-full px-4 py-3 pr-12 rounded-md bg-slate-500/30 backdrop-blur-sm border border-white/30 text-white placeholder-neutral-300 focus:outline-none focus:ring-2 focus:ring-white/50 transition"
+                    className="w-full px-4 py-3 pr-12 rounded-md bg-slate-500/30 backdrop-blur-sm border border-white/30 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/50 transition"
                     aria-label="Enter your ZIP code"
                     required
                   />
@@ -375,7 +375,7 @@ const AvailabilityProcess = () => {
                 <button
                   type="submit"
                   disabled={serviceStatus === 'loading' || zipCode.length !== 5}
-                  className="w-full px-8 py-3 rounded-md bg-white text-white font-bold text-base hover:bg-neutral-200 hover:text-black transition disabled:bg-neutral-500 disabled:cursor-not-allowed"
+                  className="w-full px-8 py-3 rounded-md bg-white text-black font-bold text-base hover:bg-gray-100 transition disabled:bg-gray-400 disabled:cursor-not-allowed"
                 >
                   {serviceStatus === 'loading' ? (
                     <Loader2 className="h-5 w-5 animate-spin mx-auto" />
