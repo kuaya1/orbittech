@@ -105,11 +105,11 @@ const Hero = () => {
                         
                         {/* Content Block - Mobile First */}
                         <motion.div 
-                            className="order-1 lg:order-1 space-y-6 sm:space-y-8 text-center lg:text-left -mt-17 lg:mt-0"
+                            className="order-1 lg:order-1 space-y-8 sm:space-y-10 lg:space-y-12 text-center lg:text-left -mt-17 lg:mt-0"
                             variants={slideInLeft}
                         >
-                            {/* 1. Enhanced Animated Title - 15% bigger on mobile */}
-                            <motion.h1 className="text-[2.3rem] sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white tracking-tight leading-tight">
+                            {/* 1. Enhanced Animated Title - Improved font sizes */}
+                            <motion.h1 className="text-[2.5rem] sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white tracking-tight leading-[1.1] pb-4">
                                 {"Professional Starlink Installation Service"
                                     .split(" ")
                                     .map((word, index) => (
@@ -124,9 +124,9 @@ const Hero = () => {
                                     ))}
                             </motion.h1>
 
-                            {/* 2. Enhanced Subtitle */}
+                            {/* 2. Enhanced Subtitle with better spacing */}
                             <motion.p 
-                                className="text-base sm:text-lg lg:text-xl text-neutral-300 leading-relaxed max-w-2xl mx-auto lg:mx-0"
+                                className="text-lg sm:text-xl lg:text-2xl text-neutral-300 leading-relaxed max-w-2xl mx-auto lg:mx-0 pb-6 lg:pb-8"
                                 variants={fadeInUp}
                                 transition={{ delay: 0.8 }}
                             >
@@ -179,13 +179,13 @@ const Hero = () => {
 
                             {/* 5. Enhanced Get Quote Button - Desktop Only */}
                             <motion.div 
-                                className="hidden lg:block"
+                                className="hidden lg:block pt-8"
                                 variants={fadeInUp}
                                 transition={{ delay: 1.6 }}
                             >
                                 <motion.a 
                                     href="#contact" 
-                                    className="inline-block bg-white text-black font-semibold px-6 py-3 sm:px-8 sm:py-4 rounded-lg transition-all duration-300 text-base sm:text-lg shadow-lg"
+                                    className="inline-block bg-white text-black font-bold px-10 py-5 rounded-xl transition-all duration-300 text-xl shadow-lg"
                                     whileHover={{ 
                                         y: -3, 
                                         scale: 1.02,
@@ -199,13 +199,13 @@ const Hero = () => {
                                 </motion.a>
                             </motion.div>
 
-                            {/* 6. Enhanced Google Rating - Desktop Only */}
-                            <motion.div 
+                            {/* 6. Enhanced Google Rating - Desktop Only - DISABLED */}
+                            {/* <motion.div 
                                 className="hidden lg:flex items-center gap-3 sm:gap-4 justify-center lg:justify-start"
                                 variants={fadeInUp}
                                 transition={{ delay: 2.0 }}
                             >
-                                {/* Google 'G' icon stylized */}
+                                Google 'G' icon stylized
                                 <motion.div 
                                     className="flex-shrink-0"
                                     whileHover={{ 
@@ -234,7 +234,7 @@ const Hero = () => {
                                         </motion.div>
                                     </div>
                                 </div>
-                            </motion.div>
+                            </motion.div> */}
                         </motion.div>
 
                         {/* Desktop Image Block - Hidden on mobile */}
