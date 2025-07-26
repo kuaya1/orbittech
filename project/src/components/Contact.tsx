@@ -1,32 +1,22 @@
 import { Phone, Mail, MapPin, Clock } from 'lucide-react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { motion } from 'framer-motion';
 
 const Contact = () => {
-    const sectionRef = useRef(null);
-    const { scrollYProgress } = useScroll({
-        target: sectionRef,
-        offset: ["start end", "end start"]
-    });
-    
-    const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
 
     return (
         <motion.section 
-            ref={sectionRef}
             id="contact" 
             className="py-24 sm:py-32 relative overflow-hidden"
         >
-            {/* Background Image - Full Screen, No Filters */}
+            {/* Background Image with Light Dark Gradient */}
             <div className="absolute inset-0">
-                <motion.img 
-                    src="/satellit.png" 
-                    alt="Starlink satellite installation"
+                <img 
+                    src="/Starlink_Rural_Location_02a-scaled.jpg" 
+                    alt="Starlink rural installation"
                     className="w-full h-full object-cover"
-                    style={{ 
-                        y: backgroundY
-                    }}
                 />
+                {/* Light dark gradient overlay for contrast */}
+                <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-black/40"></div>
             </div>
             <motion.div 
                 className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"

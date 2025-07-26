@@ -329,10 +329,18 @@ const AvailabilityProcess = () => {
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <form onSubmit={checkServiceArea} className="w-full animate-fadeInUp" style={{animationDelay: '200ms'}}>
-            <div className="flex flex-col sm:flex-row items-end gap-3">
-              <div className="w-full sm:flex-grow">
-                <label htmlFor="zipInput" className="block text-sm font-semibold text-white mb-2">Service Address</label>
+          {/* Starlink-style Service Address Check */}
+          <div className="bg-white rounded-xl p-8 shadow-2xl max-w-2xl mx-auto animate-fadeInUp" style={{animationDelay: '200ms'}}>
+            <div className="text-center mb-6">
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">Check Service Availability</h3>
+              <p className="text-gray-600">Enter your service address to see if Starlink is available in your area</p>
+            </div>
+            
+            <form onSubmit={checkServiceArea} className="space-y-4">
+              <div className="relative">
+                <label htmlFor="zipInput" className="block text-sm font-medium text-gray-700 mb-2">
+                  Service Address
+                </label>
                 <div className="relative">
                   <input
                     id="zipInput"
@@ -342,18 +350,18 @@ const AvailabilityProcess = () => {
                     onChange={handleZipChange}
                     onFocus={handleFocus}
                     onBlur={handleBlur}
-                    placeholder="TYPE AND SELECT"
+                    placeholder="Enter ZIP code"
                     maxLength={5}
                     inputMode="numeric"
                     pattern="[0-9]*"
-                    className="w-full px-4 py-3 pr-12 rounded-md bg-slate-500/30 backdrop-blur-sm border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50 transition"
+                    className="w-full px-4 py-4 pr-12 text-lg border-2 border-gray-200 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all duration-200"
                     aria-label="Enter your ZIP code"
                     required
                   />
-                  <Target className="absolute right-4 top-1/2 -translate-y-1/2 h-5 w-5 text-white/70 pointer-events-none"/>
+                  <Target className="absolute right-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400 pointer-events-none"/>
                   {showRecent && recentSearches.length > 0 && (
-                    <div className="absolute top-full left-0 right-0 mt-2 bg-black/70 backdrop-blur-md border border-white/20 rounded-xl shadow-2xl z-20 overflow-hidden animate-fadeInUp">
-                      <div className="p-2 text-xs text-white/60 border-b border-white/10 font-bold tracking-wide">
+                    <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg z-20 overflow-hidden animate-fadeInUp">
+                      <div className="p-3 text-xs text-gray-500 border-b border-gray-100 font-semibold uppercase tracking-wide">
                         Recent searches
                       </div>
                       {recentSearches.map((zip, index) => (
@@ -362,69 +370,80 @@ const AvailabilityProcess = () => {
                           type="button"
                           onClick={() => selectRecentZip(zip)}
                           onMouseDown={(e) => e.preventDefault()}
-                          className="w-full text-left px-3 py-2.5 hover:bg-white/10 text-white transition-colors duration-200 flex items-center gap-2"
+                          className="w-full text-left px-4 py-3 hover:bg-gray-50 text-gray-900 transition-colors duration-200 flex items-center gap-3"
                         >
-                          <History className="h-4 w-4 text-white/60"/>
-                          <span className="font-medium tracking-tight">{zip}</span>
+                          <History className="h-4 w-4 text-gray-400"/>
+                          <span className="font-medium">{zip}</span>
                         </button>
                       ))}
                     </div>
                   )}
                 </div>
               </div>
-              <div className="w-full sm:w-auto">
-                <button
-                  type="submit"
-                  disabled={serviceStatus === 'loading' || zipCode.length !== 5}
-                  className="group relative inline-flex items-center justify-center px-8 py-4 bg-white text-black font-semibold rounded-xl transition-all duration-300 text-lg shadow-2xl overflow-hidden disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed"
-                >
-                  {serviceStatus === 'loading' ? (
-                    <Loader2 className="h-5 w-5 animate-spin mx-auto" />
-                  ) : (
-                    <span className="relative z-10">CHECK</span>
-                  )}
-                </button>
-              </div>
-            </div>
-          </form>
-          <div className="mt-6 text-center">
+              
+              <button
+                type="submit"
+                disabled={serviceStatus === 'loading' || zipCode.length !== 5}
+                className="w-full bg-black hover:bg-gray-800 disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-semibold py-4 px-6 rounded-lg text-lg transition-all duration-200 flex items-center justify-center gap-2"
+              >
+                {serviceStatus === 'loading' ? (
+                  <>
+                    <Loader2 className="h-5 w-5 animate-spin" />
+                    Checking...
+                  </>
+                ) : (
+                  'Check Availability'
+                )}
+              </button>
+            </form>
+          </div>
+          <div className="mt-6">
             {errorMessage && (
-              <div className="mt-3 text-red-300 text-sm flex items-center justify-center gap-2 font-medium" role="alert">
-                <Info className="h-4 w-4 flex-shrink-0" />
-                {errorMessage}
+              <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-center gap-3" role="alert">
+                <Info className="h-5 w-5 text-red-500 flex-shrink-0" />
+                <span className="text-red-800 font-medium">{errorMessage}</span>
               </div>
             )}
             {serviceStatus !== 'loading' && serviceStatus !== null && showResults && (
-              <div className={`rounded-xl p-6 backdrop-blur-sm border transition-all duration-700 animate-fadeInUp bg-black/40 ${
+              <div className={`rounded-lg p-6 border-2 transition-all duration-700 animate-fadeInUp ${
                 serviceStatus === true
-                  ? 'border-green-500/50' 
-                  : 'border-red-500/50'
+                  ? 'bg-green-50 border-green-200' 
+                  : 'bg-orange-50 border-orange-200'
               }`}>
                 <div className="flex items-start gap-4">
-                  <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 backdrop-blur-sm border ${
-                    serviceStatus === true ? 'bg-green-500/20 border-green-500/30' : 'bg-red-500/20 border-red-500/30'
+                  <div className={`w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 ${
+                    serviceStatus === true ? 'bg-green-100' : 'bg-orange-100'
                   }`}>
                     {serviceStatus === true ? (
-                      <CheckCircle className="h-5 w-5 text-green-400" />
+                      <CheckCircle className="h-6 w-6 text-green-600" />
                     ) : (
-                      <XCircle className="h-5 w-5 text-red-400" />
+                      <XCircle className="h-6 w-6 text-orange-600" />
                     )}
                   </div>
-                  <div className="flex-grow text-left">
-                    <h4 className="text-lg font-bold text-white mb-1">
-                      {serviceStatus === true ? 'Service Available!' : 'Not Available Yet'}
+                  <div className="flex-grow">
+                    <h4 className={`text-xl font-bold mb-2 ${
+                      serviceStatus === true ? 'text-green-900' : 'text-orange-900'
+                    }`}>
+                      {serviceStatus === true ? 'Service Available!' : 'Service Not Available'}
                     </h4>
-                    <p className="text-white/80 leading-relaxed">
+                    <p className={`leading-relaxed ${
+                      serviceStatus === true ? 'text-green-800' : 'text-orange-800'
+                    }`}>
                       {serviceStatus === true
-                        ? `Great! We provide professional Starlink installation services in ${zipCode}. You can get high-speed satellite internet with same-day installation.` 
-                        : `We're not currently servicing ${zipCode}, but we're expanding rapidly. Join our waitlist to be notified when service becomes available.`}
+                        ? `Great news! We provide professional Starlink installation services in ${zipCode}. You can get high-speed satellite internet with same-day installation.` 
+                        : `We're not currently servicing ${zipCode}, but we're expanding rapidly. Join our waitlist to be notified when service becomes available in your area.`}
                     </p>
+                    {serviceStatus === true && (
+                      <button className="mt-4 bg-black hover:bg-gray-800 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200">
+                        Order Now
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>
             )}
-            <p className="text-white/60 text-sm leading-relaxed font-medium mt-8">
-              Currently serving the <span className="text-white font-semibold">Washington DC Metro area</span> including 
+            <p className="text-center text-gray-600 text-sm leading-relaxed font-medium mt-8 bg-white/90 rounded-lg p-4">
+              Currently serving the <span className="text-gray-900 font-semibold">Washington DC Metro area</span> including 
               Maryland, Virginia, Pennsylvania, Delaware, and West Virginia within 150 miles of DC.
             </p>
           </div>
