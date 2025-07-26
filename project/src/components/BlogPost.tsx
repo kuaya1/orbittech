@@ -178,7 +178,7 @@ const BlogPost: React.FC<BlogPostProps> = ({ post }) => {
                   <img 
                     src={post.coverImage} 
                     alt={post.title}
-                    className="relative w-full h-64 lg:h-80 object-cover rounded-2xl shadow-2xl border border-white/10"
+                    className="relative w-full h-80 lg:h-96 object-cover rounded-2xl shadow-2xl border border-white/10"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
                       target.style.display = 'none';
@@ -231,7 +231,7 @@ const BlogPost: React.FC<BlogPostProps> = ({ post }) => {
                           ),
                           h2: ({children}) => (
                             <h2 className="text-2xl lg:text-3xl font-bold text-slate-900 mt-10 mb-5 relative">
-                              <span className="absolute -left-4 top-0 w-1 h-full bg-gradient-to-b from-blue-500 to-purple-500 rounded-full"></span>
+                              <span className="absolute -left-4 top-0 w-1 h-full bg-slate-300 rounded-full"></span>
                               {children}
                             </h2>
                           ),
@@ -241,7 +241,7 @@ const BlogPost: React.FC<BlogPostProps> = ({ post }) => {
                             </h3>
                           ),
                           p: ({children}) => (
-                            <p className="text-slate-700 leading-relaxed mb-6 text-lg">
+                            <p className="text-slate-800 leading-relaxed mb-6 text-lg">
                               {children}
                             </p>
                           ),
@@ -256,19 +256,19 @@ const BlogPost: React.FC<BlogPostProps> = ({ post }) => {
                             </ol>
                           ),
                           li: ({children}) => (
-                            <li className="text-slate-700 text-lg flex items-start">
-                              <span className="inline-block w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mt-3 mr-3 flex-shrink-0"></span>
+                            <li className="text-slate-800 text-lg flex items-start">
+                              <span className="inline-block w-2 h-2 bg-slate-400 rounded-full mt-3 mr-3 flex-shrink-0"></span>
                               <span>{children}</span>
                             </li>
                           ),
                           strong: ({children}) => (
-                            <strong className="font-semibold text-slate-900 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                            <strong className="font-semibold text-slate-900">
                               {children}
                             </strong>
                           ),
                           blockquote: ({children}) => (
-                            <blockquote className="relative border-l-4 border-gradient-to-b from-blue-500 to-purple-500 pl-8 py-6 my-8 bg-gradient-to-r from-blue-50 to-purple-50 rounded-r-2xl">
-                              <div className="absolute top-4 left-4 w-1 h-16 bg-gradient-to-b from-blue-500 to-purple-500 rounded-full"></div>
+                            <blockquote className="relative border-l-4 border-slate-300 pl-8 py-6 my-8 bg-slate-50 rounded-r-2xl">
+                              <div className="absolute top-4 left-4 w-1 h-16 bg-slate-300 rounded-full"></div>
                               <div className="text-slate-800 italic text-lg font-medium leading-relaxed">
                                 {children}
                               </div>
@@ -290,20 +290,20 @@ const BlogPost: React.FC<BlogPostProps> = ({ post }) => {
 
               {/* Author Bio */}
               <motion.div 
-                className="mt-12 bg-gradient-to-r from-slate-50 to-blue-50 rounded-3xl p-8 lg:p-12 border border-slate-200/50"
+                className="mt-12 bg-slate-50 rounded-3xl p-8 lg:p-12 border border-slate-200/50"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
               >
                 <div className="flex items-start space-x-6">
                   <div className="flex-shrink-0">
-                    <div className="w-20 h-20 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center text-white font-bold text-xl shadow-lg">
+                    <div className="w-20 h-20 bg-slate-600 rounded-2xl flex items-center justify-center text-white font-bold text-xl shadow-lg">
                       {post.author.name.split(' ').map(n => n[0]).join('')}
                     </div>
                   </div>
                   <div className="flex-1">
                     <h3 className="text-xl font-bold text-slate-900 mb-2">{post.author.name}</h3>
-                    <p className="text-sm font-medium text-blue-600 mb-4">{post.author.role}</p>
+                    <p className="text-sm font-medium text-slate-600 mb-4">{post.author.role}</p>
                     <p className="text-slate-700 leading-relaxed">
                       Professional satellite internet installation specialists serving the DMV area with years of experience in telecommunications and connectivity solutions.
                     </p>
@@ -344,7 +344,7 @@ const BlogPost: React.FC<BlogPostProps> = ({ post }) => {
               </div>
 
               {/* About Section */}
-              <div className="bg-gradient-to-br from-slate-50 to-blue-50 rounded-2xl border border-slate-200/50 p-6 shadow-lg">
+              <div className="bg-slate-50 rounded-2xl border border-slate-200/50 p-6 shadow-lg">
                 <h3 className="text-lg font-bold text-slate-900 mb-4">About The Orbit Tech</h3>
                 <p className="text-slate-700 text-sm leading-relaxed mb-4">
                   Professional Starlink and satellite internet installation services serving the Washington D.C., Maryland, and Virginia area. Licensed, insured, and committed to delivering reliable connectivity solutions.
@@ -355,11 +355,11 @@ const BlogPost: React.FC<BlogPostProps> = ({ post }) => {
                     <span>Licensed</span>
                   </div>
                   <div className="flex items-center gap-1">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                    <div className="w-2 h-2 bg-slate-500 rounded-full"></div>
                     <span>Insured</span>
                   </div>
                   <div className="flex items-center gap-1">
-                    <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                    <div className="w-2 h-2 bg-slate-600 rounded-full"></div>
                     <span>Certified</span>
                   </div>
                 </div>
