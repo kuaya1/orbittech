@@ -298,18 +298,20 @@ const AvailabilityProcess = () => {
       id="availability-process"
       className="pt-32 pb-20 md:pt-40 md:pb-32 bg-black relative overflow-hidden flex items-center justify-center"
       style={{
-        backgroundImage: "url('/satellit.png')",
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        minHeight: '80vh',
-        backgroundAttachment: 'fixed'
+        minHeight: '80vh'
       }}>
-      {/* Dark gradient overlay for contrast */}
-      <div className="absolute inset-0 z-0 pointer-events-none" style={{background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%)'}} />
+      {/* Full Background Image - Similar to Contact Section */}
+      <div className="absolute inset-0">
+        <img 
+          src="/satellit.png" 
+          alt="Starlink satellite installation"
+          className="w-full h-full object-cover opacity-30 scale-110"
+        />
+        <div className="absolute inset-0 bg-black/60"></div>
+      </div>
       
     {/* Animation styles */}
-    <style jsx>{`
+    <style>{`
       @keyframes fadeInUp {
         from {
           opacity: 0;
@@ -375,7 +377,7 @@ const AvailabilityProcess = () => {
                 <button
                   type="submit"
                   disabled={serviceStatus === 'loading' || zipCode.length !== 5}
-                  className="w-full px-8 py-3 rounded-lg bg-white text-black font-semibold text-base hover:bg-neutral-200 active:bg-neutral-300 focus:outline-none focus:ring-2 focus:ring-white/30 focus:ring-offset-2 focus:ring-offset-transparent transition-all duration-200 disabled:bg-white/50 disabled:text-black/50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl active:shadow-md active:scale-95"
+                  className="w-full px-8 py-3 rounded-lg bg-white text-black font-semibold text-base hover:bg-gray-100 active:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-white/30 focus:ring-offset-2 focus:ring-offset-transparent transition-all duration-200 disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed shadow-lg hover:shadow-xl active:shadow-md active:scale-95"
                 >
                   {serviceStatus === 'loading' ? (
                     <Loader2 className="h-5 w-5 animate-spin mx-auto" />
