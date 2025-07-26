@@ -160,7 +160,9 @@ const AvailabilityProcess = () => {
     offset: ["start end", "end start"]
   });
   
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
+  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.8]);
   
   // Availability check state
   const [zipCode, setZipCode] = useState('');
@@ -289,16 +291,20 @@ const AvailabilityProcess = () => {
     viewport={{ once: true, margin: "-100px" }}
     transition={{ duration: 0.8 }}
   >
-    {/* Full Background Image - No Filters */}
+    {/* Full Background Image with Framer Motion Scroll Effects */}
     <div className="absolute inset-0">
       <motion.img 
         src="/satellit.png" 
         alt="Starlink satellite installation"
         className="w-full h-full object-cover"
         style={{ 
-          y: backgroundY
+          y: backgroundY,
+          scale: scale,
+          opacity: opacity
         }}
       />
+      {/* Dark gradient overlay for contrast */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-black/40"></div>
     </div>    {/* Animation styles */}
     <style>{`
       @keyframes fadeInUp {

@@ -6,18 +6,8 @@ const Contact = () => {
     return (
         <motion.section 
             id="contact" 
-            className="py-24 sm:py-32 relative overflow-hidden"
+            className="py-24 sm:py-32 relative overflow-hidden bg-black"
         >
-            {/* Background Image with Light Dark Gradient */}
-            <div className="absolute inset-0">
-                <img 
-                    src="/Starlink_Rural_Location_02a-scaled.jpg" 
-                    alt="Starlink rural installation"
-                    className="w-full h-full object-cover"
-                />
-                {/* Light dark gradient overlay for contrast */}
-                <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-black/40"></div>
-            </div>
             <motion.div 
                 className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
                 initial={{ opacity: 0, y: 50 }}
