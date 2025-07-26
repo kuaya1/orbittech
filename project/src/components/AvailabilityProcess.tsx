@@ -323,17 +323,9 @@ const AvailabilityProcess = () => {
     `}</style>
       <motion.div 
         className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl relative z-10"
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
       >
-        <motion.div 
+        <div 
           className="max-w-3xl mx-auto"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6, delay: 0.2 }}
         >
           <form onSubmit={checkServiceArea} className="w-full animate-fadeInUp" style={{animationDelay: '200ms'}}>
             <div className="flex flex-col sm:flex-row items-end gap-3">
@@ -434,7 +426,8 @@ const AvailabilityProcess = () => {
               Maryland, Virginia, Pennsylvania, Delaware, and West Virginia within 150 miles of DC.
             </p>
           </div>
-        </motion.div>
+          </div>
+        </div>
       </motion.div>
     </motion.section>
   );
