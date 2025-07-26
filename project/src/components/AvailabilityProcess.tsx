@@ -384,66 +384,67 @@ const AvailabilityProcess = () => {
               <button
                 type="submit"
                 disabled={serviceStatus === 'loading' || zipCode.length !== 5}
-                className="w-full bg-black hover:bg-gray-800 disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-semibold py-4 px-6 rounded-lg text-lg transition-all duration-200 flex items-center justify-center gap-2"
+                className="group w-full bg-white hover:bg-gray-50 disabled:bg-gray-100 disabled:cursor-not-allowed border-2 border-gray-900 hover:border-gray-700 disabled:border-gray-300 text-gray-900 disabled:text-gray-400 font-medium py-3.5 px-6 rounded-full text-base transition-all duration-300 flex items-center justify-center gap-2 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0"
               >
                 {serviceStatus === 'loading' ? (
                   <>
-                    <Loader2 className="h-5 w-5 animate-spin" />
-                    Checking...
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                    <span>Checking</span>
                   </>
                 ) : (
-                  'Check Availability'
+                  <>
+                    <span>Check Availability</span>
+                    <svg 
+                      className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </>
                 )}
               </button>
             </form>
           </div>
-          <div className="mt-6">
+          <div className="mt-6 text-center">
             {errorMessage && (
-              <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-center gap-3" role="alert">
-                <Info className="h-5 w-5 text-red-500 flex-shrink-0" />
-                <span className="text-red-800 font-medium">{errorMessage}</span>
+              <div className="mt-3 text-red-300 text-sm flex items-center justify-center gap-2 font-medium" role="alert">
+                <Info className="h-4 w-4 flex-shrink-0" />
+                {errorMessage}
               </div>
             )}
             {serviceStatus !== 'loading' && serviceStatus !== null && showResults && (
-              <div className={`rounded-lg p-6 border-2 transition-all duration-700 animate-fadeInUp ${
+              <div className={`rounded-xl p-6 backdrop-blur-sm border transition-all duration-700 animate-fadeInUp bg-black/40 ${
                 serviceStatus === true
-                  ? 'bg-green-50 border-green-200' 
-                  : 'bg-orange-50 border-orange-200'
+                  ? 'border-green-500/50' 
+                  : 'border-red-500/50'
               }`}>
                 <div className="flex items-start gap-4">
-                  <div className={`w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 ${
-                    serviceStatus === true ? 'bg-green-100' : 'bg-orange-100'
+                  <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 backdrop-blur-sm border ${
+                    serviceStatus === true ? 'bg-green-500/20 border-green-500/30' : 'bg-red-500/20 border-red-500/30'
                   }`}>
                     {serviceStatus === true ? (
-                      <CheckCircle className="h-6 w-6 text-green-600" />
+                      <CheckCircle className="h-5 w-5 text-green-400" />
                     ) : (
-                      <XCircle className="h-6 w-6 text-orange-600" />
+                      <XCircle className="h-5 w-5 text-red-400" />
                     )}
                   </div>
-                  <div className="flex-grow">
-                    <h4 className={`text-xl font-bold mb-2 ${
-                      serviceStatus === true ? 'text-green-900' : 'text-orange-900'
-                    }`}>
-                      {serviceStatus === true ? 'Service Available!' : 'Service Not Available'}
+                  <div className="flex-grow text-left">
+                    <h4 className="text-lg font-bold text-white mb-1">
+                      {serviceStatus === true ? 'Service Available!' : 'Not Available Yet'}
                     </h4>
-                    <p className={`leading-relaxed ${
-                      serviceStatus === true ? 'text-green-800' : 'text-orange-800'
-                    }`}>
+                    <p className="text-white/80 leading-relaxed">
                       {serviceStatus === true
-                        ? `Great news! We provide professional Starlink installation services in ${zipCode}. You can get high-speed satellite internet with same-day installation.` 
-                        : `We're not currently servicing ${zipCode}, but we're expanding rapidly. Join our waitlist to be notified when service becomes available in your area.`}
+                        ? `Great! We provide professional Starlink installation services in ${zipCode}. You can get high-speed satellite internet with same-day installation.` 
+                        : `We're not currently servicing ${zipCode}, but we're expanding rapidly. Join our waitlist to be notified when service becomes available.`}
                     </p>
-                    {serviceStatus === true && (
-                      <button className="mt-4 bg-black hover:bg-gray-800 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200">
-                        Order Now
-                      </button>
-                    )}
                   </div>
                 </div>
               </div>
             )}
-            <p className="text-center text-gray-600 text-sm leading-relaxed font-medium mt-8 bg-white/90 rounded-lg p-4">
-              Currently serving the <span className="text-gray-900 font-semibold">Washington DC Metro area</span> including 
+            <p className="text-white/60 text-sm leading-relaxed font-medium mt-8">
+              Currently serving the <span className="text-white font-semibold">Washington DC Metro area</span> including 
               Maryland, Virginia, Pennsylvania, Delaware, and West Virginia within 150 miles of DC.
             </p>
           </div>
