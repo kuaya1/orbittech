@@ -375,7 +375,7 @@ const AvailabilityProcess = () => {
                 <button
                   type="submit"
                   disabled={serviceStatus === 'loading' || zipCode.length !== 5}
-                  className="w-full px-8 py-3 rounded-md bg-white text-black font-bold text-base hover:bg-gray-100 transition disabled:bg-gray-400 disabled:cursor-not-allowed"
+                  className="w-full px-8 py-3 rounded-md bg-white text-black font-bold text-base hover:bg-gray-400 transition disabled:bg-gray-100 disabled:cursor-not-allowed"
                 >
                   {serviceStatus === 'loading' ? (
                     <Loader2 className="h-5 w-5 animate-spin mx-auto" />
