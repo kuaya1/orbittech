@@ -9,7 +9,7 @@ const Contact = () => {
             {/* Full Background Image - Desktop Only */}
             <div className="absolute inset-0 hidden lg:block">
                 <img 
-                    src="/satellit.png" 
+                    src="/Starlink_Rural_Location_02a-scaled.jpg" 
                     alt="Starlink satellite dish on roof"
                     className="w-full h-full object-cover opacity-30 scale-110"
                 />
