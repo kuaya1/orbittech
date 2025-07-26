@@ -1,33 +1,79 @@
 import { Phone, Mail, MapPin, Clock } from 'lucide-react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
 
 const Contact = () => {
+    const sectionRef = useRef(null);
+    const { scrollYProgress } = useScroll({
+        target: sectionRef,
+        offset: ["start end", "end start"]
+    });
+    
+    const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+    const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.12, 0.12, 0.12]);
+
     return (
-        <section 
+        <motion.section 
+            ref={sectionRef}
             id="contact" 
             className="py-24 sm:py-32 relative overflow-hidden bg-black"
         >
-            {/* Full Background Image - Desktop Only */}
+            {/* Full Background Image - Desktop Only with Scroll Effect */}
             <div className="absolute inset-0 hidden lg:block">
-                <img 
+                <motion.img 
                     src="/Starlink_Rural_Location_02a-scaled.jpg" 
                     alt="Starlink satellite dish on roof"
-                    className="w-full h-full object-cover opacity-30 scale-110"
+                    className="w-full h-full object-cover scale-110"
+                    style={{ 
+                        y: backgroundY,
+                        opacity: opacity
+                    }}
                 />
                 <div className="absolute inset-0 bg-black/60"></div>
             </div>
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <motion.div 
+                className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+            >
                 {/* Header */}
-                <div className="text-center mb-20">
-                    <h2 className="text-4xl sm:text-5xl font-medium text-neutral-50 tracking-tighter leading-tight mb-6">
+                <motion.div 
+                    className="text-center mb-20"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                >
+                    <motion.h2 
+                        className="text-4xl sm:text-5xl font-medium text-neutral-50 tracking-tighter leading-tight mb-6"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.3 }}
+                    >
                         Get a Free Quote
-                    </h2>
-                    <p className="text-lg leading-8 text-neutral-400 max-w-2xl mx-auto">
+                    </motion.h2>
+                    <motion.p 
+                        className="text-lg leading-8 text-neutral-400 max-w-2xl mx-auto"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.4 }}
+                    >
                         Have questions? We're here to help. Reach out to us for a no-obligation consultation.
-                    </p>
-                </div>
+                    </motion.p>
+                </motion.div>
 
                 {/* Modern Minimal Container */}
-                <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <motion.div 
+                    className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16"
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.8, delay: 0.3 }}
+                >
                     
                     {/* Information Card - Minimal Design */}
                     <div className="space-y-12">
@@ -173,9 +219,9 @@ const Contact = () => {
                             </div>
                         </form>
                     </div>
-                </div>
-            </div>
-        </section>
+                </motion.div>
+            </motion.div>
+        </motion.section>
     );
 };
 

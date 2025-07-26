@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { CheckCircle, XCircle, Loader2, Info, History, Target } from 'lucide-react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 // Updated serviceableZips to include all regions within 150 miles of DC
 const serviceableZips = new Set([
@@ -151,9 +152,16 @@ const serviceableZips = new Set([
 ]);
 
 const AvailabilityProcess = () => {
-  // Scroll animation state
-  const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+  
+  // Scroll effects for background image
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"]
+  });
+  
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const backgroundOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.12, 0.12, 0.12]);
   
   // Availability check state
   const [zipCode, setZipCode] = useState('');
@@ -166,29 +174,6 @@ const AvailabilityProcess = () => {
   // Input references for better focus management
   const inputRef = useRef<HTMLInputElement>(null);
   const blurTimeoutRef = useRef<number | null>(null);
-
-  // Intersection Observer for scroll animations
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
 
   // Load recent searches from localStorage on component mount
   useEffect(() => {
@@ -293,19 +278,28 @@ const AvailabilityProcess = () => {
   }, []);
 
   return (
-    <section
+    <motion.section
       ref={sectionRef}
       id="availability-process"
       className="pt-32 pb-20 md:pt-40 md:pb-32 bg-black relative overflow-hidden flex items-center justify-center"
       style={{
         minHeight: '80vh'
-      }}>
-      {/* Full Background Image - Similar to Contact Section */}
+      }}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.8 }}
+    >
+      {/* Full Background Image with Scroll Effects */}
       <div className="absolute inset-0">
-        <img 
+        <motion.img 
           src="/satellit.png" 
           alt="Starlink satellite installation"
-          className="w-full h-full object-cover opacity-30 scale-110"
+          className="w-full h-full object-cover scale-110"
+          style={{ 
+            y: backgroundY,
+            opacity: backgroundOpacity
+          }}
         />
         <div className="absolute inset-0 bg-black/60"></div>
       </div>
@@ -326,10 +320,20 @@ const AvailabilityProcess = () => {
         animation: fadeInUp 0.8s ease-out forwards;
       }
     `}</style>
-      <div className={`container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl relative z-10 transition-all duration-1000 delay-200 ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-      }`}>
-        <div className="max-w-3xl mx-auto">
+      <motion.div 
+        className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl relative z-10"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        <motion.div 
+          className="max-w-3xl mx-auto"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
           <form onSubmit={checkServiceArea} className="w-full animate-fadeInUp" style={{animationDelay: '200ms'}}>
             <div className="flex flex-col sm:flex-row items-end gap-3">
               <div className="w-full sm:flex-grow">
@@ -429,9 +433,9 @@ const AvailabilityProcess = () => {
               Maryland, Virginia, Pennsylvania, Delaware, and West Virginia within 150 miles of DC.
             </p>
           </div>
-        </div>
-      </div>
-    </section>
+        </motion.div>
+      </motion.div>
+    </motion.section>
   );
 };
 
