@@ -426,7 +426,6 @@ const AvailabilityProcess = () => {
               Maryland, Virginia, Pennsylvania, Delaware, and West Virginia within 150 miles of DC.
             </p>
           </div>
-          </div>
         </div>
       </motion.div>
     </motion.section>
