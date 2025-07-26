@@ -10,26 +10,23 @@ const Contact = () => {
     });
     
     const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-    const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.12, 0.12, 0.12]);
 
     return (
         <motion.section 
             ref={sectionRef}
             id="contact" 
-            className="py-24 sm:py-32 relative overflow-hidden bg-black lg:bg-transparent"
+            className="py-24 sm:py-32 relative overflow-hidden"
         >
-            {/* Background Image with Scroll Effects */}
+            {/* Background Image - Full Screen, No Filters */}
             <div className="absolute inset-0">
                 <motion.img 
                     src="/satellit.png" 
                     alt="Starlink satellite installation"
-                    className="w-full h-full object-cover scale-110 hidden lg:block"
+                    className="w-full h-full object-cover"
                     style={{ 
-                        y: backgroundY,
-                        opacity: opacity
+                        y: backgroundY
                     }}
                 />
-                <div className="absolute inset-0 bg-black/30 lg:bg-transparent"></div>
             </div>
             <motion.div 
                 className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"

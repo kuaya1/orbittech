@@ -161,7 +161,6 @@ const AvailabilityProcess = () => {
   });
   
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const backgroundOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.12, 0.12, 0.12]);
   
   // Availability check state
   const [zipCode, setZipCode] = useState('');
@@ -278,33 +277,29 @@ const AvailabilityProcess = () => {
   }, []);
 
   return (
-    <motion.section
-      ref={sectionRef}
-      id="availability-process"
-      className="pt-32 pb-20 md:pt-40 md:pb-32 bg-transparent relative overflow-hidden flex items-center justify-center"
-      style={{
-        minHeight: '80vh'
-      }}
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.8 }}
-    >
-      {/* Full Background Image with Scroll Effects */}
-      <div className="absolute inset-0">
-        <motion.img 
-          src="/satellit.png" 
-          alt="Starlink satellite installation"
-          className="w-full h-full object-cover scale-110"
-          style={{ 
-            y: backgroundY,
-            opacity: backgroundOpacity
-          }}
-        />
-        <div className="absolute inset-0 bg-transparent"></div>
-      </div>
-      
-    {/* Animation styles */}
+  <motion.section
+    ref={sectionRef}
+    id="availability-process"
+    className="pt-32 pb-20 md:pt-40 md:pb-32 relative overflow-hidden flex items-center justify-center"
+    style={{
+      minHeight: '80vh'
+    }}
+    initial={{ opacity: 0 }}
+    whileInView={{ opacity: 1 }}
+    viewport={{ once: true, margin: "-100px" }}
+    transition={{ duration: 0.8 }}
+  >
+    {/* Full Background Image - No Filters */}
+    <div className="absolute inset-0">
+      <motion.img 
+        src="/satellit.png" 
+        alt="Starlink satellite installation"
+        className="w-full h-full object-cover"
+        style={{ 
+          y: backgroundY
+        }}
+      />
+    </div>    {/* Animation styles */}
     <style>{`
       @keyframes fadeInUp {
         from {
