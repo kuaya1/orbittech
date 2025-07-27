@@ -130,17 +130,19 @@ const Hero = () => {
                                     ))}
                             </motion.h1>
 
-                            {/* 2. Clean Subtitle - Gladia Style */}
+                            {/* 2. Enhanced Subtitle with Bright Colors and Shadow */}
                             <motion.p 
                                 className="text-base sm:text-lg lg:text-xl leading-relaxed max-w-2xl mx-auto lg:mx-0 font-medium"
                                 variants={fadeInUp}
                                 transition={{ delay: 0.8 }}
                                 style={{
-                                    color: '#94a3b8',
-                                    lineHeight: '1.6'
+                                    color: '#f1f5f9',
+                                    lineHeight: '1.6',
+                                    textShadow: '0 2px 4px rgba(0, 0, 0, 0.8), 0 4px 8px rgba(0, 0, 0, 0.4)',
+                                    filter: 'brightness(1.1) contrast(1.1)'
                                 }}
                             >
-                                A complete installation service that eliminates connectivity issues and drastically improves your internet experience. Professional setup with same-day installation in the DMV area.
+                                Expert installation services across the DMV region, connecting your home or business with reliable high-speed internet.
                             </motion.p>
 
                             {/* 3. Mobile Image Block - Shows only on mobile - 15% bigger */}
