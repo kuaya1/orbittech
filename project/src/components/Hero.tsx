@@ -108,8 +108,10 @@ const Hero = () => {
                             className="order-1 lg:order-1 space-y-6 sm:space-y-8 text-center lg:text-left -mt-17 lg:mt-0"
                             variants={slideInLeft}
                         >
-                            {/* 1. Enhanced Animated Title - Clean Contemporary Style */}
-                            <motion.h1 className="text-[2.5rem] sm:text-[2.6rem] lg:text-[3.3rem] xl:text-[4rem] font-bold text-white tracking-tight leading-tight">
+                            {/* 1. Enhanced Animated Title - Modern Framer/Figma Style */}
+                            <motion.h1 className="text-[2.5rem] sm:text-[2.6rem] lg:text-[3.3rem] xl:text-[4rem] font-bold text-white tracking-tight leading-tight relative">
+                                {/* Subtle background glow */}
+                                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-blue-500/10 rounded-2xl blur-xl -z-10"></div>
                                 {"Professional Starlink Installation Service"
                                     .split(" ")
                                     .map((word, index) => (
@@ -117,7 +119,15 @@ const Hero = () => {
                                             key={index}
                                             variants={wordReveal}
                                             custom={index}
-                                            className="inline-block mr-2"
+                                            className="inline-block mr-2 relative"
+                                            style={{
+                                                background: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 25%, #ffffff 50%, #e2e8f0 75%, #ffffff 100%)',
+                                                WebkitBackgroundClip: 'text',
+                                                WebkitTextFillColor: 'transparent',
+                                                backgroundClip: 'text',
+                                                textShadow: '0 0 40px rgba(255,255,255,0.3)',
+                                                filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))'
+                                            }}
                                         >
                                             {word}
                                         </motion.span>
