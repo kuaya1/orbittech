@@ -108,10 +108,8 @@ const Hero = () => {
                             className="order-1 lg:order-1 space-y-6 sm:space-y-8 text-center lg:text-left -mt-17 lg:mt-0"
                             variants={slideInLeft}
                         >
-                            {/* 1. Enhanced Animated Title - Modern Framer/Figma Style */}
-                            <motion.h1 className="text-[2.5rem] sm:text-[2.6rem] lg:text-[3.3rem] xl:text-[4rem] font-bold text-white tracking-tight leading-tight relative">
-                                {/* Subtle background glow */}
-                                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-blue-500/10 rounded-2xl blur-xl -z-10"></div>
+                            {/* 1. Clean Bold Title - Gladia Style */}
+                            <motion.h1 className="text-[2.5rem] sm:text-[2.6rem] lg:text-[3.3rem] xl:text-[4rem] font-bold tracking-tight leading-tight">
                                 {"Professional Starlink Installation Service"
                                     .split(" ")
                                     .map((word, index) => (
@@ -119,14 +117,12 @@ const Hero = () => {
                                             key={index}
                                             variants={wordReveal}
                                             custom={index}
-                                            className="inline-block mr-2 relative"
+                                            className="inline-block mr-2"
                                             style={{
-                                                background: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 25%, #ffffff 50%, #e2e8f0 75%, #ffffff 100%)',
+                                                background: 'linear-gradient(180deg, #ffffff 0%, #e2e8f0 100%)',
                                                 WebkitBackgroundClip: 'text',
                                                 WebkitTextFillColor: 'transparent',
                                                 backgroundClip: 'text',
-                                                textShadow: '0 0 40px rgba(255,255,255,0.3)',
-                                                filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))'
                                             }}
                                         >
                                             {word}
@@ -134,13 +130,17 @@ const Hero = () => {
                                     ))}
                             </motion.h1>
 
-                            {/* 2. Enhanced Subtitle */}
+                            {/* 2. Clean Subtitle - Gladia Style */}
                             <motion.p 
-                                className="text-base sm:text-lg lg:text-xl text-neutral-300 leading-relaxed max-w-2xl mx-auto lg:mx-0"
+                                className="text-base sm:text-lg lg:text-xl leading-relaxed max-w-2xl mx-auto lg:mx-0 font-medium"
                                 variants={fadeInUp}
                                 transition={{ delay: 0.8 }}
+                                style={{
+                                    color: '#94a3b8',
+                                    lineHeight: '1.6'
+                                }}
                             >
-                                Get your Starlink professionally installed by certified experts serving the DMV area and beyond.
+                                A complete installation service that eliminates connectivity issues and drastically improves your internet experience. Professional setup with same-day installation in the DMV area.
                             </motion.p>
 
                             {/* 3. Mobile Image Block - Shows only on mobile - 15% bigger */}
