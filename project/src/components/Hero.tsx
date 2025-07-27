@@ -108,8 +108,9 @@ const Hero = () => {
                             className="order-1 lg:order-1 space-y-6 sm:space-y-8 text-center lg:text-left -mt-17 lg:mt-0"
                             variants={slideInLeft}
                         >
-                            {/* 1. Enhanced Animated Title - 10% bigger */}
-                            <motion.h1 className="text-[2.5rem] sm:text-[2.6rem] lg:text-[3.3rem] xl:text-[4rem] font-bold text-white tracking-tight leading-tight">
+                            {/* 1. Enhanced Animated Title - Modern Framer Style */}
+                            <motion.h1 className="text-[2.5rem] sm:text-[2.6rem] lg:text-[3.3rem] xl:text-[4rem] font-bold bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent tracking-tight leading-tight relative">
+                                <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 via-purple-400/20 to-blue-400/20 blur-3xl -z-10 rounded-lg"></div>
                                 {"Professional Starlink Installation Service"
                                     .split(" ")
                                     .map((word, index) => (
@@ -117,7 +118,11 @@ const Hero = () => {
                                             key={index}
                                             variants={wordReveal}
                                             custom={index}
-                                            className="inline-block mr-2"
+                                            className="inline-block mr-2 relative"
+                                            style={{
+                                                textShadow: '0 0 30px rgba(255,255,255,0.5), 0 0 60px rgba(59,130,246,0.3)',
+                                                filter: 'drop-shadow(0 4px 20px rgba(255,255,255,0.1))'
+                                            }}
                                         >
                                             {word}
                                         </motion.span>
