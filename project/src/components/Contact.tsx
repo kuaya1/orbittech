@@ -202,6 +202,10 @@ const App = () => {
                 <ContactInfoItem icon="phone" title="Phone" href="tel:+15719996915" color={calciteBlue}>
                     (571) 999-6915
                 </ContactInfoItem>
+                <ContactInfoItem icon="locator" title="Address" color={calciteBlue}>
+                    8000 Westpark Drive, STE 450<br />
+                    McLean, VA 22102
+                </ContactInfoItem>
                 <ContactInfoItem icon="locator" title="Service Area" color={calciteBlue}>
                     DC, Maryland, Virginia
                 </ContactInfoItem>
@@ -244,6 +248,43 @@ const App = () => {
                     </div>
                 </div>
             </form>
+        </div>
+      </div>
+      
+      {/* Google Maps Section */}
+      <div className="w-full max-w-7xl mx-auto mt-16">
+        <div className="bg-neutral-900/90 border border-neutral-800 rounded-2xl p-8 lg:p-12">
+          <h2 className="text-3xl font-bold text-white mb-6 text-center">Our Service Area</h2>
+          <p className="text-neutral-400 text-center mb-8 max-w-2xl mx-auto">
+            Located in McLean, VA, we provide professional Starlink installation services throughout the DMV area and surrounding regions.
+          </p>
+          
+          <div className="relative h-96 rounded-xl overflow-hidden border border-neutral-700">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3105.4234567890123!2d-77.2297!3d38.9338!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xe6c3cb2e3bfa4ade!2s8000%20Westpark%20Dr%20STE%20450%2C%20McLean%2C%20VA%2022102!5e0!3m2!1sen!2sus!4v1640000000000!5m2!1sen!2sus"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen={true}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="The Orbit Tech Location - McLean, VA"
+            ></iframe>
+          </div>
+          
+          <div className="mt-6 text-center">
+            <a 
+              href="https://www.google.com/maps/place/?cid=16628350007596958974"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl"
+            >
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+              </svg>
+              View on Google Maps & Leave a Review
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -310,16 +351,32 @@ const TextareaField = ({ label, id, accentColor, theme = 'dark', ...props }) => 
     </div>
 );
 
-const ContactInfoItem = ({ icon, title, href, color, children }) => (
-    <a href={href} className="flex items-center group">
-        <CalciteIcon icon={icon} scale="m" style={{ color: color }} className="flex-shrink-0 w-6 h-6 mr-4"/>
-        <div>
-            <h4 className="text-neutral-400 text-sm font-medium">{title}</h4>
-            <div className="text-white font-medium transition-colors duration-300 group-hover:text-neutral-300">
-                {children}
+const ContactInfoItem = ({ icon, title, href, color, children }) => {
+    const content = (
+        <>
+            <CalciteIcon icon={icon} scale="m" style={{ color: color }} className="flex-shrink-0 w-6 h-6 mr-4"/>
+            <div>
+                <h4 className="text-neutral-400 text-sm font-medium">{title}</h4>
+                <div className="text-white font-medium transition-colors duration-300 group-hover:text-neutral-300">
+                    {children}
+                </div>
             </div>
+        </>
+    );
+    
+    if (href) {
+        return (
+            <a href={href} className="flex items-center group">
+                {content}
+            </a>
+        );
+    }
+    
+    return (
+        <div className="flex items-center group">
+            {content}
         </div>
-    </a>
-);
+    );
+};
 
 export default App;

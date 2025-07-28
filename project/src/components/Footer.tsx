@@ -65,7 +65,7 @@ const Footer = () => {
               </p>
             </div>
             
-            {/* Contact info with minimal design */}
+            {/* Contact info with minimal design - Updated NAP */}
             <div className="space-y-3">
               <a href="tel:+15719996915" className="flex items-center text-neutral-400 hover:text-neutral-50 transition-all duration-300 group">
                 <span className="text-sm tracking-wide">(571) 999-6915</span>
@@ -73,6 +73,10 @@ const Footer = () => {
               <a href="mailto:contact@theorbittech.com" className="flex items-center text-neutral-400 hover:text-neutral-50 transition-all duration-300 group">
                 <span className="text-sm tracking-wide">contact@theorbittech.com</span>
               </a>
+              <div className="text-neutral-400 text-sm tracking-wide">
+                8000 Westpark Drive, STE 450<br />
+                McLean, VA 22102
+              </div>
             </div>
           </div>
           
@@ -98,9 +102,10 @@ const Footer = () => {
           <div className="space-y-4">
             <h4 className="font-medium text-neutral-50 tracking-tighter text-lg">Support</h4>
             <ul className="space-y-3">
-                <FooterLink href="/#contact">Contact Us</FooterLink>
-                <FooterLink href="/#availability-process">Check Coverage</FooterLink>
-                <FooterLink href="https://starlink.com" target="_blank" rel="noopener noreferrer">Order Starlink Kit</FooterLink>
+              <FooterLink href="/#contact">Contact Us</FooterLink>
+              <FooterLink href="/#availability-process">Check Coverage</FooterLink>
+              <FooterLink href="https://starlink.com" target="_blank" rel="noopener noreferrer">Order Starlink Kit</FooterLink>
+              <FooterLink href="https://www.google.com/maps/place/?cid=16628350007596958974" target="_blank" rel="noopener noreferrer">Leave us a Review on Google!</FooterLink>
             </ul>
           </div>
 
