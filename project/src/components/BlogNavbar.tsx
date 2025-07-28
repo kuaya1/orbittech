@@ -65,7 +65,7 @@ const BlogNavbar = () => {
               <img 
                 src="/Starlink Dmv (33).png" 
                 alt="Orbit Tech Logo" 
-                className="h-11 w-auto"
+                className="h-9 w-auto"
               />
             </a>
 

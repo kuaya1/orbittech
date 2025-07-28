@@ -89,7 +89,7 @@ const Navbar = () => {
               <img 
                 src="/Starlink Dmv (33).png" 
                 alt="Orbittec Logo" 
-                className="h-12 w-auto transition-all duration-300"
+                className="h-10 w-auto transition-all duration-300"
               />
             </a>
 
