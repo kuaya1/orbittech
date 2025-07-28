@@ -56,7 +56,7 @@ const Footer = () => {
             <div>
               <a href="/" className="inline-block">
                 <img 
-                  src="/Starlink Dmv (30).png" 
+                  src="/Starlink Dmv (33).png" 
                   alt="Orbittec Logo" 
                   className="h-14 w-auto mb-4 transition-all duration-300 hover:scale-105"
                 />

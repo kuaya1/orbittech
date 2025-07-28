@@ -63,7 +63,7 @@ const BlogNavbar = () => {
             {/* Logo - Blog specific with black logo */}
             <a href="/" className="flex items-center" onClick={(e) => handleLinkClick(e, '/')}>
               <img 
-                src="/Starlink Dmv (30).png" 
+                src="/Starlink Dmv (33).png" 
                 alt="Orbit Tech Logo" 
                 className="h-11 w-auto"
               />
