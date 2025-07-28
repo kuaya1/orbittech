@@ -54,11 +54,13 @@ const Footer = () => {
           {/* Logo and description with modern styling */}
           <div className="lg:col-span-2 space-y-6">
             <div>
-              <img 
-                src="/Starlink Dmv (30).png" 
-                alt="Orbittec Logo" 
-                className="h-12 w-auto mb-4 transition-all duration-300 hover:scale-105"
-              />
+              <a href="/" className="inline-block">
+                <img 
+                  src="/Starlink Dmv (31).png" 
+                  alt="Orbittec Logo" 
+                  className="h-14 w-auto mb-4 transition-all duration-300 hover:scale-105"
+                />
+              </a>
               <p className="text-neutral-400 text-base leading-relaxed max-w-md">
                 Professional Starlink installation services across the DMV area and beyond. 
                 Connecting you to the future of internet.

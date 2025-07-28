@@ -69,8 +69,10 @@ document.querySelector('#app').innerHTML = `
       <div class="flex justify-between h-16">
         <div class="flex items-center">
           <div class="flex-shrink-0 flex items-center">
-            <img src="./Starlink Dmv (30).png" alt="Orbittec Logo" class="h-10 w-auto mr-3">
-            <span class="text-xl font-bold text-gray-900">Orbittec</span>
+            <a href="#home" class="flex items-center">
+              <img src="./Starlink Dmv (31).png" alt="Orbittec Logo" class="h-11 w-auto mr-3">
+              <span class="text-xl font-bold text-gray-900">Orbittec</span>
+            </a>
           </div>
         </div>
         <div class="hidden md:flex items-center space-x-8">
@@ -594,8 +596,10 @@ document.querySelector('#app').innerHTML = `
       <div class="grid md:grid-cols-4 gap-8">
         <div class="col-span-2">
           <div class="flex items-center mb-4">
-            <img src="./Starlink Dmv (30).png" alt="Orbittec Logo" class="h-8 w-auto mr-3">
-            <span class="text-xl font-bold">Orbittec</span>
+            <a href="#home" class="flex items-center">
+              <img src="./Starlink Dmv (31).png" alt="Orbittec Logo" class="h-9 w-auto mr-3">
+              <span class="text-xl font-bold">Orbittec</span>
+            </a>
           </div>
           <p class="text-gray-400 mb-6 max-w-md">
             Professional Starlink installation services nationwide. Get connected to high-speed satellite internet with our certified technicians.

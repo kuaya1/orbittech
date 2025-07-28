@@ -22,8 +22,8 @@
       "@context": "https://schema.org",
       "@type": "HomeAndConstructionBusiness",
       "name": "The Orbit Tech",
-      "image": "https://www.theorbittech.com/images/logo.png",
-      "logo": "https://www.theorbittech.com/images/logo.png",
+      "image": "https://www.theorbittech.com/Starlink Dmv (31).png",
+      "logo": "https://www.theorbittech.com/Starlink Dmv (31).png",
       "@id": "https://www.theorbittech.com",
       "url": "https://www.theorbittech.com",
       "telephone": "+1-571-999-6915",
@@ -155,9 +155,21 @@
             color: #1e40af;
         }
         
+        .logo a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: inherit;
+        }
+        
         .logo img {
-            height: 40px;
+            height: 48px;
             margin-right: 10px;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover img {
+            transform: scale(1.05);
         }
         
         .nav-links {
@@ -430,8 +442,10 @@
         <nav>
             <div class="container">
                 <div class="logo">
-                    <img src="/images/logo.png" alt="The Orbit Tech Logo">
-                    <span>The Orbit Tech</span>
+                    <a href="/">
+                        <img src="/Starlink Dmv (31).png" alt="The Orbit Tech Logo">
+                        <span>The Orbit Tech</span>
+                    </a>
                 </div>
                 <ul class="nav-links">
                     <li><a href="/">Home</a></li>
