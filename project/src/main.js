@@ -69,7 +69,7 @@ document.querySelector('#app').innerHTML = `
       <div class="flex justify-between h-16">
         <div class="flex items-center">
           <div class="flex-shrink-0 flex items-center">
-            <img src="./orbittec.png" alt="Orbittec Logo" class="h-10 w-auto mr-3">
+            <img src="./Starlink Dmv (30).png" alt="Orbittec Logo" class="h-10 w-auto mr-3">
             <span class="text-xl font-bold text-gray-900">Orbittec</span>
           </div>
         </div>
@@ -594,7 +594,7 @@ document.querySelector('#app').innerHTML = `
       <div class="grid md:grid-cols-4 gap-8">
         <div class="col-span-2">
           <div class="flex items-center mb-4">
-            <img src="./orbittec.png" alt="Orbittec Logo" class="h-8 w-auto mr-3">
+            <img src="./Starlink Dmv (30).png" alt="Orbittec Logo" class="h-8 w-auto mr-3">
             <span class="text-xl font-bold">Orbittec</span>
           </div>
           <p class="text-gray-400 mb-6 max-w-md">
