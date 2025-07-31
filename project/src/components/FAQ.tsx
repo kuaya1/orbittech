@@ -109,7 +109,7 @@ const FAQ = () => {
         },
         {
           question: "Is there a warranty on your installation work?",
-          answer: "Absolutely. We provide a full one-year warranty covering all aspects of our workmanship, including mounting, cable routing, and weatherproofing. Our licensed and insured technicians adhere to all local codes, giving you complete peace of mind."
+          answer: "Absolutely. We provide a full 90-day warranty covering all aspects of our workmanship, including mounting, cable routing, and weatherproofing. Our licensed and insured technicians adhere to all local codes, giving you complete peace of mind."
         },
     ];
 
