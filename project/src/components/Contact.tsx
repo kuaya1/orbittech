@@ -179,14 +179,17 @@ const App = () => {
     >
       {/* --- Unified Contact Module --- */}
       <div 
-        className="w-full max-w-7xl mx-auto bg-neutral-900/90 border border-neutral-800 rounded-2xl grid grid-cols-1 lg:grid-cols-2 shadow-2xl shadow-black/30 overflow-hidden"
-        style={animationStyle}
+        className="w-full max-w-7xl mx-auto rounded-2xl grid grid-cols-1 lg:grid-cols-2 overflow-hidden backdrop-blur-xl"
+        style={{
+          ...animationStyle,
+          backgroundColor: 'rgba(25, 25, 30, 0.6)'
+        }}
       >
         
         {/* --- Left Column: Info --- */}
         <div 
-          className="p-8 lg:p-12 backdrop-blur-xl border border-white/10 bg-[#101014]/90 rounded-2xl shadow-xl"
-          style={{ background: 'rgba(16, 16, 20, 0.92)' }}
+          className="p-8 lg:p-12 backdrop-blur-xl rounded-2xl"
+          style={{ backgroundColor: 'rgba(20, 20, 25, 0.7)' }}
         >
             <h1 className="text-4xl sm:text-5xl font-medium text-neutral-50 tracking-tighter">
                 Let's Get in Touch
@@ -213,7 +216,7 @@ const App = () => {
         </div>
 
         {/* --- Right Column: Form (Dark Background) --- */}
-        <div className="p-8 lg:p-12 bg-black border border-neutral-800 rounded-2xl">
+        <div className="p-8 lg:p-12 rounded-2xl backdrop-blur-xl" style={{ backgroundColor: 'rgba(15, 15, 20, 0.8)' }}>
             <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <InputField label="Full Name" id="name" name="name" value={formData.name} onChange={handleChange} required accentColor={calciteBlue} />
