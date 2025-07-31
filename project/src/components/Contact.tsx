@@ -179,17 +179,21 @@ const App = () => {
     >
       {/* --- Unified Contact Module --- */}
       <div 
-        className="w-full max-w-7xl mx-auto rounded-2xl grid grid-cols-1 lg:grid-cols-2 overflow-hidden backdrop-blur-xl"
+        className="w-full max-w-7xl mx-auto rounded-3xl grid grid-cols-1 lg:grid-cols-2 overflow-hidden backdrop-blur-md border border-white/10"
         style={{
           ...animationStyle,
-          backgroundColor: 'rgba(25, 25, 30, 0.6)'
+          backgroundColor: 'rgba(0, 0, 0, 0.4)',
+          boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.37)'
         }}
       >
         
         {/* --- Left Column: Info --- */}
         <div 
-          className="p-8 lg:p-12 backdrop-blur-xl rounded-2xl"
-          style={{ backgroundColor: 'rgba(20, 20, 25, 0.7)' }}
+          className="p-8 lg:p-12 backdrop-blur-md rounded-3xl"
+          style={{ 
+            backgroundColor: 'rgba(0, 0, 0, 0.3)',
+            borderRight: '1px solid rgba(255, 255, 255, 0.1)'
+          }}
         >
             <h1 className="text-4xl sm:text-5xl font-medium text-neutral-50 tracking-tighter">
                 Let's Get in Touch
@@ -216,7 +220,10 @@ const App = () => {
         </div>
 
         {/* --- Right Column: Form (Dark Background) --- */}
-        <div className="p-8 lg:p-12 rounded-2xl backdrop-blur-xl" style={{ backgroundColor: 'rgba(15, 15, 20, 0.8)' }}>
+        <div 
+          className="p-8 lg:p-12 rounded-3xl backdrop-blur-md" 
+          style={{ backgroundColor: 'rgba(0, 0, 0, 0.3)' }}
+        >
             <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <InputField label="Full Name" id="name" name="name" value={formData.name} onChange={handleChange} required accentColor={calciteBlue} />
