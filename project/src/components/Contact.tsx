@@ -187,14 +187,14 @@ const App = () => {
         <div 
           className="p-8 lg:p-12 rounded-3xl backdrop-blur-sm"
           style={{ 
-            backgroundColor: 'rgba(0, 0, 0, 0.34)', // darkened by 10%
+            backgroundColor: 'rgba(0, 0, 0, 0.39)', // darkened by 5% more
             boxShadow: '0 2px 12px 0 rgba(0,0,0,0.10)',
           }}
         >
             <h1 className="text-4xl sm:text-5xl font-medium text-neutral-50 tracking-tighter">
                 Let's Get in Touch
             </h1>
-            <p className="mt-4 text-lg text-neutral-400">
+            <p className="mt-4 text-lg text-white">
                 We’ll get back to you within 24 hours.
             </p>
 
@@ -219,7 +219,7 @@ const App = () => {
         <div 
           className="p-8 lg:p-12 rounded-3xl backdrop-blur-sm"
           style={{ 
-            backgroundColor: 'rgba(0, 0, 0, 0.34)', // darkened by 10%
+            backgroundColor: 'rgba(0, 0, 0, 0.39)', // darkened by 5% more
             boxShadow: '0 2px 12px 0 rgba(0,0,0,0.10)',
           }}
         >
@@ -282,11 +282,7 @@ const InputField = ({ label, id, accentColor, theme = 'dark', ...props }) => (
     />
     <label 
       htmlFor={id} 
-      className={`absolute left-1 -top-5 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:-top-5 peer-focus:text-sm ${
-        theme === 'light'
-        ? 'text-neutral-600 peer-placeholder-shown:text-neutral-600 peer-focus:text-neutral-600'
-        : 'text-neutral-500 peer-placeholder-shown:text-neutral-400 peer-focus:text-neutral-500'
-      }`}
+      className={`absolute left-1 -top-5 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:-top-5 peer-focus:text-sm text-white`}
       style={{'--accent-color': accentColor}}
     >
       {label}
@@ -311,11 +307,7 @@ const TextareaField = ({ label, id, accentColor, theme = 'dark', ...props }) => 
       />
       <label 
         htmlFor={id} 
-        className={`absolute left-1 -top-5 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:-top-5 peer-focus:text-sm ${
-          theme === 'light'
-          ? 'text-neutral-600 peer-placeholder-shown:text-neutral-600 peer-focus:text-neutral-600'
-          : 'text-neutral-500 peer-placeholder-shown:text-neutral-400 peer-focus:text-neutral-500'
-        }`}
+        className={`absolute left-1 -top-5 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:-top-5 peer-focus:text-sm text-white`}
         style={{'--accent-color': accentColor}}
       >
         {label}
