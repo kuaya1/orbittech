@@ -187,7 +187,7 @@ const App = () => {
         <div 
           className="p-8 lg:p-12 rounded-3xl backdrop-blur-sm"
           style={{ 
-            backgroundColor: 'rgba(0, 0, 0, 0.39)', // darkened by 5% more
+            backgroundColor: 'rgba(0, 0, 0, 0.42)', // updated glass morph color
             boxShadow: '0 2px 12px 0 rgba(0,0,0,0.10)',
           }}
         >
@@ -219,7 +219,7 @@ const App = () => {
         <div 
           className="p-8 lg:p-12 rounded-3xl backdrop-blur-sm"
           style={{ 
-            backgroundColor: 'rgba(0, 0, 0, 0.39)', // darkened by 5% more
+            backgroundColor: 'rgba(0, 0, 0, 0.42)', // updated glass morph color
             boxShadow: '0 2px 12px 0 rgba(0,0,0,0.10)',
           }}
         >
