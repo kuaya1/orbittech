@@ -174,26 +174,26 @@ const FeaturedInstallations: React.FC = () => {
   };
 
   return (
-    <section id="featured-installations" className="py-20 sm:py-28 bg-black relative overflow-hidden">
+    <section id="featured-installations" className="py-20 sm:py-[128px] bg-black relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 right-1/3 w-80 h-80 bg-white/[0.02] rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 left-1/3 w-80 h-80 bg-white/[0.02] rounded-full blur-3xl"></div>
+        <div className="absolute top-1/4 right-1/3 w-80 h-80 sm:w-[368px] sm:h-[368px] bg-white/[0.02] rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 left-1/3 w-80 h-80 sm:w-[368px] sm:h-[368px] bg-white/[0.02] rounded-full blur-3xl"></div>
       </div>
 
-      <div className="container mx-auto px-4 sm:px-8 lg:px-12 relative z-10 max-w-5xl">
-        <div className="text-center max-w-2xl mx-auto mb-14">
-          <h2 className="text-3xl sm:text-4xl font-semibold text-neutral-50 mb-4 tracking-tight">
+      <div className="container mx-auto px-4 sm:px-10 lg:px-16 relative z-10 max-w-5xl sm:max-w-[69rem]">
+        <div className="text-center max-w-2xl sm:max-w-3xl mx-auto mb-14 sm:mb-20">
+          <h2 className="text-3xl sm:text-5xl font-semibold text-neutral-50 mb-4 sm:mb-6 tracking-tight">
             Starlink Installs, Done Right
           </h2>
-          <p className="text-base text-neutral-400">
+          <p className="text-base sm:text-xl text-neutral-400">
             A few real projects—fast, reliable internet for real people. Simple, seamless, and always professional.
           </p>
         </div>
 
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-3xl sm:max-w-4xl mx-auto">
           <div ref={contentRef} className="transition-opacity duration-300" style={{ opacity: 1 }}>
             <div className="bg-white/[0.02] border border-white/10 rounded-2xl overflow-hidden backdrop-blur-sm">
-              <div className="relative h-64 bg-black">
+              <div className="relative h-64 sm:h-[294px] bg-black">
                 <img
                   src={activeImage}
                   alt={`Starlink installation: ${activeCase.title}`}
@@ -232,9 +232,9 @@ const FeaturedInstallations: React.FC = () => {
                   ))}
                 </div>
               </div>
-              <div className="p-6 sm:p-8">
-                <div className="space-y-6">
-                  <div className="flex flex-wrap items-center gap-4 text-xs text-neutral-500 mb-2">
+              <div className="p-6 sm:p-10">
+                <div className="space-y-6 sm:space-y-8">
+                  <div className="flex flex-wrap items-center gap-4 text-xs sm:text-sm text-neutral-500 mb-2 sm:mb-4">
                     <div className="flex items-center gap-1">
                       {getClientTypeIcon(activeCase.clientType)}
                       <span className="uppercase tracking-wider">{getClientTypeLabel(activeCase.clientType)}</span>
@@ -248,54 +248,54 @@ const FeaturedInstallations: React.FC = () => {
                       <span className="uppercase tracking-wider">{activeCase.date}</span>
                     </div>
                   </div>
-                  <h3 className="text-xl font-semibold text-neutral-50">
+                  <h3 className="text-xl sm:text-2xl font-semibold text-neutral-50">
                     {activeCase.title}
                   </h3>
-                  <p className="text-neutral-300 text-base">
+                  <p className="text-neutral-300 text-base sm:text-lg">
                     {activeCase.description}
                   </p>
-                  <div className="bg-white/[0.02] border border-white/10 rounded-lg p-5">
-                    <div className="flex items-center justify-between max-w-xs mx-auto">
+                  <div className="bg-white/[0.02] border border-white/10 rounded-lg p-5 sm:p-7">
+                    <div className="flex items-center justify-between max-w-xs sm:max-w-sm mx-auto">
                       <div className="text-center">
-                        <div className="text-lg font-semibold text-red-400 mb-1">{activeCase.beforeSpeed}</div>
-                        <div className="text-xs text-neutral-500 uppercase tracking-wider">Before</div>
+                        <div className="text-lg sm:text-2xl font-semibold text-red-400 mb-1">{activeCase.beforeSpeed}</div>
+                        <div className="text-xs sm:text-sm text-neutral-500 uppercase tracking-wider">Before</div>
                       </div>
-                      <div className="px-4">
-                        <ArrowRight className="w-4 h-4 text-neutral-600" />
+                      <div className="px-4 sm:px-6">
+                        <ArrowRight className="w-4 h-4 sm:w-6 sm:h-6 text-neutral-600" />
                       </div>
                       <div className="text-center">
-                        <div className="text-lg font-semibold text-green-400 mb-1">{activeCase.afterSpeed}</div>
-                        <div className="text-xs text-neutral-500 uppercase tracking-wider">After</div>
+                        <div className="text-lg sm:text-2xl font-semibold text-green-400 mb-1">{activeCase.afterSpeed}</div>
+                        <div className="text-xs sm:text-sm text-neutral-500 uppercase tracking-wider">After</div>
                       </div>
                     </div>
                   </div>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
                     <div>
-                      <h4 className="font-semibold text-neutral-50 text-sm mb-1">Challenge</h4>
-                      <p className="text-xs text-neutral-400">{activeCase.challenge}</p>
+                      <h4 className="font-semibold text-neutral-50 text-sm sm:text-base mb-1">Challenge</h4>
+                      <p className="text-xs sm:text-sm text-neutral-400">{activeCase.challenge}</p>
                     </div>
                     <div>
-                      <h4 className="font-semibold text-neutral-50 text-sm mb-1">Solution</h4>
-                      <p className="text-xs text-neutral-400">{activeCase.solution}</p>
+                      <h4 className="font-semibold text-neutral-50 text-sm sm:text-base mb-1">Solution</h4>
+                      <p className="text-xs sm:text-sm text-neutral-400">{activeCase.solution}</p>
                     </div>
                     <div>
-                      <h4 className="font-semibold text-neutral-50 text-sm mb-1">Result</h4>
-                      <p className="text-xs text-neutral-400">{activeCase.result}</p>
+                      <h4 className="font-semibold text-neutral-50 text-sm sm:text-base mb-1">Result</h4>
+                      <p className="text-xs sm:text-sm text-neutral-400">{activeCase.result}</p>
                     </div>
                   </div>
-                  <div className="bg-white/[0.02] border border-white/10 rounded-lg p-5 mt-2">
-                    <div className="flex items-center mb-3">
+                  <div className="bg-white/[0.02] border border-white/10 rounded-lg p-5 sm:p-7 mt-2">
+                    <div className="flex items-center mb-3 sm:mb-4">
                       {[...Array(5)].map((_, idx) => (
                         <Star
                           key={idx}
-                          className={`w-4 h-4 ${idx < activeCase.testimonial.rating ? "text-yellow-400 fill-current" : "text-neutral-600"}`}
+                          className={`w-4 h-4 sm:w-5 sm:h-5 ${idx < activeCase.testimonial.rating ? "text-yellow-400 fill-current" : "text-neutral-600"}`}
                         />
                       ))}
                     </div>
-                    <blockquote className="text-neutral-300 mb-3 text-sm">
+                    <blockquote className="text-neutral-300 mb-3 sm:mb-4 text-sm sm:text-base">
                       “{activeCase.testimonial.quote}”
                     </blockquote>
-                    <p className="font-semibold text-neutral-50 text-xs">
+                    <p className="font-semibold text-neutral-50 text-xs sm:text-sm">
                       {activeCase.testimonial.author}
                     </p>
                   </div>
@@ -303,14 +303,14 @@ const FeaturedInstallations: React.FC = () => {
               </div>
             </div>
           </div>
-          <div className="flex justify-center mt-8 gap-1">
+          <div className="flex justify-center mt-8 sm:mt-12 gap-1 sm:gap-2">
             {filteredCases.map((_, index) => (
               <button
                 key={index}
                 onClick={() => changeCase(index)}
                 aria-label={`Go to case ${index + 1}`}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  activeIndex === index ? 'bg-white w-6' : 'bg-white/30 hover:bg-white/60'
+                className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
+                  activeIndex === index ? 'bg-white sm:w-8' : 'bg-white/30 hover:bg-white/60'
                 }`}
               />
             ))}
