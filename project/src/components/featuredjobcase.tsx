@@ -182,14 +182,13 @@ const FeaturedInstallations: React.FC = () => {
       </div>
 
       <div className="container mx-auto px-6 sm:px-8 lg:px-12 relative z-10 max-w-7xl">
-        {/* Modern minimal header */}
+        {/* Premium, confident, approachable header */}
         <div className="text-center max-w-4xl mx-auto mb-20">
-          <h2 className="text-4xl sm:text-5xl font-medium text-neutral-50 tracking-tighter leading-tight mb-6">
-            Installation Excellence
+          <h2 className="text-4xl sm:text-5xl font-semibold text-neutral-50 tracking-tight leading-tight mb-6">
+            Real Installs. Real Results.
           </h2>
-
           <p className="text-lg text-neutral-400 leading-8 max-w-2xl mx-auto mb-12">
-            Real installations, real results. See how we transform connectivity for families and businesses across the DMV area.
+            Discover how our expert team brings fast, reliable Starlink internet to homes and businesses across the DMV. Every project is unique—every customer gets our best.
           </p>
         </div>
 
@@ -211,6 +210,7 @@ const FeaturedInstallations: React.FC = () => {
                     onClick={handlePrevCase}
                     disabled={isTransitioning || filteredCases.length <= 1}
                     className="absolute left-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/50 hover:bg-black/70 backdrop-blur-sm text-white rounded-full border border-white/20 transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center"
+                    aria-label="Previous installation"
                   >
                     <ArrowLeft className="w-5 h-5" />
                   </button>
@@ -219,6 +219,7 @@ const FeaturedInstallations: React.FC = () => {
                     onClick={handleNextCase}
                     disabled={isTransitioning || filteredCases.length <= 1}
                     className="absolute right-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/50 hover:bg-black/70 backdrop-blur-sm text-white rounded-full border border-white/20 transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center"
+                    aria-label="Next installation"
                   >
                     <ArrowRight className="w-5 h-5" />
                   </button>
@@ -234,6 +235,7 @@ const FeaturedInstallations: React.FC = () => {
                       <button
                         key={index}
                         onClick={() => setActiveImage(img)}
+                        aria-label={`View photo ${index + 1}`}
                         className={`w-2 h-2 rounded-full transition-all duration-300 ${
                           activeImage === img ? 'bg-white' : 'bg-white/30 hover:bg-white/60'
                         }`}
@@ -264,7 +266,7 @@ const FeaturedInstallations: React.FC = () => {
                         </div>
                       </div>
 
-                      <h3 className="text-2xl font-medium text-neutral-50 tracking-tighter leading-tight">
+                      <h3 className="text-2xl font-semibold text-neutral-50 tracking-tight leading-tight">
                         {activeCase.title}
                       </h3>
 
@@ -274,17 +276,17 @@ const FeaturedInstallations: React.FC = () => {
 
                       {/* Minimal speed improvement display */}
                       <div className="bg-white/[0.02] border border-white/10 rounded-xl p-8">
-                        <h4 className="font-medium text-neutral-50 mb-6 tracking-tighter">Performance Enhancement</h4>
+                        <h4 className="font-semibold text-neutral-50 mb-6 tracking-tight">Performance Boost</h4>
                         <div className="flex items-center justify-between max-w-md">
                           <div className="text-center">
-                            <div className="text-2xl font-medium text-red-400 mb-1">{activeCase.beforeSpeed}</div>
+                            <div className="text-2xl font-semibold text-red-400 mb-1">{activeCase.beforeSpeed}</div>
                             <div className="text-xs text-neutral-500 uppercase tracking-wider">Before</div>
                           </div>
                           <div className="px-8">
                             <ArrowRight className="w-5 h-5 text-neutral-600" />
                           </div>
                           <div className="text-center">
-                            <div className="text-2xl font-medium text-green-400 mb-1">{activeCase.afterSpeed}</div>
+                            <div className="text-2xl font-semibold text-green-400 mb-1">{activeCase.afterSpeed}</div>
                             <div className="text-xs text-neutral-500 uppercase tracking-wider">After</div>
                           </div>
                         </div>
@@ -293,15 +295,15 @@ const FeaturedInstallations: React.FC = () => {
                       {/* Clean three-column layout */}
                       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         <div className="space-y-3">
-                          <h4 className="font-medium text-neutral-50 tracking-tighter">Challenge</h4>
+                          <h4 className="font-semibold text-neutral-50 tracking-tight">Challenge</h4>
                           <p className="text-sm text-neutral-400 leading-relaxed">{activeCase.challenge}</p>
                         </div>
                         <div className="space-y-3">
-                          <h4 className="font-medium text-neutral-50 tracking-tighter">Solution</h4>
+                          <h4 className="font-semibold text-neutral-50 tracking-tight">Solution</h4>
                           <p className="text-sm text-neutral-400 leading-relaxed">{activeCase.solution}</p>
                         </div>
                         <div className="space-y-3">
-                          <h4 className="font-medium text-neutral-50 tracking-tighter">Result</h4>
+                          <h4 className="font-semibold text-neutral-50 tracking-tight">Result</h4>
                           <p className="text-sm text-neutral-400 leading-relaxed">{activeCase.result}</p>
                         </div>
                       </div>
@@ -319,10 +321,10 @@ const FeaturedInstallations: React.FC = () => {
                       </div>
                       
                       <blockquote className="text-neutral-300 mb-6 leading-relaxed text-base">
-                        "{activeCase.testimonial.quote}"
+                        “{activeCase.testimonial.quote}”
                       </blockquote>
                       
-                      <p className="font-medium text-neutral-50 tracking-tighter">
+                      <p className="font-semibold text-neutral-50 tracking-tight">
                         {activeCase.testimonial.author}
                       </p>
                     </div>
@@ -337,16 +339,15 @@ const FeaturedInstallations: React.FC = () => {
                 <button
                   key={index}
                   onClick={() => changeCase(index)}
+                  aria-label={`Go to case ${index + 1}`}
                   className={`w-2 h-2 rounded-full transition-all duration-300 ${
                     activeIndex === index ? 'bg-white w-8' : 'bg-white/30 hover:bg-white/60'
                   }`}
                 />
               ))}
             </div>
-
-
-          </div>
         </div>
+      </div>
     </section>
   );
 };
