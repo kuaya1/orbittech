@@ -174,7 +174,7 @@ const App = () => {
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
-        backgroundAttachment: 'fixed'
+        backgroundAttachment: 'scroll'
       }}
     >
       {/* --- Unified Contact Module --- */}

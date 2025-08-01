@@ -18,9 +18,19 @@
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-    <!-- Vanta.js dependencies -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
+    <!-- Resource hints for better loading -->
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com" />
+    <link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
+    <link rel="dns-prefetch" href="//live.staticflickr.com" />
+    
+    <!-- Preload critical images -->
+    <link rel="preload" as="image" href="/Starlink Dmv (33).png" />
+    <link rel="preload" as="image" href="/Untitled design (20) resizeddd.PNG" />
+    <link rel="preload" as="image" href="/Starlink_Rural_Location_02a-scaled.jpg" />
+    
+    <!-- Vanta.js dependencies - defer for better performance -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js" defer></script>
     
     <!-- SEO Meta Tags -->
     <meta name="description" content="Need Starlink installed? Professional installation service covering Northern Virginia (Fairfax, Loudoun, Prince William, Arlington), Maryland (Montgomery, Prince George's) & Washington DC metro area. Licensed technicians, guaranteed setup, competitive rates. Book your installation now!" />

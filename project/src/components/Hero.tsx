@@ -156,6 +156,10 @@ const Hero = () => {
                                         src={imageUrl}
                                         alt="Starlink hardware dish and router"
                                         className="w-full h-auto object-contain scale-[1.15]"
+                                        loading="eager"
+                                        decoding="async"
+                                        width="800"
+                                        height="600"
                                         onError={(e) => {
                                             const target = e.target as HTMLImageElement;
                                             target.onerror = null;
@@ -259,6 +263,10 @@ const Hero = () => {
                                     src={imageUrl}
                                     alt="Starlink hardware dish and router"
                                     className="w-full h-auto object-contain scale-[1.26]"
+                                    loading="eager"
+                                    decoding="async"
+                                    width="800"
+                                    height="600"
                                     onError={(e) => {
                                         const target = e.target as HTMLImageElement;
                                         target.onerror = null;

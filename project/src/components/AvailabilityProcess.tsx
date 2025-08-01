@@ -303,7 +303,7 @@ const AvailabilityProcess = () => {
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
         minHeight: '80vh',
-        backgroundAttachment: 'fixed'
+        backgroundAttachment: 'scroll'
       }}>
       {/* Dark gradient overlay for contrast */}
       <div className="absolute inset-0 z-0 pointer-events-none" style={{background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%)'}} />

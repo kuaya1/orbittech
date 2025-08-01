@@ -47,10 +47,10 @@ const sampleCases: InstallationCase[] = [
       rating: 5
     },
     images: {
-      main: "https://live.staticflickr.com/65535/54387691665_1362c8304b_k_d.jpg",
+      main: "https://live.staticflickr.com/65535/54387691665_1362c8304b_b.jpg",
       gallery: [
-        "https://live.staticflickr.com/65535/54387691665_1362c8304b_k_d.jpg",
-        "https://live.staticflickr.com/65535/54386437107_2c2861928d_k_d.jpg",
+        "https://live.staticflickr.com/65535/54387691665_1362c8304b_b.jpg",
+        "https://live.staticflickr.com/65535/54386437107_2c2861928d_b.jpg",
       ]
     }
   },
@@ -199,6 +199,10 @@ const FeaturedInstallations: React.FC = () => {
                   alt={`Starlink installation: ${activeCase.title}`}
                   className="w-full h-full object-cover"
                   style={{ objectPosition: 'center' }}
+                  loading="lazy"
+                  decoding="async"
+                  width="800"
+                  height="400"
                 />
                 <button
                   onClick={handlePrevCase}

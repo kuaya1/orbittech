@@ -59,6 +59,10 @@ const Footer = () => {
                   src="/Starlink Dmv (33).png" 
                   alt="Orbittec Logo" 
                   className="h-12 w-auto mb-4 transition-all duration-300 hover:scale-105"
+                  loading="lazy"
+                  decoding="async"
+                  width="144"
+                  height="48"
                 />
               </a>
               <p className="text-neutral-400 text-base leading-relaxed max-w-md">
