@@ -171,11 +171,29 @@ const AvailabilityProcess = () => {
   // Parallax scroll effect
   useEffect(() => {
     const handleScroll = () => {
-      setScrollY(window.scrollY);
+      const rect = sectionRef.current?.getBoundingClientRect();
+      if (rect) {
+        // Only calculate parallax when section is in viewport
+        const scrolled = window.scrollY;
+        const rate = scrolled * -0.3; // Negative for upward movement
+        setScrollY(rate);
+      }
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    // Use requestAnimationFrame for smooth performance
+    let ticking = false;
+    const scrollHandler = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', scrollHandler, { passive: true });
+    return () => window.removeEventListener('scroll', scrollHandler);
   }, []);
 
   // Intersection Observer for scroll animations
@@ -309,15 +327,24 @@ const AvailabilityProcess = () => {
       id="availability-process"
       className="pt-32 pb-20 md:pt-40 md:pb-32 bg-black relative overflow-hidden flex items-center justify-center"
       style={{
-        backgroundImage: "url('/1000002290.png')",
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
         minHeight: '80vh',
-        backgroundAttachment: 'scroll',
-        transform: `translateY(${scrollY * 0.5}px)`,
-        willChange: 'transform'
       }}>
+      
+      {/* Parallax Background Layer */}
+      <div 
+        className="absolute inset-0 w-full h-full"
+        style={{
+          backgroundImage: "url('/1000002290.png')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          backgroundAttachment: 'fixed',
+          transform: `translate3d(0, ${scrollY}px, 0) scale(1.1)`,
+          willChange: 'transform',
+          zIndex: -2
+        }}
+      />
+      
       {/* Dark gradient overlay for contrast */}
       <div className="absolute inset-0 z-0 pointer-events-none" style={{background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%)'}} />
       
@@ -337,8 +364,15 @@ const AvailabilityProcess = () => {
         animation: fadeInUp 0.8s ease-out forwards;
       }
       
-      /* Smooth scroll performance */
+      /* Enhanced parallax performance */
       #availability-process {
+        transform-style: preserve-3d;
+        backface-visibility: hidden;
+        perspective: 1000px;
+      }
+      
+      /* Smooth parallax background */
+      #availability-process > div:first-child {
         transform-style: preserve-3d;
         backface-visibility: hidden;
       }
