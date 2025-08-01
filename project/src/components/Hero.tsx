@@ -12,7 +12,7 @@ const StarRating = () => (
 
 // --- Hero Section with Framer Motion Animations ---
 const Hero = () => {
-    const imageUrl = '/Untitled design (20) resizeddd.PNG';
+    const imageUrl = '/1000002291.png';
 
     // Animation variants for slower, smoother motion
     const containerVariants = {

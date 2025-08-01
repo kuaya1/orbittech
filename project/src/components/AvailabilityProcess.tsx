@@ -298,7 +298,7 @@ const AvailabilityProcess = () => {
       id="availability-process"
       className="pt-32 pb-20 md:pt-40 md:pb-32 bg-black relative overflow-hidden flex items-center justify-center"
       style={{
-        backgroundImage: "url('/satellit1.png')",
+        backgroundImage: "url('/1000002290.png')",
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
