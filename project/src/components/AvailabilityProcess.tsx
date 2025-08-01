@@ -332,7 +332,7 @@ const AvailabilityProcess = () => {
       
       {/* Parallax Background Layer - Only this moves */}
       <div 
-        className="absolute inset-0 w-full h-full"
+        className="absolute inset-0 w-full h-full bg-gray-900"
         style={{
           backgroundImage: "url('/1000002290.png')",
           backgroundSize: 'cover',
@@ -340,12 +340,15 @@ const AvailabilityProcess = () => {
           backgroundRepeat: 'no-repeat',
           transform: `translate3d(0, ${scrollY}px, 0) scale(1.1)`,
           willChange: 'transform',
-          zIndex: -2
+          zIndex: 1
         }}
       />
       
       {/* Dark gradient overlay - Static */}
-      <div className="absolute inset-0 z-0 pointer-events-none" style={{background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%)'}} />
+      <div className="absolute inset-0 pointer-events-none" style={{
+        background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%)',
+        zIndex: 2
+      }} />
       
     {/* Animation styles */}
     <style>{`
@@ -376,9 +379,9 @@ const AvailabilityProcess = () => {
         transform: none !important;
       }
     `}</style>
-      <div className={`container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl relative z-10 transition-all duration-1000 delay-200 ${
+      <div className={`container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl relative transition-all duration-1000 delay-200 ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-      }`}>
+      }`} style={{ zIndex: 10 }}>
         <div className="max-w-3xl mx-auto">
           <form onSubmit={checkServiceArea} className="w-full animate-fadeInUp" style={{animationDelay: '200ms'}}>
             <div className="flex flex-col sm:flex-row items-end gap-3">

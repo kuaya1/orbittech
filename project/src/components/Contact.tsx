@@ -215,37 +215,14 @@ const App = () => {
             </div>
         </div>
 
-        {/* --- Right Column: Form (Soft White Background) --- */}
+        {/* --- Right Column: Form (Dark Background to match left side) --- */}
         <div 
-          className="p-8 lg:p-12 rounded-3xl backdrop-blur-sm relative"
+          className="p-8 lg:p-12 rounded-3xl backdrop-blur-sm"
           style={{ 
-            backgroundColor: 'rgba(255, 255, 255, 0.92)', // Soft white with slight transparency
+            backgroundColor: 'rgba(0, 0, 0, 0.47)', // Same dark glass morph as left side
             boxShadow: '0 2px 12px 0 rgba(0,0,0,0.10)',
           }}
         >
-            {/* Soft grey underlines decoration for white background */}
-            <div className="absolute inset-0 pointer-events-none">
-              <div className="h-full w-full relative overflow-hidden rounded-3xl">
-                <div 
-                  className="absolute bottom-0 left-0 right-0 h-px"
-                  style={{
-                    background: 'linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.08) 20%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.08) 80%, transparent 100%)'
-                  }}
-                />
-                <div 
-                  className="absolute bottom-4 left-0 right-0 h-px"
-                  style={{
-                    background: 'linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.05) 30%, rgba(0,0,0,0.12) 50%, rgba(0,0,0,0.05) 70%, transparent 100%)'
-                  }}
-                />
-                <div 
-                  className="absolute bottom-8 left-0 right-0 h-px"
-                  style={{
-                    background: 'linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.03) 40%, rgba(0,0,0,0.08) 50%, rgba(0,0,0,0.03) 60%, transparent 100%)'
-                  }}
-                />
-              </div>
-            </div>
             <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <InputField label="Full Name" id="name" name="name" value={formData.name} onChange={handleChange} required accentColor={calciteBlue} />
