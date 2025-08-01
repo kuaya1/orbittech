@@ -330,7 +330,7 @@ const AvailabilityProcess = () => {
         minHeight: '80vh',
       }}>
       
-      {/* Parallax Background Layer */}
+      {/* Parallax Background Layer - Only this moves */}
       <div 
         className="absolute inset-0 w-full h-full"
         style={{
@@ -338,14 +338,13 @@ const AvailabilityProcess = () => {
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
-          backgroundAttachment: 'fixed',
           transform: `translate3d(0, ${scrollY}px, 0) scale(1.1)`,
           willChange: 'transform',
           zIndex: -2
         }}
       />
       
-      {/* Dark gradient overlay for contrast */}
+      {/* Dark gradient overlay - Static */}
       <div className="absolute inset-0 z-0 pointer-events-none" style={{background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%)'}} />
       
     {/* Animation styles */}
@@ -364,17 +363,17 @@ const AvailabilityProcess = () => {
         animation: fadeInUp 0.8s ease-out forwards;
       }
       
-      /* Enhanced parallax performance */
-      #availability-process {
-        transform-style: preserve-3d;
-        backface-visibility: hidden;
-        perspective: 1000px;
-      }
-      
-      /* Smooth parallax background */
+      /* Enhanced parallax performance - Only for background */
       #availability-process > div:first-child {
         transform-style: preserve-3d;
         backface-visibility: hidden;
+      }
+      
+      /* Keep content static */
+      #availability-process .container {
+        position: relative;
+        z-index: 10;
+        transform: none !important;
       }
     `}</style>
       <div className={`container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl relative z-10 transition-all duration-1000 delay-200 ${

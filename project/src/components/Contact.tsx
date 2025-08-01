@@ -215,33 +215,33 @@ const App = () => {
             </div>
         </div>
 
-        {/* --- Right Column: Form (Dark Background) --- */}
+        {/* --- Right Column: Form (Soft White Background) --- */}
         <div 
           className="p-8 lg:p-12 rounded-3xl backdrop-blur-sm relative"
           style={{ 
-            backgroundColor: 'rgba(0, 0, 0, 0.47)', // 5% darker glass morph (was 0.42)
+            backgroundColor: 'rgba(255, 255, 255, 0.92)', // Soft white with slight transparency
             boxShadow: '0 2px 12px 0 rgba(0,0,0,0.10)',
           }}
         >
-            {/* Soft white underlines decoration */}
+            {/* Soft grey underlines decoration for white background */}
             <div className="absolute inset-0 pointer-events-none">
               <div className="h-full w-full relative overflow-hidden rounded-3xl">
                 <div 
                   className="absolute bottom-0 left-0 right-0 h-px"
                   style={{
-                    background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 20%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0.2) 80%, transparent 100%)'
+                    background: 'linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.08) 20%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.08) 80%, transparent 100%)'
                   }}
                 />
                 <div 
                   className="absolute bottom-4 left-0 right-0 h-px"
                   style={{
-                    background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.1) 30%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0.1) 70%, transparent 100%)'
+                    background: 'linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.05) 30%, rgba(0,0,0,0.12) 50%, rgba(0,0,0,0.05) 70%, transparent 100%)'
                   }}
                 />
                 <div 
                   className="absolute bottom-8 left-0 right-0 h-px"
                   style={{
-                    background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.05) 40%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.05) 60%, transparent 100%)'
+                    background: 'linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.03) 40%, rgba(0,0,0,0.08) 50%, rgba(0,0,0,0.03) 60%, transparent 100%)'
                   }}
                 />
               </div>
