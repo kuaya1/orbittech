@@ -153,6 +153,7 @@ const serviceableZips = new Set([
 const AvailabilityProcess = () => {
   // Scroll animation state
   const [isVisible, setIsVisible] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
   
   // Availability check state
@@ -166,6 +167,16 @@ const AvailabilityProcess = () => {
   // Input references for better focus management
   const inputRef = useRef<HTMLInputElement>(null);
   const blurTimeoutRef = useRef<number | null>(null);
+
+  // Parallax scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Intersection Observer for scroll animations
   useEffect(() => {
@@ -303,13 +314,15 @@ const AvailabilityProcess = () => {
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
         minHeight: '80vh',
-        backgroundAttachment: 'scroll'
+        backgroundAttachment: 'scroll',
+        transform: `translateY(${scrollY * 0.5}px)`,
+        willChange: 'transform'
       }}>
       {/* Dark gradient overlay for contrast */}
       <div className="absolute inset-0 z-0 pointer-events-none" style={{background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%)'}} />
       
     {/* Animation styles */}
-    <style jsx>{`
+    <style>{`
       @keyframes fadeInUp {
         from {
           opacity: 0;
@@ -322,6 +335,12 @@ const AvailabilityProcess = () => {
       }
       .animate-fadeInUp {
         animation: fadeInUp 0.8s ease-out forwards;
+      }
+      
+      /* Smooth scroll performance */
+      #availability-process {
+        transform-style: preserve-3d;
+        backface-visibility: hidden;
       }
     `}</style>
       <div className={`container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl relative z-10 transition-all duration-1000 delay-200 ${

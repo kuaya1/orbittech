@@ -187,7 +187,7 @@ const App = () => {
         <div 
           className="p-8 lg:p-12 rounded-3xl backdrop-blur-sm"
           style={{ 
-            backgroundColor: 'rgba(0, 0, 0, 0.42)', // updated glass morph color
+            backgroundColor: 'rgba(0, 0, 0, 0.47)', // 5% darker glass morph (was 0.42)
             boxShadow: '0 2px 12px 0 rgba(0,0,0,0.10)',
           }}
         >
@@ -217,12 +217,35 @@ const App = () => {
 
         {/* --- Right Column: Form (Dark Background) --- */}
         <div 
-          className="p-8 lg:p-12 rounded-3xl backdrop-blur-sm"
+          className="p-8 lg:p-12 rounded-3xl backdrop-blur-sm relative"
           style={{ 
-            backgroundColor: 'rgba(0, 0, 0, 0.42)', // updated glass morph color
+            backgroundColor: 'rgba(0, 0, 0, 0.47)', // 5% darker glass morph (was 0.42)
             boxShadow: '0 2px 12px 0 rgba(0,0,0,0.10)',
           }}
         >
+            {/* Soft white underlines decoration */}
+            <div className="absolute inset-0 pointer-events-none">
+              <div className="h-full w-full relative overflow-hidden rounded-3xl">
+                <div 
+                  className="absolute bottom-0 left-0 right-0 h-px"
+                  style={{
+                    background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 20%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0.2) 80%, transparent 100%)'
+                  }}
+                />
+                <div 
+                  className="absolute bottom-4 left-0 right-0 h-px"
+                  style={{
+                    background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.1) 30%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0.1) 70%, transparent 100%)'
+                  }}
+                />
+                <div 
+                  className="absolute bottom-8 left-0 right-0 h-px"
+                  style={{
+                    background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.05) 40%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.05) 60%, transparent 100%)'
+                  }}
+                />
+              </div>
+            </div>
             <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <InputField label="Full Name" id="name" name="name" value={formData.name} onChange={handleChange} required accentColor={calciteBlue} />

@@ -47,10 +47,10 @@ const sampleCases: InstallationCase[] = [
       rating: 5
     },
     images: {
-      main: "https://live.staticflickr.com/65535/54387691665_1362c8304b_b.jpg",
+      main: "https://www.flickr.com/photo_download.gne?id=54387691665&secret=1206b5b1e7&size=c&source=photoPageEngagement",
       gallery: [
-        "https://live.staticflickr.com/65535/54387691665_1362c8304b_b.jpg",
-        "https://live.staticflickr.com/65535/54386437107_2c2861928d_b.jpg",
+        "https://www.flickr.com/photo_download.gne?id=54387691665&secret=1206b5b1e7&size=c&source=photoPageEngagement",
+        "/Starlink Dmv (23).png",
       ]
     }
   },
@@ -72,11 +72,11 @@ const sampleCases: InstallationCase[] = [
       rating: 5
     },
     images: {
-      main: "https://live.staticflickr.com/65535/54622975475_ff12c3f69f_b.jpg",
+      main: "https://www.flickr.com/photo_download.gne?id=54622657311&secret=a7acc75415&size=c&source=photoPageEngagement",
       gallery: [
-        "https://live.staticflickr.com/65535/54622975475_ff12c3f69f_b.jpg",
-        "https://live.staticflickr.com/65535/54622866249_f243c7d46f_b.jpg",
-        "https://live.staticflickr.com/65535/54622657311_a7acc75415_b.jpg"
+        "https://www.flickr.com/photo_download.gne?id=54622657311&secret=a7acc75415&size=c&source=photoPageEngagement",
+        "/Starlink Dmv (30).png",
+        "/Starlink Dmv (33).png"
       ]
     }
   },
@@ -98,9 +98,9 @@ const sampleCases: InstallationCase[] = [
       rating: 5
     },
     images: {
-      main: "/PXL_20250720_180602716.jpg",
+      main: "https://www.flickr.com/photo_download.gne?id=54692379890&secret=d6872aeb11&size=c&source=photoPageEngagement",
       gallery: [
-        "/PXL_20250720_180602716.jpg"
+        "https://www.flickr.com/photo_download.gne?id=54692379890&secret=d6872aeb11&size=c&source=photoPageEngagement"
       ]
     }
   }
