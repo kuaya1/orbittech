@@ -17,7 +17,7 @@ const DMV_LOCATIONS = [
  * Generate clean sitemap entries - NO DUPLICATES
  */
 const generateCleanSitemap = () => {
-  const baseUrl = 'https://theorbittech.com';
+  const baseUrl = 'https://www.theorbittech.com'; // Use www version to match domain redirect
   const now = new Date().toISOString();
 
   // UNIQUE ROUTES ONLY - Carefully curated to eliminate duplicates
@@ -147,7 +147,8 @@ const generateSitemap = () => {
   
   console.log('✅ Clean sitemap generated successfully!');
   console.log(`📍 Saved to: ${distPath}`);
-  console.log(`🌐 Submit to: https://www.google.com/ping?sitemap=https://theorbittech.com/sitemap.xml`);
+  console.log(`🌐 Submit to Google Search Console: https://www.theorbittech.com/sitemap.xml`);
+  console.log(`🌐 Submit via ping: https://www.google.com/ping?sitemap=https://www.theorbittech.com/sitemap.xml`);
 };
 
 // Run the generator

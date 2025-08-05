@@ -15,7 +15,7 @@ export default defineConfig({
   plugins: [
     react(),
     sitemap({
-      hostname: 'https://theorbittech.com',
+      hostname: 'https://www.theorbittech.com', // Use www version to match domain redirect
       // Use only unique, non-duplicate routes - CRITICAL FIX
       dynamicRoutes: [
         '/', // Homepage - highest priority
