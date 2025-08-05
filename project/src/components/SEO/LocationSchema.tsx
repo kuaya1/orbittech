@@ -8,6 +8,13 @@ interface LocationSchemaProps {
   serviceRadius?: number;
   phone?: string;
   email?: string;
+  businessHours?: {
+    open: string;
+    close: string;
+    days: string[];
+  }[];
+  additionalServices?: string[];
+  nearbyAreas?: string[];
 }
 
 /**
@@ -20,14 +27,20 @@ const LocationSchema: React.FC<LocationSchemaProps> = ({
   zipCodes = [],
   serviceRadius = 25,
   phone = "+1-571-999-6915",
-  email = "contact@theorbittech.com"
+  email = "contact@theorbittech.com",
+  businessHours = [
+    { open: "08:00", close: "18:00", days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"] },
+    { open: "09:00", close: "17:00", days: ["Saturday"] }
+  ],
+  additionalServices = ["Starlink Troubleshooting", "Network Optimization", "Equipment Maintenance"],
+  nearbyAreas = []
 }) => {
   const locationSchema = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "@id": `https://theorbittech.com/locations/${location.toLowerCase()}-${state.toLowerCase()}`,
     "name": `The Orbit Tech - Starlink Installation ${location}, ${state}`,
-    "description": `Professional Starlink satellite internet installation services in ${location}, ${state}. Expert setup, same-day service, and 5-star customer reviews.`,
+    "description": `Professional Starlink satellite internet installation services in ${location}, ${state}. Expert setup, same-day service, and 5-star customer reviews. ${nearbyAreas.length > 0 ? `Also serving ${nearbyAreas.join(', ')}.` : ''}`,
     "url": `https://theorbittech.com/locations/${location.toLowerCase()}-${state.toLowerCase()}`,
     "telephone": phone,
     "email": email,
@@ -83,7 +96,15 @@ const LocationSchema: React.FC<LocationSchemaProps> = ({
             "name": `Starlink Troubleshooting - ${location}, ${state}`,
             "description": `Expert Starlink repair and optimization services`
           }
-        }
+        },
+        ...additionalServices.map(service => ({
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": `${service} - ${location}, ${state}`,
+            "description": `Professional ${service.toLowerCase()} in ${location}`
+          }
+        }))
       ]
     },
     "aggregateRating": {
@@ -93,25 +114,32 @@ const LocationSchema: React.FC<LocationSchemaProps> = ({
       "bestRating": "5",
       "worstRating": "1"
     },
-    "openingHoursSpecification": [
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        "opens": "08:00",
-        "closes": "18:00"
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": "Saturday",
-        "opens": "09:00",
-        "closes": "17:00"
-      }
-    ],
+    "openingHoursSpecification": businessHours.map(hours => ({
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": hours.days,
+      "opens": hours.open,
+      "closes": hours.close
+    })),
     "sameAs": [
       "https://www.facebook.com/theorbittech",
       "https://www.linkedin.com/company/the-orbit-tech",
       "https://twitter.com/theorbittech"
-    ]
+    ],
+    "potentialAction": {
+      "@type": "ReserveAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": `https://theorbittech.com/contact?location=${location}&service=starlink-installation`,
+        "actionPlatform": [
+          "http://schema.org/DesktopWebPlatform",
+          "http://schema.org/MobileWebPlatform"
+        ]
+      },
+      "result": {
+        "@type": "Reservation",
+        "name": `Starlink Installation Appointment in ${location}`
+      }
+    }
   };
 
   return (
