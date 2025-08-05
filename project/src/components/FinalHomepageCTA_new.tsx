@@ -1,7 +1,39 @@
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Phone, Wifi, Shield, Star } from 'lucide-react';
 
+// Modern Intersection Observer Hook for Scroll Effects
+const useScrollReveal = (threshold = 0.1) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const elementRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold, rootMargin: '50px' }
+    );
+
+    const currentElement = elementRef.current;
+    if (currentElement) {
+      observer.observe(currentElement);
+    }
+
+    return () => {
+      if (currentElement) {
+        observer.unobserve(currentElement);
+      }
+    };
+  }, [threshold]);
+
+  return [elementRef, isVisible] as const;
+};
+
 const FinalHomepageCTA = () => {
+  const [ctaRef, ctaVisible] = useScrollReveal(0.3);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -30,24 +62,7 @@ const FinalHomepageCTA = () => {
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
       variants={containerVariants}
-      style={{
-        backgroundImage: 'url(/satellit1%20mobile.PNG)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat'
-      }}
     >
-      {/* Mobile background image - visible only on mobile screens */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat md:hidden"
-        style={{
-          backgroundImage: 'url(/satellit1%20mobile.PNG)'
-        }}
-      />
-      
-      {/* Desktop black background - visible only on desktop screens */}  
-      <div className="absolute inset-0 bg-black hidden md:block" />
-      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Trust indicators section */}
@@ -77,6 +92,7 @@ const FinalHomepageCTA = () => {
 
         {/* Main CTA Section */}
         <motion.div 
+          ref={ctaRef}
           className="text-center"
           variants={headerVariants}
         >

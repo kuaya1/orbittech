@@ -169,7 +169,7 @@ const SocialProofTestimonials = () => {
         >
           <motion.a
             href="#contact"
-            className="inline-flex items-center bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold px-8 py-4 rounded-lg hover:from-blue-400 hover:to-blue-500 transition-all duration-300 shadow-lg hover:shadow-blue-500/25 group"
+            className="inline-flex items-center bg-white text-black font-semibold px-8 py-4 rounded-lg hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-white/25 group"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
             initial={{ opacity: 0, y: 20 }}
