@@ -89,9 +89,9 @@ const SocialProofTestimonials = () => {
       location: "Verified Google Review"
     },
     {
-      quote: "Professional installation team that knows exactly what they're doing. Clean work, excellent communication, and our Starlink has been working flawlessly since day one. Worth every penny!",
-      name: "Jennifer M.",
-      location: "Fairfax County, VA"
+      quote: "Pleasant, knowledgeable, efficient. Walked me through everything. Superlative in all ways. Awesome experience.",
+      name: "Gary Vanderhaven", 
+      location: "Charles Town, WV"
     }
   ];
 

@@ -1,43 +1,34 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Phone, Zap, Shield, Award, Star } from 'lucide-react';
+import { Phone, ArrowRight, Wifi, Shield, Star } from 'lucide-react';
 
 const FinalHomepageCTA = () => {
   return (
-    <section className="font-sans py-32 bg-black relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 20% 50%, rgb(59, 130, 246) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgb(147, 51, 234) 0%, transparent 50%)`,
-        }} />
-      </div>
+    <section className="font-sans py-24 bg-white relative overflow-hidden">
       
-      {/* Subtle Grid Pattern */}
+      {/* Minimal background pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, rgb(59, 130, 246) 1px, transparent 0)`,
-          backgroundSize: '80px 80px'
+          backgroundImage: `radial-gradient(circle at 1px 1px, rgb(0, 0, 0) 1px, transparent 0)`,
+          backgroundSize: '120px 120px'
         }} />
       </div>
 
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Glass Morphism Container */}
+        {/* Main CTA Card */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="relative bg-gradient-to-br from-white/10 via-gray-100/5 to-white/5 backdrop-blur-xl border border-white/20 rounded-3xl p-12 md:p-16 text-center shadow-2xl shadow-black/20"
+          className="relative bg-black rounded-3xl p-12 md:p-16 text-center shadow-2xl border border-gray-800"
         >
           
-          {/* Inner glow effect */}
-          <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/5 via-transparent to-blue-500/5 pointer-events-none"></div>
-          
           {/* Content */}
-          <div className="relative z-10">
+          <div className="max-w-4xl mx-auto">
             
-            {/* Main Headline */}
+            {/* Header */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -46,127 +37,111 @@ const FinalHomepageCTA = () => {
               className="mb-12"
             >
               <motion.h2 
-                className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-8 leading-tight"
+                className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-8 leading-tight font-light"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
                 Ready for{' '}
-                <span className="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
-                  Lightning-Fast
+                <span className="text-blue-500">
+                  high-speed
                 </span>
-                {' '}Internet?
+                {' '}internet?
               </motion.h2>
               
               <motion.p 
-                className="text-gray-300 text-xl sm:text-2xl max-w-4xl mx-auto leading-relaxed font-light"
+                className="text-gray-400 text-xl sm:text-2xl max-w-3xl mx-auto leading-relaxed font-light"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
-                Join 500+ satisfied customers across the DMV who chose The Orbit Tech for professional Starlink installation.
+                Professional Starlink installation across the DMV region.
               </motion.p>
             </motion.div>
-            {/* Trust Elements */}
+            {/* Stats */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="flex flex-wrap items-center justify-center gap-8 mb-16 text-base"
+              className="flex flex-wrap items-center justify-center gap-12 mb-16 text-base"
             >
-              <div className="flex items-center text-blue-400 font-medium">
-                <Shield className="w-5 h-5 mr-2 text-green-400" />
+              <div className="flex items-center text-gray-300">
+                <Shield className="w-5 h-5 mr-3 text-blue-500" />
                 Licensed & Insured
               </div>
               
-              <div className="w-1 h-1 bg-blue-400/50 rounded-full hidden sm:block"></div>
+              <div className="w-px h-6 bg-gray-700 hidden sm:block"></div>
               
-              <div className="flex items-center text-blue-400 font-medium">
-                <Star className="w-5 h-5 mr-2 text-yellow-400" />
-                5.0 Google Rating
+              <div className="flex items-center text-gray-300">
+                <Star className="w-5 h-5 mr-3 text-blue-500" />
+                5.0 Rating
               </div>
               
-              <div className="w-1 h-1 bg-blue-400/50 rounded-full hidden sm:block"></div>
+              <div className="w-px h-6 bg-gray-700 hidden sm:block"></div>
               
-              <div className="flex items-center text-blue-400 font-medium">
-                <Award className="w-5 h-5 mr-2 text-green-400" />
+              <div className="flex items-center text-gray-300">
+                <Wifi className="w-5 h-5 mr-3 text-blue-500" />
                 500+ Installations
               </div>
             </motion.div>
 
-            {/* Primary CTA Button */}
+            {/* CTA Buttons */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="mb-12"
+              className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12"
             >
+              {/* Primary Button */}
               <motion.a
                 href="#contact"
-                className="inline-flex items-center bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold text-xl px-12 py-6 rounded-2xl hover:from-blue-400 hover:to-blue-500 transition-all duration-500 shadow-2xl hover:shadow-blue-500/40 group backdrop-blur-sm border border-blue-400/20"
-                whileHover={{ scale: 1.05, y: -5 }}
+                className="group relative inline-flex items-center bg-blue-500 hover:bg-blue-600 text-white font-semibold text-lg px-8 py-4 rounded-xl transition-all duration-300 min-w-[280px] justify-center"
+                whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <Zap className="mr-3 w-6 h-6" />
-                Get Your Free Installation Quote
-                <motion.svg
-                  className="ml-3 w-6 h-6 group-hover:translate-x-2 transition-transform duration-300"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </motion.svg>
+                Get Free Installation Quote
+                <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+              </motion.a>
+              
+              {/* Secondary Button */}
+              <motion.a
+                href="tel:+1-571-999-6915"
+                className="group inline-flex items-center border-2 border-gray-600 hover:border-gray-500 text-gray-300 hover:text-white font-semibold text-lg px-8 py-4 rounded-xl transition-all duration-300 min-w-[280px] justify-center"
+                whileHover={{ scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Phone className="mr-3 w-5 h-5" />
+                (571) 999-6915
               </motion.a>
             </motion.div>
 
-            {/* Phone CTA */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+            {/* Bottom Text */}
+            <motion.p 
+              className="text-gray-500 text-sm font-light"
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-              className="text-center"
+              transition={{ duration: 0.5, delay: 0.8 }}
             >
-              <motion.p 
-                className="text-gray-400 text-lg mb-4 font-light"
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.9 }}
-              >
-                Prefer to speak with an expert?
-              </motion.p>
-              <motion.a
-                href="tel:+1-571-999-6915"
-                className="inline-flex items-center text-blue-400 hover:text-blue-300 font-semibold text-2xl transition-all duration-300 group hover:scale-105"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 1 }}
-              >
-                <Phone className="mr-3 w-6 h-6 group-hover:animate-pulse" />
-                (571) 999-6915
-                <motion.span 
-                  className="ml-3 text-base opacity-70 group-hover:opacity-100 transition-opacity duration-300"
-                  initial={{ opacity: 0, x: -10 }}
-                  whileInView={{ opacity: 0.7, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.3, delay: 1.1 }}
-                >
-                  Call Now
-                </motion.span>
-              </motion.a>
-            </motion.div>
+              Same-day installation available
+            </motion.p>
 
           </div>
         </motion.div>
+        
+        {/* Minimal accent */}
+        <motion.div
+          initial={{ opacity: 0, scaleX: 0 }}
+          whileInView={{ opacity: 1, scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 1 }}
+          className="mt-12 h-px bg-gray-200 max-w-md mx-auto"
+        />
+        
       </div>
     </section>
   );

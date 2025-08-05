@@ -369,7 +369,6 @@ const AvailabilityProcess = () => {
           `,
           willChange: 'transform',
           zIndex: -3,
-          filter: 'blur(1px) brightness(0.8)',
         }}
       />
       
