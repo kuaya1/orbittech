@@ -366,21 +366,53 @@ const AvailabilityProcess = () => {
       
       {/* Desktop Background - Modern Multi-Layer Parallax */}
       <div className="hidden md:block">
-        {/* Background Layer 1 - Deep parallax */}
+        {/* Background Layer 1 - Deep parallax with high definition contrast filter */}
         <div 
-          className="absolute inset-0 w-full h-full opacity-60"
+          className="absolute inset-0 w-full h-full opacity-75"
           style={{
-            backgroundImage: "url('/1000002290.png')",
-            backgroundSize: '120%',
+            backgroundImage: "url('/satellit2.PNG')",
+            backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
+            filter: 'contrast(1.3) brightness(0.8) saturate(1.2) blur(0.5px)',
             transform: `
-              translate3d(${mousePosition.x * 20}px, ${scrollProgress * -200}px, 0) 
-              scale(${1.1 + scrollProgress * 0.1})
-              rotateY(${mousePosition.x * 2}deg)
+              translate3d(${mousePosition.x * 15}px, ${scrollProgress * -150}px, 0) 
+              scale(${1.05 + scrollProgress * 0.08})
+              rotateY(${mousePosition.x * 1.5}deg)
             `,
             willChange: 'transform',
             zIndex: -3,
+          }}
+        />
+        
+        {/* High Definition Contrast Layer - Light/Dark Enhancement */}
+        <div 
+          className="absolute inset-0 w-full h-full opacity-40"
+          style={{
+            background: `
+              linear-gradient(
+                45deg,
+                rgba(0, 0, 0, 0.6) 0%,
+                rgba(255, 255, 255, 0.1) 25%,
+                rgba(0, 0, 0, 0.4) 50%,
+                rgba(255, 255, 255, 0.05) 75%,
+                rgba(0, 0, 0, 0.7) 100%
+              ),
+              radial-gradient(
+                ellipse at center,
+                rgba(255, 255, 255, 0.15) 0%,
+                rgba(0, 0, 0, 0.3) 40%,
+                rgba(0, 0, 0, 0.8) 100%
+              )
+            `,
+            mixBlendMode: 'overlay',
+            filter: 'contrast(1.4) brightness(1.1)',
+            transform: `
+              translate3d(${mousePosition.x * 8}px, ${scrollProgress * -80}px, 0)
+              rotate(${scrollProgress * 2}deg)
+            `,
+            willChange: 'transform',
+            zIndex: -2.5,
           }}
         />
         
@@ -422,19 +454,28 @@ const AvailabilityProcess = () => {
           }}
         />
         
-        {/* Foreground gradient overlay with dynamic opacity - Desktop only */}
+        {/* Enhanced Foreground gradient overlay with high definition contrast - Desktop only */}
         <div 
           className="absolute inset-0 z-0 pointer-events-none" 
           style={{
             background: `
               linear-gradient(
                 135deg, 
-                rgba(0,0,0,${0.7 + scrollProgress * 0.2}) 0%, 
-                rgba(0,0,0,${0.4 + scrollProgress * 0.1}) 50%, 
+                rgba(0,0,0,${0.65 + scrollProgress * 0.15}) 0%, 
+                rgba(0,0,0,${0.35 + scrollProgress * 0.08}) 35%,
+                rgba(255,255,255,${0.05 + scrollProgress * 0.02}) 50%,
+                rgba(0,0,0,${0.25 + scrollProgress * 0.05}) 65%, 
+                transparent 100%
+              ),
+              radial-gradient(
+                circle at ${30 + mousePosition.x * 5}% ${40 + mousePosition.y * 5}%,
+                rgba(255,255,255,${0.08 + scrollProgress * 0.03}) 0%,
+                rgba(0,0,0,${0.4 + scrollProgress * 0.1}) 60%,
                 transparent 100%
               )
             `,
-            transform: `translate3d(0, ${scrollProgress * -20}px, 0)`,
+            filter: 'contrast(1.2) brightness(0.95)',
+            transform: `translate3d(0, ${scrollProgress * -15}px, 0)`,
             willChange: 'transform',
           }} 
         />
