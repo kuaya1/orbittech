@@ -19,6 +19,12 @@ Disallow: /.env
 Disallow: /src/
 Disallow: /build/
 
+# Sitemap
+Sitemap: https://www.theorbittech.com/sitemap.xml
+
+# Crawl-delay for bots
+Crawl-delay: 1
+
 # Allow important pages (explicit permissions)
 Allow: /about/
 Allow: /services/

@@ -70,8 +70,8 @@ document.querySelector('#app').innerHTML = `
         <div class="flex items-center">
           <div class="flex-shrink-0 flex items-center">
             <a href="#home" class="flex items-center">
-              <img src="./Starlink Dmv (33).png" alt="Orbittec Logo" class="h-9 w-auto mr-3">
-              <span class="text-xl font-bold text-gray-900">Orbittec</span>
+              <img src="./Starlink Dmv (33).png" alt="The Orbit Tech Logo" class="h-9 w-auto mr-3">
+              <span class="text-xl font-bold text-gray-900">The Orbit Tech</span>
             </a>
           </div>
         </div>
@@ -597,8 +597,8 @@ document.querySelector('#app').innerHTML = `
         <div class="col-span-2">
           <div class="flex items-center mb-4">
             <a href="#home" class="flex items-center">
-              <img src="./Starlink Dmv (33).png" alt="Orbittec Logo" class="h-8 w-auto mr-3">
-              <span class="text-xl font-bold">Orbittec</span>
+              <img src="./Starlink Dmv (33).png" alt="The Orbit Tech Logo" class="h-8 w-auto mr-3">
+              <span class="text-xl font-bold">The Orbit Tech</span>
             </a>
           </div>
           <p class="text-gray-400 mb-6 max-w-md">
@@ -646,7 +646,7 @@ document.querySelector('#app').innerHTML = `
       
       <div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
         <p class="text-gray-400 text-sm">
-          © 2024 Orbittec. All rights reserved.
+          © 2025 The Orbit Tech. All rights reserved.
         </p>
         <p class="text-gray-400 text-sm mt-4 md:mt-0">
           Licensed, Bonded & Insured | Nationwide Service

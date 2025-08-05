@@ -1,5 +1,6 @@
 import { Star } from 'lucide-react';
 import { motion } from 'framer-motion';
+import OptimizedImage from './OptimizedImage';
 
 // --- Star Rating Component for Social Proof ---
 const StarRating = () => (
@@ -152,14 +153,13 @@ const Hero = () => {
                                 transition={{ delay: 1.2 }}
                             >
                                 <div className="relative w-full max-w-lg mx-auto">
-                                    <motion.img
+                                    <OptimizedImage
                                         src={imageUrl}
-                                        alt="Starlink hardware dish and router"
+                                        alt="Professional Starlink satellite internet installation equipment - dish, router, and cables"
                                         className="w-full h-auto object-contain scale-[1.15]"
-                                        loading="eager"
-                                        decoding="async"
-                                        width="800"
-                                        height="600"
+                                        priority={true}
+                                        width={800}
+                                        height={600}
                                         onError={(e) => {
                                             const target = e.target as HTMLImageElement;
                                             target.onerror = null;
@@ -259,14 +259,13 @@ const Hero = () => {
                             variants={slideInRight}
                         >
                             <div className="relative w-full max-w-lg mx-auto lg:max-w-none">
-                                <motion.img
+                                <OptimizedImage
                                     src={imageUrl}
-                                    alt="Starlink hardware dish and router"
+                                    alt="Professional Starlink satellite internet installation equipment - dish, router, and cables"
                                     className="w-full h-auto object-contain scale-[1.26]"
-                                    loading="eager"
-                                    decoding="async"
-                                    width="800"
-                                    height="600"
+                                    priority={true}
+                                    width={800}
+                                    height={600}
                                     onError={(e) => {
                                         const target = e.target as HTMLImageElement;
                                         target.onerror = null;
