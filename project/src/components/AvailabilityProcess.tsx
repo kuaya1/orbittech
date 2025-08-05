@@ -364,120 +364,60 @@ const AvailabilityProcess = () => {
         }}
       />
       
-      {/* Desktop Background - Modern Multi-Layer Parallax */}
-      <div className="hidden md:block">
-        {/* Background Layer 1 - Deep parallax with high definition contrast filter */}
+      {/* Desktop Background - Enhanced Version with Proper Layering */}
+      <div className="absolute inset-0 hidden md:block">
+        {/* Main Background Image */}
         <div 
-          className="absolute inset-0 w-full h-full opacity-75"
+          className="absolute inset-0 w-full h-full"
           style={{
             backgroundImage: "url('/satellit2.PNG')",
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
-            filter: 'contrast(1.3) brightness(0.8) saturate(1.2) blur(0.5px)',
+            filter: 'contrast(1.2) brightness(0.95) saturate(1.1)',
             transform: `
-              translate3d(${mousePosition.x * 15}px, ${scrollProgress * -150}px, 0) 
-              scale(${1.05 + scrollProgress * 0.08})
-              rotateY(${mousePosition.x * 1.5}deg)
+              translate3d(${mousePosition.x * 8}px, ${scrollProgress * -80}px, 0) 
+              scale(${1.02 + scrollProgress * 0.03})
             `,
             willChange: 'transform',
-            zIndex: -3,
+            zIndex: 1,
           }}
         />
         
-        {/* High Definition Contrast Layer - Light/Dark Enhancement */}
+        {/* Light Enhancement Overlay */}
         <div 
-          className="absolute inset-0 w-full h-full opacity-40"
+          className="absolute inset-0 w-full h-full opacity-25"
           style={{
             background: `
               linear-gradient(
                 45deg,
-                rgba(0, 0, 0, 0.6) 0%,
-                rgba(255, 255, 255, 0.1) 25%,
-                rgba(0, 0, 0, 0.4) 50%,
-                rgba(255, 255, 255, 0.05) 75%,
-                rgba(0, 0, 0, 0.7) 100%
-              ),
-              radial-gradient(
-                ellipse at center,
-                rgba(255, 255, 255, 0.15) 0%,
-                rgba(0, 0, 0, 0.3) 40%,
-                rgba(0, 0, 0, 0.8) 100%
+                rgba(0, 0, 0, 0.3) 0%,
+                rgba(255, 255, 255, 0.08) 30%,
+                rgba(0, 0, 0, 0.2) 70%,
+                rgba(0, 0, 0, 0.5) 100%
               )
             `,
             mixBlendMode: 'overlay',
-            filter: 'contrast(1.4) brightness(1.1)',
-            transform: `
-              translate3d(${mousePosition.x * 8}px, ${scrollProgress * -80}px, 0)
-              rotate(${scrollProgress * 2}deg)
-            `,
+            transform: `translate3d(${mousePosition.x * 4}px, ${scrollProgress * -40}px, 0)`,
             willChange: 'transform',
-            zIndex: -2.5,
+            zIndex: 2,
           }}
         />
         
-        {/* Background Layer 2 - Medium parallax with geometric shapes */}
+        {/* Text Readability Gradient */}
         <div 
-          className="absolute inset-0 w-full h-full opacity-20"
-          style={{
-            background: `
-              radial-gradient(circle at ${50 + mousePosition.x * 10}% ${50 + mousePosition.y * 10}%, rgba(59, 130, 246, 0.3) 0%, transparent 50%),
-              radial-gradient(circle at ${30 - mousePosition.x * 5}% ${70 - mousePosition.y * 5}%, rgba(147, 51, 234, 0.2) 0%, transparent 40%),
-              linear-gradient(45deg, rgba(59, 130, 246, 0.1) 0%, transparent 50%, rgba(147, 51, 234, 0.1) 100%)
-            `,
-            transform: `
-              translate3d(${mousePosition.x * 30}px, ${scrollProgress * -100}px, 0) 
-              rotate(${scrollProgress * 5}deg)
-            `,
-            willChange: 'transform',
-            zIndex: -2,
-          }}
-        />
-        
-        {/* Background Layer 3 - Floating elements */}
-        <div 
-          className="absolute inset-0 w-full h-full opacity-30"
-          style={{
-            background: `
-              radial-gradient(2px 2px at ${20 + scrollProgress * 10}px ${30 + scrollProgress * 10}px, rgba(59, 130, 246, 0.8), transparent),
-              radial-gradient(2px 2px at ${40 + scrollProgress * -5}px ${70 + scrollProgress * 15}px, rgba(147, 51, 234, 0.6), transparent),
-              radial-gradient(1px 1px at ${60 + scrollProgress * 8}px ${90 + scrollProgress * -8}px, rgba(255, 255, 255, 0.4), transparent),
-              radial-gradient(2px 2px at ${80 + scrollProgress * -12}px ${50 + scrollProgress * 12}px, rgba(59, 130, 246, 0.5), transparent)
-            `,
-            backgroundSize: '80px 80px, 120px 120px, 60px 60px, 100px 100px',
-            transform: `
-              translate3d(${mousePosition.x * -15}px, ${scrollProgress * 50}px, 0)
-              rotate(${scrollProgress * -10}deg)
-            `,
-            willChange: 'transform',
-            zIndex: -1,
-          }}
-        />
-        
-        {/* Enhanced Foreground gradient overlay with high definition contrast - Desktop only */}
-        <div 
-          className="absolute inset-0 z-0 pointer-events-none" 
+          className="absolute inset-0 w-full h-full"
           style={{
             background: `
               linear-gradient(
                 135deg, 
-                rgba(0,0,0,${0.65 + scrollProgress * 0.15}) 0%, 
-                rgba(0,0,0,${0.35 + scrollProgress * 0.08}) 35%,
-                rgba(255,255,255,${0.05 + scrollProgress * 0.02}) 50%,
-                rgba(0,0,0,${0.25 + scrollProgress * 0.05}) 65%, 
-                transparent 100%
-              ),
-              radial-gradient(
-                circle at ${30 + mousePosition.x * 5}% ${40 + mousePosition.y * 5}%,
-                rgba(255,255,255,${0.08 + scrollProgress * 0.03}) 0%,
-                rgba(0,0,0,${0.4 + scrollProgress * 0.1}) 60%,
-                transparent 100%
+                rgba(0,0,0,${0.3 + scrollProgress * 0.08}) 0%, 
+                rgba(0,0,0,${0.15 + scrollProgress * 0.04}) 40%,
+                transparent 80%
               )
             `,
-            filter: 'contrast(1.2) brightness(0.95)',
-            transform: `translate3d(0, ${scrollProgress * -15}px, 0)`,
-            willChange: 'transform',
-          }} 
+            zIndex: 3,
+          }}
         />
       </div>
       
