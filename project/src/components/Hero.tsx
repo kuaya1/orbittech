@@ -108,9 +108,9 @@ const Hero = () => {
                             className="order-1 lg:order-1 space-y-6 sm:space-y-8 text-center lg:text-left -mt-17 lg:mt-0"
                             variants={slideInLeft}
                         >
-                            {/* 1. Clean Bold Title - Gladia Style */}
+                            {/* 1. Phase 1 Launch H1 Title */}
                             <motion.h1 className="text-[2.5rem] sm:text-[2.6rem] lg:text-[3.3rem] xl:text-[4rem] font-bold tracking-tight leading-tight">
-                                {"Professional Starlink Installation Service"
+                                {"The DMV's #1 Rated Starlink Installation Experts"
                                     .split(" ")
                                     .map((word, index) => (
                                         <motion.span
@@ -130,7 +130,7 @@ const Hero = () => {
                                     ))}
                             </motion.h1>
 
-                            {/* 2. Enhanced Subtitle with Bright Colors and Shadow */}
+                            {/* 2. Phase 1 Launch Sub-headline */}
                             <motion.p 
                                 className="text-base sm:text-lg lg:text-xl leading-relaxed max-w-2xl mx-auto lg:mx-0 font-medium"
                                 variants={fadeInUp}
@@ -142,7 +142,7 @@ const Hero = () => {
                                     filter: 'brightness(1.1) contrast(1.1)'
                                 }}
                             >
-                                Expert installation services across the DMV region, connecting your home or business with reliable high-speed internet.
+                                We deliver flawless Starlink installations and guarantee perfect Wi-Fi coverage throughout your entire home.
                             </motion.p>
 
                             {/* 3. Mobile Image Block - Shows only on mobile - 15% bigger */}
@@ -171,7 +171,7 @@ const Hero = () => {
                                 </div>
                             </motion.div>
 
-                            {/* 4. Enhanced Get Quote Button - Mobile Only */}
+                            {/* 4. Phase 1 CTA Button - Mobile Only */}
                             <motion.div 
                                 className="block lg:hidden mt-38 pt-2"
                                 variants={fadeInUp}
@@ -189,11 +189,11 @@ const Hero = () => {
                                     }}
                                     whileTap={{ scale: 0.98, transition: { duration: 0.1 } }}
                                 >
-                                    Get Your Free Quote →
+                                    Get a Free Installation Quote →
                                 </motion.a>
                             </motion.div>
 
-                            {/* 5. Enhanced Get Quote Button - Desktop Only */}
+                            {/* 5. Phase 1 CTA Button - Desktop Only */}
                             <motion.div 
                                 className="hidden lg:block"
                                 variants={fadeInUp}
@@ -211,7 +211,7 @@ const Hero = () => {
                                     }}
                                     whileTap={{ scale: 0.98, transition: { duration: 0.1 } }}
                                 >
-                                    Get Your Free Quote →
+                                    Get a Free Installation Quote →
                                 </motion.a>
                             </motion.div>
 
