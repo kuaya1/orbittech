@@ -98,6 +98,7 @@ const CoverageMap: React.FC = () => {
               src="/images/dmv-map.jpg" 
               alt="DMV Area Coverage Map"
               className="w-full h-full object-cover"
+              loading="lazy"
               onError={(e) => {
                 // Fallback if image doesn't load
                 e.currentTarget.src = "https://via.placeholder.com/800x600/0f172a/475569?text=DMV+Area+Map";

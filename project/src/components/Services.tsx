@@ -310,6 +310,17 @@ const Services = () => {
               Call Us
             </motion.a>
           </div>
+          
+          {/* Trust indicators */}
+          <motion.p 
+            className="mt-4 text-sm text-neutral-400 font-medium"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+          >
+            Licensed & Insured • 90-Day Warranty
+          </motion.p>
         </motion.div>
       </div>
     </motion.section>

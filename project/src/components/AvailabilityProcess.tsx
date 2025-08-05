@@ -469,7 +469,13 @@ const AvailabilityProcess = () => {
                     </h4>
                     <p className="text-white/80 leading-relaxed">
                       {serviceStatus === true
-                        ? `Great! We provide professional Starlink installation services in ${zipCode}. You can get high-speed satellite internet with same-day installation.` 
+                        ? (
+                          <>
+                            Great! We provide professional Starlink installation services in {zipCode}. 🔥{' '}
+                            <span className="text-orange-400 font-semibold">3 installations scheduled in your area this week</span>. 
+                            You can get high-speed satellite internet with same-day installation.
+                          </>
+                        ) 
                         : `We're not currently servicing ${zipCode}, but we're expanding rapidly. Join our waitlist to be notified when service becomes available.`}
                     </p>
                   </div>

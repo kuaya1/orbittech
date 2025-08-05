@@ -127,6 +127,7 @@ const BlogPost: React.FC<BlogPostProps> = ({ post }) => {
               src={post.coverImage} 
               alt={post.title}
               className="w-full h-80 lg:h-96 object-cover rounded-lg"
+              loading="lazy"
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
                 target.style.display = 'none';
@@ -183,6 +184,7 @@ const BlogPost: React.FC<BlogPostProps> = ({ post }) => {
                       src={relatedPost.coverImage}
                       alt={relatedPost.title}
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      loading="lazy"
                       onError={(e) => {
                         e.currentTarget.style.display = 'none';
                       }}

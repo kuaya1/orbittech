@@ -85,6 +85,7 @@ const BlogPage = ({ posts }: BlogPageProps) => {
                           src={post.coverImage}
                           alt={post.title}
                           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          loading="lazy"
                           onError={(e) => {
                             e.currentTarget.style.display = 'none';
                           }}
