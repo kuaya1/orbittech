@@ -5,27 +5,51 @@ import sitemap from 'vite-plugin-sitemap';
 import { VitePWA } from 'vite-plugin-pwa';
 import viteCompression from 'vite-plugin-compression';
 
+/**
+ * ENHANCED SITEMAP CONFIGURATION 🚀
+ * Eliminates duplicates and includes all 14 DMV location pages
+ */
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
     sitemap({
       hostname: 'https://theorbittech.com',
+      // Use only unique, non-duplicate routes - CRITICAL FIX
       dynamicRoutes: [
-        '/',
-        '/about',
-        '/contact',
-        '/kuiper-installation',
-        '/showcase',
-        '/privacy-policy',
-        '/blog',
-        '/locations/fairfax-va',
-        '/locations/montgomery-md',
-        '/locations/arlington-va',
-        '/locations/alexandria-va'
+        '/', // Homepage - highest priority
+        '/kuiper-installation', // Main service page
+        '/showcase', // Portfolio showcase
+        '/about', // About page
+        '/contact', // Contact page
+        '/privacy-policy', // Legal page
+        '/terms-of-service', // Legal page
+        
+        // ALL 14 DMV LOCATION PAGES - Strategic market coverage
+        '/locations/mclean-va',      // Priority 1: Premium market
+        '/locations/bethesda-md',    // Priority 1: Premium market
+        '/locations/arlington-va',   // Priority 1: Premium market
+        '/locations/alexandria-va',  // Priority 1: Premium market
+        '/locations/fairfax-va',     // Priority 1: Premium market
+        '/locations/rockville-md',   // Priority 2: Urban market
+        '/locations/silver-spring-md', // Priority 2: Urban market
+        '/locations/tysons-va',      // Priority 2: Urban market
+        '/locations/reston-va',      // Priority 2: Urban market
+        '/locations/gaithersburg-md', // Priority 2: Urban market
+        '/locations/leesburg-va',    // Priority 3: Expansion market
+        '/locations/frederick-md',   // Priority 3: Expansion market
+        '/locations/manassas-va',    // Priority 3: Expansion market
+        '/locations/annapolis-md'    // Priority 3: Expansion market
       ],
-      changefreq: 'weekly',
-      priority: 0.8
+      changefreq: 'weekly', // Appropriate for business site
+      priority: 0.8, // Good default priority
+      // Exclude patterns to prevent duplicates from static files
+      exclude: [
+        '**/*.html', // Exclude all static HTML files
+        '/src/**',   // Exclude source files
+        '/public/**' // Exclude public directory files
+      ]
     }),
     VitePWA({
       registerType: 'autoUpdate',

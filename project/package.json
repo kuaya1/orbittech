@@ -5,13 +5,15 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node scripts/generateSitemap.mjs",
+    "build:clean": "vite build && node scripts/generateSitemap.mjs",
     "lint": "eslint .",
     "preview": "vite preview",
-    "build:check": "vite build && vite preview --port 4173",
+    "build:check": "vite build && node scripts/generateSitemap.mjs && vite preview --port 4173",
     "build:analyze": "vite build --mode analyze && node scripts/analyze-build.js",
-    "build:prod": "vite build --mode production && npm run preview",
-    "serve": "vite preview --host 0.0.0.0 --port 4173"
+    "build:prod": "vite build --mode production && node scripts/generateSitemap.mjs && npm run preview",
+    "serve": "vite preview --host 0.0.0.0 --port 4173",
+    "sitemap": "node scripts/generateSitemap.mjs"
   },
   "dependencies": {
     "@emailjs/browser": "^4.1.0",
