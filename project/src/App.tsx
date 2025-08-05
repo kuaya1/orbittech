@@ -10,6 +10,8 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import FeaturedInstallations from './components/featuredjobcase';
 import FAQ from './components/FAQ';
+import FinalHomepageCTA from './components/FinalHomepageCTA';
+import SocialProofTestimonials from './components/SocialProofTestimonials';
 
 function App() {
   return (
@@ -23,9 +25,11 @@ function App() {
               <Hero />
               <AvailabilityProcess />
               <Services />
+              <SocialProofTestimonials />
               <Contact />
               <FeaturedInstallations />
               <FAQ />
+              <FinalHomepageCTA />
             </main>
           } />
           <Route path="/blog" element={<Blog />} />
