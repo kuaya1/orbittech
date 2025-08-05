@@ -30,24 +30,7 @@ const FinalHomepageCTA = () => {
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
       variants={containerVariants}
-      style={{
-        backgroundImage: 'url(/satellit1%20mobile.PNG)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat'
-      }}
     >
-      {/* Mobile background image - visible only on mobile screens */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat md:hidden"
-        style={{
-          backgroundImage: 'url(/satellit1%20mobile.PNG)'
-        }}
-      />
-      
-      {/* Desktop black background - visible only on desktop screens */}  
-      <div className="absolute inset-0 bg-black hidden md:block" />
-      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Trust indicators section */}

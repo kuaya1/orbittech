@@ -352,80 +352,93 @@ const AvailabilityProcess = () => {
         minHeight: '80vh',
       }}>
       
-      {/* Modern Multi-Layer Parallax Background */}
-      
-      {/* Background Layer 1 - Deep parallax */}
+      {/* Mobile Background - Clean satellite image without overlays */}
       <div 
-        className="absolute inset-0 w-full h-full opacity-60"
+        className="absolute inset-0 w-full h-full md:hidden"
         style={{
-          backgroundImage: "url('/1000002290.png')",
-          backgroundSize: '120%',
+          backgroundImage: 'url(/satellit1%20mobile.PNG)',
+          backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
-          transform: `
-            translate3d(${mousePosition.x * 20}px, ${scrollProgress * -200}px, 0) 
-            scale(${1.1 + scrollProgress * 0.1})
-            rotateY(${mousePosition.x * 2}deg)
-          `,
-          willChange: 'transform',
           zIndex: -3,
         }}
       />
       
-      {/* Background Layer 2 - Medium parallax with geometric shapes */}
-      <div 
-        className="absolute inset-0 w-full h-full opacity-20"
-        style={{
-          background: `
-            radial-gradient(circle at ${50 + mousePosition.x * 10}% ${50 + mousePosition.y * 10}%, rgba(59, 130, 246, 0.3) 0%, transparent 50%),
-            radial-gradient(circle at ${30 - mousePosition.x * 5}% ${70 - mousePosition.y * 5}%, rgba(147, 51, 234, 0.2) 0%, transparent 40%),
-            linear-gradient(45deg, rgba(59, 130, 246, 0.1) 0%, transparent 50%, rgba(147, 51, 234, 0.1) 100%)
-          `,
-          transform: `
-            translate3d(${mousePosition.x * 30}px, ${scrollProgress * -100}px, 0) 
-            rotate(${scrollProgress * 5}deg)
-          `,
-          willChange: 'transform',
-          zIndex: -2,
-        }}
-      />
-      
-      {/* Background Layer 3 - Floating elements */}
-      <div 
-        className="absolute inset-0 w-full h-full opacity-30"
-        style={{
-          background: `
-            radial-gradient(2px 2px at ${20 + scrollProgress * 10}px ${30 + scrollProgress * 10}px, rgba(59, 130, 246, 0.8), transparent),
-            radial-gradient(2px 2px at ${40 + scrollProgress * -5}px ${70 + scrollProgress * 15}px, rgba(147, 51, 234, 0.6), transparent),
-            radial-gradient(1px 1px at ${60 + scrollProgress * 8}px ${90 + scrollProgress * -8}px, rgba(255, 255, 255, 0.4), transparent),
-            radial-gradient(2px 2px at ${80 + scrollProgress * -12}px ${50 + scrollProgress * 12}px, rgba(59, 130, 246, 0.5), transparent)
-          `,
-          backgroundSize: '80px 80px, 120px 120px, 60px 60px, 100px 100px',
-          transform: `
-            translate3d(${mousePosition.x * -15}px, ${scrollProgress * 50}px, 0)
-            rotate(${scrollProgress * -10}deg)
-          `,
-          willChange: 'transform',
-          zIndex: -1,
-        }}
-      />
-      
-      {/* Foreground gradient overlay with dynamic opacity */}
-      <div 
-        className="absolute inset-0 z-0 pointer-events-none" 
-        style={{
-          background: `
-            linear-gradient(
-              135deg, 
-              rgba(0,0,0,${0.7 + scrollProgress * 0.2}) 0%, 
-              rgba(0,0,0,${0.4 + scrollProgress * 0.1}) 50%, 
-              transparent 100%
-            )
-          `,
-          transform: `translate3d(0, ${scrollProgress * -20}px, 0)`,
-          willChange: 'transform',
-        }} 
-      />
+      {/* Desktop Background - Modern Multi-Layer Parallax */}
+      <div className="hidden md:block">
+        {/* Background Layer 1 - Deep parallax */}
+        <div 
+          className="absolute inset-0 w-full h-full opacity-60"
+          style={{
+            backgroundImage: "url('/1000002290.png')",
+            backgroundSize: '120%',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            transform: `
+              translate3d(${mousePosition.x * 20}px, ${scrollProgress * -200}px, 0) 
+              scale(${1.1 + scrollProgress * 0.1})
+              rotateY(${mousePosition.x * 2}deg)
+            `,
+            willChange: 'transform',
+            zIndex: -3,
+          }}
+        />
+        
+        {/* Background Layer 2 - Medium parallax with geometric shapes */}
+        <div 
+          className="absolute inset-0 w-full h-full opacity-20"
+          style={{
+            background: `
+              radial-gradient(circle at ${50 + mousePosition.x * 10}% ${50 + mousePosition.y * 10}%, rgba(59, 130, 246, 0.3) 0%, transparent 50%),
+              radial-gradient(circle at ${30 - mousePosition.x * 5}% ${70 - mousePosition.y * 5}%, rgba(147, 51, 234, 0.2) 0%, transparent 40%),
+              linear-gradient(45deg, rgba(59, 130, 246, 0.1) 0%, transparent 50%, rgba(147, 51, 234, 0.1) 100%)
+            `,
+            transform: `
+              translate3d(${mousePosition.x * 30}px, ${scrollProgress * -100}px, 0) 
+              rotate(${scrollProgress * 5}deg)
+            `,
+            willChange: 'transform',
+            zIndex: -2,
+          }}
+        />
+        
+        {/* Background Layer 3 - Floating elements */}
+        <div 
+          className="absolute inset-0 w-full h-full opacity-30"
+          style={{
+            background: `
+              radial-gradient(2px 2px at ${20 + scrollProgress * 10}px ${30 + scrollProgress * 10}px, rgba(59, 130, 246, 0.8), transparent),
+              radial-gradient(2px 2px at ${40 + scrollProgress * -5}px ${70 + scrollProgress * 15}px, rgba(147, 51, 234, 0.6), transparent),
+              radial-gradient(1px 1px at ${60 + scrollProgress * 8}px ${90 + scrollProgress * -8}px, rgba(255, 255, 255, 0.4), transparent),
+              radial-gradient(2px 2px at ${80 + scrollProgress * -12}px ${50 + scrollProgress * 12}px, rgba(59, 130, 246, 0.5), transparent)
+            `,
+            backgroundSize: '80px 80px, 120px 120px, 60px 60px, 100px 100px',
+            transform: `
+              translate3d(${mousePosition.x * -15}px, ${scrollProgress * 50}px, 0)
+              rotate(${scrollProgress * -10}deg)
+            `,
+            willChange: 'transform',
+            zIndex: -1,
+          }}
+        />
+        
+        {/* Foreground gradient overlay with dynamic opacity - Desktop only */}
+        <div 
+          className="absolute inset-0 z-0 pointer-events-none" 
+          style={{
+            background: `
+              linear-gradient(
+                135deg, 
+                rgba(0,0,0,${0.7 + scrollProgress * 0.2}) 0%, 
+                rgba(0,0,0,${0.4 + scrollProgress * 0.1}) 50%, 
+                transparent 100%
+              )
+            `,
+            transform: `translate3d(0, ${scrollProgress * -20}px, 0)`,
+            willChange: 'transform',
+          }} 
+        />
+      </div>
       
     {/* Modern Animation Styles */}
     <style>{`
