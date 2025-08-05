@@ -151,9 +151,10 @@ const serviceableZips = new Set([
 ]);
 
 const AvailabilityProcess = () => {
-  // Scroll animation state
+  // Modern scroll animation state
   const [isVisible, setIsVisible] = useState(false);
-  const [scrollY, setScrollY] = useState(0);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const sectionRef = useRef<HTMLElement>(null);
   
   // Availability check state
@@ -168,19 +169,25 @@ const AvailabilityProcess = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const blurTimeoutRef = useRef<number | null>(null);
 
-  // Parallax scroll effect
+  // Modern parallax scroll effect with multiple layers
   useEffect(() => {
     const handleScroll = () => {
       const rect = sectionRef.current?.getBoundingClientRect();
       if (rect) {
-        // Only calculate parallax when section is in viewport
-        const scrolled = window.scrollY;
-        const rate = scrolled * -0.3; // Negative for upward movement
-        setScrollY(rate);
+        // Calculate scroll progress relative to viewport
+        const sectionTop = rect.top;
+        const sectionHeight = rect.height;
+        const windowHeight = window.innerHeight;
+        
+        // Progress from 0 to 1 as section moves through viewport
+        const rawProgress = (windowHeight - sectionTop) / (windowHeight + sectionHeight);
+        const progress = Math.max(0, Math.min(1, rawProgress));
+        
+        setScrollProgress(progress);
       }
     };
 
-    // Use requestAnimationFrame for smooth performance
+    // Smooth animation frame handling
     let ticking = false;
     const scrollHandler = () => {
       if (!ticking) {
@@ -192,8 +199,23 @@ const AvailabilityProcess = () => {
       }
     };
 
+    // Mouse movement for subtle interactive effects
+    const handleMouseMove = (e: MouseEvent) => {
+      const { clientX, clientY } = e;
+      const { innerWidth, innerHeight } = window;
+      setMousePosition({
+        x: (clientX / innerWidth - 0.5) * 2, // -1 to 1
+        y: (clientY / innerHeight - 0.5) * 2, // -1 to 1
+      });
+    };
+
     window.addEventListener('scroll', scrollHandler, { passive: true });
-    return () => window.removeEventListener('scroll', scrollHandler);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    
+    return () => {
+      window.removeEventListener('scroll', scrollHandler);
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
   }, []);
 
   // Intersection Observer for scroll animations
@@ -330,56 +352,213 @@ const AvailabilityProcess = () => {
         minHeight: '80vh',
       }}>
       
-      {/* Parallax Background Layer */}
+      {/* Modern Multi-Layer Parallax Background */}
+      
+      {/* Background Layer 1 - Deep parallax */}
       <div 
-        className="absolute inset-0 w-full h-full"
+        className="absolute inset-0 w-full h-full opacity-60"
         style={{
           backgroundImage: "url('/1000002290.png')",
-          backgroundSize: 'cover',
+          backgroundSize: '120%',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
-          backgroundAttachment: 'fixed',
-          transform: `translate3d(0, ${scrollY}px, 0) scale(1.1)`,
+          transform: `
+            translate3d(${mousePosition.x * 20}px, ${scrollProgress * -200}px, 0) 
+            scale(${1.1 + scrollProgress * 0.1})
+            rotateY(${mousePosition.x * 2}deg)
+          `,
           willChange: 'transform',
-          zIndex: -2
+          zIndex: -3,
+          filter: 'blur(1px) brightness(0.8)',
         }}
       />
       
-      {/* Dark gradient overlay for contrast */}
-      <div className="absolute inset-0 z-0 pointer-events-none" style={{background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%)'}} />
+      {/* Background Layer 2 - Medium parallax with geometric shapes */}
+      <div 
+        className="absolute inset-0 w-full h-full opacity-20"
+        style={{
+          background: `
+            radial-gradient(circle at ${50 + mousePosition.x * 10}% ${50 + mousePosition.y * 10}%, rgba(59, 130, 246, 0.3) 0%, transparent 50%),
+            radial-gradient(circle at ${30 - mousePosition.x * 5}% ${70 - mousePosition.y * 5}%, rgba(147, 51, 234, 0.2) 0%, transparent 40%),
+            linear-gradient(45deg, rgba(59, 130, 246, 0.1) 0%, transparent 50%, rgba(147, 51, 234, 0.1) 100%)
+          `,
+          transform: `
+            translate3d(${mousePosition.x * 30}px, ${scrollProgress * -100}px, 0) 
+            rotate(${scrollProgress * 5}deg)
+          `,
+          willChange: 'transform',
+          zIndex: -2,
+        }}
+      />
       
-    {/* Animation styles */}
+      {/* Background Layer 3 - Floating elements */}
+      <div 
+        className="absolute inset-0 w-full h-full opacity-30"
+        style={{
+          background: `
+            radial-gradient(2px 2px at ${20 + scrollProgress * 10}px ${30 + scrollProgress * 10}px, rgba(59, 130, 246, 0.8), transparent),
+            radial-gradient(2px 2px at ${40 + scrollProgress * -5}px ${70 + scrollProgress * 15}px, rgba(147, 51, 234, 0.6), transparent),
+            radial-gradient(1px 1px at ${60 + scrollProgress * 8}px ${90 + scrollProgress * -8}px, rgba(255, 255, 255, 0.4), transparent),
+            radial-gradient(2px 2px at ${80 + scrollProgress * -12}px ${50 + scrollProgress * 12}px, rgba(59, 130, 246, 0.5), transparent)
+          `,
+          backgroundSize: '80px 80px, 120px 120px, 60px 60px, 100px 100px',
+          transform: `
+            translate3d(${mousePosition.x * -15}px, ${scrollProgress * 50}px, 0)
+            rotate(${scrollProgress * -10}deg)
+          `,
+          willChange: 'transform',
+          zIndex: -1,
+        }}
+      />
+      
+      {/* Foreground gradient overlay with dynamic opacity */}
+      <div 
+        className="absolute inset-0 z-0 pointer-events-none" 
+        style={{
+          background: `
+            linear-gradient(
+              135deg, 
+              rgba(0,0,0,${0.7 + scrollProgress * 0.2}) 0%, 
+              rgba(0,0,0,${0.4 + scrollProgress * 0.1}) 50%, 
+              transparent 100%
+            )
+          `,
+          transform: `translate3d(0, ${scrollProgress * -20}px, 0)`,
+          willChange: 'transform',
+        }} 
+      />
+      
+    {/* Modern Animation Styles */}
     <style>{`
       @keyframes fadeInUp {
         from {
           opacity: 0;
-          transform: translateY(30px);
+          transform: translateY(30px) rotateX(10deg);
         }
         to {
           opacity: 1;
-          transform: translateY(0);
+          transform: translateY(0) rotateX(0deg);
         }
       }
-      .animate-fadeInUp {
-        animation: fadeInUp 0.8s ease-out forwards;
+      
+      @keyframes slideInLeft {
+        from {
+          opacity: 0;
+          transform: translateX(-50px) rotateY(-10deg);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0) rotateY(0deg);
+        }
       }
       
-      /* Enhanced parallax performance */
+      @keyframes floatingPulse {
+        0%, 100% {
+          transform: translateY(0px) scale(1);
+          opacity: 0.7;
+        }
+        50% {
+          transform: translateY(-10px) scale(1.05);
+          opacity: 1;
+        }
+      }
+      
+      @keyframes glowPulse {
+        0%, 100% {
+          box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+        }
+        50% {
+          box-shadow: 0 0 30px rgba(59, 130, 246, 0.6), 0 0 40px rgba(147, 51, 234, 0.3);
+        }
+      }
+      
+      .animate-fadeInUp {
+        animation: fadeInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+      }
+      
+      .animate-slideInLeft {
+        animation: slideInLeft 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+      }
+      
+      .animate-floatingPulse {
+        animation: floatingPulse 3s ease-in-out infinite;
+      }
+      
+      .animate-glowPulse {
+        animation: glowPulse 2s ease-in-out infinite;
+      }
+      
+      /* Enhanced 3D parallax performance */
       #availability-process {
         transform-style: preserve-3d;
         backface-visibility: hidden;
-        perspective: 1000px;
+        perspective: 1200px;
+        overflow: hidden;
       }
       
-      /* Smooth parallax background */
-      #availability-process > div:first-child {
+      /* Smooth GPU-accelerated transforms */
+      #availability-process > div {
         transform-style: preserve-3d;
         backface-visibility: hidden;
+        will-change: transform;
+      }
+      
+      /* Modern glass morphism input effects */
+      .glass-input {
+        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+      
+      .glass-input:focus {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: rgba(59, 130, 246, 0.5);
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+        transform: translateY(-2px);
+      }
+      
+      /* Button hover effects */
+      .modern-button {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+      
+      .modern-button::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: left 0.5s ease;
+      }
+      
+      .modern-button:hover::before {
+        left: 100%;
+      }
+      
+      .modern-button:hover {
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
       }
     `}</style>
-      <div className={`container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl relative z-10 transition-all duration-1000 delay-200 ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-      }`}>
+      <div 
+        className={`container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl relative z-10 transition-all duration-1000 delay-200 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+        }`}
+        style={{
+          transform: `
+            translate3d(${mousePosition.x * 5}px, ${scrollProgress * -30}px, 0)
+            rotateX(${scrollProgress * 2}deg)
+            rotateY(${mousePosition.x * 1}deg)
+          `,
+          transformStyle: 'preserve-3d',
+          willChange: 'transform',
+        }}
+      >
         <div className="max-w-3xl mx-auto">
           <form onSubmit={checkServiceArea} className="w-full animate-fadeInUp" style={{animationDelay: '200ms'}}>
             <div className="flex flex-col sm:flex-row items-end gap-3">

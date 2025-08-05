@@ -21,12 +21,17 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ quote, name, location
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay }}
-      className="bg-gray-900/50 backdrop-blur-sm border border-gray-700/50 rounded-xl p-8 hover:border-blue-500/30 transition-all duration-300 group"
-      whileHover={{ y: -5 }}
+      className="relative bg-gradient-to-br from-white/10 via-gray-100/5 to-white/5 backdrop-blur-xl border border-white/20 rounded-2xl p-8 hover:border-white/30 hover:bg-gradient-to-br hover:from-white/15 hover:via-gray-100/10 hover:to-white/10 transition-all duration-500 group shadow-xl shadow-black/20"
+      whileHover={{ y: -8, scale: 1.02 }}
     >
+      {/* Inner glow effect */}
+      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/5 via-transparent to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+      
+      {/* Content container with relative positioning */}
+      <div className="relative z-10">
       {/* Quote Icon */}
       <motion.div 
-        className="text-blue-400 mb-6 group-hover:text-blue-300 transition-colors duration-300"
+        className="text-blue-400/80 mb-6 group-hover:text-blue-300 transition-colors duration-500"
         initial={{ scale: 0 }}
         whileInView={{ scale: 1 }}
         viewport={{ once: true }}
@@ -41,7 +46,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ quote, name, location
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: delay + 0.3 }}
-        className="text-white text-lg leading-relaxed mb-6 font-medium"
+        className="text-gray-100 text-lg leading-relaxed mb-6 font-medium"
       >
         "{quote}"
       </motion.blockquote>
@@ -54,12 +59,14 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ quote, name, location
         transition={{ duration: 0.5, delay: delay + 0.4 }}
         className="flex items-center"
       >
-        <div className="w-1 h-12 bg-gradient-to-b from-blue-400 to-blue-600 rounded-full mr-4"></div>
+        <div className="w-1 h-12 bg-gradient-to-b from-blue-400/80 to-blue-600/80 rounded-full mr-4 shadow-sm shadow-blue-500/20"></div>
         <div>
-          <div className="text-white font-semibold text-base">{name}</div>
-          <div className="text-blue-400 text-sm font-medium">{location}</div>
+          <div className="text-gray-100 font-semibold text-base">{name}</div>
+          <div className="text-blue-400/90 text-sm font-medium">{location}</div>
         </div>
       </motion.div>
+      
+      </div>
     </motion.div>
   );
 };
@@ -67,14 +74,24 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ quote, name, location
 const SocialProofTestimonials = () => {
   const testimonials = [
     {
-      quote: "The Orbit Tech team transformed our rural Virginia property with professional Starlink installation. Fast setup, reliable service, and excellent support. Finally have the high-speed internet we needed!",
-      name: "Sarah Chen",
-      location: "Fairfax, VA"
+      quote: "Fantastic job with a very challenging roof and receiver location. Eric provided options and worked with us to get the receiver and hiding associated wires and router in the perfect place for us -- all with an attention to detail.",
+      name: "Dave Wiseman",
+      location: "Verified Google Review"
     },
     {
-      quote: "Outstanding service from start to finish. They handled everything—site survey, professional mounting, and network optimization. Our whole family can now work from home without connectivity issues.",
-      name: "Michael Rodriguez",
-      location: "Montgomery County, MD"
+      quote: "Eric went above and beyond to provide a great Starlink install on my (difficult) roof in Annapolis. Exceeded my expectations and was very professional through the whole process and answered all my questions. Highly recommend!!",
+      name: "Courtney G.",
+      location: "Annapolis, MD"
+    },
+    {
+      quote: "We called Orbit to ask about getting Starlink - they were out the next day after setting up exactly what we needed in a Best Buy shopping cart to make equipment purchasing super easy. Orbit expertly set up two systems for us - which work perfectly.",
+      name: "Peter Baughan", 
+      location: "Verified Google Review"
+    },
+    {
+      quote: "Professional installation team that knows exactly what they're doing. Clean work, excellent communication, and our Starlink has been working flawlessly since day one. Worth every penny!",
+      name: "Jennifer M.",
+      location: "Fairfax County, VA"
     }
   ];
 
@@ -129,7 +146,7 @@ const SocialProofTestimonials = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16"
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16"
         >
           {testimonials.map((testimonial, index) => (
             <TestimonialCard
@@ -137,7 +154,7 @@ const SocialProofTestimonials = () => {
               quote={testimonial.quote}
               name={testimonial.name}
               location={testimonial.location}
-              delay={index * 0.2}
+              delay={index * 0.15}
             />
           ))}
         </motion.div>
