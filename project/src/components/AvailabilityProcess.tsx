@@ -644,7 +644,7 @@ const AvailabilityProcess = () => {
                         ? (
                           <>
                             Great! We provide professional Starlink installation services in {zipCode}. 🔥{' '}
-                            <span className="text-orange-400 font-semibold">3 installations scheduled in your area this week</span>. 
+                            <span className="text-orange-400 font-semibold">100+ Licensed & Insured • 5.0 Google Rating • 500+ Installations</span>. 
                             You can get high-speed satellite internet with same-day installation.
                           </>
                         ) 
