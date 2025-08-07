@@ -236,32 +236,44 @@ const TestimonialSchema: React.FC<{ testimonials: TestimonialData[] }> = ({ test
 
 // Main Testimonials Component
 const Testimonials: React.FC = () => {
-  // Strategic testimonials aligned with 75/25 focus
+  // Live Google Business Reviews - Authentic customer feedback
   const testimonials: TestimonialData[] = [
     {
-      id: 'core-service-testimonial',
-      quote: "The Orbit Tech transformed our rural property from internet wasteland to connectivity powerhouse. They completed our Starlink installation in under 3 hours, achieving 245 Mbps speeds where we previously struggled with 8 Mbps DSL. Professional, knowledgeable, and they cleaned up everything perfectly. This is how installation should be done.",
-      customerName: "Michael Harrison",
-      location: "Great Falls, VA",
+      id: 'google-review-dave-wiseman',
+      quote: "Fantastic job with a very challenging roof and receiver location. Eric provided options and worked with us to get the receiver and hiding associated wires and router in the perfect place for us -- all with an attention to detail.",
+      customerName: "Dave Wiseman",
+      location: "Local Guide • 27 reviews",
       rating: 5,
-      date: "March 2024",
-      speedBefore: "8 Mbps",
-      speedAfter: "245 Mbps",
+      date: "January 2025",
       installationType: 'starlink-only',
       verifiedPurchase: true
     },
     {
-      id: 'value-add-testimonial',
-      quote: "We had Starlink installed by another company, but still had dead zones throughout our home. The Orbit Tech came in and set up a professional mesh network that finally delivered on Starlink's promise. Now we have 200+ Mbps in every room, including the basement office and detached garage. Worth every penny for the whole-home coverage.",
-      customerName: "Sarah Chen",
-      location: "Bethesda, MD",
+      id: 'google-review-courtney-g',
+      quote: "Eric went above and beyond to provide a great Starlink install on my (difficult) roof in Annapolis. Exceeded my expectations and was very professional through the whole process and answered all my questions. Highly recommend!!",
+      customerName: "Courtney G",
+      location: "Annapolis, MD",
       rating: 5,
-      date: "February 2024",
-      installationType: 'starlink-plus-wifi',
+      date: "January 2025",
+      installationType: 'starlink-only',
       verifiedPurchase: true,
       highlightMetric: {
         value: "100%",
-        label: "Home Coverage Achieved"
+        label: "Exceeded Expectations"
+      }
+    },
+    {
+      id: 'google-review-peter-baughan',
+      quote: "We called Orbit to ask about getting Starlink - they were out the next day after setting up exactly what we needed in a Best Buy shopping cart to make equipment purchasing super easy. Orbit expertly set up two systems for us - which work flawlessly - while hardwiring and fixing our Sonos system to boot. Eric is an expert! Goes the extra mile - and at a very reasonable price. Highly recommended!",
+      customerName: "Peter Baughan",
+      location: "DMV Area",
+      rating: 5,
+      date: "January 2025",
+      installationType: 'starlink-plus-wifi',
+      verifiedPurchase: true,
+      highlightMetric: {
+        value: "2",
+        label: "Systems Installed"
       }
     }
   ];
@@ -355,7 +367,7 @@ const Testimonials: React.FC = () => {
             </motion.div>
           </motion.div>
 
-          {/* Testimonials Grid */}
+          {/* Testimonials Grid - Expanded for 4 Reviews */}
           <motion.div
             className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16"
             variants={containerVariants}
