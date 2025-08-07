@@ -283,7 +283,7 @@ const Hero: React.FC<HeroProps> = ({ className = '' }) => {
                   {/* Main image container */}
                   <div className="relative bg-gradient-to-br from-neutral-900 to-black rounded-2xl border border-white/10 overflow-hidden">
                     <OptimizedImage
-                      src="/starlink-professional-installation.png"
+                      src="/Untitled design (20).png"
                       alt="Professional Starlink satellite internet installation equipment including dish, router, and accessories"
                       className="w-full h-auto object-cover"
                       priority={true}

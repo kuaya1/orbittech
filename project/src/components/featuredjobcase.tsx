@@ -164,36 +164,36 @@ const FeaturedJobsSection: React.FC = () => {
   // Sample installation data with placeholder images
   const installations: InstallationJob[] = [
     {
-      id: 'great-falls-mansion',
-      location: 'Great Falls, VA',
-      region: 'Fairfax County',
+      id: 'keppa-fitness-hamilton',
+      location: 'Keppa Fitness, Hamilton VA',
+      region: 'Loudoun County',
       challenge: 'Heavy tree coverage and a steep roofline made standard installation impossible. The property\'s size meant Wi-Fi dead zones in critical areas.',
       solution: 'Implemented a ridgeline roof mount with precision aiming, combined with a professional mesh network setup delivering 200+ Mbps to every room.',
       speedAchieved: '245 Mbps',
-      installationType: 'residential',
-      imageUrl: 'https://images.unsplash.com/photo-1558036117-15d82a90b9b1?w=800&h=600&fit=crop',
+      installationType: 'business',
+      imageUrl: 'https://www.flickr.com/photo_download.gne?id=54387691665&secret=1206b5b1e7&size=l&source=photoPageEngagement',
       completionTime: '3 Hours'
     },
     {
-      id: 'bethesda-office',
-      location: 'Bethesda, MD',
-      region: 'Montgomery County',
+      id: 'annapolis-vacation-home',
+      location: 'Annapolis Vacation Home',
+      region: 'Anne Arundel County',
       challenge: 'A growing tech startup needed enterprise-grade reliability for 50+ employees. Their previous provider couldn\'t deliver consistent speeds.',
       solution: 'Deployed a business-grade Starlink system with redundant power backup and optimized network configuration for high-demand usage.',
       speedAchieved: '285 Mbps',
-      installationType: 'business',
-      imageUrl: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop',
+      installationType: 'residential',
+      imageUrl: 'https://www.flickr.com/photo_download.gne?id=54704913554&secret=b97479bb3e&size=l&source=photoPageEngagement',
       completionTime: '4 Hours'
     },
     {
-      id: 'leesburg-farmhouse',
-      location: 'Leesburg, VA',
-      region: 'Loudoun County',
+      id: 'charlestown-residential-home',
+      location: 'Charlestown Residential Home',
+      region: 'Jefferson County',
       challenge: 'Rural location with no fiber access. The family needed reliable internet for remote work and homeschooling across a 5-acre property.',
       solution: 'Strategic dish placement for optimal satellite visibility, with extended cable runs and whole-property Wi-Fi coverage using outdoor access points.',
       speedAchieved: '195 Mbps',
       installationType: 'residential',
-      imageUrl: 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=800&h=600&fit=crop',
+      imageUrl: 'https://www.flickr.com/photo_download.gne?id=54704683041&secret=db9751abea&size=l&source=photoPageEngagement',
       completionTime: '2.5 Hours'
     }
   ];
