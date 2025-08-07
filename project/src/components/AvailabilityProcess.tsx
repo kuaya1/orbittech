@@ -357,7 +357,7 @@ const AvailabilityProcess = () => {
       <div 
         className="absolute inset-0 w-full h-full md:hidden"
         style={{
-          backgroundImage: 'url(/Starlink_Rural_Location_02a-scaled.jpg)',
+          backgroundImage: 'url("/starlink-rural.jpg")',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
@@ -371,7 +371,7 @@ const AvailabilityProcess = () => {
         <div 
           className="absolute inset-0 w-full h-full"
           style={{
-            backgroundImage: "url('/Starlink_Rural_Location_02a-scaled.jpg')",
+            backgroundImage: 'url("/starlink-rural.jpg")',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
