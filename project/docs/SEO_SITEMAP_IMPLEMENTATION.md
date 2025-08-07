@@ -219,11 +219,15 @@ npm run sitemap:validate   # Generate and validate sitemaps
 2. **✅ Schema Integration**: mainEntityOfPage added to all location schemas  
 3. **✅ Internal Linking Matrix**: Strategic cross-linking between nearby locations
 
-### Immediate Actions (This Week)
-1. Submit updated `sitemap-index.xml` to Google Search Console ⚡ **CRITICAL**
-2. Request indexing for high-priority location pages with corrected URLs
-3. Monitor crawl stats and verify zero 404 errors on location pages
-4. Verify robots.txt accessibility and sitemap discovery
+### Immediate Actions (This Week) ✅ FIXED DOMAIN MISMATCH
+1. **✅ PROBLEM RESOLVED**: Updated sitemap-index.xml to use `theorbittech.com` domain (matching your GSC property)
+   - **Issue**: Previous sitemap referenced `www.theorbittech.com` URLs while submitted to `theorbittech.com` property
+   - **Fix**: Regenerated all sitemaps with consistent `theorbittech.com` domain
+   - **Result**: Google will now discover all 32 pages correctly
+   - **Action**: Wait 24-48 hours for Google to re-crawl and discover pages
+2. **Monitor**: Check GSC sitemap report for "Discovered pages" to increase from 0 → 32
+3. **Verify**: Location page indexing with correct URLs and enhanced schema
+4. **Track**: Improved local search performance over next 1-2 weeks
 
 ### Short-term Optimizations (Next Month)
 1. ✅ **DONE**: Location page templates with cross-linking and enhanced schema

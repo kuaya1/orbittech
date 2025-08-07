@@ -7,14 +7,14 @@ const __dirname = path.dirname(__filename);
 
 // Sitemap configuration
 const seoConfig = {
-  siteUrl: 'https://www.theorbittech.com',
+  siteUrl: 'https://theorbittech.com',  // Updated to match GSC property
   sitemapStructure: {
     index: {
       sitemaps: [
-        { loc: 'https://www.theorbittech.com/sitemap-pages.xml', lastmod: new Date().toISOString() },
-        { loc: 'https://www.theorbittech.com/sitemap-locations.xml', lastmod: new Date().toISOString() },
-        { loc: 'https://www.theorbittech.com/sitemap-services.xml', lastmod: new Date().toISOString() },
-        { loc: 'https://www.theorbittech.com/sitemap-blog.xml', lastmod: new Date().toISOString() },
+        { loc: 'https://theorbittech.com/sitemap-pages.xml', lastmod: new Date().toISOString() },
+        { loc: 'https://theorbittech.com/sitemap-locations.xml', lastmod: new Date().toISOString() },
+        { loc: 'https://theorbittech.com/sitemap-services.xml', lastmod: new Date().toISOString() },
+        { loc: 'https://theorbittech.com/sitemap-blog.xml', lastmod: new Date().toISOString() },
       ],
     },
     pages: {
@@ -130,7 +130,7 @@ Disallow: /.well-known/
 Disallow: /private/
 
 # Sitemap location
-Sitemap: https://www.theorbittech.com/sitemap-index.xml
+Sitemap: https://theorbittech.com/sitemap-index.xml
 
 # Additional directives for better crawling
 Clean-param: utm_source&utm_medium&utm_campaign

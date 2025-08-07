@@ -1,5 +1,5 @@
 # Robots.txt for The Orbit Tech
-# Generated on 2025-08-07T11:49:15.051Z
+# Generated on 2025-08-07T12:01:56.349Z
 
 User-agent: *
 Allow: /
@@ -16,7 +16,7 @@ Disallow: /.well-known/
 Disallow: /private/
 
 # Sitemap location
-Sitemap: https://www.theorbittech.com/sitemap-index.xml
+Sitemap: https://theorbittech.com/sitemap-index.xml
 
 # Additional directives for better crawling
 Clean-param: utm_source&utm_medium&utm_campaign
