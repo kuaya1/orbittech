@@ -181,7 +181,7 @@ const AvailabilityProcess = () => {
       fallbackImg.onload = () => setImageLoaded(true);
       fallbackImg.src = '/satellite-network-earth.jpg';
     };
-    img.src = '/starlink-rural.jpg';
+    img.src = '/satellit1 mobile.PNG';
   }, []);
 
   // Modern parallax scroll effect with multiple layers
@@ -371,7 +371,7 @@ const AvailabilityProcess = () => {
       <div 
         className="absolute inset-0 w-full h-full md:hidden"
         style={{
-          backgroundImage: imageLoaded ? 'url("/starlink-rural.jpg")' : 'url("/satellite-network-earth.jpg")',
+          backgroundImage: imageLoaded ? 'url("/satellit1 mobile.PNG")' : 'url("/satellite-network-earth.jpg")',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
