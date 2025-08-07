@@ -156,6 +156,7 @@ const AvailabilityProcess = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [imageLoaded, setImageLoaded] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   
   // Availability check state
@@ -169,6 +170,19 @@ const AvailabilityProcess = () => {
   // Input references for better focus management
   const inputRef = useRef<HTMLInputElement>(null);
   const blurTimeoutRef = useRef<number | null>(null);
+
+  // Preload background image for better mobile performance
+  useEffect(() => {
+    const img = new Image();
+    img.onload = () => setImageLoaded(true);
+    img.onerror = () => {
+      // Fallback to alternative image
+      const fallbackImg = new Image();
+      fallbackImg.onload = () => setImageLoaded(true);
+      fallbackImg.src = '/satellite-network-earth.jpg';
+    };
+    img.src = '/starlink-rural.jpg';
+  }, []);
 
   // Modern parallax scroll effect with multiple layers
   useEffect(() => {
@@ -357,13 +371,20 @@ const AvailabilityProcess = () => {
       <div 
         className="absolute inset-0 w-full h-full md:hidden"
         style={{
-          backgroundImage: 'url("/starlink-rural.jpg")',
+          backgroundImage: imageLoaded ? 'url("/starlink-rural.jpg")' : 'url("/satellite-network-earth.jpg")',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
+          backgroundAttachment: 'scroll',
           zIndex: -3,
+          transition: 'background-image 0.3s ease-in-out',
         }}
-      />
+      >
+        {/* Loading state for mobile */}
+        {!imageLoaded && (
+          <div className="absolute inset-0 bg-neutral-900 animate-pulse" />
+        )}
+      </div>
       
       {/* Desktop Background - Enhanced Version with Proper Layering */}
       <div className="absolute inset-0 hidden md:block">
@@ -375,6 +396,7 @@ const AvailabilityProcess = () => {
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
+            backgroundAttachment: 'scroll',
             filter: 'contrast(1.2) brightness(0.95) saturate(1.1)',
             transform: `
               translate3d(${mousePosition.x * 8}px, ${scrollProgress * -80}px, 0) 
@@ -383,7 +405,19 @@ const AvailabilityProcess = () => {
             willChange: 'transform',
             zIndex: 1,
           }}
-        />
+        >
+          {/* Desktop fallback image */}
+          <img 
+            src="/starlink-rural.jpg" 
+            alt="" 
+            className="absolute inset-0 w-full h-full object-cover object-center opacity-0"
+            style={{ zIndex: -1 }}
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              target.src = '/satellite-network-earth.jpg';
+            }}
+          />
+        </div>
         
         {/* Light Enhancement Overlay */}
         <div 
