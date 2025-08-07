@@ -11,8 +11,7 @@ const useScrollReveal = (threshold = 0.1) => {
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          // Optional: Unobserve after first intersection for performance
-          // observer.unobserve(entry.target);
+          observer.unobserve(entry.target);
         }
       },
       { threshold, rootMargin: '50px' }
@@ -33,89 +32,177 @@ const useScrollReveal = (threshold = 0.1) => {
   return [elementRef, isVisible] as const;
 };
 
-/*
-* To use the "Inter" font like in the reference image, add the following
-* line to the <head> section of your main public/index.html file:
-*
-* <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-*
-* Then, add 'Inter' to your font family in your tailwind.config.js file:
-*
-* const defaultTheme = require('tailwindcss/defaultTheme')
-*
-* module.exports = {
-* theme: {
-* extend: {
-* fontFamily: {
-* sans: ['Inter', ...defaultTheme.fontFamily.sans],
-* },
-* colors: {
-* 'brand-dark': '#001419',
-* 'brand-light': '#f8f8f8',
-* }
-* },
-* },
-* plugins: [],
-* }
-*
-* By adding the colors to your config, you can use classes like `bg-brand-dark` and `text-brand-light`.
-* For this example, I will use arbitrary values like `bg-[#001419]`.
-*/
-
-
-// Calcite-style SVG icons for each service card with updated blue color
-const HomeIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8 mb-4 text-blue-500">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12l8.954-8.955a1.5 1.5 0 012.122 0l8.954 8.955M3 10.5V21h6V15h6v6h6v-10.5M12 2.25v2.25" />
-    </svg>
+// Premium monochromatic icons with accent color on hover
+const SatelliteIcon: React.FC<{ isPrimary?: boolean }> = ({ isPrimary }) => (
+  <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    fill="none" 
+    viewBox="0 0 24 24" 
+    strokeWidth={1.5} 
+    stroke="currentColor" 
+    className={isPrimary ? "w-12 h-12 text-neutral-400 group-hover:text-blue-500 transition-colors duration-300" : "w-8 h-8 text-neutral-500 group-hover:text-blue-500 transition-colors duration-300"}
+  >
+    <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
+  </svg>
 );
 
-const BusinessIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8 mb-4 text-blue-500">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h6M9 11.25h6m-6 4.5h6M3.75 6.75h.008v.008H3.75V6.75zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM20.25 6.75h.008v.008H20.25V6.75zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
-    </svg>
+const WifiIcon: React.FC = () => (
+  <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    fill="none" 
+    viewBox="0 0 24 24" 
+    strokeWidth={1.5} 
+    stroke="currentColor" 
+    className="w-8 h-8 text-neutral-500 group-hover:text-blue-500 transition-colors duration-300"
+  >
+    <path strokeLinecap="round" strokeLinejoin="round" d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 011.06 0z" />
+  </svg>
 );
 
-const MarineIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8 mb-4 text-blue-500">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 3.75v16.5M3.75 12h16.5M4.5 6.75l15 10.5M4.5 17.25L19.5 6.75" />
-    </svg>
+const BusinessIcon: React.FC = () => (
+  <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    fill="none" 
+    viewBox="0 0 24 24" 
+    strokeWidth={1.5} 
+    stroke="currentColor" 
+    className="w-8 h-8 text-neutral-500 group-hover:text-blue-500 transition-colors duration-300"
+  >
+    <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z" />
+  </svg>
 );
 
-// The props for the ServiceCard component are updated to include an icon
-interface ServiceCardProps {
+// Primary Service Card Component
+interface PrimaryServiceCardProps {
+  title: string;
+  subtitle: string;
+  description: string;
+  features: string[];
+  icon: React.ReactNode;
+}
+
+const PrimaryServiceCard: React.FC<PrimaryServiceCardProps> = ({
+  title,
+  subtitle,
+  description,
+  features,
+  icon
+}) => {
+  return (
+    <div className="group bg-gradient-to-b from-neutral-900 to-black border border-neutral-800 rounded-3xl p-10 lg:p-12 relative overflow-hidden transition-all duration-500 hover:border-neutral-700">
+      {/* Subtle gradient overlay on hover */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      
+      <div className="relative z-10">
+        {/* Icon and Badge */}
+        <div className="flex items-start justify-between mb-8">
+          {icon}
+          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-500/10 text-blue-400 border border-blue-500/20">
+            Most Popular
+          </span>
+        </div>
+
+        {/* Content */}
+        <h3 className="text-3xl font-bold text-white mb-2 tracking-tight">
+          {title}
+        </h3>
+        <p className="text-blue-400 font-medium mb-4">
+          {subtitle}
+        </p>
+        <p className="text-neutral-300 text-lg leading-relaxed mb-8">
+          {description}
+        </p>
+
+        {/* Features Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
+          {features.map((feature, index) => (
+            <div key={index} className="flex items-center">
+              <svg className="w-5 h-5 text-blue-500 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+              </svg>
+              <span className="text-neutral-200 font-medium">
+                {feature}
+              </span>
+            </div>
+          ))}
+        </div>
+
+        {/* CTA Buttons */}
+        <div className="flex flex-col sm:flex-row gap-4">
+          <a
+            href="#contact"
+            aria-label="Schedule Professional Starlink Installation"
+            className="inline-flex items-center justify-center bg-blue-500 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:bg-blue-600 hover:shadow-lg hover:shadow-blue-500/20"
+          >
+            Get Free Quote
+          </a>
+          <a
+            href="tel:+15719996915"
+            aria-label="Call for Starlink Installation Quote"
+            className="inline-flex items-center justify-center bg-white/5 border border-white/10 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:bg-white/10"
+          >
+            Call (571) 999-6915
+          </a>
+        </div>
+
+        {/* Trust Indicators */}
+        <div className="flex flex-wrap gap-6 mt-8 pt-8 border-t border-neutral-800">
+          <div className="flex items-center text-sm text-neutral-400">
+            <svg className="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+            </svg>
+            Licensed & Insured
+          </div>
+          <div className="flex items-center text-sm text-neutral-400">
+            <svg className="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+            </svg>
+            90-Day Warranty
+          </div>
+          <div className="flex items-center text-sm text-neutral-400">
+            <svg className="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+            </svg>
+            Same-Day Service
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Secondary Service Card Component
+interface SecondaryServiceCardProps {
   title: string;
   description: string;
   features: string[];
   icon: React.ReactNode;
 }
 
-const ServiceCard: React.FC<ServiceCardProps> = ({
+const SecondaryServiceCard: React.FC<SecondaryServiceCardProps> = ({
   title,
   description,
   features,
   icon
 }) => {
   return (
-    // Card container: Solid black background with a border to distinguish it.
-    <div className="bg-black border border-neutral-800 rounded-2xl p-8 h-full flex flex-col transition-all duration-300">
-
-      {/* Content Area */}
+    <div className="group bg-black/50 border border-neutral-800 rounded-2xl p-8 h-full flex flex-col transition-all duration-300 hover:bg-neutral-900/50 hover:border-neutral-700">
       <div className="flex-grow">
         {icon}
-        <h4 className="font-semibold text-white mb-4 text-lg tracking-wide">
+        <h4 className="font-semibold text-white mb-3 text-xl tracking-tight">
           {title}
         </h4>
-        <p className="text-[#f8f8f8] mb-6 leading-relaxed text-base font-normal">
+        <p className="text-neutral-400 mb-6 leading-relaxed">
           {description}
         </p>
         
-        {/* Feature list with simple bullet points */}
-        <ul className="space-y-3 mb-8 text-left">
+        <ul className="space-y-3 mb-8">
           {features.map((feature, index) => (
-            <li key={index} className="flex items-center">
-              <div className="w-1.5 h-1.5 bg-neutral-600 rounded-full mr-3 flex-shrink-0"></div>
-              <span className="text-[#f8f8f8] text-sm font-normal">
+            <li key={index} className="flex items-start">
+              <svg className="w-4 h-4 text-neutral-600 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+              </svg>
+              <span className="text-neutral-300 text-sm">
                 {feature}
               </span>
             </li>
@@ -123,48 +210,49 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
         </ul>
       </div>
 
-      {/* Button Container */}
       <div className="mt-auto">
         <a
           href="#contact"
-          className="bg-white text-black font-semibold text-sm px-6 py-2.5 rounded-md w-full text-center transition-all duration-300 hover:bg-neutral-200 block"
+          aria-label={`Learn more about ${title}`}
+          className="inline-flex items-center text-blue-400 font-medium text-sm group-hover:text-blue-300 transition-colors duration-300"
         >
-          Schedule Now
+          Learn More
+          <svg className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
         </a>
       </div>
     </div>
   );
 };
 
-const Services = () => {
+const Services: React.FC = () => {
   const [headerRef, headerVisible] = useScrollReveal(0.2);
-  const [cardsRef, cardsVisible] = useScrollReveal(0.1);
-  const [ctaRef, ctaVisible] = useScrollReveal(0.3);
+  const [primaryRef, primaryVisible] = useScrollReveal(0.1);
+  const [secondaryRef, secondaryVisible] = useScrollReveal(0.1);
 
-  // Framer Motion variants for smoother animations
+  // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
+        staggerChildren: 0.15,
         delayChildren: 0.1
       }
     }
   };
 
-  const cardVariants = {
+  const itemVariants = {
     hidden: { 
       opacity: 0, 
-      y: 50,
-      scale: 0.95
+      y: 40
     },
     visible: {
       opacity: 1,
       y: 0,
-      scale: 1,
       transition: {
-        type: "spring" as const,
+        type: "spring",
         damping: 25,
         stiffness: 100,
         duration: 0.6
@@ -172,55 +260,42 @@ const Services = () => {
     }
   };
 
-  const headerVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring" as const,
-        damping: 25,
-        stiffness: 100,
-        duration: 0.8
-      }
-    }
+  const primaryServiceData = {
+    title: "Professional Starlink Installation",
+    subtitle: "Expert Installation • Guaranteed Performance",
+    description: "Transform your property with lightning-fast satellite internet. Our certified technicians ensure flawless installation and optimal performance, backed by our 90-day warranty.",
+    icon: <SatelliteIcon isPrimary={true} />,
+    features: [
+      "Free site survey & analysis",
+      "Storm-proof mounting system",
+      "Speed optimization guarantee",
+      "Same-day installation available",
+      "Hidden cable routing",
+      "Lifetime technical support"
+    ]
   };
 
-  const servicesData = [
+  const secondaryServicesData = [
     {
-      title: "HOME INSTALLATION",
-      description: "Perfect internet for your entire home, guaranteed. Expert installation with lifetime support.",
-      icon: <HomeIcon />,
+      title: "Whole-Home Wi-Fi Optimization",
+      description: "Eliminate dead zones and maximize your Starlink speeds in every corner of your property.",
+      icon: <WifiIcon />,
       features: [
-        "Free site survey & speed analysis",
-        "Storm-proof roof mounting system",
-        "Whole-home WiFi coverage guarantee",
-        "Same-day installation available",
-        "Hidden cable routing included"
+        "Professional mesh network setup",
+        "Complete coverage guarantee",
+        "Smart device integration",
+        "Network security configuration"
       ]
     },
     {
-      title: "BUSINESS SOLUTIONS",
-      description: "Enterprise-grade reliability for businesses that can't afford downtime.",
+      title: "Business Solutions",
+      description: "Enterprise-grade connectivity for businesses that demand reliability and performance.",
       icon: <BusinessIcon />,
       features: [
-        "Redundant backup systems",
+        "Priority installation scheduling",
+        "Business-grade equipment",
         "1-hour emergency response",
-        "Business-grade networking",
-        "Priority bandwidth allocation",
-        "Commercial compliance certified"
-      ]
-    },
-    {
-      title: "MOBILE & MARINE",
-      description: "Stay connected anywhere with our specialized mobile installations.",
-      icon: <MarineIcon />,
-      features: [
-        "Military-grade mounting",
-        "Custom power solutions",
-        "30-minute deployment system",
-        "All-weather protection",
-        "GPS-optimized setup"
+        "Dedicated account management"
       ]
     }
   ];
@@ -228,99 +303,69 @@ const Services = () => {
   return (
     <motion.section
       id="services"
-      className="font-sans py-24 sm:py-32 bg-black relative overflow-hidden"
+      className="py-24 sm:py-32 bg-black relative overflow-hidden"
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.2 }}
+      viewport={{ once: true, amount: 0.1 }}
       variants={containerVariants}
     >
+      {/* Background gradient effect */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black via-neutral-950 to-black" />
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Section Header */}
         <motion.div 
           ref={headerRef}
-          className="text-center max-w-3xl mx-auto mb-16"
-          variants={headerVariants}
+          className="text-center max-w-3xl mx-auto mb-20"
+          variants={itemVariants}
         >
-          <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl leading-tight">
-            Professional Starlink Installation in the DMV
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
+            The DMV's #1 Rated
+            <span className="block text-blue-400 mt-2">Starlink Installer</span>
           </h2>
-          <p className="mt-6 text-lg leading-8 text-[#f8f8f8]">
-            Expert installation by certified professionals. Get speeds up to 250 Mbps across VA, MD & DC and expanding.
+          <p className="mt-6 text-lg leading-8 text-neutral-300">
+            Certified professionals delivering flawless installations with speeds up to 250 Mbps. 
+            Serving Virginia, Maryland & DC with same-day service available.
           </p>
         </motion.div>
 
+        {/* Primary Service - Full Width Feature */}
         <motion.div 
-          ref={cardsRef}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24"
+          ref={primaryRef}
+          className="mb-16"
+          variants={itemVariants}
+        >
+          <PrimaryServiceCard {...primaryServiceData} />
+        </motion.div>
+
+        {/* Secondary Services - Two Column Grid */}
+        <motion.div 
+          ref={secondaryRef}
           variants={containerVariants}
         >
-          {servicesData.map((service, index) => (
-            <motion.div
-              key={index}
-              variants={cardVariants}
-              whileHover={{ 
-                scale: 1.05, 
-                y: -10,
-                transition: { type: "spring", stiffness: 300, damping: 20 }
-              }}
-              className="cursor-pointer"
-            >
-              <ServiceCard
-                title={service.title}
-                description={service.description}
-                features={service.features}
-                icon={service.icon}
-              />
-            </motion.div>
-          ))}
-        </motion.div>
-
-        <motion.div 
-          ref={ctaRef}
-          className="text-center"
-          variants={headerVariants}
-        >
-          <h3 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            Ready for Professional Installation?
-          </h3>
-          <p className="mt-4 text-lg leading-8 text-[#f8f8f8] max-w-2xl mx-auto">
-            Get a free consultation and quote for your Starlink installation.
-          </p>
-          <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-            <motion.a 
-              href="#contact" 
-              className="inline-block bg-white text-black font-semibold px-8 py-3 rounded-md transition-all duration-300 shadow-lg"
-              whileHover={{ 
-                scale: 1.05,
-                backgroundColor: "#f5f5f5",
-                boxShadow: "0 10px 25px rgba(255,255,255,0.2)"
-              }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Get a Free Quote
-            </motion.a>
-            <motion.a 
-              href="tel:+15719996915" 
-              className="inline-block bg-white/10 border border-white/20 text-white font-semibold px-8 py-3 rounded-md transition-all duration-300"
-              whileHover={{ 
-                scale: 1.05,
-                backgroundColor: "rgba(255,255,255,0.2)"
-              }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Call Us
-            </motion.a>
+          <div className="mb-12">
+            <h3 className="text-2xl font-bold text-white text-center mb-4">
+              Complete Connectivity Solutions
+            </h3>
+            <p className="text-center text-neutral-400 max-w-2xl mx-auto">
+              Enhance your Starlink installation with our premium add-on services
+            </p>
           </div>
           
-          {/* Trust indicators */}
-          <motion.p 
-            className="mt-4 text-sm text-neutral-400 font-medium"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-          >
-            Licensed & Insured • 90-Day Warranty
-          </motion.p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {secondaryServicesData.map((service, index) => (
+              <motion.div
+                key={index}
+                variants={itemVariants}
+                whileHover={{ 
+                  scale: 1.02,
+                  transition: { type: "spring", stiffness: 300, damping: 20 }
+                }}
+              >
+                <SecondaryServiceCard {...service} />
+              </motion.div>
+            ))}
+          </div>
         </motion.div>
       </div>
     </motion.section>

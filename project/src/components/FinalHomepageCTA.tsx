@@ -33,31 +33,6 @@ const FinalHomepageCTA = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Trust indicators section */}
-        <motion.div
-          className="flex flex-wrap items-center justify-center gap-8 mb-16 text-base"
-          variants={headerVariants}
-        >
-          <div className="flex items-center text-neutral-400">
-            <Shield className="w-5 h-5 mr-3 text-blue-500" />
-            Licensed & Insured
-          </div>
-          
-          <div className="w-px h-6 bg-neutral-700 hidden sm:block"></div>
-          
-          <div className="flex items-center text-neutral-400">
-            <Star className="w-5 h-5 mr-3 text-blue-500" />
-            5.0 Google Rating
-          </div>
-          
-          <div className="w-px h-6 bg-neutral-700 hidden sm:block"></div>
-          
-          <div className="flex items-center text-neutral-400">
-            <Wifi className="w-5 h-5 mr-3 text-blue-500" />
-            500+ Installations
-          </div>
-        </motion.div>
-
         {/* Main CTA Section */}
         <motion.div 
           className="text-center"
@@ -96,13 +71,41 @@ const FinalHomepageCTA = () => {
             </motion.a>
           </div>
           
-          {/* Trust indicators */}
+          {/* Trust indicators under CTA buttons */}
+          <motion.div
+            className="flex flex-wrap items-center justify-center gap-6 mt-8 text-sm"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+          >
+            <div className="flex items-center text-neutral-400">
+              <Shield className="w-4 h-4 mr-2 text-blue-500" />
+              Licensed & Insured
+            </div>
+            
+            <div className="w-px h-4 bg-neutral-700 hidden sm:block"></div>
+            
+            <div className="flex items-center text-neutral-400">
+              <Star className="w-4 h-4 mr-2 text-blue-500" />
+              5.0 Google Rating
+            </div>
+            
+            <div className="w-px h-4 bg-neutral-700 hidden sm:block"></div>
+            
+            <div className="flex items-center text-neutral-400">
+              <Wifi className="w-4 h-4 mr-2 text-blue-500" />
+              500+ Installations
+            </div>
+          </motion.div>
+          
+          {/* Additional trust indicators */}
           <motion.p 
             className="mt-4 text-sm text-neutral-400 font-medium"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.3, duration: 0.6 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
           >
             Same-Day Installation • 90-Day Warranty
           </motion.p>
