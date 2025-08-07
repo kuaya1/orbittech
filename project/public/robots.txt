@@ -1,5 +1,5 @@
 # Robots.txt for The Orbit Tech
-# Generated on 2025-08-07T11:40:40.330Z
+# Generated on 2025-08-07T11:49:15.051Z
 
 User-agent: *
 Allow: /
