@@ -4,6 +4,7 @@ import LocationSchema from './SEO/LocationSchema';
 import OptimizedImage from './OptimizedImage';
 import LocationReviews from './LocationReviews';
 import LocationFAQ from './LocationFAQ';
+import LocationCrossLinks from './LocationCrossLinks';
 import { LocationConfig } from '../utils/locationPageGenerator';
 
 interface LocationPageTemplateProps {
@@ -165,32 +166,30 @@ const LocationPageTemplate: React.FC<LocationPageTemplateProps> = ({ config }) =
       {/* Local Reviews */}
       <LocationReviews location={city} state={state} maxReviews={3} />
 
-      {/* Location FAQ */}
-      <LocationFAQ
-        location={city}
-        state={state}
-        zipCodes={zipCodes}
-        maxFAQs={6}
-      />
+      {/* Location-Specific FAQ */}
+        <LocationFAQ location={city} state={state} />
 
-      {/* Contact CTA */}
-      <section className="bg-blue-900 text-white py-16">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-6">
-            Ready for Professional Starlink Installation in {city}?
-          </h2>
-          <p className="text-xl mb-8">
-            Join hundreds of satisfied customers in {city}, {state} who chose 
-            The Orbit Tech for their satellite internet installation.
-          </p>
-          <a 
-            href={`/contact?location=${city}&state=${state}`}
-            className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-lg font-bold text-lg transition-colors inline-block"
-          >
-            Schedule Your Installation Today
-          </a>
-        </div>
-      </section>
+        {/* Cross-Links to Nearby Location Pages */}
+        <LocationCrossLinks currentLocation={city} currentState={state} />
+
+        {/* Final CTA Section */}
+        <section className="py-16 bg-blue-600 text-white text-center">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl font-bold mb-6">
+              Ready for Professional Starlink Installation in {city}?
+            </h2>
+            <p className="text-xl mb-8">
+              Join hundreds of satisfied customers in {city}, {state} who chose 
+              The Orbit Tech for their satellite internet installation.
+            </p>
+            <a 
+              href={`/contact?location=${city}&state=${state}`}
+              className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-lg font-bold text-lg transition-colors inline-block"
+            >
+              Schedule Your Installation Today
+            </a>
+          </div>
+        </section>
     </>
   );
 };

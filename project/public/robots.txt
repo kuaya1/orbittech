@@ -1,40 +1,30 @@
+# Robots.txt for The Orbit Tech
+# Generated on 2025-08-07T11:40:40.330Z
+
 User-agent: *
 Allow: /
-
-# Block admin and development areas
-Disallow: /admin/
-Disallow: /private/
-Disallow: /.well-known/
-Disallow: /api/
-Disallow: /wp-admin/
-Disallow: /wp-includes/
-Disallow: /node_modules/
-
-# Block development and config files
-Disallow: /*.json$
-Disallow: /*.log$
-Disallow: /package.json
-Disallow: /yarn.lock
-Disallow: /.env
-Disallow: /src/
-Disallow: /build/
-
-# Sitemap
-Sitemap: https://www.theorbittech.com/sitemap.xml
-
-# Crawl-delay for bots
 Crawl-delay: 1
 
-# Allow important pages (explicit permissions)
-Allow: /about/
-Allow: /services/
-Allow: /service-areas/
-Allow: /testimonials/
-Allow: /faq/
-Allow: /blog/
-Allow: /contact/
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0.5
 
-# Allow all media and asset files
+# Block admin and development paths
+Disallow: /admin/
+Disallow: /api/
+Disallow: /.well-known/
+Disallow: /private/
+
+# Sitemap location
+Sitemap: https://www.theorbittech.com/sitemap-index.xml
+
+# Additional directives for better crawling
+Clean-param: utm_source&utm_medium&utm_campaign
+Clean-param: fbclid&gclid&ref&source
+
+# Allow essential files
+Allow: /robots.txt
+Allow: /sitemap*.xml
 Allow: /*.css
 Allow: /*.js
 Allow: /*.png
@@ -42,11 +32,3 @@ Allow: /*.jpg
 Allow: /*.jpeg
 Allow: /*.webp
 Allow: /*.svg
-Allow: /*.gif
-Allow: /*.pdf
-
-# Sitemap location
-Sitemap: https://www.theorbittech.com/sitemap.xml
-
-# Crawl delay (be respectful to search engines)
-Crawl-delay: 1

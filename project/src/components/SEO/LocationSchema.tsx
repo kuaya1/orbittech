@@ -42,6 +42,10 @@ const LocationSchema: React.FC<LocationSchemaProps> = ({
     "name": `The Orbit Tech - Starlink Installation ${location}, ${state}`,
     "description": `Professional Starlink satellite internet installation services in ${location}, ${state}. Expert setup, same-day service, and 5-star customer reviews. ${nearbyAreas.length > 0 ? `Also serving ${nearbyAreas.join(', ')}.` : ''}`,
     "url": `https://theorbittech.com/locations/${location.toLowerCase()}-${state.toLowerCase()}`,
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://theorbittech.com/locations/${location.toLowerCase()}-${state.toLowerCase()}`
+    },
     "telephone": phone,
     "email": email,
     "priceRange": "$$$",

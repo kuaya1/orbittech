@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sitemap>
+    <loc>https://www.theorbittech.com/sitemap-pages.xml</loc>
+    <lastmod>2025-08-07T11:40:40.319Z</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://www.theorbittech.com/sitemap-locations.xml</loc>
+    <lastmod>2025-08-07T11:40:40.320Z</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://www.theorbittech.com/sitemap-services.xml</loc>
+    <lastmod>2025-08-07T11:40:40.320Z</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://www.theorbittech.com/sitemap-blog.xml</loc>
+    <lastmod>2025-08-07T11:40:40.320Z</lastmod>
+  </sitemap>
+</sitemapindex>

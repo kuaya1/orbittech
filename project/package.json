@@ -5,15 +5,17 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node scripts/generateSitemap.mjs",
-    "build:clean": "vite build && node scripts/generateSitemap.mjs",
+    "build": "vite build && npm run sitemap:generate",
+    "build:clean": "vite build && npm run sitemap:generate",
     "lint": "eslint .",
     "preview": "vite preview",
-    "build:check": "vite build && node scripts/generateSitemap.mjs && vite preview --port 4173",
+    "build:check": "vite build && npm run sitemap:generate && vite preview --port 4173",
     "build:analyze": "vite build --mode analyze && node scripts/analyze-build.js",
-    "build:prod": "vite build --mode production && node scripts/generateSitemap.mjs && npm run preview",
+    "build:prod": "vite build --mode production && npm run sitemap:generate && npm run preview",
     "serve": "vite preview --host 0.0.0.0 --port 4173",
-    "sitemap": "node scripts/generateSitemap.mjs"
+    "sitemap": "node scripts/generateSitemap.mjs",
+    "sitemap:generate": "node scripts/build-sitemaps.js",
+    "sitemap:validate": "node scripts/build-sitemaps.js && echo 'Sitemap validation complete'"
   },
   "dependencies": {
     "@emailjs/browser": "^4.1.0",
