@@ -1,6 +1,5 @@
-import React, { useState, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, Shield, Trees, Wifi, Award, CheckCircle } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { motion, AnimatePresence, useMotionValue, useTransform } from 'framer-motion';
 
 // Type definitions
 interface FAQData {
@@ -8,7 +7,6 @@ interface FAQData {
   question: string;
   answer: string;
   highlights?: string[];
-  icon?: React.ReactNode;
 }
 
 interface FAQItemProps {
@@ -21,6 +19,37 @@ interface FAQItemProps {
 interface FAQSchemaProps {
   faqs: FAQData[];
 }
+
+// Precision Intersection Observer for orchestrated reveal
+const useScrollReveal = (threshold = 0.1) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const elementRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold, rootMargin: '50px' }
+    );
+
+    const currentElement = elementRef.current;
+    if (currentElement) {
+      observer.observe(currentElement);
+    }
+
+    return () => {
+      if (currentElement) {
+        observer.unobserve(currentElement);
+      }
+    };
+  }, [threshold]);
+
+  return [elementRef, isVisible] as const;
+};
 
 // Schema.org Structured Data Component
 const FAQSchema: React.FC<FAQSchemaProps> = ({ faqs }) => {
@@ -45,18 +74,7 @@ const FAQSchema: React.FC<FAQSchemaProps> = ({ faqs }) => {
   );
 };
 
-// Animated Chevron Component
-const AnimatedChevron: React.FC<{ isOpen: boolean }> = ({ isOpen }) => (
-  <motion.div
-    animate={{ rotate: isOpen ? 180 : 0 }}
-    transition={{ duration: 0.3, ease: "easeInOut" }}
-    className="flex-shrink-0"
-  >
-    <ChevronDown className="w-5 h-5 text-neutral-400 group-hover:text-blue-400 transition-colors duration-300" />
-  </motion.div>
-);
-
-// FAQ Item Component
+// FAQ Item Component with refined design
 const FAQItem: React.FC<FAQItemProps> = ({ item, isOpen, onClick, index }) => {
   const contentRef = useRef<HTMLDivElement>(null);
   const itemId = `faq-item-${item.id}`;
@@ -64,11 +82,11 @@ const FAQItem: React.FC<FAQItemProps> = ({ item, isOpen, onClick, index }) => {
 
   return (
     <motion.article
-      className="border-b border-neutral-800 last:border-b-0"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      className="border-b border-neutral-800/50 last:border-b-0"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
+      transition={{ duration: 0.7, delay: index * 0.08, ease: [0.25, 0.46, 0.45, 0.94] }}
     >
       <h3>
         <button
@@ -76,31 +94,48 @@ const FAQItem: React.FC<FAQItemProps> = ({ item, isOpen, onClick, index }) => {
           onClick={onClick}
           aria-expanded={isOpen}
           aria-controls={panelId}
-          className="w-full flex items-center justify-between text-left gap-4 py-6 group focus:outline-none focus:ring-2 focus:ring-blue-500/20 rounded-lg px-2 -mx-2 transition-all duration-300 hover:bg-white/5"
+          className="w-full flex items-center justify-between text-left gap-6 py-8 group focus:outline-none focus:ring-2 focus:ring-blue-500/10 rounded-lg transition-all duration-500"
         >
-          <div className="flex items-start gap-4 flex-1">
-            {/* Optional Icon */}
-            {item.icon && (
-              <div className="flex-shrink-0 mt-1">
-                {item.icon}
-              </div>
-            )}
+          {/* Question with number indicator */}
+          <div className="flex items-start gap-6 flex-1">
+            <span className={`text-sm font-light transition-colors duration-500 ${
+              isOpen ? 'text-blue-400' : 'text-neutral-600'
+            }`}>
+              0{index + 1}
+            </span>
             
-            {/* Question Text */}
-            <span className={`text-lg font-semibold transition-colors duration-300 ${
-              isOpen ? 'text-white' : 'text-neutral-200 group-hover:text-white'
+            <span className={`text-lg font-light transition-colors duration-500 ${
+              isOpen ? 'text-white' : 'text-neutral-300 group-hover:text-white'
             }`}>
               {item.question}
             </span>
           </div>
           
-          {/* Chevron Icon */}
-          <AnimatedChevron isOpen={isOpen} />
+          {/* Minimal Plus/Minus Indicator */}
+          <div className="flex-shrink-0 relative w-6 h-6">
+            <motion.span
+              className="absolute inset-0 flex items-center justify-center"
+              animate={{ rotate: isOpen ? 45 : 0 }}
+              transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+            >
+              <svg 
+                className={`w-5 h-5 transition-colors duration-500 ${
+                  isOpen ? 'text-blue-400' : 'text-neutral-500 group-hover:text-neutral-400'
+                }`}
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor"
+                strokeWidth={1.5}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+              </svg>
+            </motion.span>
+          </div>
         </button>
       </h3>
 
-      {/* Answer Panel */}
-      <AnimatePresence initial={false}>
+      {/* Answer Panel with refined animation */}
+      <AnimatePresence initial={false} mode="wait">
         {isOpen && (
           <motion.div
             id={panelId}
@@ -109,26 +144,27 @@ const FAQItem: React.FC<FAQItemProps> = ({ item, isOpen, onClick, index }) => {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
+            transition={{ 
+              height: { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] },
+              opacity: { duration: 0.3, ease: "easeInOut" }
+            }}
             className="overflow-hidden"
           >
-            <div className="pb-6 pl-4 pr-2" ref={contentRef}>
+            <div className="pb-8 pl-12 pr-4" ref={contentRef}>
               {/* Main Answer Text */}
-              <p className="text-neutral-300 leading-relaxed mb-4">
+              <p className="text-neutral-400 leading-relaxed font-light">
                 {item.answer}
               </p>
               
-              {/* Optional Highlights */}
+              {/* Refined Highlights */}
               {item.highlights && item.highlights.length > 0 && (
-                <div className="bg-blue-500/10 border border-blue-500/20 rounded-xl p-4 mt-4">
-                  <div className="space-y-2">
-                    {item.highlights.map((highlight, idx) => (
-                      <div key={idx} className="flex items-start gap-3">
-                        <CheckCircle className="w-4 h-4 text-blue-400 mt-0.5 flex-shrink-0" />
-                        <span className="text-sm text-neutral-200">{highlight}</span>
-                      </div>
-                    ))}
-                  </div>
+                <div className="mt-6 space-y-3">
+                  {item.highlights.map((highlight, idx) => (
+                    <div key={idx} className="flex items-start gap-3">
+                      <span className="block w-1 h-1 rounded-full bg-blue-500 mt-2 flex-shrink-0" />
+                      <span className="text-sm text-neutral-300 font-light">{highlight}</span>
+                    </div>
+                  ))}
                 </div>
               )}
             </div>
@@ -142,56 +178,68 @@ const FAQItem: React.FC<FAQItemProps> = ({ item, isOpen, onClick, index }) => {
 // Main FAQ Component
 const FAQ: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [containerRef, isVisible] = useScrollReveal(0.15);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
 
-  // Strategically crafted FAQs aligned with business goals
+  // Subtle parallax effect for premium feel
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    mouseX.set(x);
+    mouseY.set(y);
+  };
+
+  // Transform mouse position for gradient tracking
+  const gradientX = useTransform(mouseX, [0, 1000], [0, 100]);
+  const gradientY = useTransform(mouseY, [0, 600], [0, 100]);
+
+  // Refined FAQ data
   const faqData: FAQData[] = [
     {
       id: 'cost-justification',
       question: 'Is professional Starlink installation really worth the cost?',
-      answer: 'Absolutely. While Starlink can be self-installed, professional installation ensures you achieve the maximum speeds you\'re paying for—often exceeding 250 Mbps. Our expert technicians prevent costly mistakes like improper mounting that can lead to equipment damage or roof leaks. We also optimize placement using professional tools to find the perfect sky view, something DIY installers often miss. When you consider the monthly subscription cost and equipment investment, professional installation is a small price for guaranteed performance and peace of mind.',
+      answer: 'Absolutely. While Starlink can be self-installed, professional installation ensures you achieve the maximum speeds you\'re paying for—often exceeding 250 Mbps. Our expert technicians prevent costly mistakes like improper mounting that can lead to equipment damage or roof leaks. We also optimize placement using professional tools to find the perfect sky view, something DIY installers often miss.',
       highlights: [
         'Protect your $599 equipment investment',
         'Avoid costly roof damage from improper mounting',
         'Achieve 30-50% better speeds through optimal placement',
         '90-day warranty on all work'
-      ],
-      icon: <Shield className="w-5 h-5 text-blue-400 mt-0.5" />
+      ]
     },
     {
       id: 'tree-coverage',
       question: 'My property has a lot of trees. Can Starlink still work for me?',
-      answer: 'Tree coverage is one of the most common challenges we solve. Our certified technicians use specialized equipment to conduct a comprehensive site survey, identifying the optimal installation location even in heavily wooded areas. We\'ve successfully installed Starlink in properties throughout the DMV\'s tree-dense neighborhoods using elevated mounts, strategic positioning, and sometimes creative solutions like outbuilding installations. In cases where trees are unavoidable, we\'ll be honest about expected performance and may recommend complementary solutions.',
+      answer: 'Tree coverage is one of the most common challenges we solve. Our certified technicians use specialized equipment to conduct a comprehensive site survey, identifying the optimal installation location even in heavily wooded areas. We\'ve successfully installed Starlink in properties throughout the DMV\'s tree-dense neighborhoods using elevated mounts, strategic positioning, and creative solutions.',
       highlights: [
         'Professional sky-view analysis with specialized tools',
         'Custom mounting solutions up to 30 feet high',
-        'Alternative placement options (garages, sheds, poles)',
+        'Alternative placement options available',
         'Honest assessment if Starlink isn\'t viable'
-      ],
-      icon: <Trees className="w-5 h-5 text-green-400 mt-0.5" />
+      ]
     },
     {
       id: 'mesh-network-value',
       question: 'If Starlink provides Wi-Fi, why do I need a mesh network?',
-      answer: 'While Starlink\'s built-in router provides basic Wi-Fi, it\'s designed for small to medium spaces. Most homes experience dead zones, especially in basements, upper floors, or areas far from the router. Our whole-home Wi-Fi optimization service extends your Starlink speeds to every corner of your property using enterprise-grade mesh systems. This means your amazing 250 Mbps Starlink connection actually reaches your home office, smart TVs, and outdoor spaces—not just the room with the router.',
+      answer: 'While Starlink\'s built-in router provides basic Wi-Fi, it\'s designed for small to medium spaces. Most homes experience dead zones, especially in basements, upper floors, or areas far from the router. Our whole-home Wi-Fi optimization service extends your Starlink speeds to every corner of your property using enterprise-grade mesh systems.',
       highlights: [
         'Eliminate dead zones in large homes',
         'Consistent speeds in every room',
         'Support for 50+ connected devices',
         'Outdoor coverage for patios and garages'
-      ],
-      icon: <Wifi className="w-5 h-5 text-blue-400 mt-0.5" />
+      ]
     },
     {
       id: 'local-expertise',
-      question: 'Why should I choose The Orbit Tech over a national company or big box store installer?',
-      answer: 'As DMV\'s Starlink specialists, we\'re not generalists juggling TV mounts and doorbell cameras—we\'re connectivity experts. Our technicians are specifically trained on Starlink systems and understand the unique challenges of our region, from HOA requirements in Fairfax to historic district regulations in Alexandria. Unlike national chains that send different contractors each time, we\'re local, accountable, and just a phone call away if you need support. Our 5-star Google reviews and 90-day warranty reflect our commitment to excellence that big box stores simply can\'t match.',
+      question: 'Why choose The Orbit Tech over national installers?',
+      answer: 'As DMV\'s Starlink specialists, we\'re not generalists juggling TV mounts and doorbell cameras—we\'re connectivity experts. Our technicians are specifically trained on Starlink systems and understand the unique challenges of our region. Unlike national chains that send different contractors each time, we\'re local, accountable, and just a phone call away.',
       highlights: [
         'DMV-based team familiar with local regulations',
         'Starlink-certified specialist technicians',
         'Direct accountability—no subcontractors',
         'Same-day emergency support available'
-      ],
-      icon: <Award className="w-5 h-5 text-yellow-400 mt-0.5" />
+      ]
     }
   ];
 
@@ -199,28 +247,46 @@ const FAQ: React.FC = () => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
-  // Animation variants
+  // Orchestrated entrance animations
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
+        duration: 0.8,
+        ease: [0.25, 0.46, 0.45, 0.94],
         staggerChildren: 0.1,
         delayChildren: 0.2
       }
     }
   };
 
-  const headerVariants = {
-    hidden: { opacity: 0, y: 30 },
+  const itemVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 30,
+      scale: 0.98
+    },
     visible: {
       opacity: 1,
       y: 0,
+      scale: 1,
       transition: {
-        type: "spring",
-        damping: 25,
-        stiffness: 100,
-        duration: 0.8
+        duration: 0.7,
+        ease: [0.25, 0.46, 0.45, 0.94]
+      }
+    }
+  };
+
+  const lineVariants = {
+    hidden: { scaleX: 0, opacity: 0 },
+    visible: {
+      scaleX: 1,
+      opacity: 1,
+      transition: {
+        duration: 1.2,
+        ease: [0.25, 0.46, 0.45, 0.94],
+        delay: 0.5
       }
     }
   };
@@ -232,79 +298,103 @@ const FAQ: React.FC = () => {
       
       <motion.section
         id="faq"
-        className="py-24 sm:py-32 bg-black relative overflow-hidden"
+        ref={containerRef}
+        className="relative py-32 lg:py-40 overflow-hidden isolate"
+        onMouseMove={handleMouseMove}
         initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.1 }}
+        animate={isVisible ? "visible" : "hidden"}
         variants={containerVariants}
         aria-labelledby="faq-heading"
       >
-        {/* Background Elements */}
-        <div className="absolute inset-0">
-          {/* Gradient background */}
-          <div className="absolute inset-0 bg-gradient-to-b from-neutral-950 via-black to-neutral-950" />
-          
-          {/* Subtle pattern */}
-          <div 
-            className="absolute inset-0 opacity-[0.02]"
-            style={{
-              backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 1px)',
-              backgroundSize: '50px 50px'
-            }}
-          />
-          
-          {/* Ambient glow */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-500/5 rounded-full blur-3xl" />
-        </div>
+        {/* Layered background system for depth */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-neutral-950 to-black" />
+        
+        {/* Spotlight effect - tracks mouse subtly */}
+        <motion.div 
+          className="absolute inset-0 opacity-20"
+          style={{
+            background: useTransform(
+              [gradientX, gradientY],
+              ([x, y]) => `radial-gradient(circle 800px at ${x}% ${y}%, rgba(59, 130, 246, 0.06), transparent 60%)`
+            )
+          }}
+        />
+        
+        {/* Grid pattern overlay for technical authority */}
+        <div 
+          className="absolute inset-0 opacity-[0.015]"
+          style={{
+            backgroundImage: `linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px)`,
+            backgroundSize: '100px 100px'
+          }}
+        />
 
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          {/* Section Header */}
+        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Accent line */}
           <motion.div 
-            className="text-center mb-16"
-            variants={headerVariants}
+            variants={lineVariants}
+            className="w-24 h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent mx-auto mb-12 origin-center"
+          />
+
+          {/* Section Header - Minimal and refined */}
+          <motion.div 
+            className="text-center mb-20"
+            variants={itemVariants}
           >
             <h2 
               id="faq-heading"
-              className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6"
+              className="text-5xl sm:text-6xl lg:text-7xl font-light tracking-tight leading-[1.1] mb-6"
             >
-              Your Questions,{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">
-                Answered by the Experts
-              </span>
+              <span className="text-white">Common questions.</span>
+              <br />
+              <span className="text-white font-semibold">Expert answers.</span>
             </h2>
-            <p className="text-lg leading-8 text-neutral-300 max-w-2xl mx-auto">
-              Get clear, honest answers about professional Starlink installation from DMV's leading connectivity specialists.
+            <p className="text-lg text-neutral-400 max-w-2xl mx-auto font-light">
+              Clear, honest guidance from DMV's leading connectivity specialists.
             </p>
           </motion.div>
 
-          {/* FAQ Accordion */}
+          {/* FAQ Container - Clean and sophisticated */}
           <motion.div 
-            className="bg-gradient-to-br from-neutral-900/50 to-black/50 border border-neutral-800 rounded-2xl p-6 sm:p-8"
-            variants={headerVariants}
+            className="relative"
+            variants={itemVariants}
           >
-            {faqData.map((item, index) => (
-              <FAQItem
-                key={item.id}
-                item={item}
-                isOpen={openIndex === index}
-                onClick={() => toggleFAQ(index)}
-                index={index}
-              />
-            ))}
+            {/* Subtle border glow */}
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/5 via-transparent to-blue-500/5 blur-xl -z-10" />
+            
+            {/* FAQ Items */}
+            <div className="relative bg-gradient-to-b from-neutral-900/30 to-black/30 backdrop-blur-sm border border-neutral-800/50 rounded-2xl px-8 sm:px-12 py-4">
+              {faqData.map((item, index) => (
+                <FAQItem
+                  key={item.id}
+                  item={item}
+                  isOpen={openIndex === index}
+                  onClick={() => toggleFAQ(index)}
+                  index={index}
+                />
+              ))}
+            </div>
           </motion.div>
 
-          {/* Subtle Consultation Note - No Hard CTA */}
+          {/* Bottom accent line */}
           <motion.div 
-            className="text-center mt-12"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            variants={lineVariants}
+            className="w-24 h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent mx-auto mt-16 origin-center"
+          />
+
+          {/* Subtle note - no CTA */}
+          <motion.p 
+            variants={itemVariants}
+            className="text-center text-xs text-neutral-500 mt-8 font-light tracking-wide"
           >
-            <p className="text-neutral-400 text-sm">
-              For personalized guidance about your specific installation needs, our certified technicians are available for consultation.
-            </p>
-          </motion.div>
+            For personalized guidance, our certified technicians are available for consultation.
+          </motion.p>
+        </div>
+
+        {/* Edge vignette for focus */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-30" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black opacity-15" />
         </div>
       </motion.section>
     </>

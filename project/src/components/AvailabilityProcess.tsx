@@ -366,26 +366,33 @@ const AvailabilityProcess = () => {
       style={{
         minHeight: '80vh',
       }}>
-      
-      {/* Mobile Background - Clean satellite image without overlays */}
+      {/* Mobile Background - fixed visibility & stacking */}
       <div 
-        className="absolute inset-0 w-full h-full md:hidden"
+        className="absolute inset-0 w-full h-full md:hidden -z-10"
         style={{
-          backgroundImage: imageLoaded ? 'url("/satellit1 mobile.PNG")' : 'url("/satellite-network-earth.jpg")',
+          backgroundImage: imageLoaded 
+            ? 'url("/satellit1%20mobile.PNG")' 
+            : 'url("/satellite-network-earth.jpg")',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
-          backgroundAttachment: 'scroll',
-          zIndex: -3,
-          transition: 'background-image 0.3s ease-in-out',
+          WebkitBackgroundSize: 'cover',
+          WebkitBackgroundClip: 'border-box',
+          transition: 'opacity 0.5s ease',
+          opacity: imageLoaded ? 1 : 0.6
         }}
+        aria-hidden="true"
       >
-        {/* Loading state for mobile */}
+        {/* Readability / vignette overlay */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.35),rgba(0,0,0,0.65))]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_60%_30%,rgba(0,0,0,0)_0%,rgba(0,0,0,0.55)_75%)]" />
+        {/* Fallback element if image fails entirely */}
         {!imageLoaded && (
-          <div className="absolute inset-0 bg-neutral-900 animate-pulse" />
+          <div className="absolute inset-0 flex items-center justify-center text-white/40 text-xs tracking-wide">
+            Loading image…
+          </div>
         )}
       </div>
-      
       {/* Desktop Background - Enhanced Version with Proper Layering */}
       <div className="absolute inset-0 hidden md:block">
         {/* Main Background Image */}
