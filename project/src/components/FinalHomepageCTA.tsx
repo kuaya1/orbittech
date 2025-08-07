@@ -31,7 +31,7 @@ const TrustIndicator: React.FC<TrustIndicatorProps> = ({ icon, text }) => (
 
 // CTA Button Component
 const CTAButton: React.FC<CTAButtonProps> = ({ href, ariaLabel, variant, children }) => {
-  const baseClasses = "inline-flex items-center justify-center font-semibold px-10 py-5 rounded-xl transition-all duration-300 text-lg";
+  const baseClasses = "inline-flex items-center justify-center font-semibold px-8 py-4 rounded-xl transition-all duration-300 text-lg";
   
   const variantClasses = variant === 'primary' 
     ? "bg-blue-500 text-white hover:bg-blue-600 hover:shadow-2xl hover:shadow-blue-500/30"
@@ -81,19 +81,6 @@ const FinalCTA: React.FC = () => {
     }
   };
 
-  const pulseVariants = {
-    initial: { scale: 1 },
-    pulse: {
-      scale: [1, 1.05, 1],
-      transition: {
-        duration: 2,
-        repeat: Infinity,
-        repeatType: "loop" as const,
-        ease: "easeInOut"
-      }
-    }
-  };
-
   return (
     <motion.section
       className="relative py-32 bg-black overflow-hidden"
@@ -139,24 +126,24 @@ const FinalCTA: React.FC = () => {
             <span className="text-sm font-medium text-blue-400">Speeds up to 250+ Mbps</span>
           </motion.div>
 
-          {/* Main Headline */}
+          {/* Main Headline - More Consultative */}
           <motion.h2 
             id="final-cta-heading"
-            className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white"
             variants={itemVariants}
           >
-            Ready for Fast,{' '}
+            Experience the{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600">
-              Reliable Internet?
+              Orbit Tech Difference
             </span>
           </motion.h2>
 
-          {/* Sub-headline */}
+          {/* Sub-headline - Value-focused */}
           <motion.p 
             className="text-xl md:text-2xl text-neutral-300 max-w-3xl mx-auto leading-relaxed"
             variants={itemVariants}
           >
-            Join hundreds of your neighbors in the DMV who trust The Orbit Tech for a flawless Starlink installation.
+            Join hundreds of satisfied customers who chose professional installation for optimal performance and peace of mind.
           </motion.p>
 
           {/* Trust Elements Grid */}
@@ -180,35 +167,29 @@ const FinalCTA: React.FC = () => {
             />
           </motion.div>
 
-          {/* CTA Buttons */}
+          {/* CTA Buttons - More Consultative Approach */}
           <motion.div 
             className="flex flex-col sm:flex-row gap-4 justify-center"
             variants={itemVariants}
           >
-            {/* Primary CTA - Pulsing for attention */}
-            <motion.div
-              variants={pulseVariants}
-              initial="initial"
-              animate="pulse"
+            {/* Primary CTA - Removed Pulsing for Subtlety */}
+            <CTAButton
+              href="#contact"
+              ariaLabel="Request a consultation for your Starlink installation"
+              variant="primary"
             >
-              <CTAButton
-                href="#contact"
-                ariaLabel="Get a free quote for your Starlink installation"
-                variant="primary"
-              >
-                Get Your Free Quote
-                <ArrowRight className="ml-3 w-5 h-5" />
-              </CTAButton>
-            </motion.div>
+              Request Free Consultation
+              <ArrowRight className="ml-3 w-5 h-5" />
+            </CTAButton>
 
-            {/* Secondary CTA */}
+            {/* Secondary CTA - Maintains Expert Accessibility */}
             <CTAButton
               href="tel:+15719996915"
-              ariaLabel="Call The Orbit Tech for immediate Starlink installation assistance"
+              ariaLabel="Speak with a Starlink installation expert"
               variant="secondary"
             >
               <Phone className="mr-2 w-5 h-5" />
-              Call (571) 999-6915
+              Speak with Expert
             </CTAButton>
           </motion.div>
 
@@ -236,15 +217,15 @@ const FinalCTA: React.FC = () => {
             </div>
           </motion.div>
 
-          {/* Urgency Indicator */}
+          {/* Urgency Indicator - Softer Approach */}
           <motion.p 
-            className="text-blue-400 font-medium"
+            className="text-blue-400 font-medium text-sm"
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.8, duration: 0.6 }}
           >
-            🔥 Limited installation slots available this week
+            � Free consultations available this week for new installations
           </motion.p>
         </motion.div>
 

@@ -293,7 +293,7 @@ const FAQ: React.FC = () => {
             ))}
           </motion.div>
 
-          {/* CTA Section */}
+          {/* Subtle Consultation Note - No Hard CTA */}
           <motion.div 
             className="text-center mt-12"
             initial={{ opacity: 0, y: 30 }}
@@ -301,31 +301,9 @@ const FAQ: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <p className="text-neutral-300 mb-8">
-              Still have questions? Our experts are ready to help.
+            <p className="text-neutral-400 text-sm">
+              For personalized guidance about your specific installation needs, our certified technicians are available for consultation.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <motion.a
-                href="#contact"
-                className="inline-flex items-center justify-center bg-blue-500 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:bg-blue-600 hover:shadow-lg hover:shadow-blue-500/25"
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                aria-label="Get your free consultation"
-              >
-                Get Free Consultation
-                <ChevronDown className="ml-2 w-5 h-5 rotate-[-90deg]" />
-              </motion.a>
-              
-              <motion.a
-                href="tel:+15719996915"
-                className="inline-flex items-center justify-center bg-white/5 border border-white/10 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:bg-white/10"
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                aria-label="Call our experts"
-              >
-                Call (571) 999-6915
-              </motion.a>
-            </div>
           </motion.div>
         </div>
       </motion.section>

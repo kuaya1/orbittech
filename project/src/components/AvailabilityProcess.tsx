@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { motion } from 'framer-motion';
 import { CheckCircle, XCircle, Loader2, Info, History, Target } from 'lucide-react';
 
 // Updated serviceableZips to include all regions within 150 miles of DC
@@ -421,127 +422,19 @@ const AvailabilityProcess = () => {
         />
       </div>
       
-    {/* Modern Animation Styles */}
-    <style>{`
-      @keyframes fadeInUp {
-        from {
-          opacity: 0;
-          transform: translateY(30px) rotateX(10deg);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0) rotateX(0deg);
-        }
-      }
-      
-      @keyframes slideInLeft {
-        from {
-          opacity: 0;
-          transform: translateX(-50px) rotateY(-10deg);
-        }
-        to {
-          opacity: 1;
-          transform: translateX(0) rotateY(0deg);
-        }
-      }
-      
-      @keyframes floatingPulse {
-        0%, 100% {
-          transform: translateY(0px) scale(1);
-          opacity: 0.7;
-        }
-        50% {
-          transform: translateY(-10px) scale(1.05);
-          opacity: 1;
-        }
-      }
-      
-      @keyframes glowPulse {
-        0%, 100% {
-          box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
-        }
-        50% {
-          box-shadow: 0 0 30px rgba(59, 130, 246, 0.6), 0 0 40px rgba(147, 51, 234, 0.3);
-        }
-      }
-      
-      .animate-fadeInUp {
-        animation: fadeInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-      }
-      
-      .animate-slideInLeft {
-        animation: slideInLeft 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-      }
-      
-      .animate-floatingPulse {
-        animation: floatingPulse 3s ease-in-out infinite;
-      }
-      
-      .animate-glowPulse {
-        animation: glowPulse 2s ease-in-out infinite;
-      }
-      
-      /* Enhanced 3D parallax performance */
-      #availability-process {
-        transform-style: preserve-3d;
-        backface-visibility: hidden;
-        perspective: 1200px;
-        overflow: hidden;
-      }
-      
-      /* Smooth GPU-accelerated transforms */
-      #availability-process > div {
-        transform-style: preserve-3d;
-        backface-visibility: hidden;
-        will-change: transform;
-      }
-      
-      /* Modern glass morphism input effects */
-      .glass-input {
-        backdrop-filter: blur(10px);
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      }
-      
-      .glass-input:focus {
-        background: rgba(255, 255, 255, 0.15);
-        border-color: rgba(59, 130, 246, 0.5);
-        box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
-        transform: translateY(-2px);
-      }
-      
-      /* Button hover effects */
-      .modern-button {
-        position: relative;
-        overflow: hidden;
-        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      }
-      
-      .modern-button::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-        transition: left 0.5s ease;
-      }
-      
-      .modern-button:hover::before {
-        left: 100%;
-      }
-      
-      .modern-button:hover {
-        transform: translateY(-3px) scale(1.02);
-        box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
-      }
-    `}</style>
-      <div 
-        className={`container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl relative z-10 transition-all duration-1000 delay-200 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-        }`}
+      {/* Content Container with Framer Motion */}
+      <motion.div 
+        className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl relative z-10"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ 
+          duration: 0.8, 
+          delay: 0.2,
+          type: "spring",
+          damping: 25,
+          stiffness: 100
+        }}
         style={{
           transform: `
             translate3d(${mousePosition.x * 5}px, ${scrollProgress * -30}px, 0)
@@ -553,7 +446,14 @@ const AvailabilityProcess = () => {
         }}
       >
         <div className="max-w-3xl mx-auto">
-          <form onSubmit={checkServiceArea} className="w-full animate-fadeInUp" style={{animationDelay: '200ms'}}>
+          <motion.form 
+            onSubmit={checkServiceArea} 
+            className="w-full"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
             <div className="flex flex-col sm:flex-row items-end gap-3">
               <div className="w-full sm:flex-grow">
                 <label htmlFor="zipInput" className="block text-sm font-semibold text-white mb-2">Service Address</label>
@@ -577,7 +477,13 @@ const AvailabilityProcess = () => {
                   />
                   <Target className="absolute right-4 top-1/2 -translate-y-1/2 h-5 w-5 text-white/70 pointer-events-none"/>
                   {showRecent && recentSearches.length > 0 && (
-                    <div className="absolute top-full left-0 right-0 mt-2 bg-black/70 backdrop-blur-md border border-white/20 rounded-xl shadow-2xl z-20 overflow-hidden animate-fadeInUp">
+                    <motion.div 
+                      className="absolute top-full left-0 right-0 mt-2 bg-black/70 backdrop-blur-md border border-white/20 rounded-xl shadow-2xl z-20 overflow-hidden"
+                      initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                      transition={{ duration: 0.2 }}
+                    >
                       <div className="p-2 text-xs text-white/60 border-b border-white/10 font-bold tracking-wide">
                         Recent searches
                       </div>
@@ -593,25 +499,28 @@ const AvailabilityProcess = () => {
                           <span className="font-medium tracking-tight">{zip}</span>
                         </button>
                       ))}
-                    </div>
+                    </motion.div>
                   )}
                 </div>
               </div>
               <div className="w-full sm:w-auto">
-                <button
+                <motion.button
                   type="submit"
                   disabled={serviceStatus === 'loading' || zipCode.length !== 5}
-                  className="w-full px-8 py-3 rounded-md bg-white text-black font-bold text-base hover:bg-gray-400 transition disabled:bg-gray-100 disabled:cursor-not-allowed"
+                  className="w-full px-8 py-4 rounded-md bg-white text-black font-bold text-base hover:bg-gray-400 transition disabled:bg-gray-100 disabled:cursor-not-allowed"
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ duration: 0.2 }}
                 >
                   {serviceStatus === 'loading' ? (
                     <Loader2 className="h-5 w-5 animate-spin mx-auto" />
                   ) : (
                     'CHECK'
                   )}
-                </button>
+                </motion.button>
               </div>
             </div>
-          </form>
+          </motion.form>
           <div className="mt-6 text-center">
             {errorMessage && (
               <div className="mt-3 text-red-300 text-sm flex items-center justify-center gap-2 font-medium" role="alert">
@@ -620,11 +529,16 @@ const AvailabilityProcess = () => {
               </div>
             )}
             {serviceStatus !== 'loading' && serviceStatus !== null && showResults && (
-              <div className={`rounded-xl p-6 backdrop-blur-sm border transition-all duration-700 animate-fadeInUp bg-black/40 ${
-                serviceStatus === true
-                  ? 'border-green-500/50' 
-                  : 'border-red-500/50'
-              }`}>
+              <motion.div 
+                className={`rounded-xl p-6 backdrop-blur-sm border transition-all duration-700 bg-black/40 ${
+                  serviceStatus === true
+                    ? 'border-green-500/50' 
+                    : 'border-red-500/50'
+                }`}
+                initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.6, type: "spring", damping: 25 }}
+              >
                 <div className="flex items-start gap-4">
                   <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 backdrop-blur-sm border ${
                     serviceStatus === true ? 'bg-green-500/20 border-green-500/30' : 'bg-red-500/20 border-red-500/30'
@@ -652,7 +566,7 @@ const AvailabilityProcess = () => {
                     </p>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             )}
             <p className="text-white/60 text-sm leading-relaxed font-medium mt-8">
               Currently serving the <span className="text-white font-semibold">Washington DC Metro area</span> including 
@@ -660,7 +574,7 @@ const AvailabilityProcess = () => {
             </p>
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

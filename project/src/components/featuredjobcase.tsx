@@ -61,22 +61,6 @@ const JobCard: React.FC<JobCardProps> = ({ job, index }) => {
       <div className="relative h-full flex flex-col justify-between p-8">
         {/* Top Section - Metadata */}
         <div className="space-y-3">
-          {/* Installation Type Badge */}
-          <div className="inline-flex items-center gap-2">
-            <span className={`
-              inline-flex items-center px-3 py-1 rounded-full text-xs font-medium
-              ${job.installationType === 'residential' 
-                ? 'bg-blue-500/10 text-blue-400 border border-blue-500/20' 
-                : 'bg-purple-500/10 text-purple-400 border border-purple-500/20'
-              }
-            `}>
-              {job.installationType === 'residential' ? 'Residential' : 'Business'}
-            </span>
-            <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-500/10 text-green-400 border border-green-500/20">
-              {job.completionTime}
-            </span>
-          </div>
-
           {/* Location */}
           <div className="flex items-center gap-2 text-white">
             <MapPin className="w-4 h-4 text-blue-400" />
@@ -272,7 +256,7 @@ const FeaturedJobsSection: React.FC = () => {
           ))}
         </div>
 
-        {/* Bottom CTA */}
+        {/* Educational Closing Note */}
         <motion.div 
           className="text-center mt-16"
           initial={{ opacity: 0, y: 20 }}
@@ -280,26 +264,9 @@ const FeaturedJobsSection: React.FC = () => {
           viewport={{ once: true }}
           transition={{ delay: 0.4, duration: 0.6 }}
         >
-          <p className="text-neutral-400 mb-8">
-            Join hundreds of satisfied customers across Virginia, Maryland, and DC
+          <p className="text-neutral-400 text-sm">
+            Each installation is uniquely designed for optimal performance based on your property's specific characteristics and requirements.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="#contact"
-              aria-label="View all installation projects"
-              className="inline-flex items-center justify-center bg-blue-500 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:bg-blue-600 hover:shadow-lg hover:shadow-blue-500/20"
-            >
-              Start Your Installation
-              <ArrowRight className="w-5 h-5 ml-2" />
-            </a>
-            <a
-              href="#testimonials"
-              aria-label="Read customer testimonials"
-              className="inline-flex items-center justify-center bg-white/5 border border-white/10 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:bg-white/10"
-            >
-              Read Success Stories
-            </a>
-          </div>
         </motion.div>
       </div>
     </motion.section>

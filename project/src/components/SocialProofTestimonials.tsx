@@ -390,51 +390,6 @@ const Testimonials: React.FC = () => {
               </div>
             ))}
           </motion.div>
-
-          {/* CTA Section */}
-          <motion.div
-            className="text-center"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-          >
-            <p className="text-neutral-300 mb-8">
-              Ready to experience the difference of professional installation?
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <motion.a
-                href="#contact"
-                className="inline-flex items-center justify-center bg-blue-500 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:bg-blue-600 hover:shadow-lg hover:shadow-blue-500/25"
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                aria-label="Get your free Starlink installation quote"
-              >
-                Get Your Free Quote
-                <svg
-                  className="ml-2 w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </motion.a>
-              
-              <motion.a
-                href="https://www.google.com/search?q=the+orbit+tech+reviews"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center bg-white/5 border border-white/10 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:bg-white/10"
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                aria-label="Read more reviews on Google"
-              >
-                Read More Reviews
-              </motion.a>
-            </div>
-          </motion.div>
         </div>
       </motion.section>
     </>
