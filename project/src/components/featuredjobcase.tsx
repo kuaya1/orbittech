@@ -1,328 +1,309 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { ArrowLeft, ArrowRight, Star, MapPin, Calendar, Home, Building2, Truck } from 'lucide-react';
-// import { ShootingStars } from './ui/shooting-stars';
-// import { StarsBackground } from './ui/star-backround';
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { MapPin, Zap, CheckCircle, ArrowRight } from 'lucide-react';
 
-// Simplified interface
-interface InstallationCase {
+// Type definitions
+interface InstallationJob {
   id: string;
-  title: string;
   location: string;
-  date: string;
-  clientType: 'residential' | 'business' | 'mobile';
-  beforeSpeed: string;
-  afterSpeed: string;
-  description: string;
+  region: string;
   challenge: string;
   solution: string;
-  result: string;
-  testimonial: {
-    quote: string;
-    author: string;
-    rating: number;
-  };
-  images: {
-    main: string;
-    gallery: string[];
-  };
+  speedAchieved: string;
+  installationType: 'residential' | 'business';
+  imageUrl: string;
+  completionTime: string;
 }
 
-// Real, human-proof case studies
-const sampleCases: InstallationCase[] = [
-  {
-    id: 'keppa-fitness-hamilton',
-    title: 'From Buffering to Buff: Pro Internet for a Home Gym',
-    location: 'Hamilton, VA',
-    date: 'March 2025',
-    clientType: 'residential',
-    beforeSpeed: '15 Mbps',
-    afterSpeed: '200 Mbps',
-    description: 'A fitness-focused family in Hamilton had built a state-of-the-art home gym. The only thing missing was internet that could keep up with their intense, live-streamed workouts and virtual training sessions.',
-    challenge: 'Their rural location meant they were stuck with slow, unreliable internet. Live fitness classes would freeze and buffer, disrupting their workouts and causing major frustration.',
-    solution: 'We conducted a thorough site survey to find the optimal location for the Starlink dish, ensuring an unobstructed view of the sky. The installation was clean, professional, and optimized for high-demand streaming.',
-    result: 'The family now enjoys uninterrupted 4K streaming for all their fitness needs. Multiple users can be online at once without a single glitch, making their home gym a truly professional-grade setup.',
-    testimonial: {
-      quote: "The change has been night and day. We used to spend more time staring at a loading screen than working out. Now, our internet is as reliable as our squat rack. It's completely transformed our home fitness experience.",
-      author: "Keppa Fitness Owner",
-      rating: 5
+interface JobCardProps {
+  job: InstallationJob;
+  index: number;
+}
+
+// Job Card Component
+const JobCard: React.FC<JobCardProps> = ({ job, index }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <motion.article
+      className="group relative h-[480px] rounded-2xl overflow-hidden cursor-pointer"
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ 
+        delay: index * 0.1,
+        duration: 0.6,
+        type: "spring",
+        damping: 25,
+        stiffness: 100
+      }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      whileHover={{ 
+        y: -8,
+        transition: { type: "spring", stiffness: 300, damping: 20 }
+      }}
+      aria-label={`Installation project in ${job.location}`}
+    >
+      {/* Background Image with Overlay */}
+      <div className="absolute inset-0">
+        <img 
+          src={job.imageUrl}
+          alt={`Starlink installation in ${job.location}`}
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+        />
+        {/* Gradient Overlays */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent opacity-90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/90" />
+      </div>
+
+      {/* Content Container */}
+      <div className="relative h-full flex flex-col justify-between p-8">
+        {/* Top Section - Metadata */}
+        <div className="space-y-3">
+          {/* Installation Type Badge */}
+          <div className="inline-flex items-center gap-2">
+            <span className={`
+              inline-flex items-center px-3 py-1 rounded-full text-xs font-medium
+              ${job.installationType === 'residential' 
+                ? 'bg-blue-500/10 text-blue-400 border border-blue-500/20' 
+                : 'bg-purple-500/10 text-purple-400 border border-purple-500/20'
+              }
+            `}>
+              {job.installationType === 'residential' ? 'Residential' : 'Business'}
+            </span>
+            <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-500/10 text-green-400 border border-green-500/20">
+              {job.completionTime}
+            </span>
+          </div>
+
+          {/* Location */}
+          <div className="flex items-center gap-2 text-white">
+            <MapPin className="w-4 h-4 text-blue-400" />
+            <h3 className="text-xl font-semibold">{job.location}</h3>
+          </div>
+          <p className="text-sm text-neutral-400">{job.region}</p>
+        </div>
+
+        {/* Middle Section - Speed Achievement (Only visible on hover) */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ 
+            opacity: isHovered ? 1 : 0,
+            y: isHovered ? 0 : 20
+          }}
+          transition={{ duration: 0.3 }}
+          className="absolute top-1/2 left-8 right-8 -translate-y-1/2"
+        >
+          <div className="bg-black/80 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+            <div className="flex items-center justify-center gap-3">
+              <Zap className="w-6 h-6 text-blue-400" />
+              <div className="text-center">
+                <div className="text-3xl font-bold text-white">{job.speedAchieved}</div>
+                <div className="text-xs text-neutral-400 uppercase tracking-wider mt-1">Achieved Speed</div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Bottom Section - Challenge & Solution */}
+        <div className="space-y-4">
+          {/* Challenge */}
+          <div className="space-y-2">
+            <div className="flex items-center gap-2">
+              <div className="w-1 h-4 bg-red-500 rounded-full" />
+              <h4 className="text-sm font-semibold text-neutral-300 uppercase tracking-wider">Challenge</h4>
+            </div>
+            <p className="text-sm text-neutral-400 line-clamp-2">
+              {job.challenge}
+            </p>
+          </div>
+
+          {/* Solution */}
+          <div className="space-y-2">
+            <div className="flex items-center gap-2">
+              <CheckCircle className="w-4 h-4 text-green-500" />
+              <h4 className="text-sm font-semibold text-neutral-300 uppercase tracking-wider">Solution</h4>
+            </div>
+            <p className="text-sm text-neutral-200 line-clamp-3">
+              {job.solution}
+            </p>
+          </div>
+
+          {/* View Details Link (Appears on hover) */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: isHovered ? 1 : 0 }}
+            transition={{ duration: 0.3 }}
+            className="pt-2"
+          >
+            <span className="inline-flex items-center text-blue-400 font-medium text-sm group-hover:text-blue-300 transition-colors duration-300">
+              View Full Case Study
+              <ArrowRight className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" />
+            </span>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Premium Border Effect */}
+      <div className="absolute inset-0 rounded-2xl border border-white/10 group-hover:border-blue-500/30 transition-colors duration-500" />
+      
+      {/* Glow Effect on Hover */}
+      <motion.div
+        className="absolute -inset-0.5 bg-gradient-to-r from-blue-500/0 via-blue-500/20 to-blue-500/0 rounded-2xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500 -z-10"
+        animate={{
+          opacity: isHovered ? 0.5 : 0
+        }}
+      />
+    </motion.article>
+  );
+};
+
+// Main Component
+const FeaturedJobsSection: React.FC = () => {
+  // Sample installation data with placeholder images
+  const installations: InstallationJob[] = [
+    {
+      id: 'great-falls-mansion',
+      location: 'Great Falls, VA',
+      region: 'Fairfax County',
+      challenge: 'Heavy tree coverage and a steep roofline made standard installation impossible. The property\'s size meant Wi-Fi dead zones in critical areas.',
+      solution: 'Implemented a ridgeline roof mount with precision aiming, combined with a professional mesh network setup delivering 200+ Mbps to every room.',
+      speedAchieved: '245 Mbps',
+      installationType: 'residential',
+      imageUrl: 'https://images.unsplash.com/photo-1558036117-15d82a90b9b1?w=800&h=600&fit=crop',
+      completionTime: '3 Hours'
     },
-    images: {
-      main: "https://www.flickr.com/photo_download.gne?id=54387691665&secret=1206b5b1e7&size=c&source=photoPageEngagement",
-      gallery: [
-        "https://www.flickr.com/photo_download.gne?id=54387691665&secret=1206b5b1e7&size=c&source=photoPageEngagement",
-        "/Starlink Dmv (23).png",
-      ]
-    }
-  },
-  {
-    id: 'winchester-modern-farmhouse',
-    title: 'Bringing City Speeds to a Country Home in Winchester',
-    location: 'Winchester, VA',
-    date: 'February 2025',
-    clientType: 'residential',
-    beforeSpeed: '5 Mbps',
-    afterSpeed: '185 Mbps',
-    description: 'The owners of a stunning modern farmhouse in Winchester loved their rural lifestyle but were constantly battling with frustratingly slow DSL. Working from home was a chore, and their smart home devices were anything but smart.',
-    challenge: 'With no access to cable or fiber, their only option was an unstable DSL connection that would drop during bad weather. This made video calls and smart home automation nearly impossible.',
-    solution: 'We installed a weatherproof Starlink system on their farmhouse roof, positioned for a clear view of the northern sky. The installation was designed to be discreet and blend with the home\'s aesthetic.',
-    result: 'Their farmhouse is now a fully connected smart home. They can work from home seamlessly, stream movies in 4K, and rely on their home automation systems without a second thought.',
-    testimonial: {
-      quote: "We chose to live in the country for the peace and quiet, but we didn't want to sacrifice modern conveniences. Orbittec gave us the best of both worlds. Our internet is now faster than what our friends have in the city!",
-      author: "Winchester Farmhouse Owners",
-      rating: 5
+    {
+      id: 'bethesda-office',
+      location: 'Bethesda, MD',
+      region: 'Montgomery County',
+      challenge: 'A growing tech startup needed enterprise-grade reliability for 50+ employees. Their previous provider couldn\'t deliver consistent speeds.',
+      solution: 'Deployed a business-grade Starlink system with redundant power backup and optimized network configuration for high-demand usage.',
+      speedAchieved: '285 Mbps',
+      installationType: 'business',
+      imageUrl: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop',
+      completionTime: '4 Hours'
     },
-    images: {
-      main: "https://www.flickr.com/photo_download.gne?id=54622657311&secret=a7acc75415&size=c&source=photoPageEngagement",
-      gallery: [
-        "https://www.flickr.com/photo_download.gne?id=54622657311&secret=a7acc75415&size=c&source=photoPageEngagement",
-        "/Starlink Dmv (30).png",
-        "/Starlink Dmv (33).png"
-      ]
+    {
+      id: 'leesburg-farmhouse',
+      location: 'Leesburg, VA',
+      region: 'Loudoun County',
+      challenge: 'Rural location with no fiber access. The family needed reliable internet for remote work and homeschooling across a 5-acre property.',
+      solution: 'Strategic dish placement for optimal satellite visibility, with extended cable runs and whole-property Wi-Fi coverage using outdoor access points.',
+      speedAchieved: '195 Mbps',
+      installationType: 'residential',
+      imageUrl: 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=800&h=600&fit=crop',
+      completionTime: '2.5 Hours'
     }
-  },
-  {
-    id: 'annapolis-family-home',
-    title: 'Ending Years of Internet Frustration for an Annapolis Family',
-    location: 'Annapolis, MD',
-    date: 'January 2025',
-    clientType: 'residential',
-    beforeSpeed: '8 Mbps',
-    afterSpeed: '180 Mbps',
-    description: 'For years, the Johnson family in Annapolis struggled with slow, unreliable internet. With parents working from home and kids attending online classes, their connection was a constant source of stress and frustration.',
-    challenge: 'Their property had heavy tree coverage, which had made previous attempts at satellite internet unsuccessful. The local DSL infrastructure was outdated and couldn\'t handle the demands of a modern family.',
-    solution: 'Our experienced technicians performed a detailed site analysis and found the perfect location on the roof with a clear line of sight to the sky. We used a specialized mounting system to ensure a secure and weatherproof installation.',
-    result: 'The Johnson family now has fast, reliable internet that can handle multiple video calls, online classes, and streaming services simultaneously. Their home is now a productive and stress-free environment for work and school.',
-    testimonial: {
-      quote: "I can't tell you what a relief it is to have internet that just *works*. No more dropped calls, no more frustrated kids. It's been a total game-changer for our family. This is the best investment we've made in our home.",
-      author: "Sarah Johnson, Homeowner",
-      rating: 5
-    },
-    images: {
-      main: "https://www.flickr.com/photo_download.gne?id=54692379890&secret=d6872aeb11&size=c&source=photoPageEngagement",
-      gallery: [
-        "https://www.flickr.com/photo_download.gne?id=54692379890&secret=d6872aeb11&size=c&source=photoPageEngagement"
-      ]
-    }
-  }
-];
+  ];
 
-const FeaturedInstallations: React.FC = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [activeImage, setActiveImage] = useState<string>(sampleCases[0].images.main);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const contentRef = useRef<HTMLDivElement>(null);
-
-  // Since all cases are now residential, we can simplify filtering
-  const filteredCases = sampleCases;
-
-  const activeCase = filteredCases[activeIndex] || sampleCases[0];
-
-  // Reset active index when filter changes
-  useEffect(() => {
-    setActiveIndex(0);
-    setActiveImage(filteredCases[0]?.images.main || sampleCases[0].images.main);
-  }, [filteredCases]);
-
-  const changeCase = useCallback((newIndex: number) => {
-    if (newIndex === activeIndex || isTransitioning || newIndex < 0 || newIndex >= filteredCases.length) return;
-
-    setIsTransitioning(true);
-    
-    if (contentRef.current) {
-      contentRef.current.style.opacity = '0';
-    }
-
-    setTimeout(() => {
-      setActiveIndex(newIndex);
-      setActiveImage(filteredCases[newIndex]?.images.main || sampleCases[0].images.main);
-
-      setTimeout(() => {
-        if (contentRef.current) {
-          contentRef.current.style.opacity = '1';
-        }
-        setIsTransitioning(false);
-      }, 50);
-    }, 200);
-  }, [activeIndex, isTransitioning, filteredCases]);
-
-  const handleNextCase = useCallback(() => {
-    if (filteredCases.length === 0) return;
-    const nextIndex = (activeIndex + 1) % filteredCases.length;
-    changeCase(nextIndex);
-  }, [activeIndex, changeCase, filteredCases]);
-
-  const handlePrevCase = useCallback(() => {
-    if (filteredCases.length === 0) return;
-    const prevIndex = activeIndex === 0 ? filteredCases.length - 1 : activeIndex - 1;
-    changeCase(prevIndex);
-  }, [activeIndex, changeCase, filteredCases]);
-
-  const getClientTypeIcon = (type: 'residential' | 'business' | 'mobile'): React.ReactElement => {
-    switch(type) {
-      case 'residential': return <Home className="w-4 h-4" />;
-      case 'business': return <Building2 className="w-4 h-4" />;
-      case 'mobile': return <Truck className="w-4 h-4" />;
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2
+      }
     }
   };
 
-  const getClientTypeLabel = (type: 'residential' | 'business' | 'mobile'): string => {
-    switch(type) {
-      case 'residential': return 'Residential';
-      case 'business': return 'Business';
-      case 'mobile': return 'Mobile/RV';
+  const headerVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        damping: 25,
+        stiffness: 100,
+        duration: 0.8
+      }
     }
   };
 
   return (
-    <section id="featured-installations" className="py-20 sm:py-[128px] bg-black relative overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 right-1/3 w-80 h-80 sm:w-[368px] sm:h-[368px] bg-white/[0.02] rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 left-1/3 w-80 h-80 sm:w-[368px] sm:h-[368px] bg-white/[0.02] rounded-full blur-3xl"></div>
+    <motion.section
+      id="featured-jobs"
+      className="py-24 sm:py-32 bg-black relative overflow-hidden"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.1 }}
+      variants={containerVariants}
+    >
+      {/* Background Elements */}
+      <div className="absolute inset-0">
+        {/* Gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-b from-neutral-950 via-black to-neutral-950" />
+        
+        {/* Subtle grid pattern */}
+        <div className="absolute inset-0 opacity-[0.02]" 
+          style={{
+            backgroundImage: `linear-gradient(0deg, transparent 24%, rgba(255, 255, 255, 0.05) 25%, rgba(255, 255, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, 0.05) 75%, rgba(255, 255, 255, 0.05) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(255, 255, 255, 0.05) 25%, rgba(255, 255, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, 0.05) 75%, rgba(255, 255, 255, 0.05) 76%, transparent 77%, transparent)`,
+            backgroundSize: '50px 50px'
+          }}
+        />
+        
+        {/* Ambient light effects */}
+        <div className="absolute top-1/4 -left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 -right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
       </div>
 
-      <div className="container mx-auto px-4 sm:px-10 lg:px-16 relative z-10 max-w-5xl sm:max-w-[69rem]">
-        <div className="text-center max-w-2xl sm:max-w-3xl mx-auto mb-14 sm:mb-20">
-          <h2 className="text-3xl sm:text-5xl font-semibold text-neutral-50 mb-4 sm:mb-6 tracking-tight">
-            Starlink Installs, Done Right
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Section Header */}
+        <motion.div 
+          className="text-center max-w-3xl mx-auto mb-16"
+          variants={headerVariants}
+        >
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight mb-6">
+            Installation Excellence
           </h2>
-          <p className="text-base sm:text-xl text-neutral-400">
-            A few real projects—fast, reliable internet for real people. Simple, seamless, and always professional.
+          <p className="text-lg leading-8 text-neutral-300">
+            Real installations, real results. See how we transform connectivity for families and businesses across the DMV area.
           </p>
+        </motion.div>
+
+        {/* Jobs Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {installations.map((job, index) => (
+            <JobCard key={job.id} job={job} index={index} />
+          ))}
         </div>
 
-        <div className="max-w-3xl sm:max-w-4xl mx-auto">
-          <div ref={contentRef} className="transition-opacity duration-300" style={{ opacity: 1 }}>
-            <div className="bg-white/[0.02] border border-white/10 rounded-2xl overflow-hidden backdrop-blur-sm">
-              <div className="relative h-64 sm:h-[294px] bg-black">
-                <img
-                  src={activeImage}
-                  alt={`Starlink installation: ${activeCase.title}`}
-                  className="w-full h-full object-cover"
-                  style={{ objectPosition: 'center' }}
-                  loading="lazy"
-                  decoding="async"
-                  width="800"
-                  height="400"
-                />
-                <button
-                  onClick={handlePrevCase}
-                  disabled={isTransitioning || filteredCases.length <= 1}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 w-9 h-9 bg-black/60 hover:bg-black/80 text-white rounded-full border border-white/20 transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center"
-                  aria-label="Previous installation"
-                >
-                  <ArrowLeft className="w-4 h-4" />
-                </button>
-                <button
-                  onClick={handleNextCase}
-                  disabled={isTransitioning || filteredCases.length <= 1}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 w-9 h-9 bg-black/60 hover:bg-black/80 text-white rounded-full border border-white/20 transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center"
-                  aria-label="Next installation"
-                >
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-                <div className="absolute top-4 right-4 bg-black/80 text-white text-xs px-3 py-1 rounded-full border border-white/20">
-                  {activeIndex + 1} / {filteredCases.length}
-                </div>
-                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1">
-                  {activeCase.images.gallery.map((img, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setActiveImage(img)}
-                      aria-label={`View photo ${index + 1}`}
-                      className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                        activeImage === img ? 'bg-white' : 'bg-white/30 hover:bg-white/60'
-                      }`}
-                    />
-                  ))}
-                </div>
-              </div>
-              <div className="p-6 sm:p-10">
-                <div className="space-y-6 sm:space-y-8">
-                  <div className="flex flex-wrap items-center gap-4 text-xs sm:text-sm text-neutral-500 mb-2 sm:mb-4">
-                    <div className="flex items-center gap-1">
-                      {getClientTypeIcon(activeCase.clientType)}
-                      <span className="uppercase tracking-wider">{getClientTypeLabel(activeCase.clientType)}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <MapPin className="w-4 h-4" />
-                      <span className="uppercase tracking-wider">{activeCase.location}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Calendar className="w-4 h-4" />
-                      <span className="uppercase tracking-wider">{activeCase.date}</span>
-                    </div>
-                  </div>
-                  <h3 className="text-xl sm:text-2xl font-semibold text-neutral-50">
-                    {activeCase.title}
-                  </h3>
-                  <p className="text-neutral-300 text-base sm:text-lg">
-                    {activeCase.description}
-                  </p>
-                  <div className="bg-white/[0.02] border border-white/10 rounded-lg p-5 sm:p-7">
-                    <div className="flex items-center justify-between max-w-xs sm:max-w-sm mx-auto">
-                      <div className="text-center">
-                        <div className="text-lg sm:text-2xl font-semibold text-red-400 mb-1">{activeCase.beforeSpeed}</div>
-                        <div className="text-xs sm:text-sm text-neutral-500 uppercase tracking-wider">Before</div>
-                      </div>
-                      <div className="px-4 sm:px-6">
-                        <ArrowRight className="w-4 h-4 sm:w-6 sm:h-6 text-neutral-600" />
-                      </div>
-                      <div className="text-center">
-                        <div className="text-lg sm:text-2xl font-semibold text-green-400 mb-1">{activeCase.afterSpeed}</div>
-                        <div className="text-xs sm:text-sm text-neutral-500 uppercase tracking-wider">After</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
-                    <div>
-                      <h4 className="font-semibold text-neutral-50 text-sm sm:text-base mb-1">Challenge</h4>
-                      <p className="text-xs sm:text-sm text-neutral-400">{activeCase.challenge}</p>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-neutral-50 text-sm sm:text-base mb-1">Solution</h4>
-                      <p className="text-xs sm:text-sm text-neutral-400">{activeCase.solution}</p>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-neutral-50 text-sm sm:text-base mb-1">Result</h4>
-                      <p className="text-xs sm:text-sm text-neutral-400">{activeCase.result}</p>
-                    </div>
-                  </div>
-                  <div className="bg-white/[0.02] border border-white/10 rounded-lg p-5 sm:p-7 mt-2">
-                    <div className="flex items-center mb-3 sm:mb-4">
-                      {[...Array(5)].map((_, idx) => (
-                        <Star
-                          key={idx}
-                          className={`w-4 h-4 sm:w-5 sm:h-5 ${idx < activeCase.testimonial.rating ? "text-yellow-400 fill-current" : "text-neutral-600"}`}
-                        />
-                      ))}
-                    </div>
-                    <blockquote className="text-neutral-300 mb-3 sm:mb-4 text-sm sm:text-base">
-                      “{activeCase.testimonial.quote}”
-                    </blockquote>
-                    <p className="font-semibold text-neutral-50 text-xs sm:text-sm">
-                      {activeCase.testimonial.author}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+        {/* Bottom CTA */}
+        <motion.div 
+          className="text-center mt-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4, duration: 0.6 }}
+        >
+          <p className="text-neutral-400 mb-8">
+            Join hundreds of satisfied customers across Virginia, Maryland, and DC
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="#contact"
+              aria-label="View all installation projects"
+              className="inline-flex items-center justify-center bg-blue-500 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:bg-blue-600 hover:shadow-lg hover:shadow-blue-500/20"
+            >
+              Start Your Installation
+              <ArrowRight className="w-5 h-5 ml-2" />
+            </a>
+            <a
+              href="#testimonials"
+              aria-label="Read customer testimonials"
+              className="inline-flex items-center justify-center bg-white/5 border border-white/10 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:bg-white/10"
+            >
+              Read Success Stories
+            </a>
           </div>
-          <div className="flex justify-center mt-8 sm:mt-12 gap-1 sm:gap-2">
-            {filteredCases.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => changeCase(index)}
-                aria-label={`Go to case ${index + 1}`}
-                className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
-                  activeIndex === index ? 'bg-white sm:w-8' : 'bg-white/30 hover:bg-white/60'
-                }`}
-              />
-            ))}
-          </div>
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
-export default FeaturedInstallations;
+export default FeaturedJobsSection;

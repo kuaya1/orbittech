@@ -95,7 +95,7 @@ const FinalHomepageCTA = () => {
             
             <div className="flex items-center text-neutral-400">
               <Wifi className="w-4 h-4 mr-2 text-blue-500" />
-              500+ Installations
+              100+ Installations
             </div>
           </motion.div>
           
