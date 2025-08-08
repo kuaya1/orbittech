@@ -110,7 +110,7 @@ const Footer = () => {
             <ul className="space-y-3">
               <FooterLink href="/#contact">Contact Us</FooterLink>
               <FooterLink href="/#availability-process">Check Coverage</FooterLink>
-              <FooterLink href="https://starlink.com" target="_blank" rel="noopener noreferrer">Order Starlink Kit</FooterLink>
+              <FooterLink href="https://www.bestbuy.com/site/starlink-standard-kit-ax-tri-band-wi-fi-system-white/6571727.p?skuId=6571727&extStoreId=273&utm_source=feed&ref=212&loc=19626691823&gclsrc=aw.ds&gad_source=1&gad_campaignid=19626692342&gbraid=0AAAAAD-ORIhnFg98rJEwN2ALR4Btaklc3&gclid=CjwKCAjwwNbEBhBpEiwAFYLtGIXwsHK-GJpPi0RT0mSdwXlY3JNorfcbyfIDORZXpJE6OQpp71Gf4RoCt4sQAvD_BwE" target="_blank" rel="noopener noreferrer">Buy Starlink Locally</FooterLink>
               <FooterLink href="https://www.google.com/maps/place/?cid=16628350007596958974" target="_blank" rel="noopener noreferrer">Leave us a Review on Google!</FooterLink>
             </ul>
           </div>

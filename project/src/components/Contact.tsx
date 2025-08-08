@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
-import { Phone, Mail, Shield, Clock, CheckCircle, Star, Award, MapPin } from 'lucide-react';
+import { motion, useMotionValue, useTransform } from 'framer-motion';
+import { Phone, Mail, Shield, Clock, CheckCircle, Award, MapPin, Loader2 } from 'lucide-react';
 
 // Type definitions
 interface FormData {
@@ -18,43 +18,50 @@ interface FormErrors {
   phone?: string;
 }
 
-interface TrustBadgeProps {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
+interface TrustIndicator {
+  icon: React.ElementType;
+  value: string;
+  label: string;
 }
 
-// Trust Badge Component
-const TrustBadge: React.FC<TrustBadgeProps> = ({ icon, title, description }) => (
-  <motion.div 
-    className="flex items-start gap-4"
-    initial={{ opacity: 0, x: -20 }}
-    whileInView={{ opacity: 1, x: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.5 }}
-  >
-    <div className="flex-shrink-0 w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center">
-      {icon}
-    </div>
-    <div>
-      <h4 className="font-semibold text-white mb-1">{title}</h4>
-      <p className="text-sm text-neutral-400">{description}</p>
-    </div>
-  </motion.div>
-);
+// Precision Intersection Observer for orchestrated reveal
+const useScrollReveal = (threshold = 0.1) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const elementRef = useRef<HTMLDivElement>(null);
 
-// Star Rating Component for testimonial
-const StarRating: React.FC<{ rating: number }> = ({ rating }) => (
-  <div className="flex items-center gap-1" role="img" aria-label={`${rating} star rating`}>
-    {[...Array(5)].map((_, i) => (
-      <Star 
-        key={i} 
-        className={`h-4 w-4 ${i < rating ? 'text-yellow-400 fill-current' : 'text-neutral-600'}`}
-        aria-hidden="true"
-      />
-    ))}
-  </div>
-);
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold, rootMargin: '50px' }
+    );
+
+    const currentElement = elementRef.current;
+    if (currentElement) {
+      observer.observe(currentElement);
+    }
+
+    return () => {
+      if (currentElement) {
+        observer.unobserve(currentElement);
+      }
+    };
+  }, [threshold]);
+
+  return [elementRef, isVisible] as const;
+};
+
+// Trust indicators data
+const trustIndicators: TrustIndicator[] = [
+  { icon: Shield, value: '100%', label: 'Licensed & Insured' },
+  { icon: Award, value: '90 Day', label: 'Service Warranty' },
+  { icon: Clock, value: '24hr', label: 'Response Time' },
+  { icon: CheckCircle, value: '500+', label: 'Installations' }
+];
 
 // Main Contact Component
 const Contact: React.FC = () => {
@@ -64,7 +71,7 @@ const Contact: React.FC = () => {
     email: '',
     phone: '',
     address: '',
-    serviceType: 'residential',
+    serviceType: 'installation',
     message: ''
   });
 
@@ -72,6 +79,24 @@ const Contact: React.FC = () => {
   const [formStatus, setFormStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [isEmailServiceReady, setIsEmailServiceReady] = useState(false);
   const emailjsRef = useRef<any>(null);
+
+  // Scroll reveal and mouse tracking
+  const [containerRef, isVisible] = useScrollReveal(0.15);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  // Subtle parallax effect for premium feel
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    mouseX.set(x);
+    mouseY.set(y);
+  };
+
+  // Transform mouse position for gradient tracking
+  const gradientX = useTransform(mouseX, [0, 1000], [0, 100]);
+  const gradientY = useTransform(mouseY, [0, 600], [0, 100]);
 
   // Load EmailJS
   useEffect(() => {
@@ -181,7 +206,7 @@ const Contact: React.FC = () => {
             email: '',
             phone: '',
             address: '',
-            serviceType: 'residential',
+            serviceType: 'installation',
             message: ''
           });
           setFormStatus('idle');
@@ -195,12 +220,14 @@ const Contact: React.FC = () => {
     }
   };
 
-  // Animation variants
+  // Orchestrated entrance animations
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
+        duration: 0.8,
+        ease: [0.25, 0.46, 0.45, 0.94],
         staggerChildren: 0.1,
         delayChildren: 0.2
       }
@@ -208,13 +235,31 @@ const Contact: React.FC = () => {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { 
+      opacity: 0, 
+      y: 30,
+      scale: 0.98
+    },
     visible: {
       opacity: 1,
       y: 0,
+      scale: 1,
       transition: {
-        duration: 0.6,
-        ease: "easeOut"
+        duration: 0.7,
+        ease: [0.25, 0.46, 0.45, 0.94]
+      }
+    }
+  };
+
+  const lineVariants = {
+    hidden: { scaleX: 0, opacity: 0 },
+    visible: {
+      scaleX: 1,
+      opacity: 1,
+      transition: {
+        duration: 1.2,
+        ease: [0.25, 0.46, 0.45, 0.94],
+        delay: 0.5
       }
     }
   };
@@ -222,204 +267,190 @@ const Contact: React.FC = () => {
   return (
     <motion.section
       id="contact"
-      className="py-24 sm:py-32 bg-black relative overflow-hidden"
+      ref={containerRef}
+      className="relative py-32 lg:py-40 overflow-hidden isolate"
+      onMouseMove={handleMouseMove}
       initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.1 }}
+      animate={isVisible ? "visible" : "hidden"}
       variants={containerVariants}
+      aria-labelledby="contact-heading"
     >
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-neutral-950 via-black to-neutral-950" />
+      {/* Layered background system for depth */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black via-neutral-950 to-black" />
       
-      {/* Subtle pattern */}
-      <div 
-        className="absolute inset-0 opacity-[0.02]"
+      {/* Spotlight effect - tracks mouse subtly */}
+      <motion.div 
+        className="absolute inset-0 opacity-20"
         style={{
-          backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 1px)',
-          backgroundSize: '50px 50px'
+          background: useTransform(
+            [gradientX, gradientY],
+            ([x, y]) => `radial-gradient(circle 800px at ${x}% ${y}%, rgba(59, 130, 246, 0.06), transparent 60%)`
+          )
+        }}
+      />
+      
+      {/* Grid pattern overlay for technical authority */}
+      <div 
+        className="absolute inset-0 opacity-[0.015]"
+        style={{
+          backgroundImage: `linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px)`,
+          backgroundSize: '100px 100px'
         }}
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Header */}
+      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Accent line */}
         <motion.div 
-          className="text-center max-w-3xl mx-auto mb-16"
+          variants={lineVariants}
+          className="w-24 h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent mx-auto mb-12 origin-center"
+        />
+
+        {/* Section Header - Minimal and refined */}
+        <motion.div 
+          className="text-center mb-20"
           variants={itemVariants}
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6">
-            Get Your Free, No-Obligation Installation Quote
+          <h2 
+            id="contact-heading"
+            className="text-5xl sm:text-6xl lg:text-7xl font-light tracking-tight leading-[1.1] mb-6"
+          >
+            <span className="text-white">Get your free,</span>
+            <br />
+            <span className="text-white font-semibold">no-obligation quote.</span>
           </h2>
-          <p className="text-lg leading-8 text-neutral-300">
-            Fill out the form below, and one of our DMV-based connectivity experts will get back to you within one business day.
+          <p className="text-lg text-neutral-400 max-w-2xl mx-auto font-light">
+            Professional Starlink installation by DMV-based connectivity experts. 
+            We'll respond within one business day.
           </p>
         </motion.div>
 
-        {/* Two Column Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+        {/* Trust Indicators Grid */}
+        <motion.div 
+          className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16"
+          variants={itemVariants}
+        >
+          {trustIndicators.map((indicator, index) => (
+            <div key={index} className="text-center">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/10 mb-3">
+                <indicator.icon className="w-6 h-6 text-blue-400" />
+              </div>
+              <div className="text-2xl font-light text-white">{indicator.value}</div>
+              <div className="text-sm text-neutral-500 mt-1 font-light">{indicator.label}</div>
+            </div>
+          ))}
+        </motion.div>
+
+        {/* Form Container - Clean and sophisticated */}
+        <motion.div 
+          className="relative max-w-3xl mx-auto"
+          variants={itemVariants}
+        >
+          {/* Subtle border glow */}
+          <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/5 via-transparent to-blue-500/5 blur-xl -z-10" />
           
-          {/* Left Column - Trust Building */}
-          <motion.div 
-            className="space-y-8"
-            variants={itemVariants}
-          >
-            {/* Featured Testimonial */}
-            <div className="bg-gradient-to-br from-neutral-900 to-black border border-neutral-800 rounded-2xl p-8">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl">
-                  JR
-                </div>
-                <div>
-                  <h4 className="font-semibold text-white">John Richardson</h4>
-                  <p className="text-sm text-neutral-400">Great Falls, VA</p>
-                  <StarRating rating={5} />
-                </div>
-              </div>
-              <blockquote className="text-neutral-300 italic mb-4">
-                "The Orbit Tech transformed our home internet experience. From 15 Mbps with our old provider to 240 Mbps with Starlink - professionally installed in just 3 hours. The whole-home Wi-Fi coverage they set up means we finally have fast internet in every room. Absolutely worth every penny!"
-              </blockquote>
-              <div className="flex items-center gap-4 text-sm text-neutral-400">
-                <span className="flex items-center gap-1">
-                  <CheckCircle className="w-4 h-4 text-green-500" />
-                  Verified Customer
-                </span>
-                <span>Installed March 2024</span>
-              </div>
-            </div>
-
-            {/* Trust Badges */}
-            <div className="space-y-6">
-              <TrustBadge
-                icon={<Shield className="w-6 h-6 text-blue-500" />}
-                title="Licensed & Insured"
-                description="Fully licensed contractors with comprehensive insurance coverage for your peace of mind."
-              />
-              <TrustBadge
-                icon={<Award className="w-6 h-6 text-blue-500" />}
-                title="90-Day Warranty"
-                description="Every installation comes with our comprehensive 90-day warranty on parts and labor."
-              />
-              <TrustBadge
-                icon={<Star className="w-6 h-6 text-blue-500" />}
-                title="5.0 Google Rating"
-                description="Consistently rated 5 stars by our customers for professional service and results."
-              />
-              <TrustBadge
-                icon={<Clock className="w-6 h-6 text-blue-500" />}
-                title="Same-Day Service"
-                description="Emergency installations available with same-day service in most DMV areas."
-              />
-            </div>
-
-            {/* Direct Contact Info */}
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 space-y-4">
-              <h3 className="font-semibold text-white mb-4">Prefer to Talk Directly?</h3>
-              <a 
-                href="tel:+15719996915" 
-                className="flex items-center gap-3 text-neutral-300 hover:text-white transition-colors group"
-                aria-label="Call The Orbit Tech"
-              >
-                <Phone className="w-5 h-5 text-blue-500 group-hover:text-blue-400" />
-                <span className="font-medium">(571) 999-6915</span>
-              </a>
-              <a 
-                href="mailto:contact@theorbittech.com" 
-                className="flex items-center gap-3 text-neutral-300 hover:text-white transition-colors group"
-                aria-label="Email The Orbit Tech"
-              >
-                <Mail className="w-5 h-5 text-blue-500 group-hover:text-blue-400" />
-                <span className="font-medium">contact@theorbittech.com</span>
-              </a>
-              <div className="flex items-start gap-3 text-neutral-300">
-                <MapPin className="w-5 h-5 text-blue-500 mt-0.5" />
-                <div>
-                  <p className="font-medium">Service Areas</p>
-                  <p className="text-sm text-neutral-400">Virginia • Maryland • Washington DC</p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Right Column - Form */}
-          <motion.div 
-            className="bg-gradient-to-br from-neutral-900 to-black border border-neutral-800 rounded-2xl p-8"
-            variants={itemVariants}
-          >
+          {/* Form */}
+          <div className="relative bg-gradient-to-b from-neutral-900/30 to-black/30 backdrop-blur-sm border border-neutral-800/50 rounded-2xl p-8 md:p-12">
             <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Name Field */}
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-neutral-300 mb-2">
-                  Full Name *
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  className={`w-full px-4 py-3 bg-black/50 border rounded-xl text-white placeholder-neutral-500 focus:outline-none focus:border-blue-500 transition-colors ${
-                    formErrors.name ? 'border-red-500' : 'border-neutral-700'
-                  }`}
-                  placeholder="John Smith"
-                  aria-label="Your full name"
-                  aria-required="true"
-                  aria-invalid={!!formErrors.name}
-                />
-                {formErrors.name && (
-                  <p className="mt-1 text-sm text-red-400">{formErrors.name}</p>
-                )}
+              {/* Two Column Layout for Name and Email */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Name Field */}
+                <div>
+                  <label htmlFor="name" className="block text-sm font-light text-neutral-300 mb-2">
+                    Full Name *
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    className={`w-full px-4 py-3 bg-black/50 border rounded-xl text-white placeholder-neutral-600 focus:outline-none focus:border-blue-500/50 focus:bg-black/70 transition-all ${
+                      formErrors.name ? 'border-red-500/50' : 'border-neutral-800'
+                    }`}
+                    placeholder="John Smith"
+                    aria-label="Your full name"
+                    aria-required="true"
+                    aria-invalid={!!formErrors.name}
+                  />
+                  {formErrors.name && (
+                    <p className="mt-1 text-xs text-red-400 font-light">{formErrors.name}</p>
+                  )}
+                </div>
+
+                {/* Email Field */}
+                <div>
+                  <label htmlFor="email" className="block text-sm font-light text-neutral-300 mb-2">
+                    Email Address *
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className={`w-full px-4 py-3 bg-black/50 border rounded-xl text-white placeholder-neutral-600 focus:outline-none focus:border-blue-500/50 focus:bg-black/70 transition-all ${
+                      formErrors.email ? 'border-red-500/50' : 'border-neutral-800'
+                    }`}
+                    placeholder="john@example.com"
+                    aria-label="Your email address"
+                    aria-required="true"
+                    aria-invalid={!!formErrors.email}
+                  />
+                  {formErrors.email && (
+                    <p className="mt-1 text-xs text-red-400 font-light">{formErrors.email}</p>
+                  )}
+                </div>
               </div>
 
-              {/* Email Field */}
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-neutral-300 mb-2">
-                  Email Address *
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className={`w-full px-4 py-3 bg-black/50 border rounded-xl text-white placeholder-neutral-500 focus:outline-none focus:border-blue-500 transition-colors ${
-                    formErrors.email ? 'border-red-500' : 'border-neutral-700'
-                  }`}
-                  placeholder="john@example.com"
-                  aria-label="Your email address"
-                  aria-required="true"
-                  aria-invalid={!!formErrors.email}
-                />
-                {formErrors.email && (
-                  <p className="mt-1 text-sm text-red-400">{formErrors.email}</p>
-                )}
-              </div>
+              {/* Two Column Layout for Phone and Service Type */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Phone Field */}
+                <div>
+                  <label htmlFor="phone" className="block text-sm font-light text-neutral-300 mb-2">
+                    Phone Number *
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    className={`w-full px-4 py-3 bg-black/50 border rounded-xl text-white placeholder-neutral-600 focus:outline-none focus:border-blue-500/50 focus:bg-black/70 transition-all ${
+                      formErrors.phone ? 'border-red-500/50' : 'border-neutral-800'
+                    }`}
+                    placeholder="(555) 123-4567"
+                    aria-label="Your phone number"
+                    aria-required="true"
+                    aria-invalid={!!formErrors.phone}
+                  />
+                  {formErrors.phone && (
+                    <p className="mt-1 text-xs text-red-400 font-light">{formErrors.phone}</p>
+                  )}
+                </div>
 
-              {/* Phone Field */}
-              <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-neutral-300 mb-2">
-                  Phone Number *
-                </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  className={`w-full px-4 py-3 bg-black/50 border rounded-xl text-white placeholder-neutral-500 focus:outline-none focus:border-blue-500 transition-colors ${
-                    formErrors.phone ? 'border-red-500' : 'border-neutral-700'
-                  }`}
-                  placeholder="(555) 123-4567"
-                  aria-label="Your phone number"
-                  aria-required="true"
-                  aria-invalid={!!formErrors.phone}
-                />
-                {formErrors.phone && (
-                  <p className="mt-1 text-sm text-red-400">{formErrors.phone}</p>
-                )}
+                {/* Service Type */}
+                <div>
+                  <label htmlFor="serviceType" className="block text-sm font-light text-neutral-300 mb-2">
+                    Service Type
+                  </label>
+                  <select
+                    id="serviceType"
+                    name="serviceType"
+                    value={formData.serviceType}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 bg-black/50 border border-neutral-800 rounded-xl text-white focus:outline-none focus:border-blue-500/50 focus:bg-black/70 transition-all appearance-none cursor-pointer"
+                    aria-label="Type of service needed"
+                  >
+                    <option value="installation">Professional Installation</option>
+                    <option value="installation-plus-wifi">Complete Coverage Package</option>
+                    <option value="business">Business Installation</option>
+                  </select>
+                </div>
               </div>
 
               {/* Address Field */}
               <div>
-                <label htmlFor="address" className="block text-sm font-medium text-neutral-300 mb-2">
+                <label htmlFor="address" className="block text-sm font-light text-neutral-300 mb-2">
                   Installation Address
                 </label>
                 <input
@@ -428,34 +459,15 @@ const Contact: React.FC = () => {
                   name="address"
                   value={formData.address}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-black/50 border border-neutral-700 rounded-xl text-white placeholder-neutral-500 focus:outline-none focus:border-blue-500 transition-colors"
+                  className="w-full px-4 py-3 bg-black/50 border border-neutral-800 rounded-xl text-white placeholder-neutral-600 focus:outline-none focus:border-blue-500/50 focus:bg-black/70 transition-all"
                   placeholder="123 Main St, City, State ZIP"
                   aria-label="Installation address"
                 />
               </div>
 
-              {/* Service Type */}
-              <div>
-                <label htmlFor="serviceType" className="block text-sm font-medium text-neutral-300 mb-2">
-                  Service Type
-                </label>
-                <select
-                  id="serviceType"
-                  name="serviceType"
-                  value={formData.serviceType}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 bg-black/50 border border-neutral-700 rounded-xl text-white focus:outline-none focus:border-blue-500 transition-colors"
-                  aria-label="Type of service needed"
-                >
-                  <option value="residential">Residential Installation</option>
-                  <option value="business">Business Installation</option>
-                  <option value="wifi">Installation + Wi-Fi Optimization</option>
-                </select>
-              </div>
-
               {/* Message Field */}
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-neutral-300 mb-2">
+                <label htmlFor="message" className="block text-sm font-light text-neutral-300 mb-2">
                   Additional Information
                 </label>
                 <textarea
@@ -464,7 +476,7 @@ const Contact: React.FC = () => {
                   value={formData.message}
                   onChange={handleChange}
                   rows={4}
-                  className="w-full px-4 py-3 bg-black/50 border border-neutral-700 rounded-xl text-white placeholder-neutral-500 focus:outline-none focus:border-blue-500 transition-colors resize-none"
+                  className="w-full px-4 py-3 bg-black/50 border border-neutral-800 rounded-xl text-white placeholder-neutral-600 focus:outline-none focus:border-blue-500/50 focus:bg-black/70 transition-all resize-none"
                   placeholder="Tell us about your property or any special requirements..."
                   aria-label="Additional information"
                 />
@@ -474,29 +486,31 @@ const Contact: React.FC = () => {
               <motion.button
                 type="submit"
                 disabled={formStatus === 'loading' || !isEmailServiceReady}
-                className="w-full bg-blue-500 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:bg-blue-600 hover:shadow-lg hover:shadow-blue-500/25 disabled:bg-neutral-700 disabled:text-neutral-400 disabled:cursor-not-allowed"
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.98 }}
+                className="w-full bg-blue-500 text-white font-medium px-8 py-4 rounded-full transition-all duration-300 hover:bg-blue-600 hover:shadow-lg hover:shadow-blue-500/25 disabled:bg-neutral-800 disabled:text-neutral-500 disabled:cursor-not-allowed relative overflow-hidden group"
+                whileHover={{ scale: 1.01 }}
+                whileTap={{ scale: 0.99 }}
                 aria-label="Submit installation quote request"
               >
-                {formStatus === 'loading' ? (
-                  <span className="flex items-center justify-center gap-2">
-                    <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                    </svg>
-                    Sending...
-                  </span>
-                ) : formStatus === 'success' ? (
-                  <span className="flex items-center justify-center gap-2">
-                    <CheckCircle className="w-5 h-5" />
-                    Quote Request Sent Successfully!
-                  </span>
-                ) : formStatus === 'error' ? (
-                  'Error - Please Try Again'
-                ) : (
-                  'Get My Free Quote'
-                )}
+                {/* Shimmer effect on hover */}
+                <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                
+                <span className="relative flex items-center justify-center gap-2">
+                  {formStatus === 'loading' ? (
+                    <>
+                      <Loader2 className="w-5 h-5 animate-spin" />
+                      <span>Sending...</span>
+                    </>
+                  ) : formStatus === 'success' ? (
+                    <>
+                      <CheckCircle className="w-5 h-5" />
+                      <span>Quote Request Sent Successfully!</span>
+                    </>
+                  ) : formStatus === 'error' ? (
+                    'Error - Please Try Again'
+                  ) : (
+                    'Get My Free Quote'
+                  )}
+                </span>
               </motion.button>
 
               {/* Form Status Messages */}
@@ -506,7 +520,7 @@ const Contact: React.FC = () => {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                 >
-                  <p className="text-green-400 text-sm">
+                  <p className="text-green-400 text-sm font-light">
                     Thank you! We've received your quote request and will contact you within one business day.
                   </p>
                 </motion.div>
@@ -518,20 +532,62 @@ const Contact: React.FC = () => {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                 >
-                  <p className="text-red-400 text-sm">
+                  <p className="text-red-400 text-sm font-light">
                     Something went wrong. Please try again or call us directly at (571) 999-6915.
                   </p>
                 </motion.div>
               )}
 
               {/* Privacy Note */}
-              <p className="text-xs text-neutral-500 text-center">
+              <p className="text-xs text-neutral-600 text-center font-light">
                 By submitting this form, you agree to be contacted about your Starlink installation quote. 
                 We respect your privacy and will never share your information.
               </p>
             </form>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
+
+        {/* Contact Information - Minimal presentation */}
+        <motion.div 
+          className="mt-16 text-center"
+          variants={itemVariants}
+        >
+          <p className="text-sm text-neutral-500 font-light mb-6">Prefer to talk directly?</p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-12">
+            <a 
+              href="tel:+15719996915" 
+              className="flex items-center gap-3 text-neutral-300 hover:text-white transition-colors group"
+              aria-label="Call The Orbit Tech"
+            >
+              <Phone className="w-5 h-5 text-blue-500 group-hover:text-blue-400" />
+              <span className="font-light">(571) 999-6915</span>
+            </a>
+            <a 
+              href="mailto:contact@theorbittech.com" 
+              className="flex items-center gap-3 text-neutral-300 hover:text-white transition-colors group"
+              aria-label="Email The Orbit Tech"
+            >
+              <Mail className="w-5 h-5 text-blue-500 group-hover:text-blue-400" />
+              <span className="font-light">contact@theorbittech.com</span>
+            </a>
+          </div>
+          <div className="flex items-center justify-center gap-2 mt-6 text-neutral-500 text-sm">
+            <MapPin className="w-4 h-4" />
+            <span className="font-light">Serving Virginia • Maryland • Washington DC</span>
+          </div>
+        </motion.div>
+
+        {/* Bottom accent line */}
+        <motion.div 
+          variants={lineVariants}
+          className="w-24 h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent mx-auto mt-16 origin-center"
+        />
+      </div>
+
+      {/* Edge vignette for focus */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black opacity-15" />
       </div>
     </motion.section>
   );
