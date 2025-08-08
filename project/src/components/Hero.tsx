@@ -168,7 +168,7 @@ const Hero: React.FC<HeroProps> = ({ className = '' }) => {
               >
                 {/* Main Headline */}
                 <motion.h1 
-                  className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight"
+                  className="text-[2.15rem] sm:text-[2.85rem] lg:text-[3.19rem] xl:text-[3.825rem] font-bold tracking-tight"
                   variants={fadeInUp}
                 >
                   <span className="block text-white leading-tight">
