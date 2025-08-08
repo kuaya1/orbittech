@@ -349,7 +349,7 @@ const FeaturedJobsSection: React.FC = () => {
           variants={itemVariants}
           className="text-center text-xs text-neutral-500 mt-8 font-light tracking-wide"
         >
-          Each installation is uniquely designed for optimal performance based on your property's specific characteristics.
+          
         </motion.p>
       </div>
 

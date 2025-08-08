@@ -387,7 +387,7 @@ const FAQ: React.FC = () => {
             variants={itemVariants}
             className="text-center text-xs text-neutral-500 mt-8 font-light tracking-wide"
           >
-            For personalized guidance, our certified technicians are available for consultation.
+            
           </motion.p>
         </div>
 

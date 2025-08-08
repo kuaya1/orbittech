@@ -60,7 +60,7 @@ const trustIndicators: TrustIndicator[] = [
   { icon: Shield, value: '100%', label: 'Licensed & Insured' },
   { icon: Award, value: '90 Day', label: 'Service Warranty' },
   { icon: Clock, value: '24hr', label: 'Response Time' },
-  { icon: CheckCircle, value: '500+', label: 'Installations' }
+  { icon: CheckCircle, value: '100+', label: 'Installations' }
 ];
 
 // Main Contact Component
@@ -227,7 +227,7 @@ const Contact: React.FC = () => {
       opacity: 1,
       transition: {
         duration: 0.8,
-        ease: [0.25, 0.46, 0.45, 0.94],
+  ease: "easeOut" as const,
         staggerChildren: 0.1,
         delayChildren: 0.2
       }
@@ -246,7 +246,7 @@ const Contact: React.FC = () => {
       scale: 1,
       transition: {
         duration: 0.7,
-        ease: [0.25, 0.46, 0.45, 0.94]
+  ease: "easeOut" as const
       }
     }
   };
@@ -258,7 +258,7 @@ const Contact: React.FC = () => {
       opacity: 1,
       transition: {
         duration: 1.2,
-        ease: [0.25, 0.46, 0.45, 0.94],
+  ease: "easeOut" as const,
         delay: 0.5
       }
     }
