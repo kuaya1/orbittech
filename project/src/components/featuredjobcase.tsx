@@ -159,17 +159,6 @@ const FeaturedJobsSection: React.FC = () => {
       completionTime: '3 Hours'
     },
     {
-      id: 'annapolis-vacation-home',
-      location: 'Annapolis Vacation Home',
-      region: 'Anne Arundel County',
-      challenge: 'A growing tech startup needed enterprise-grade reliability for 50+ employees. Their previous provider couldn\'t deliver consistent speeds.',
-      solution: 'Deployed a business-grade Starlink system with redundant power backup and optimized network configuration for high-demand usage.',
-      speedAchieved: '285 Mbps',
-      installationType: 'residential',
-      imageUrl: 'https://www.flickr.com/photo_download.gne?id=54704913554&secret=b97479bb3e&size=l&source=photoPageEngagement',
-      completionTime: '4 Hours'
-    },
-    {
       id: 'charlestown-residential-home',
       location: 'Charlestown Residential Home',
       region: 'Jefferson County',
@@ -179,6 +168,17 @@ const FeaturedJobsSection: React.FC = () => {
       installationType: 'residential',
       imageUrl: 'https://www.flickr.com/photo_download.gne?id=54704683041&secret=db9751abea&size=l&source=photoPageEngagement',
       completionTime: '2.5 Hours'
+    },
+    {
+      id: 'annapolis-vacation-home',
+      location: 'Annapolis Vacation Home',
+      region: 'Anne Arundel County',
+      challenge: 'A growing tech startup needed enterprise-grade reliability for 50+ employees. Their previous provider couldn\'t deliver consistent speeds.',
+      solution: 'Deployed a business-grade Starlink system with redundant power backup and optimized network configuration for high-demand usage.',
+      speedAchieved: '285 Mbps',
+      installationType: 'residential',
+      imageUrl: 'https://www.flickr.com/photo_download.gne?id=54704913554&secret=b97479bb3e&size=l&source=photoPageEngagement',
+      completionTime: '4 Hours'
     }
   ];
 
