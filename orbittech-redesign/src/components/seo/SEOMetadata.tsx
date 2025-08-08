@@ -1,6 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { SEOMetadataProps } from '../../types';
+import BUSINESS_CONFIG from '../../config/business';
 
 const SEOMetadata: React.FC<SEOMetadataProps> = ({
   title,
@@ -15,9 +16,9 @@ const SEOMetadata: React.FC<SEOMetadataProps> = ({
   const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
   
   // Enhanced meta tags for local SEO
-  const businessName = "The Orbit Tech";
-  const phoneNumber = "(703) 555-0123";
-  const businessAddress = "DMV Area, Virginia";
+  const businessName = BUSINESS_CONFIG.business.name;
+  const phoneNumber = BUSINESS_CONFIG.phone.display;
+  const businessAddress = `${BUSINESS_CONFIG.address.city}, ${BUSINESS_CONFIG.address.state}`;
   
   // Location-specific keywords enhancement
   const localKeywords = [

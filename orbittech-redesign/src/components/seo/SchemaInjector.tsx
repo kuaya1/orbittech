@@ -1,6 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { SchemaInjectorProps } from '../../types';
+import BUSINESS_CONFIG from '../../config/business';
 
 const SchemaInjector: React.FC<SchemaInjectorProps> = ({ type, data }) => {
   const generateSchema = () => {
@@ -12,19 +13,19 @@ const SchemaInjector: React.FC<SchemaInjectorProps> = ({ type, data }) => {
           "@context": "https://schema.org",
           "@type": "LocalBusiness",
           "@id": `${baseUrl}/#localbusiness`,
-          name: data.name || "The Orbit Tech",
+          name: data.name || BUSINESS_CONFIG.business.name,
           description: data.description || "Professional Starlink satellite internet installation services in the DMV area",
           url: baseUrl,
-          telephone: data.telephone || "(703) 555-0123",
-          email: data.email || "service@theorbittech.com",
-          priceRange: "$599-$1299",
+          telephone: data.telephone || BUSINESS_CONFIG.phone.display,
+          email: data.email || BUSINESS_CONFIG.email.primary,
+          priceRange: BUSINESS_CONFIG.pricing.priceRange,
           address: {
             "@type": "PostalAddress",
-            streetAddress: data.address?.streetAddress || "DMV Service Area",
-            addressLocality: data.address?.addressLocality || "Northern Virginia",
-            addressRegion: data.address?.addressRegion || "VA",
-            postalCode: data.address?.postalCode || "20120",
-            addressCountry: data.address?.addressCountry || "US"
+            streetAddress: data.address?.streetAddress || BUSINESS_CONFIG.address.street,
+            addressLocality: data.address?.addressLocality || BUSINESS_CONFIG.address.city,
+            addressRegion: data.address?.addressRegion || BUSINESS_CONFIG.address.state,
+            postalCode: data.address?.postalCode || BUSINESS_CONFIG.address.zip,
+            addressCountry: data.address?.addressCountry || BUSINESS_CONFIG.address.country
           },
           geo: {
             "@type": "GeoCoordinates",
@@ -53,18 +54,14 @@ const SchemaInjector: React.FC<SchemaInjectorProps> = ({ type, data }) => {
           ],
           aggregateRating: {
             "@type": "AggregateRating",
-            ratingValue: data.aggregateRating?.ratingValue || 4.9,
-            reviewCount: data.aggregateRating?.reviewCount || 500,
+            ratingValue: data.aggregateRating?.ratingValue || BUSINESS_CONFIG.metrics.rating,
+            reviewCount: data.aggregateRating?.reviewCount || BUSINESS_CONFIG.metrics.reviewCount,
             bestRating: 5,
             worstRating: 1
           },
-          openingHours: [
-            "Mo-Fr 08:00-19:00",
-            "Sa 09:00-17:00", 
-            "Su 10:00-16:00"
-          ],
+          openingHours: BUSINESS_CONFIG.hours.display,
           paymentAccepted: ["Cash", "Credit Card", "Check", "Invoice"],
-          currenciesAccepted: "USD",
+          currenciesAccepted: BUSINESS_CONFIG.pricing.currency,
           hasMap: `https://maps.google.com/?q=${data.geo?.latitude || 38.9072},${data.geo?.longitude || -77.0369}`,
           image: [
             `${baseUrl}/images/starlink-dish.webp`,
@@ -72,12 +69,12 @@ const SchemaInjector: React.FC<SchemaInjectorProps> = ({ type, data }) => {
             `${baseUrl}/images/orbit-tech-logo.webp`
           ],
           logo: `${baseUrl}/images/orbit-tech-logo.webp`,
-          sameAs: [
-            "https://www.facebook.com/theorbittech",
-            "https://www.twitter.com/theorbittech",
-            "https://www.linkedin.com/company/theorbittech",
-            "https://www.yelp.com/biz/theorbittech"
-          ],
+          sameAs: BUSINESS_CONFIG.social ? [
+            BUSINESS_CONFIG.social.facebook,
+            BUSINESS_CONFIG.social.twitter,
+            BUSINESS_CONFIG.social.linkedin,
+            BUSINESS_CONFIG.social.yelp
+          ] : [],
           ...data
         };
       
@@ -90,8 +87,8 @@ const SchemaInjector: React.FC<SchemaInjectorProps> = ({ type, data }) => {
           description: data.description || "Complete Starlink satellite internet installation with professional mounting, alignment, and optimization",
           provider: {
             "@type": "LocalBusiness",
-            name: "The Orbit Tech",
-            telephone: "(703) 555-0123",
+            name: BUSINESS_CONFIG.business.name,
+            telephone: BUSINESS_CONFIG.phone.display,
             url: baseUrl
           },
           serviceType: "Satellite Internet Installation",

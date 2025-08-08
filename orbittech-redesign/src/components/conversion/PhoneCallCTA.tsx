@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Button from '../shared/Button';
+import BUSINESS_CONFIG from '../../config/business';
 
 interface PhoneCallCTAProps {
   variant?: 'button' | 'sticky' | 'header';
@@ -9,8 +10,8 @@ interface PhoneCallCTAProps {
 const PhoneCallCTA: React.FC<PhoneCallCTAProps> = ({ variant = 'sticky', className = '' }) => {
   const [isMobile, setIsMobile] = useState(false);
   const [businessHours, setBusinessHours] = useState('');
-  const phoneNumber = "(703) 555-0123";
-  const phoneHref = "tel:+17035550123";
+  const phoneNumber = BUSINESS_CONFIG.phone.display;
+  const phoneHref = `tel:${BUSINESS_CONFIG.phone.tel}`;
 
   useEffect(() => {
     const checkMobile = () => {
