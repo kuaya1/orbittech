@@ -153,8 +153,9 @@ const serviceableZips = new Set([
 const AvailabilityProcess = () => {
   // Scroll animation state
   const [isVisible, setIsVisible] = useState(false);
-  const [scrollY, setScrollY] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
+  const bgRef = useRef<HTMLDivElement>(null);
+  const overlayRef = useRef<HTMLDivElement>(null);
   
   // Availability check state
   const [zipCode, setZipCode] = useState('');
@@ -168,32 +169,52 @@ const AvailabilityProcess = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const blurTimeoutRef = useRef<number | null>(null);
 
-  // Parallax scroll effect
+  // Redesigned parallax: section-relative, rAF, multi-layer, reduced-motion aware
   useEffect(() => {
-    const handleScroll = () => {
-      const rect = sectionRef.current?.getBoundingClientRect();
-      if (rect) {
-        // Only calculate parallax when section is in viewport
-        const scrolled = window.scrollY;
-        const rate = scrolled * -0.3; // Negative for upward movement
-        setScrollY(rate);
+    const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    let rafId = 0;
+    const update = () => {
+      rafId = 0;
+      if (!sectionRef.current) return;
+      const rect = sectionRef.current.getBoundingClientRect();
+      const vh = window.innerHeight || 0;
+      const sh = rect.height || 1;
+      // progress 0..1 as section scrolls through viewport
+      const raw = (vh - rect.top) / (vh + sh);
+      const progress = Math.min(1, Math.max(0, raw));
+
+      // Depth transforms
+      const y = (progress - 0.5) * 120; // -60px .. 60px
+      const scale = 1.06 - progress * 0.04; // 1.06 -> 1.02
+
+      if (bgRef.current) {
+        bgRef.current.style.transform = prefersReduced
+          ? 'translate3d(0,0,0) scale(1.03)'
+          : `translate3d(0, ${y.toFixed(2)}px, 0) scale(${scale.toFixed(3)})`;
+      }
+      if (overlayRef.current) {
+        overlayRef.current.style.transform = prefersReduced
+          ? 'translate3d(0,0,0)'
+          : `translate3d(0, ${(y * 0.4).toFixed(2)}px, 0)`;
       }
     };
 
-    // Use requestAnimationFrame for smooth performance
-    let ticking = false;
-    const scrollHandler = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          handleScroll();
-          ticking = false;
-        });
-        ticking = true;
-      }
+    const onScrollOrResize = () => {
+      if (rafId) return;
+      rafId = requestAnimationFrame(update);
     };
 
-    window.addEventListener('scroll', scrollHandler, { passive: true });
-    return () => window.removeEventListener('scroll', scrollHandler);
+    window.addEventListener('scroll', onScrollOrResize, { passive: true });
+    window.addEventListener('resize', onScrollOrResize);
+    // initialize once mounted
+    update();
+
+    return () => {
+      window.removeEventListener('scroll', onScrollOrResize);
+      window.removeEventListener('resize', onScrollOrResize);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
   }, []);
 
   // Intersection Observer for scroll animations
@@ -330,25 +351,32 @@ const AvailabilityProcess = () => {
         minHeight: '80vh',
       }}>
       
-      {/* Parallax Background Layer - Only this moves */}
+      {/* Parallax Background Layer - depth parallax */}
       <div 
+        ref={bgRef}
         className="absolute inset-0 w-full h-full bg-gray-900"
         style={{
           backgroundImage: "url('/1000002290.png')",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
-          transform: `translate3d(0, ${scrollY}px, 0) scale(1.1)`,
+          transform: 'translate3d(0, 0, 0) scale(1.06)',
           willChange: 'transform',
           zIndex: 1
         }}
       />
       
-      {/* Dark gradient overlay - Static */}
-      <div className="absolute inset-0 pointer-events-none" style={{
-        background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%)',
-        zIndex: 2
-      }} />
+      {/* Dark gradient overlay - subtle parallax */}
+      <div
+        ref={overlayRef}
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%)',
+          transform: 'translate3d(0, 0, 0)',
+          willChange: 'transform',
+          zIndex: 2
+        }}
+      />
       
     {/* Animation styles */}
     <style>{`

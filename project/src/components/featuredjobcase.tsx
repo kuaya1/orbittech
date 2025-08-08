@@ -1,6 +1,37 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, useMotionValue, useTransform } from 'framer-motion';
 import { MapPin, Zap, CheckCircle, ArrowRight } from 'lucide-react';
+
+// Precision Intersection Observer for orchestrated reveal
+const useScrollReveal = (threshold = 0.1) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const elementRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold, rootMargin: '50px' }
+    );
+
+    const currentElement = elementRef.current;
+    if (currentElement) {
+      observer.observe(currentElement);
+    }
+
+    return () => {
+      if (currentElement) {
+        observer.unobserve(currentElement);
+      }
+    };
+  }, [threshold]);
+
+  return [elementRef, isVisible] as const;
+};
 
 // Type definitions
 interface InstallationJob {
@@ -20,131 +51,142 @@ interface JobCardProps {
   index: number;
 }
 
-// Job Card Component
+// Job Card Component with refined aesthetic
 const JobCard: React.FC<JobCardProps> = ({ job, index }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
     <motion.article
-      className="group relative h-[480px] rounded-2xl overflow-hidden cursor-pointer"
-      initial={{ opacity: 0, y: 40 }}
+      className="group relative h-[480px] rounded-2xl overflow-hidden cursor-pointer bg-gradient-to-b from-neutral-900/30 to-black/30 backdrop-blur-sm border border-neutral-800/50"
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ 
-        delay: index * 0.1,
-        duration: 0.6,
-        type: "spring",
-        damping: 25,
-        stiffness: 100
+        delay: index * 0.08,
+        duration: 0.7,
+        ease: [0.25, 0.46, 0.45, 0.94]
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       whileHover={{ 
-        y: -8,
-        transition: { type: "spring", stiffness: 300, damping: 20 }
+        y: -4,
+        transition: { duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }
       }}
       aria-label={`Installation project in ${job.location}`}
     >
-      {/* Background Image with Overlay */}
+      {/* Subtle border glow */}
+      <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/5 via-transparent to-blue-500/5 blur-xl -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+      {/* Background Image with refined overlay */}
       <div className="absolute inset-0">
         <img 
           src={job.imageUrl}
           alt={`Starlink installation in ${job.location}`}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
         />
-        {/* Gradient Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent opacity-90" />
+        {/* Refined gradient overlays */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-black/40" />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/90" />
       </div>
 
       {/* Content Container */}
       <div className="relative h-full flex flex-col justify-between p-8">
-        {/* Top Section - Metadata */}
-        <div className="space-y-3">
-          {/* Location */}
-          <div className="flex items-center gap-2 text-white">
-            <MapPin className="w-4 h-4 text-blue-400" />
-            <h3 className="text-xl font-semibold">{job.location}</h3>
+        {/* Top Section - Location with refined typography */}
+        <div className="space-y-2">
+          <div className="flex items-start gap-3">
+            <MapPin className="w-4 h-4 text-blue-400 mt-1 flex-shrink-0" />
+            <div>
+              <h3 className="text-lg font-light text-white">{job.location}</h3>
+              <p className="text-xs text-neutral-500 font-light mt-1">{job.region}</p>
+            </div>
           </div>
-          <p className="text-sm text-neutral-400">{job.region}</p>
         </div>
 
-        {/* Middle Section - Speed Achievement (Only visible on hover) */}
+        {/* Middle Section - Speed Achievement (Refined presentation) */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ 
             opacity: isHovered ? 1 : 0,
-            y: isHovered ? 0 : 20
+            y: isHovered ? 0 : 10
           }}
-          transition={{ duration: 0.3 }}
+          transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
           className="absolute top-1/2 left-8 right-8 -translate-y-1/2"
         >
-          <div className="bg-black/80 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+          <div className="bg-black/60 backdrop-blur-md border border-neutral-800/50 rounded-xl p-5">
             <div className="flex items-center justify-center gap-3">
-              <Zap className="w-6 h-6 text-blue-400" />
+              <Zap className="w-5 h-5 text-blue-400" />
               <div className="text-center">
-                <div className="text-3xl font-bold text-white">{job.speedAchieved}</div>
-                <div className="text-xs text-neutral-400 uppercase tracking-wider mt-1">Achieved Speed</div>
+                <div className="text-2xl font-light text-white">{job.speedAchieved}</div>
+                <div className="text-xs text-neutral-500 font-light tracking-wide mt-0.5">ACHIEVED SPEED</div>
               </div>
             </div>
           </div>
         </motion.div>
 
-        {/* Bottom Section - Challenge & Solution */}
+        {/* Bottom Section - Challenge & Solution with refined styling */}
         <div className="space-y-4">
           {/* Challenge */}
-          <div className="space-y-2">
+          <div className="space-y-1.5">
             <div className="flex items-center gap-2">
-              <div className="w-1 h-4 bg-red-500 rounded-full" />
-              <h4 className="text-sm font-semibold text-neutral-300 uppercase tracking-wider">Challenge</h4>
+              <span className="block w-1 h-1 rounded-full bg-red-400" />
+              <h4 className="text-xs font-light text-neutral-400 uppercase tracking-wider">Challenge</h4>
             </div>
-            <p className="text-sm text-neutral-400 line-clamp-2">
+            <p className="text-xs text-neutral-400 font-light line-clamp-2 leading-relaxed">
               {job.challenge}
             </p>
           </div>
 
           {/* Solution */}
-          <div className="space-y-2">
+          <div className="space-y-1.5">
             <div className="flex items-center gap-2">
-              <CheckCircle className="w-4 h-4 text-green-500" />
-              <h4 className="text-sm font-semibold text-neutral-300 uppercase tracking-wider">Solution</h4>
+              <CheckCircle className="w-3.5 h-3.5 text-green-400" />
+              <h4 className="text-xs font-light text-neutral-400 uppercase tracking-wider">Solution</h4>
             </div>
-            <p className="text-sm text-neutral-200 line-clamp-3">
+            <p className="text-sm text-neutral-300 font-light line-clamp-3 leading-relaxed">
               {job.solution}
             </p>
           </div>
 
-          {/* View Details Link (Appears on hover) */}
+          {/* View Details Link (Refined hover state) */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: isHovered ? 1 : 0 }}
             transition={{ duration: 0.3 }}
             className="pt-2"
           >
-            <span className="inline-flex items-center text-blue-400 font-medium text-sm group-hover:text-blue-300 transition-colors duration-300">
-              View Full Case Study
-              <ArrowRight className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" />
+            <span className="inline-flex items-center text-blue-400 font-light text-xs tracking-wide group-hover:text-blue-300 transition-colors duration-300">
+              VIEW FULL CASE STUDY
+              <ArrowRight className="w-3 h-3 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" />
             </span>
           </motion.div>
         </div>
       </div>
 
-      {/* Premium Border Effect */}
-      <div className="absolute inset-0 rounded-2xl border border-white/10 group-hover:border-blue-500/30 transition-colors duration-500" />
-      
-      {/* Glow Effect on Hover */}
-      <motion.div
-        className="absolute -inset-0.5 bg-gradient-to-r from-blue-500/0 via-blue-500/20 to-blue-500/0 rounded-2xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500 -z-10"
-        animate={{
-          opacity: isHovered ? 0.5 : 0
-        }}
-      />
+      {/* Refined border on hover */}
+      <div className="absolute inset-0 rounded-2xl border border-transparent group-hover:border-neutral-700/50 transition-colors duration-500 pointer-events-none" />
     </motion.article>
   );
 };
 
-// Main Component
+// Main Component with refined aesthetic
 const FeaturedJobsSection: React.FC = () => {
+  const [containerRef, isVisible] = useScrollReveal(0.15);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  // Subtle parallax effect for premium feel
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    mouseX.set(x);
+    mouseY.set(y);
+  };
+
+  // Transform mouse position for gradient tracking
+  const gradientX = useTransform(mouseX, [0, 1000], [0, 100]);
+  const gradientY = useTransform(mouseY, [0, 600], [0, 100]);
+
   // Sample installation data with placeholder images
   const installations: InstallationJob[] = [
     {
@@ -182,28 +224,46 @@ const FeaturedJobsSection: React.FC = () => {
     }
   ];
 
-  // Animation variants
+  // Orchestrated entrance animations
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
+        duration: 0.8,
+        ease: [0.25, 0.46, 0.45, 0.94],
         staggerChildren: 0.1,
         delayChildren: 0.2
       }
     }
   };
 
-  const headerVariants = {
-    hidden: { opacity: 0, y: 30 },
+  const itemVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 30,
+      scale: 0.98
+    },
     visible: {
       opacity: 1,
       y: 0,
+      scale: 1,
       transition: {
-        type: "spring",
-        damping: 25,
-        stiffness: 100,
-        duration: 0.8
+        duration: 0.7,
+        ease: [0.25, 0.46, 0.45, 0.94]
+      }
+    }
+  };
+
+  const lineVariants = {
+    hidden: { scaleX: 0, opacity: 0 },
+    visible: {
+      scaleX: 1,
+      opacity: 1,
+      transition: {
+        duration: 1.2,
+        ease: [0.25, 0.46, 0.45, 0.94],
+        delay: 0.5
       }
     }
   };
@@ -211,63 +271,92 @@ const FeaturedJobsSection: React.FC = () => {
   return (
     <motion.section
       id="featured-jobs"
-      className="py-24 sm:py-32 bg-black relative overflow-hidden"
+      ref={containerRef}
+      className="relative py-32 lg:py-40 overflow-hidden isolate"
+      onMouseMove={handleMouseMove}
       initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.1 }}
+      animate={isVisible ? "visible" : "hidden"}
       variants={containerVariants}
+      aria-labelledby="featured-jobs-heading"
     >
-      {/* Background Elements */}
-      <div className="absolute inset-0">
-        {/* Gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-b from-neutral-950 via-black to-neutral-950" />
-        
-        {/* Subtle grid pattern */}
-        <div className="absolute inset-0 opacity-[0.02]" 
-          style={{
-            backgroundImage: `linear-gradient(0deg, transparent 24%, rgba(255, 255, 255, 0.05) 25%, rgba(255, 255, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, 0.05) 75%, rgba(255, 255, 255, 0.05) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(255, 255, 255, 0.05) 25%, rgba(255, 255, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, 0.05) 75%, rgba(255, 255, 255, 0.05) 76%, transparent 77%, transparent)`,
-            backgroundSize: '50px 50px'
-          }}
-        />
-        
-        {/* Ambient light effects */}
-        <div className="absolute top-1/4 -left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 -right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
-      </div>
+      {/* Layered background system for depth */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black via-neutral-950 to-black" />
+      
+      {/* Spotlight effect - tracks mouse subtly */}
+      <motion.div 
+        className="absolute inset-0 opacity-20"
+        style={{
+          background: useTransform(
+            [gradientX, gradientY],
+            ([x, y]) => `radial-gradient(circle 800px at ${x}% ${y}%, rgba(59, 130, 246, 0.06), transparent 60%)`
+          )
+        }}
+      />
+      
+      {/* Grid pattern overlay for technical authority */}
+      <div 
+        className="absolute inset-0 opacity-[0.015]"
+        style={{
+          backgroundImage: `linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px)`,
+          backgroundSize: '100px 100px'
+        }}
+      />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Header */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Accent line */}
         <motion.div 
-          className="text-center max-w-3xl mx-auto mb-16"
-          variants={headerVariants}
+          variants={lineVariants}
+          className="w-24 h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent mx-auto mb-12 origin-center"
+        />
+
+        {/* Section Header - Minimal and refined */}
+        <motion.div 
+          className="text-center max-w-3xl mx-auto mb-20"
+          variants={itemVariants}
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight mb-6">
-            Installation Excellence
+          <h2 
+            id="featured-jobs-heading"
+            className="text-5xl sm:text-6xl lg:text-7xl font-light tracking-tight leading-[1.1] mb-6"
+          >
+            <span className="text-white">Installation</span>
+            <br />
+            <span className="text-white font-semibold">excellence.</span>
           </h2>
-          <p className="text-lg leading-8 text-neutral-300">
-            Real installations, real results. See how we transform connectivity for families and businesses across the DMV area.
+          <p className="text-lg text-neutral-400 font-light">
+            Real installations, real results. See how we transform connectivity 
+            for families and businesses across the DMV area.
           </p>
         </motion.div>
 
-        {/* Jobs Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Jobs Grid with refined spacing */}
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          variants={itemVariants}
+        >
           {installations.map((job, index) => (
             <JobCard key={job.id} job={job} index={index} />
           ))}
-        </div>
-
-        {/* Educational Closing Note */}
-        <motion.div 
-          className="text-center mt-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.4, duration: 0.6 }}
-        >
-          <p className="text-neutral-400 text-sm">
-            Each installation is uniquely designed for optimal performance based on your property's specific characteristics and requirements.
-          </p>
         </motion.div>
+
+        {/* Bottom accent line */}
+        <motion.div 
+          variants={lineVariants}
+          className="w-24 h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent mx-auto mt-16 origin-center"
+        />
+
+        {/* Subtle closing note */}
+        <motion.p 
+          variants={itemVariants}
+          className="text-center text-xs text-neutral-500 mt-8 font-light tracking-wide"
+        >
+          Each installation is uniquely designed for optimal performance based on your property's specific characteristics.
+        </motion.p>
+      </div>
+
+      {/* Edge vignette for focus */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black opacity-15" />
       </div>
     </motion.section>
   );
