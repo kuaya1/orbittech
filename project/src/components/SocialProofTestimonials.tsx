@@ -62,6 +62,21 @@ interface SpeedComparisonProps {
   after: string;
 }
 
+// Avatar gradient helper for visual variety
+const getAvatarGradient = (key: string) => {
+  const palettes = [
+    'from-blue-500 to-cyan-500',
+    'from-indigo-500 to-purple-500',
+    'from-violet-500 to-fuchsia-500',
+    'from-emerald-500 to-teal-500',
+    'from-amber-500 to-orange-500',
+    'from-rose-500 to-pink-500',
+  ];
+  const sum = key.split('').reduce((acc, ch) => acc + ch.charCodeAt(0), 0);
+  const idx = sum % palettes.length;
+  return `bg-gradient-to-br ${palettes[idx]}`;
+};
+
 // Star Rating Component
 const StarRating: React.FC<{ rating: number; showNumeric?: boolean }> = ({ rating, showNumeric = false }) => (
   <div className="flex items-center gap-2" role="img" aria-label={`Rated ${rating} out of 5 stars`}>
@@ -111,7 +126,7 @@ const SpeedComparison: React.FC<SpeedComparisonProps> = ({ before, after }) => (
 const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial, index, featured = false }) => {
   return (
     <motion.article
-      className="relative bg-gradient-to-b from-neutral-900/30 to-black/30 backdrop-blur-sm border border-neutral-800/50 rounded-2xl p-8 hover:border-neutral-700/50 transition-all duration-500 group"
+      className="relative bg-gradient-to-b from-neutral-900/30 to-black/30 backdrop-blur-sm border border-neutral-800/50 rounded-2xl p-6 md:p-8 hover:border-neutral-700/50 transition-all duration-500 group"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -128,23 +143,13 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial, index, f
       {/* Content Container */}
       <div className="relative">
         {/* Star Rating */}
-        <div className="mb-6">
+        <div className="mb-4 md:mb-6">
           <StarRating rating={testimonial.rating} showNumeric={featured} />
         </div>
 
         {/* Quote */}
-        <blockquote className="relative mb-6">
-          {/* Quote Icon */}
-          <svg 
-            className="absolute -top-3 -left-3 w-8 h-8 text-blue-500/10" 
-            fill="currentColor" 
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-          >
-            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zM0 21v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z" />
-          </svg>
-          
-          <p className={`relative text-neutral-300 leading-relaxed font-light ${featured ? 'text-lg' : 'text-base'}`}>
+        <blockquote className="relative mb-5 md:mb-6">
+          <p className={`relative text-neutral-300 leading-relaxed font-light ${featured ? 'text-base md:text-lg' : 'text-sm md:text-base'}`}>
             "{testimonial.quote}"
           </p>
         </blockquote>
@@ -171,17 +176,17 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial, index, f
         )}
 
         {/* Customer Info */}
-        <div className="flex items-center justify-between mt-6 pt-6 border-t border-neutral-800/50">
+        <div className="flex items-center justify-between mt-5 md:mt-6 pt-5 md:pt-6 border-t border-neutral-800/50">
           <div className="flex items-center gap-4">
             {/* Customer Avatar */}
-            <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
+            <div className={`w-10 h-10 md:w-12 md:h-12 ${getAvatarGradient(testimonial.customerName)} rounded-full flex items-center justify-center text-white font-bold text-xs md:text-sm`}>
               {testimonial.customerName.split(' ').map(n => n[0]).join('')}
             </div>
             
             {/* Name and Location */}
             <div>
               <div className="font-light text-white">{testimonial.customerName}</div>
-              <div className="flex items-center gap-2 text-sm text-neutral-500">
+              <div className="flex items-center gap-2 text-xs md:text-sm text-neutral-500">
                 <MapPin className="w-3 h-3" />
                 <span>{testimonial.location}</span>
               </div>
@@ -389,12 +394,10 @@ const Testimonials: React.FC = () => {
           >
             <h2 
               id="testimonials-heading"
-              className="text-5xl sm:text-6xl lg:text-7xl font-light tracking-tight leading-[1.1] mb-6"
+              className="text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight leading-[1.1] mb-6"
             >
               <span className="text-white">The Trusted </span>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 font-semibold">
-                Starlink Installer
-              </span>
+              <span className="text-white font-semibold">Starlink Installer</span>
               <span className="text-white"> for the DMV</span>
             </h2>
             <p className="text-lg text-neutral-400 max-w-2xl mx-auto font-light">
@@ -425,7 +428,7 @@ const Testimonials: React.FC = () => {
             <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/5 via-transparent to-blue-500/5 blur-xl -z-10" />
             
             {/* Testimonials Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {testimonials.map((testimonial, index) => (
                 <TestimonialCard
                   key={testimonial.id}
