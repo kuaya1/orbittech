@@ -279,11 +279,7 @@ const Testimonials: React.FC = () => {
       rating: 5,
       date: "January 2025",
       installationType: 'starlink-only',
-      verifiedPurchase: true,
-      highlightMetric: {
-        value: "100%",
-        label: "Exceeded Expectations"
-      }
+      verifiedPurchase: true
     },
     {
       id: 'google-review-peter-baughan',
@@ -293,11 +289,7 @@ const Testimonials: React.FC = () => {
       rating: 5,
       date: "January 2025",
       installationType: 'starlink-plus-wifi',
-      verifiedPurchase: true,
-      highlightMetric: {
-        value: "2",
-        label: "Systems Installed"
-      }
+      verifiedPurchase: true
     }
   ];
 
@@ -399,12 +391,14 @@ const Testimonials: React.FC = () => {
               id="testimonials-heading"
               className="text-5xl sm:text-6xl lg:text-7xl font-light tracking-tight leading-[1.1] mb-6"
             >
-              <span className="text-white">Trusted by hundreds.</span>
-              <br />
-              <span className="text-white font-semibold">Proven results.</span>
+              <span className="text-white">The Trusted </span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 font-semibold">
+                Starlink Installer
+              </span>
+              <span className="text-white"> for the DMV</span>
             </h2>
             <p className="text-lg text-neutral-400 max-w-2xl mx-auto font-light">
-              Real customers, real experiences from across the DMV area.
+              Join hundreds of satisfied customers who've transformed their internet experience with our professional installation services.
             </p>
             
             {/* Aggregate Rating Display */}
