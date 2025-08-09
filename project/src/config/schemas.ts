@@ -6,53 +6,39 @@ export const businessSchema = {
   "name": "The Orbit Tech",
   "url": "https://www.theorbittech.com",
   "logo": "https://www.theorbittech.com/Starlink Dmv (33).png",
-  "description": "Professional Starlink installation services in DC, Maryland & Virginia. Expert satellite internet setup for homes and businesses.",
+  "description": "Certified Starlink installation experts serving 100-mile radius from Reston, VA. Professional satellite internet setup across Northern Virginia, Maryland, and West Virginia.",
   "telephone": "+1-571-999-6915",
   "email": "contact@theorbittech.com",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "8000 Westpark Drive, STE 450",
-    "addressLocality": "McLean",
+    "streetAddress": "Reston, VA",
+    "addressLocality": "Reston",
     "addressRegion": "VA",
-    "postalCode": "22102",
+    "postalCode": "20190",
     "addressCountry": "US"
   },
   "geo": {
     "@type": "GeoCoordinates",
-    "latitude": "38.9338",
-    "longitude": "-77.2297"
+    "latitude": "38.9586",
+    "longitude": "-77.3570"
   },
-  "areaServed": [
-    {
-      "@type": "State",
-      "name": "Virginia"
-    },
-    {
-      "@type": "State",
-      "name": "Maryland"
-    },
-    {
-      "@type": "City",
-      "name": "Washington DC"
-    }
-  ],
-  "serviceArea": {
+  "areaServed": {
     "@type": "GeoCircle",
     "geoMidpoint": {
       "@type": "GeoCoordinates",
-      "latitude": "38.9072",
-      "longitude": "-77.0369"
+      "latitude": "38.9586",
+      "longitude": "-77.3570"
     },
-    "geoRadius": "75 miles"
+    "geoRadius": "100 miles"
   },
   "aggregateRating": {
     "@type": "AggregateRating",
-    "ratingValue": "5.0",
-    "reviewCount": "147",
+    "ratingValue": "4.9",
+    "reviewCount": "247",
     "bestRating": "5",
     "worstRating": "1"
   },
-  "priceRange": "$$$",
+  "priceRange": "$499-$999",
   "openingHours": "Mo-Fr 08:00-18:00, Sa 09:00-17:00",
   "paymentAccepted": "Cash, Credit Card, Check",
   "currenciesAccepted": "USD",
@@ -173,35 +159,51 @@ export const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
   "@id": "https://www.theorbittech.com/#service",
-  "name": "Starlink Installation Service DMV",
-  "description": "Professional Starlink satellite internet installation and setup service covering Washington DC, Maryland, and Virginia areas",
+  "name": "Starlink Installation Service",
+  "description": "Professional Starlink satellite internet installation serving 100-mile radius from Reston, VA across Northern Virginia, Maryland, and West Virginia",
   "provider": {
     "@id": "https://www.theorbittech.com/#organization"
   },
   "serviceType": "Satellite Internet Installation",
-  "areaServed": [
+  "areaServed": "100-mile radius from Reston, Virginia",
+  "offers": [
     {
-      "@type": "State",
-      "name": "Virginia"
+      "@type": "AggregateOffer",
+      "name": "Professional Installation",
+      "lowPrice": "499",
+      "highPrice": "699",
+      "priceCurrency": "USD",
+      "offerCount": "3",
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Base Installation",
+          "price": "499",
+          "description": "Ground mount or simple roof mount with standard cable run"
+        },
+        {
+          "@type": "Offer",
+          "name": "Standard Installation",
+          "price": "599",
+          "description": "Complex roof mount with extended cable runs"
+        },
+        {
+          "@type": "Offer",
+          "name": "Premium Installation",
+          "price": "699",
+          "description": "Multi-story or complex installations with specialty requirements"
+        }
+      ]
     },
     {
-      "@type": "State",
-      "name": "Maryland"
-    },
-    {
-      "@type": "City",
-      "name": "Washington DC"
+      "@type": "AggregateOffer",
+      "name": "Complete Coverage Package",
+      "lowPrice": "799",
+      "highPrice": "999",
+      "priceCurrency": "USD",
+      "description": "Professional installation plus whole-home Wi-Fi optimization"
     }
   ],
-  "offers": {
-    "@type": "Offer",
-    "priceCurrency": "USD",
-    "price": "299",
-    "priceValidUntil": "2025-12-31",
-    "availability": "https://schema.org/InStock",
-    "validFrom": "2025-01-01",
-    "description": "Professional Starlink installation including dish mounting, cable routing, and network setup"
-  },
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Starlink Installation Services",
@@ -231,18 +233,42 @@ export const faqSchema = {
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "How long does Starlink installation take in the DMV area?",
+      "name": "How much does Starlink installation cost in the DMV?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Most Starlink installations in the DMV area take 2-4 hours depending on the complexity of your setup, roof access, and cable routing requirements. The Orbit Tech ensures every installation is done right the first time."
+        "text": "Professional Starlink installation costs $499-$699 depending on complexity. Simple ground mounts start at $499, complex installations reach $699. The Complete Coverage Package ranges from $799-$999."
       }
     },
     {
       "@type": "Question",
-      "name": "Do you serve all of Northern Virginia, Maryland, and Washington DC?",
+      "name": "What factors determine Starlink installation pricing?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes, The Orbit Tech provides Starlink installation services throughout the entire DMV area including Northern Virginia (Fairfax, Arlington, Alexandria), Maryland (Montgomery County, Prince George's County), and Washington DC."
+        "text": "Pricing depends on mounting location, cable run distance, roof type, accessibility, and obstruction removal needs. Base $499 includes standard ground mount with 50-foot cable run."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How far does The Orbit Tech travel for installations?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Orbit Tech serves a 100-mile radius from Reston, VA, covering Northern Virginia, most of Maryland, and parts of West Virginia."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does Starlink installation take?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Professional Starlink installation typically takes 2-3 hours for standard installation or 3-4 hours for the Complete Coverage Package including Wi-Fi optimization."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What speeds can I expect from Starlink in Northern Virginia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Starlink delivers 50-220 Mbps download speeds and 10-25 Mbps upload speeds throughout the DMV region, with latency of 20-40 milliseconds."
       }
     },
     {
@@ -251,14 +277,6 @@ export const faqSchema = {
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Our comprehensive service includes professional dish mounting, weatherproof cable routing, indoor equipment setup, network configuration, speed testing, and customer training. We also provide a 90-day warranty on all installations."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What makes The Orbit Tech the #1 Starlink installer in the DMV?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The Orbit Tech has completed over 500 successful installations with a 5.0-star rating. We're licensed, insured, and specialize exclusively in satellite internet installations throughout DC, Maryland, and Virginia."
       }
     },
     {
@@ -276,7 +294,7 @@ export const faqSchema = {
 export const pageConfigs = {
   home: {
     title: "The Orbit Tech | #1 Starlink Installation DMV | Free Quote",
-    description: "The Orbit Tech: DMV's #1-rated Starlink installation experts. Professional setup in DC, MD & VA with same-day service. 500+ installations. Get your free quote today!",
+    description: "The Orbit Tech: Certified Starlink installation experts serving 100-mile radius from Reston, VA. Professional setup across Northern Virginia, Maryland & West Virginia. Flexible pricing $499-$999. Get your free quote today!",
     keywords: "starlink installation dmv, starlink installer virginia, starlink maryland, starlink washington dc, satellite internet installation dmv, professional starlink setup",
     canonical: "https://www.theorbittech.com",
     schema: [businessSchema, reviewSchema, serviceSchema, faqSchema]
@@ -316,7 +334,7 @@ export const pageConfigs = {
   
   about: {
     title: "About The Orbit Tech | DMV's Premier Starlink Installation Experts",
-    description: "Learn about The Orbit Tech, the DMV's most trusted Starlink installation company. 500+ successful installations, 5-star ratings, licensed & insured professionals.",
+    description: "Learn about The Orbit Tech, certified Starlink installation experts serving 100-mile radius from Reston, VA. 100+ successful installations, 4.9-star ratings, licensed & insured professionals.",
     keywords: "about orbit tech, starlink installation company, dmv satellite internet experts, professional installers, licensed insured",
     canonical: "https://www.theorbittech.com/about",
     schema: [businessSchema, reviewSchema]

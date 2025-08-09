@@ -3,7 +3,7 @@ export const seoConfig = {
   // Site-wide defaults
   defaultTitle: 'The Orbit Tech | #1 Starlink Installation DMV | Free Quote',
   titleTemplate: '%s | The Orbit Tech',
-  defaultDescription: 'The Orbit Tech: DMV\'s #1-rated Starlink installation experts. Professional setup in DC, MD & VA with same-day service. 500+ installations. Get your free quote today!',
+  defaultDescription: 'The Orbit Tech: Certified Starlink installation experts serving 100-mile radius from Reston, VA. Professional setup across Northern Virginia, Maryland & West Virginia. Flexible pricing $499-$999. Get your free quote today!',
   siteUrl: 'https://www.theorbittech.com',
   
   // Open Graph defaults
@@ -306,7 +306,7 @@ export const seoConfig = {
 export const pageConfigs = {
   home: {
     title: 'The Orbit Tech | #1 Starlink Installation DMV | Free Quote',
-    description: 'The Orbit Tech: DMV\'s #1-rated Starlink installation experts. Professional setup in DC, MD & VA with same-day service. 500+ installations. Get your free quote today!',
+    description: 'The Orbit Tech: Certified Starlink installation experts serving 100-mile radius from Reston, VA. Professional setup across Northern Virginia, Maryland & West Virginia. Flexible pricing $499-$999. Get your free quote today!',
     keywords: 'starlink installation, dmv, northern virginia, maryland, washington dc, satellite internet, professional installation',
   },
   
@@ -330,7 +330,7 @@ export const pageConfigs = {
   
   about: {
     title: 'About Us | Professional Starlink Installers | The Orbit Tech',
-    description: 'Learn about The Orbit Tech, DMV\'s trusted Starlink installation experts. 500+ successful installations with 5-star customer ratings.',
+    description: 'Learn about The Orbit Tech, certified Starlink installation experts serving 100-mile radius from Reston, VA. 100+ successful installations with 4.9-star customer ratings.',
     keywords: 'about orbit tech, starlink installers, dmv, professional team, customer reviews',
   },
 };

@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react';
+import { lazy, Suspense } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import { SEOMetadata, HomeSchema, ReviewSchema } from './components/SEO';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -39,7 +39,7 @@ function App() {
               <main className="bg-black text-white">
                 <SEOMetadata 
                   title="The Orbit Tech | #1 Starlink Installation DMV | Free Quote"
-                  description="The Orbit Tech: DMV's #1-rated Starlink installation experts. Professional setup in DC, MD & VA with same-day service. 500+ installations. Get your free quote today!"
+                  description="The Orbit Tech: Certified Starlink installation experts serving 100-mile radius from Reston, VA. Professional setup across Northern Virginia, Maryland & West Virginia. Flexible pricing $499-$999. Get your free quote today!"
                   canonical="https://www.theorbittech.com/"
                 />
                 <ReviewSchema />
