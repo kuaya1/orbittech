@@ -195,8 +195,52 @@ const FAQ: React.FC = () => {
   const gradientX = useTransform(mouseX, [0, 1000], [0, 100]);
   const gradientY = useTransform(mouseY, [0, 600], [0, 100]);
 
-  // Refined FAQ data
+  // Refined FAQ data with AEO optimization
   const faqData: FAQData[] = [
+    {
+      id: 'starlink-installation-cost',
+      question: 'How much does Starlink installation cost in the DMV?',
+      answer: 'Professional Starlink installation costs $499-$699 depending on complexity. Simple ground mounts start at $499, complex installations reach $699. The Complete Coverage Package with Wi-Fi optimization ranges from $799-$999.',
+      highlights: [
+        'Base Installation: $499 (ground/simple roof mount)',
+        'Standard Installation: $599 (complex roof mount)',
+        'Premium Installation: $699 (multi-story/specialty)',
+        'Complete Coverage Package: $799-$999'
+      ]
+    },
+    {
+      id: 'pricing-factors',
+      question: 'What factors determine Starlink installation pricing?',
+      answer: 'Pricing depends on mounting location, cable run distance, roof type, accessibility, and obstruction removal needs. Base $499 includes standard ground mount with 50-foot cable run.',
+      highlights: [
+        'Mounting complexity (ground/roof/pole)',
+        'Cable run distance (50 feet included)',
+        'Roof type and accessibility',
+        'Tree obstruction mitigation'
+      ]
+    },
+    {
+      id: 'service-radius',
+      question: 'How far does The Orbit Tech travel for installations?',
+      answer: 'The Orbit Tech serves a 100-mile radius from Reston, VA, covering Northern Virginia, most of Maryland, and parts of West Virginia. Same-day service within 50 miles, next-day for extended areas.',
+      highlights: [
+        '100-mile service radius from Reston, VA',
+        'Same-day installation within 50 miles',
+        'Next-day service for extended radius',
+        'Covers Virginia, Maryland, West Virginia'
+      ]
+    },
+    {
+      id: 'installation-duration',
+      question: 'How long does Starlink installation take?',
+      answer: 'Professional Starlink installation typically takes 2-3 hours for standard installation or 3-4 hours for the Complete Coverage Package including Wi-Fi optimization.',
+      highlights: [
+        'Standard installation: 2-3 hours',
+        'Complete Coverage Package: 3-4 hours',
+        'Includes speed testing and training',
+        '90-day warranty included'
+      ]
+    },
     {
       id: 'cost-justification',
       question: 'Is professional Starlink installation really worth the cost?',
@@ -254,7 +298,7 @@ const FAQ: React.FC = () => {
       opacity: 1,
       transition: {
         duration: 0.8,
-        ease: [0.25, 0.46, 0.45, 0.94],
+        ease: "easeOut" as const,
         staggerChildren: 0.1,
         delayChildren: 0.2
       }
@@ -273,7 +317,7 @@ const FAQ: React.FC = () => {
       scale: 1,
       transition: {
         duration: 0.7,
-        ease: [0.25, 0.46, 0.45, 0.94]
+        ease: "easeOut" as const
       }
     }
   };
@@ -285,7 +329,7 @@ const FAQ: React.FC = () => {
       opacity: 1,
       transition: {
         duration: 1.2,
-        ease: [0.25, 0.46, 0.45, 0.94],
+        ease: "easeOut" as const,
         delay: 0.5
       }
     }
