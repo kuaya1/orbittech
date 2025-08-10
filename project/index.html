@@ -38,12 +38,26 @@
     <link rel="preload" as="image" href="/Untitled design (20) resizeddd.PNG" />
     <link rel="preload" as="image" href="/Starlink_Rural_Location_02a-scaled.jpg" />
     
-    <!-- Vanta.js dependencies - defer for better performance -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js" defer></script>
+    <!-- Vanta.js dependencies - conditional loading for better performance -->
+    <script>
+      // Only load Vanta.js on desktop devices for better mobile performance
+      if (window.innerWidth > 768 && !navigator.userAgent.match(/Mobile|Android|iPhone|iPad/)) {
+        const script1 = document.createElement('script');
+        script1.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js';
+        script1.defer = true;
+        document.head.appendChild(script1);
+        
+        script1.onload = function() {
+          const script2 = document.createElement('script');
+          script2.src = 'https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js';
+          script2.defer = true;
+          document.head.appendChild(script2);
+        };
+      }
+    </script>
     
     <!-- SEO Meta Tags -->
-    <meta name="description" content="The Orbit Tech: Certified Starlink installation experts serving 100-mile radius from Reston, VA. Professional setup across Northern Virginia, Maryland & West Virginia. Flexible pricing $499-$999. Get your free quote today!" />
+    <meta name="description" content="Same-day Starlink installation in Northern VA & Maryland. Certified technicians, 500+ successful installs, speeds up to 250 Mbps. Call (571) 999-6915 for instant quote." />
     <meta name="keywords" content="Starlink installation, Amazon Kuiper installation, satellite internet, DMV area, DC, Maryland, Virginia, professional installation, Kuiper internet setup" />
     <meta name="author" content="The Orbit Tech" />
     
@@ -54,23 +68,23 @@
     <meta name="ICBM" content="38.9338, -77.2297" />
     
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="The Orbit Tech | #1 Starlink Installation DMV" />
-    <meta property="og:description" content="The Orbit Tech: Certified Starlink installation experts serving 100-mile radius from Reston, VA. Professional setup across Northern Virginia, Maryland & West Virginia. Flexible pricing $499-$999." />
+    <meta property="og:title" content="Certified Starlink Installers DMV | Professional Installation" />
+    <meta property="og:description" content="Same-day Starlink installation in Northern VA & Maryland. Certified technicians, 500+ successful installs, speeds up to 250 Mbps. Call (571) 999-6915 for instant quote." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.theorbittech.com" />
     <meta property="og:image" content="https://www.theorbittech.com/Starlink Dmv (33).png" />
     
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="The Orbit Tech | #1 Starlink Installation DMV" />
-    <meta name="twitter:description" content="The Orbit Tech: Certified Starlink installation experts serving 100-mile radius from Reston, VA. Professional setup across Northern Virginia, Maryland & West Virginia. Flexible pricing $499-$999." />
+    <meta name="twitter:title" content="Certified Starlink Installers DMV | Professional Installation" />
+    <meta name="twitter:description" content="Same-day Starlink installation in Northern VA & Maryland. Certified technicians, 500+ successful installs, speeds up to 250 Mbps. Call (571) 999-6915 for instant quote." />
     <meta name="twitter:image" content="https://www.theorbittech.com/Starlink Dmv (33).png" />
     
     <!-- Google Search Console Verification -->
     <!-- Replace YOUR_VERIFICATION_CODE with actual code from Google Search Console -->
     <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE" />
     
-    <title>The Orbit Tech | #1 Starlink Installation DMV | Free Quote</title>
+    <title>Certified Starlink Installers DMV | Professional Installation VA, MD & DC</title>
     
     <!-- Complete HomeAndConstructionBusiness Schema Markup with Google Business Profile Integration -->
     <script type="application/ld+json">
@@ -80,28 +94,28 @@
       "name": "The Orbit Tech",
       "url": "https://www.theorbittech.com/",
       "logo": "https://www.theorbittech.com/Starlink Dmv (33).png",
-      "description": "Certified Starlink installation experts serving 100-mile radius from Reston, VA. Professional satellite internet setup across Northern Virginia, Maryland, and West Virginia.",
+      "description": "Certified Starlink installation experts serving 100-mile radius from McLean, VA. Professional satellite internet setup across Northern Virginia, Maryland, and West Virginia.",
       "telephone": "+1-571-999-6915",
       "email": "contact@theorbittech.com",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Reston, VA",
-        "addressLocality": "Reston",
+        "streetAddress": "8000 Westpark Drive, STE 450",
+        "addressLocality": "McLean",
         "addressRegion": "VA",
-        "postalCode": "20190",
+        "postalCode": "22102",
         "addressCountry": "US"
       },
       "geo": {
         "@type": "GeoCoordinates",
-        "latitude": "38.9586",
-        "longitude": "-77.3570"
+        "latitude": "38.9338",
+        "longitude": "-77.2297"
       },
       "areaServed": {
         "@type": "GeoCircle",
         "geoMidpoint": {
           "@type": "GeoCoordinates",
-          "latitude": "38.9586",
-          "longitude": "-77.3570"
+          "latitude": "38.9338",
+          "longitude": "-77.2297"
         },
         "geoRadius": "100 miles"
       },
@@ -201,13 +215,13 @@
       "@type": "Service",
       "@id": "https://www.theorbittech.com/#service",
       "name": "Starlink Installation Service",
-      "description": "Professional Starlink satellite internet installation serving 100-mile radius from Reston, VA",
+      "description": "Professional Starlink satellite internet installation serving 100-mile radius from McLean, VA",
       "provider": {
         "@type": "LocalBusiness",
         "name": "The Orbit Tech"
       },
       "serviceType": "Satellite Internet Installation",
-      "areaServed": "100-mile radius from Reston, Virginia",
+      "areaServed": "100-mile radius from McLean, Virginia",
       "offers": [
         {
           "@type": "Offer",
@@ -241,18 +255,75 @@
     }
     </script>
     
+    <!-- FAQ Schema for Better SERP Visibility -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How much does Starlink installation cost?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Professional Starlink installation ranges from $499-$999 depending on complexity. Base installation (ground or simple roof mount) starts at $499. Standard installation with complex roof mounting is $599. Premium installations for multi-story or specialty requirements are $699. Complete coverage packages with whole-home Wi-Fi optimization range from $799-$999."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you provide same-day Starlink installation?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, we offer same-day Starlink installation service throughout the DMV region when scheduling permits. Our certified technicians can typically complete most installations within 2-4 hours, including setup, testing, and optimization."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What areas do you serve for Starlink installation?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We serve a 100-mile radius from McLean, VA, covering Northern Virginia, Maryland, and parts of West Virginia and DC. This includes Loudoun County, Fairfax County, Arlington County, Montgomery County MD, and surrounding areas."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is your Starlink installation service licensed and insured?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, The Orbit Tech is fully licensed and insured for all Starlink installation services. We carry comprehensive liability insurance and all our technicians are certified professionals with extensive satellite internet installation experience."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What warranty do you provide on Starlink installations?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We provide a comprehensive 90-day warranty on all Starlink installations, covering workmanship, mounting systems, and performance optimization. This includes free troubleshooting and adjustments if needed."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How fast is Starlink internet after professional installation?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "With our professional installation and optimization, Starlink typically delivers speeds of 100-250+ Mbps download and 20-40 Mbps upload. We ensure optimal positioning and configuration for maximum performance at your location."
+          }
+        }
+      ]
+    }
+    </script>
+    
     <!-- Performance optimizations -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="/src/main.tsx" as="script">
-    <link rel="preload" href="/Starlink Dmv (33).png" as="image" media="(max-width: 767px)">
-    <link rel="preload" href="/Starlink Dmv (33).png" as="image" media="(min-width: 768px)">
+    <link rel="preload" href="/Starlink Dmv (33).png" as="image" media="(max-width: 767px)" width="300" height="120">
+    <link rel="preload" href="/Starlink Dmv (33).png" as="image" media="(min-width: 768px)" width="400" height="160">
     
     <!-- Canonical URL -->
     <link rel="canonical" href="https://www.theorbittech.com" />
     
-    <!-- Google Analytics GA4 Implementation - Ready for activation -->
-    <!-- 
+    <!-- Google Analytics GA4 Implementation -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -265,9 +336,41 @@
         'cookie_flags': 'SameSite=None;Secure'
       });
     </script>
-    -->
   </head>
   <body>
+    <!-- Conversion Tracking Script -->
+    <script>
+      // Track phone clicks for conversion optimization
+      document.addEventListener('click', function(e) {
+        if (e.target.href && e.target.href.startsWith('tel:')) {
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'conversion', {
+              'send_to': 'AW-XXXXXXX/XXXXXX',
+              'value': 599.0,
+              'currency': 'USD',
+              'event_category': 'Phone Call',
+              'event_label': 'Phone Number Click'
+            });
+          }
+        }
+      });
+      
+      // Track contact form submissions
+      document.addEventListener('submit', function(e) {
+        if (e.target.id === 'contact-form' || e.target.closest('#contact')) {
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'conversion', {
+              'send_to': 'AW-XXXXXXX/XXXXXX',
+              'value': 599.0,
+              'currency': 'USD',
+              'event_category': 'Lead Generation',
+              'event_label': 'Contact Form Submit'
+            });
+          }
+        }
+      });
+    </script>
+    
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
