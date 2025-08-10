@@ -212,7 +212,7 @@ const Footer = () => {
             <ul className="space-y-3">
               <li><FooterLink href="/blog">Installation Guide</FooterLink></li>
               <li><FooterLink href="/#faq">FAQs</FooterLink></li>
-              <li><FooterLink href="/#featured-installations">Success Stories</FooterLink></li>
+              <li><FooterLink href="/blog">Blog</FooterLink></li>
               <li>
                 <FooterLink 
                   href="https://www.google.com/maps/place/?cid=16628350007596958974" 

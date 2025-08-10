@@ -18,7 +18,7 @@ const Blog = () => {
   console.log("Found post:", currentPost);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-surface-50">
       {currentPost ? (
         <>
           <SEOMetadata 

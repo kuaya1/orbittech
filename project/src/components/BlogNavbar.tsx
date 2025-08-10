@@ -32,7 +32,6 @@ const BlogNavbar = () => {
       window.location.href = '/#contact';
     } else if (path.startsWith('/#')) {
       // Handle hash links for smooth scrolling on the same page
-      const id = path.substring(2);
       // For hash links, navigate to home page first, then scroll
       window.location.href = path;
     } else {
@@ -56,7 +55,7 @@ const BlogNavbar = () => {
   return (
     <>
       <header className={`custom-navbar fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isMenuOpen ? 'bg-white shadow-lg' : (isScrolled ? 'bg-white/95 backdrop-blur-sm shadow-sm' : 'bg-white shadow-sm')
+        isMenuOpen ? 'bg-white shadow-xl' : (isScrolled ? 'bg-white/95 backdrop-blur-lg shadow-lg' : 'bg-white shadow-md')
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
@@ -75,7 +74,7 @@ const BlogNavbar = () => {
                 <a
                   key={link.href}
                   href={link.href}
-                  className="text-gray-700 hover:text-gray-900 text-sm font-medium transition-colors duration-200"
+                  className="text-surface-700 hover:text-surface-900 text-sm font-semibold transition-colors duration-300"
                   onClick={(e) => handleLinkClick(e, link.href)}
                 >
                   {link.label}
@@ -87,13 +86,13 @@ const BlogNavbar = () => {
             <div className="hidden lg:flex items-center space-x-4">
               <a
                 href="tel:+15719996915"
-                className="text-gray-700 hover:text-gray-900 text-sm font-medium transition-colors duration-200 border border-gray-300 hover:border-gray-400 px-4 py-2 rounded"
+                className="text-surface-700 hover:text-surface-900 text-sm font-semibold transition-all duration-300 border border-surface-300 hover:border-surface-400 px-6 py-3 rounded-xl hover:shadow-md"
               >
                 Call Us
               </a>
               <a
                 href="/contact"
-                className="bg-blue-600 text-white font-medium px-6 py-2 rounded text-sm hover:bg-blue-700 transition-colors duration-200"
+                className="bg-primary-600 text-white font-semibold px-8 py-3 rounded-xl text-sm hover:bg-primary-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
                 onClick={(e) => handleLinkClick(e, '/contact')}
               >
                 Get Quote
@@ -103,7 +102,7 @@ const BlogNavbar = () => {
             {/* Mobile Menu Toggle - Only Visible on Mobile/Tablet */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="lg:hidden p-2 text-gray-700 hover:text-gray-900 transition-colors duration-200"
+              className="lg:hidden p-2 text-surface-700 hover:text-surface-900 transition-colors duration-300"
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             >
               {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -113,13 +112,13 @@ const BlogNavbar = () => {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="lg:hidden border-t border-gray-200 bg-white shadow-lg">
-            <nav className="px-4 py-6 space-y-6">
+          <div className="lg:hidden border-t border-surface-200 bg-white shadow-xl">
+            <nav className="px-4 py-8 space-y-8">
               {navLinks.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
-                  className="block text-gray-700 text-base font-medium transition-colors hover:text-gray-900"
+                  className="block text-surface-700 text-base font-semibold transition-colors hover:text-surface-900"
                   onClick={(e) => handleLinkClick(e, link.href)}
                 >
                   {link.label}
@@ -127,13 +126,13 @@ const BlogNavbar = () => {
               ))}
               <a
                 href="tel:+15719996915"
-                className="block text-gray-700 text-base font-medium transition-colors border border-gray-300 hover:border-gray-400 px-4 py-3 rounded text-center mt-6"
+                className="block text-surface-700 text-base font-semibold transition-colors border border-surface-300 hover:border-surface-400 px-6 py-4 rounded-xl text-center mt-8"
               >
                 Call Us: (571) 999-6915
               </a>
               <a
                 href="/contact"
-                className="block bg-blue-600 text-white px-6 py-3 rounded font-medium transition-colors text-center mt-4 hover:bg-blue-700"
+                className="block bg-primary-600 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 text-center mt-4 hover:bg-primary-700 shadow-lg"
                 onClick={(e) => handleLinkClick(e, '/contact')}
               >
                 ORDER NOW
