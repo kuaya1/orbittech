@@ -809,6 +809,9 @@ export const ArlingtonPage: React.FC = () => {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* Contact Form */}
       <section id="quote" className="py-16 bg-blue-900 text-white">
         <div className="container mx-auto px-4 max-w-4xl">
           <div className="text-center mb-12">
