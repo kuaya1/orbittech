@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
+import { SEOMetadata } from '../SEO/SEOMetadata';
 import { 
   Star, Phone, MapPin, Clock, Shield,
   Building, Signal, CheckCircle,
@@ -32,89 +32,6 @@ export const LoudounPage: React.FC = () => {
     return () => clearTimeout(notificationTimer);
   }, []);
 
-  // The Orbit Tech Brand Schema - Loudoun Rural & Data Center Specialists
-  const loudounSchema = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "The Orbit Tech - Loudoun County Rural & Data Center Starlink Specialists",
-    "description": "DMV's premier Starlink installer serving Loudoun's 847 square miles - from horse farms to data centers. Same-day service, 90-day warranty, 500+ installations.",
-    "image": "https://theorbittech.com/images/loudoun-county-starlink-rural.jpg",
-    "telephone": "(571) 999-6915",
-    "priceRange": "$799-$2499",
-    "address": {
-      "@type": "PostalAddress", 
-      "addressLocality": "Leesburg",
-      "addressRegion": "VA",
-      "postalCode": "20176",
-      "addressCountry": "US",
-      "streetAddress": "Serving All 847 Square Miles"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 39.1156,
-      "longitude": -77.5636
-    },
-    "areaServed": {
-      "@type": "State",
-      "name": "Virginia",
-      "containsPlace": [
-        { "@type": "City", "name": "Leesburg" },
-        { "@type": "City", "name": "Sterling" },
-        { "@type": "City", "name": "Ashburn" },
-        { "@type": "City", "name": "Purcellville" },
-        { "@type": "Place", "name": "Data Center Corridor" },
-        { "@type": "Place", "name": "Horse Farm Country" }
-      ]
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "reviewCount": "156",
-      "bestRating": "5",
-      "worstRating": "1"
-    },
-    "paymentAccepted": ["Cash", "Credit Card", "Check", "Financing"],
-    "currenciesAccepted": "USD",
-    "openingHours": "Mo-Su 07:00-19:00",
-    "serviceArea": {
-      "@type": "GeoCircle",
-      "geoMidpoint": {
-        "@type": "GeoCoordinates",
-        "latitude": 39.1156,
-        "longitude": -77.5636
-      },
-      "geoRadius": "50"
-    },
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "Loudoun County Starlink Services",
-      "itemListElement": [
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Rural Horse Farm Starlink Installation",
-            "description": "Professional Starlink installation for Loudoun horse farms and rural properties"
-          }
-        },
-        {
-          "@type": "Offer", 
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Data Center Backup Internet",
-            "description": "Enterprise Starlink backup for Ashburn data center corridor"
-          }
-        }
-      ]
-    },
-    "url": "https://theorbittech.com/locations/loudoun-county-va",
-    "sameAs": [
-      "https://www.google.com/maps/place/The+Orbit+Tech",
-      "https://www.facebook.com/TheOrbitTech",
-      "https://www.linkedin.com/company/theorbittech"
-    ]
-  };
-
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Form submission logic would go here
@@ -123,38 +40,20 @@ export const LoudounPage: React.FC = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Loudoun County Starlink Installation | 847 Square Miles | Horse Farms & Data Centers | The Orbit Tech</title>
-        <meta name="description" content="Loudoun's #1 Starlink installer serving 847 square miles from Leesburg to Lovettsville. Horse farm specialists, data center backup internet, rural connectivity experts. Same-day service, 90-day warranty. Call (571) 999-6915." />
-        <link rel="canonical" href="https://theorbittech.com/locations/loudoun-county-va" />
-        
-        {/* Open Graph */}
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Loudoun County Starlink Installation | 847 Square Miles Coverage" />
-        <meta property="og:description" content="DMV's premier Starlink installer serving Loudoun's horse farms, data centers, and rural properties across 847 square miles." />
-        <meta property="og:image" content="https://theorbittech.com/images/loudoun-county-starlink-hero.jpg" />
-        <meta property="og:url" content="https://theorbittech.com/locations/loudoun-county-va" />
-        <meta property="og:site_name" content="The Orbit Tech" />
-        
-        {/* Twitter */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Loudoun County Starlink | Horse Farms & Data Centers" />
-        <meta name="twitter:description" content="Professional Starlink installation for Loudoun's rural properties and data center corridor." />
-        <meta name="twitter:image" content="https://theorbittech.com/images/loudoun-county-twitter.jpg" />
-        
-        {/* Local Business Schema */}
-        <script type="application/ld+json">
-          {JSON.stringify(loudounSchema)}
-        </script>
-        
-        {/* Additional SEO */}
-        <meta name="robots" content="index, follow, max-image-preview:large" />
-        <meta name="author" content="The Orbit Tech" />
-        <meta name="geo.region" content="US-VA" />
-        <meta name="geo.placename" content="Loudoun County" />
-        <meta name="geo.position" content="39.1156;-77.5636" />
-        <meta name="ICBM" content="39.1156, -77.5636" />
-      </Helmet>
+      <SEOMetadata 
+        title="Loudoun County VA Starlink Installation | Horse Farms & Data Centers"
+        description="Professional Starlink installation for Loudoun County's 847 square miles. Serving horse farms, data centers, and rural properties from Purcellville to Ashburn. Same-day service, 90-day warranty, 500+ installations."
+        canonical="https://theorbittech.com/locations/loudoun-county-va"
+        keywords={[
+          'Loudoun County Starlink installation',
+          'horse farm internet Virginia',
+          'data center backup internet',
+          'rural Loudoun County internet',
+          'Purcellville Starlink',
+          'Ashburn satellite internet',
+          'HOA approved installation'
+        ]}
+      />
 
       {/* Hero Section - New Design System Implementation */}
       <section className="relative bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white overflow-hidden min-h-screen flex items-center">

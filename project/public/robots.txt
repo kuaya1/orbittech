@@ -1,13 +1,8 @@
 # Robots.txt for The Orbit Tech
-# Generated on 2025-08-09T04:44:02.652Z
+# Generated on 2025-08-10T16:00:56.793Z
 
 User-agent: *
 Allow: /
-Crawl-delay: 1
-
-User-agent: Googlebot
-Allow: /
-Crawl-delay: 0.5
 
 # Block admin and development paths
 Disallow: /admin/
@@ -15,12 +10,23 @@ Disallow: /api/
 Disallow: /.well-known/
 Disallow: /private/
 
-# Sitemap location
-Sitemap: https://theorbittech.com/sitemap-index.xml
+# Block parameter variations that create duplicates
+Disallow: /*?*utm_
+Disallow: /*?*fbclid
+Disallow: /*?*gclid
+Disallow: /*?*ref
+Disallow: /*?*source
+Disallow: /*#*
 
-# Additional directives for better crawling
-Clean-param: utm_source&utm_medium&utm_campaign
-Clean-param: fbclid&gclid&ref&source
+# Block trailing slash variations
+Disallow: /*/
+
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0.5
+
+# Sitemap location
+Sitemap: https://theorbittech.com/sitemap.xml
 
 # Allow essential files
 Allow: /robots.txt

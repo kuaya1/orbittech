@@ -40,7 +40,8 @@ function App() {
                 <SEOMetadata 
                   title="The Orbit Tech | #1 Starlink Installation DMV | Free Quote"
                   description="The Orbit Tech: Certified Starlink installation experts serving 100-mile radius from Reston, VA. Professional setup across Northern Virginia, Maryland & West Virginia. Flexible pricing $499-$999. Get your free quote today!"
-                  canonical="https://www.theorbittech.com/"
+                  canonical="https://theorbittech.com/"
+                  keywords={['Starlink installation', 'DMV area', 'Northern Virginia', 'Maryland', 'West Virginia', 'satellite internet']}
                 />
                 <ReviewSchema />
                 <Hero />
