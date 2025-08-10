@@ -1,23 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import OptimizedImage from '../OptimizedImage';
 import { 
-  Star, Phone, MapPin, Clock, Shield, Award, Check, Users, 
-  Building, Signal, Wifi, AlertTriangle, CheckCircle, PhoneCall,
-  MessageCircle, Calendar, ArrowRight, TrendingUp, Lock, Target
-} from 'lucide-react';
-
-/**
+  Star, Phone, MapPin, Clock, Shield,
+  Building, Signal, CheckCircle,
+  Calendar, ArrowRight, Target
+} from 'lucide-react';/**
  * Loudoun County, VA V2.0 - Rural Connectivity & Data Center Specialists
  * Brand-aligned conversion machine with The Orbit Tech authority positioning
  * Targets: Horse farms, data centers, rural properties across 847 square miles
  */
 export const LoudounPage: React.FC = () => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [showNotification, setShowNotification] = useState(false);
   const [recentActivity, setRecentActivity] = useState("5 horse farm installations completed this week");
 
   useEffect(() => {
-    setIsVisible(true);
+    // Show notification after a delay
+    const notificationTimer = setTimeout(() => {
+      setShowNotification(true);
+    }, 3000);
+
     const activities = [
       "4 Purcellville installations completed this week",
       "3 data center backup systems deployed",
@@ -27,16 +28,9 @@ export const LoudounPage: React.FC = () => {
     ];
     const randomActivity = activities[Math.floor(Math.random() * activities.length)];
     setRecentActivity(randomActivity);
-  }, []);
 
-  const loudounZipCodes = [
-    '20101', '20105', '20106', '20107', '20108', '20109', '20110', '20111', '20112', '20113',
-    '20115', '20116', '20117', '20118', '20119', '20120', '20121', '20122', '20124', '20129',
-    '20130', '20131', '20132', '20134', '20135', '20141', '20142', '20143', '20144', '20145',
-    '20146', '20147', '20148', '20149', '20152', '20158', '20159', '20160', '20163', '20164',
-    '20165', '20166', '20167', '20168', '20169', '20170', '20171', '20172', '20175', '20176',
-    '20177', '20178', '20180', '20184', '20186', '20187', '20190', '20191', '20194', '20197'
-  ];
+    return () => clearTimeout(notificationTimer);
+  }, []);
 
   // The Orbit Tech Brand Schema - Loudoun Rural & Data Center Specialists
   const loudounSchema = {
@@ -162,119 +156,187 @@ export const LoudounPage: React.FC = () => {
         <meta name="ICBM" content="39.1156, -77.5636" />
       </Helmet>
 
-      {/* Brand-Aligned Hero Section */}
-      <section className="relative bg-gradient-to-br from-slate-900 via-green-900 to-slate-800 text-white overflow-hidden">
-        {/* Animated background elements */}
-        <div className="absolute inset-0">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-green-500/10 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-yellow-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        </div>
+      {/* Hero Section - New Design System Implementation */}
+      <section className="relative bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white overflow-hidden min-h-screen flex items-center">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.1),transparent_50%)]"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_30%,rgba(248,250,252,0.02)_50%,transparent_70%)]"></div>
         
-        {/* Trust indicators banner */}
-        <div className="relative bg-slate-800/80 backdrop-blur-sm border-b border-slate-700">
-          <div className="container mx-auto px-4 py-3">
-            <div className="flex flex-wrap justify-center items-center gap-6 text-sm">
-              <div className="flex items-center text-green-400">
+        {/* Floating Elements */}
+        <div className="absolute top-20 left-10 w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+        <div className="absolute top-40 right-20 w-1 h-1 bg-amber-500 rounded-full animate-pulse delay-1000"></div>
+        <div className="absolute bottom-32 left-1/4 w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse delay-2000"></div>
+        
+        {/* Trust Banner */}
+        <div className="absolute top-0 left-0 right-0 bg-slate-900/80 backdrop-blur-sm border-b border-slate-700 z-20">
+          <div className="container mx-auto px-6">
+            <div className="flex flex-wrap justify-center items-center gap-8 py-4 text-sm">
+              <div className="flex items-center text-emerald-400">
                 <CheckCircle className="w-4 h-4 mr-2" />
-                <span className="font-semibold">500+ Installations</span>
+                <span className="font-medium">500+ Installations</span>
               </div>
-              <div className="flex items-center text-yellow-400">
+              <div className="flex items-center text-amber-400">
                 <Star className="w-4 h-4 mr-2 fill-current" />
-                <span className="font-semibold">4.9★ Google Rating</span>
+                <span className="font-medium">4.9★ Google Rating</span>
               </div>
               <div className="flex items-center text-blue-400">
                 <Clock className="w-4 h-4 mr-2" />
-                <span className="font-semibold">Same-Day Service</span>
+                <span className="font-medium">Same-Day Service</span>
               </div>
-              <div className="flex items-center text-purple-400">
+              <div className="flex items-center text-slate-400">
                 <Shield className="w-4 h-4 mr-2" />
-                <span className="font-semibold">VA Licensed #2705-177109</span>
+                <span className="font-medium">VA Licensed #2705-177109</span>
               </div>
             </div>
           </div>
         </div>
-
-        <div className="relative container mx-auto px-4 py-20">
-          <div className="text-center max-w-5xl mx-auto">
-            {/* Recent activity notification */}
-            <div className="inline-flex items-center bg-green-500/20 border border-green-500/30 rounded-full px-4 py-2 mb-6 animate-pulse">
-              <div className="w-2 h-2 bg-green-400 rounded-full mr-3 animate-ping"></div>
-              <span className="text-green-300 text-sm font-medium">{recentActivity}</span>
-            </div>
-            
-            {/* Specialty badges */}
-            <div className="flex justify-center items-center mb-6 flex-wrap gap-3">
-              <span className="bg-green-600 text-white px-4 py-2 rounded-lg font-bold text-sm border border-green-500 shadow-lg">
-                <Target className="w-4 h-4 inline mr-2" />
-                847 SQUARE MILES
-              </span>
-              <span className="bg-yellow-600 text-white px-4 py-2 rounded-lg font-bold text-sm border border-yellow-500 shadow-lg">
-                <Building className="w-4 h-4 inline mr-2" />
-                DATA CENTER EXPERTS
-              </span>
-              <span className="bg-purple-600 text-white px-4 py-2 rounded-lg font-bold text-sm border border-purple-500 shadow-lg">
-                <MapPin className="w-4 h-4 inline mr-2" />
-                HORSE FARM SPECIALISTS
-              </span>
-            </div>
-            
-            {/* Main headline */}
-            <h1 className="text-5xl md:text-7xl font-black leading-tight mb-6 tracking-tight">
-              Loudoun's <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-400">Rural</span>
-              <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-400">Starlink</span> Specialists
-            </h1>
-            
-            {/* Value proposition */}
-            <p className="text-xl md:text-2xl mb-8 text-slate-200 max-w-4xl mx-auto leading-relaxed">
-              From Leesburg data centers to Purcellville horse farms - serving all <strong className="text-white">847 square miles</strong> of Virginia's largest county with same-day service and 90-day warranty.
-            </p>
-            
-            {/* Dual CTA strategy */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-              <a 
-                href="#assessment" 
-                className="group bg-gradient-to-r from-green-600 to-green-700 hover:from-green-500 hover:to-green-600 text-white px-8 py-4 rounded-xl text-lg font-bold transition-all duration-300 transform hover:scale-105 hover:shadow-2xl shadow-green-500/25 border border-green-500"
-              >
-                <Calendar className="w-5 h-5 inline mr-2" />
-                Free Rural Assessment
-                <ArrowRight className="w-5 h-5 inline ml-2 group-hover:translate-x-1 transition-transform" />
-              </a>
-              <a 
-                href="tel:(571)999-6915" 
-                className="group border-2 border-white text-white hover:bg-white hover:text-slate-900 px-8 py-4 rounded-xl text-lg font-bold transition-all duration-300 flex items-center justify-center"
-              >
-                <PhoneCall className="w-5 h-5 mr-2" />
-                Call (571) 999-6915
-              </a>
-            </div>
-            
-            {/* Authority indicators */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-              <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-lg p-4">
-                <div className="flex items-center justify-center mb-2">
-                  <Users className="w-6 h-6 text-green-400 mr-2" />
-                  <span className="text-2xl font-bold text-white">180+</span>
-                </div>
-                <p className="text-slate-300 text-sm">Loudoun Customers</p>
+        
+        <div className="container mx-auto px-6 lg:px-12 relative z-10 pt-20">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Content Column */}
+            <div className="max-w-2xl">
+              {/* Activity Notification */}
+              <div className="inline-flex items-center bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-full px-6 py-3 mb-8">
+                <div className="w-2 h-2 bg-emerald-500 rounded-full mr-3 animate-ping"></div>
+                <span className="text-slate-300 text-sm font-medium">{recentActivity}</span>
               </div>
-              <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-lg p-4">
-                <div className="flex items-center justify-center mb-2">
-                  <Shield className="w-6 h-6 text-yellow-400 mr-2" />
-                  <span className="text-2xl font-bold text-white">40+</span>
-                </div>
-                <p className="text-slate-300 text-sm">Horse Farms Connected</p>
+              
+              {/* Specialty Badges */}
+              <div className="flex flex-wrap gap-3 mb-8">
+                <span className="bg-blue-500/20 border border-blue-500/30 text-blue-300 px-4 py-2 rounded-lg font-medium text-sm">
+                  <Target className="w-4 h-4 inline mr-2" />
+                  847 Square Miles
+                </span>
+                <span className="bg-amber-500/20 border border-amber-500/30 text-amber-300 px-4 py-2 rounded-lg font-medium text-sm">
+                  <Building className="w-4 h-4 inline mr-2" />
+                  Data Center Experts
+                </span>
+                <span className="bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 px-4 py-2 rounded-lg font-medium text-sm">
+                  <MapPin className="w-4 h-4 inline mr-2" />
+                  Horse Farm Specialists
+                </span>
               </div>
-              <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-lg p-4">
-                <div className="flex items-center justify-center mb-2">
-                  <TrendingUp className="w-6 h-6 text-purple-400 mr-2" />
-                  <span className="text-2xl font-bold text-white">25+</span>
+              
+              {/* Hero Headline - Design System Typography */}
+              <h1 className="text-5xl lg:text-6xl font-black leading-none tracking-tight mb-8">
+                <span className="text-white">Professional Starlink</span>
+                <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-blue-400 to-amber-500">
+                  Installation Services
+                </span>
+                <br />
+                <span className="text-slate-300 text-3xl lg:text-4xl font-semibold">
+                  Loudoun County, Virginia
+                </span>
+              </h1>
+              
+              {/* Value Proposition - Design System Body Large */}
+              <p className="text-xl text-slate-400 leading-relaxed mb-8 max-w-xl">
+                Expert installation for Virginia's largest county - from rural horse farms to Ashburn data centers. 
+                <span className="text-blue-400 font-medium"> Same-day service available across all 847 square miles.</span>
+              </p>
+              
+              {/* Primary CTAs - Design System Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 mb-12">
+                <a 
+                  href="#assessment" 
+                  className="group inline-flex items-center justify-center bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-blue-500/25"
+                >
+                  <Calendar className="w-5 h-5 mr-3" />
+                  Schedule Free Assessment
+                  <ArrowRight className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform" />
+                </a>
+                <a 
+                  href="tel:(703)555-0144" 
+                  className="inline-flex items-center justify-center bg-slate-800/50 backdrop-blur-sm border border-slate-600 hover:border-slate-500 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:bg-slate-700/50"
+                >
+                  <Phone className="w-5 h-5 mr-3" />
+                  Call (703) 555-0144
+                </a>
+              </div>
+              
+              {/* Key Metrics Grid - Design System Spacing */}
+              <div className="grid grid-cols-3 gap-8">
+                <div className="text-center">
+                  <div className="text-3xl font-black text-blue-500 mb-2">180+</div>
+                  <div className="text-slate-400 text-sm uppercase tracking-wide">Customers</div>
                 </div>
-                <p className="text-slate-300 text-sm">Data Centers Served</p>
+                <div className="text-center">
+                  <div className="text-3xl font-black text-amber-500 mb-2">40+</div>
+                  <div className="text-slate-400 text-sm uppercase tracking-wide">Horse Farms</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-black text-emerald-500 mb-2">25+</div>
+                  <div className="text-slate-400 text-sm uppercase tracking-wide">Data Centers</div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Visual Column */}
+            <div className="relative lg:block hidden">
+              {/* Main Installation Visualization */}
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 to-transparent rounded-3xl"></div>
+                <div className="bg-slate-800/30 backdrop-blur-sm rounded-3xl p-8 border border-slate-700">
+                  {/* Satellite Dish Visualization */}
+                  <div className="w-full h-80 bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl mb-6 flex items-center justify-center relative overflow-hidden">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_60%_40%,rgba(59,130,246,0.3),transparent_70%)]"></div>
+                    <Signal className="w-24 h-24 text-blue-400" />
+                    <div className="absolute top-4 right-4 flex space-x-1">
+                      <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
+                      <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse delay-300"></div>
+                      <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse delay-700"></div>
+                    </div>
+                  </div>
+                  
+                  {/* Speed Metrics */}
+                  <div className="space-y-4">
+                    <div className="flex justify-between items-center">
+                      <span className="text-slate-400">Download Speed</span>
+                      <span className="text-white font-semibold">420 Mbps</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-slate-400">Upload Speed</span>
+                      <span className="text-white font-semibold">41 Mbps</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-slate-400">Latency</span>
+                      <span className="text-white font-semibold">23 ms</span>
+                    </div>
+                    <div className="flex justify-between items-center pt-2 border-t border-slate-600">
+                      <span className="text-emerald-400 font-medium">Status</span>
+                      <span className="text-emerald-400 font-semibold">Connected</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Floating Stats */}
+              <div className="absolute -top-8 -left-8 bg-slate-800/80 backdrop-blur-sm border border-slate-600 rounded-2xl p-6">
+                <div className="text-2xl font-black text-blue-500 mb-1">847</div>
+                <div className="text-slate-400 text-sm">Square Miles Covered</div>
+              </div>
+              
+              <div className="absolute -bottom-8 -right-8 bg-slate-800/80 backdrop-blur-sm border border-slate-600 rounded-2xl p-6">
+                <div className="text-2xl font-black text-amber-500 mb-1">24h</div>
+                <div className="text-slate-400 text-sm">Response Time</div>
               </div>
             </div>
           </div>
         </div>
+        
+        {/* Activity Notification */}
+        {showNotification && (
+          <div className="fixed bottom-8 left-8 bg-slate-800/90 backdrop-blur-sm border border-slate-600 text-white p-4 rounded-xl shadow-2xl z-50 animate-slide-up">
+            <div className="flex items-center">
+              <div className="w-3 h-3 bg-emerald-500 rounded-full mr-3 animate-pulse"></div>
+              <div>
+                <p className="font-semibold text-sm">New Installation Completed</p>
+                <p className="text-slate-400 text-xs">Purcellville Horse Farm - 5 min ago</p>
+              </div>
+            </div>
+          </div>
+        )}
       </section>
 
       {/* Why Loudoun County Chooses The Orbit Tech */}
@@ -291,36 +353,36 @@ export const LoudounPage: React.FC = () => {
           </div>
           
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <div className="group bg-gradient-to-br from-green-50 to-green-100 p-8 rounded-2xl text-center hover:shadow-2xl transition-all duration-300 border border-green-200">
-              <div className="w-20 h-20 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+            <div className="group bg-gradient-to-br from-slate-900 via-slate-800 to-slate-700 p-8 rounded-2xl text-center hover:shadow-2xl transition-all duration-300 border border-slate-600 backdrop-blur-sm">
+              <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                 <MapPin className="w-10 h-10 text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-green-900 mb-4">Rural Connectivity Masters</h3>
-              <p className="text-slate-700 leading-relaxed">Expert solutions for Loudoun's rural properties where cable/fiber can't reach. Serving horse farms from Purcellville to Hamilton with enterprise-grade connectivity.</p>
-              <div className="mt-4 p-3 bg-green-200/50 rounded-lg">
-                <p className="text-sm text-green-800 font-semibold">✓ 40+ horse farms connected</p>
+              <h3 className="text-2xl font-bold text-white mb-4">Rural Connectivity Masters</h3>
+              <p className="text-slate-300 leading-relaxed">Expert solutions for Loudoun's rural properties where cable/fiber can't reach. Serving horse farms from Purcellville to Hamilton with enterprise-grade connectivity.</p>
+              <div className="mt-4 p-3 bg-blue-500/20 rounded-lg border border-blue-500/30">
+                <p className="text-sm text-blue-300 font-semibold">✓ 40+ horse farms connected</p>
               </div>
             </div>
             
-            <div className="group bg-gradient-to-br from-yellow-50 to-yellow-100 p-8 rounded-2xl text-center hover:shadow-2xl transition-all duration-300 border border-yellow-200">
-              <div className="w-20 h-20 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+            <div className="group bg-gradient-to-br from-slate-900 via-slate-800 to-slate-700 p-8 rounded-2xl text-center hover:shadow-2xl transition-all duration-300 border border-slate-600 backdrop-blur-sm">
+              <div className="w-20 h-20 bg-gradient-to-br from-amber-500 to-amber-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                 <Building className="w-10 h-10 text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-yellow-900 mb-4">Data Center Corridor Experts</h3>
-              <p className="text-slate-700 leading-relaxed">Enterprise backup internet for Loudoun's massive data center industry. Ashburn to Sterling redundancy solutions with 99.9% uptime SLA.</p>
-              <div className="mt-4 p-3 bg-yellow-200/50 rounded-lg">
-                <p className="text-sm text-yellow-800 font-semibold">✓ 25+ data centers served</p>
+              <h3 className="text-2xl font-bold text-white mb-4">Data Center Corridor Experts</h3>
+              <p className="text-slate-300 leading-relaxed">Enterprise backup internet for Loudoun's massive data center industry. Ashburn to Sterling redundancy solutions with 99.9% uptime SLA.</p>
+              <div className="mt-4 p-3 bg-amber-500/20 rounded-lg border border-amber-500/30">
+                <p className="text-sm text-amber-300 font-semibold">✓ 25+ data centers served</p>
               </div>
             </div>
             
-            <div className="group bg-gradient-to-br from-purple-50 to-purple-100 p-8 rounded-2xl text-center hover:shadow-2xl transition-all duration-300 border border-purple-200">
-              <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+            <div className="group bg-gradient-to-br from-slate-900 via-slate-800 to-slate-700 p-8 rounded-2xl text-center hover:shadow-2xl transition-all duration-300 border border-slate-600 backdrop-blur-sm">
+              <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                 <Target className="w-10 h-10 text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-purple-900 mb-4">Complete County Coverage</h3>
-              <p className="text-slate-700 leading-relaxed">Only installer covering all 847 square miles - from Dulles Tech Corridor to Blue Ridge foothills. Same-day service available countywide.</p>
-              <div className="mt-4 p-3 bg-purple-200/50 rounded-lg">
-                <p className="text-sm text-purple-800 font-semibold">✓ Virginia's largest coverage area</p>
+              <h3 className="text-2xl font-bold text-white mb-4">Complete County Coverage</h3>
+              <p className="text-slate-300 leading-relaxed">Only installer covering all 847 square miles - from Dulles Tech Corridor to Blue Ridge foothills. Same-day service available countywide.</p>
+              <div className="mt-4 p-3 bg-purple-500/20 rounded-lg border border-purple-500/30">
+                <p className="text-sm text-purple-300 font-semibold">✓ Virginia's largest coverage area</p>
               </div>
             </div>
           </div>
@@ -328,14 +390,14 @@ export const LoudounPage: React.FC = () => {
       </section>
 
       {/* Internet Challenges Unique to Loudoun County */}
-      <section className="py-20 bg-slate-100">
+      <section className="py-20 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-6 tracking-tight">
+            <h2 className="text-4xl md:text-5xl font-black text-white mb-6 tracking-tight">
               Internet Challenges Unique to 
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-yellow-600"> Loudoun County</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400"> Loudoun County</span>
             </h2>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+            <p className="text-xl text-slate-300 max-w-3xl mx-auto">
               Local expertise for America's wealthiest county's diverse connectivity needs
             </p>
           </div>
@@ -348,20 +410,20 @@ export const LoudounPage: React.FC = () => {
                   <MapPin className="w-8 h-8" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-slate-900 mb-3">Rural Western Loudoun Dead Zones</h3>
-                  <p className="text-slate-600 text-lg leading-relaxed mb-2">Horse farms and estates in Purcellville, Hamilton, and Hillsboro lack reliable cable/fiber infrastructure. Properties over 100 acres often have zero connectivity options.</p>
-                  <div className="text-red-600 font-semibold">40% of western Loudoun has no broadband access</div>
+                  <h3 className="text-2xl font-bold text-white mb-3">Rural Western Loudoun Dead Zones</h3>
+                  <p className="text-slate-300 text-lg leading-relaxed mb-2">Horse farms and estates in Purcellville, Hamilton, and Hillsboro lack reliable cable/fiber infrastructure. Properties over 100 acres often have zero connectivity options.</p>
+                  <div className="text-red-400 font-semibold">40% of western Loudoun has no broadband access</div>
                 </div>
               </div>
               
               <div className="flex items-start group">
-                <div className="w-16 h-16 bg-gradient-to-br from-yellow-500 to-yellow-600 text-white rounded-xl flex items-center justify-center mr-6 flex-shrink-0 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                <div className="w-16 h-16 bg-gradient-to-br from-amber-500 to-amber-600 text-white rounded-xl flex items-center justify-center mr-6 flex-shrink-0 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                   <Building className="w-8 h-8" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-slate-900 mb-3">Data Center Single Points of Failure</h3>
-                  <p className="text-slate-600 text-lg leading-relaxed mb-2">Ashburn data centers need redundant connectivity. Power outages affecting fiber lines risk millions in downtime for cloud providers and enterprises.</p>
-                  <div className="text-yellow-600 font-semibold">$2.3M average cost per hour of data center downtime</div>
+                  <h3 className="text-2xl font-bold text-white mb-3">Data Center Single Points of Failure</h3>
+                  <p className="text-slate-300 text-lg leading-relaxed mb-2">Ashburn data centers need redundant connectivity. Power outages affecting fiber lines risk millions in downtime for cloud providers and enterprises.</p>
+                  <div className="text-amber-400 font-semibold">$2.3M average cost per hour of data center downtime</div>
                 </div>
               </div>
               
@@ -370,46 +432,46 @@ export const LoudounPage: React.FC = () => {
                   <Clock className="w-8 h-8" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-slate-900 mb-3">HOA Restrictions in Developments</h3>
-                  <p className="text-slate-600 text-lg leading-relaxed mb-2">Sterling and Ashburn HOAs have strict guidelines for satellite installation. Requires specialized approval process and aesthetic compliance.</p>
-                  <div className="text-purple-600 font-semibold">Average 6-8 week approval without expert help</div>
+                  <h3 className="text-2xl font-bold text-white mb-3">HOA Restrictions in Developments</h3>
+                  <p className="text-slate-300 text-lg leading-relaxed mb-2">Sterling and Ashburn HOAs have strict guidelines for satellite installation. Requires specialized approval process and aesthetic compliance.</p>
+                  <div className="text-purple-400 font-semibold">Average 6-8 week approval without expert help</div>
                 </div>
               </div>
             </div>
             
             {/* Solution Box */}
-            <div className="bg-gradient-to-br from-slate-900 to-green-900 p-10 rounded-3xl shadow-2xl text-white">
+            <div className="bg-gradient-to-br from-slate-800 via-slate-700 to-blue-900 p-10 rounded-3xl shadow-2xl text-white border border-slate-600 backdrop-blur-sm">
               <h3 className="text-3xl font-bold mb-8 text-center">Our Loudoun County Solutions</h3>
               
               <div className="space-y-6 mb-8">
                 <div className="flex items-center">
-                  <div className="w-8 h-8 text-green-400 mr-4 flex-shrink-0">
+                  <div className="w-8 h-8 text-blue-400 mr-4 flex-shrink-0">
                     <CheckCircle className="w-8 h-8" />
                   </div>
                   <span className="text-lg">Rural properties: 200-500 Mbps where cable can't reach</span>
                 </div>
                 <div className="flex items-center">
-                  <div className="w-8 h-8 text-green-400 mr-4 flex-shrink-0">
+                  <div className="w-8 h-8 text-blue-400 mr-4 flex-shrink-0">
                     <CheckCircle className="w-8 h-8" />
                   </div>
                   <span className="text-lg">Enterprise data center backup with 99.9% uptime SLA</span>
                 </div>
                 <div className="flex items-center">
-                  <div className="w-8 h-8 text-green-400 mr-4 flex-shrink-0">
+                  <div className="w-8 h-8 text-blue-400 mr-4 flex-shrink-0">
                     <CheckCircle className="w-8 h-8" />
                   </div>
                   <span className="text-lg">HOA-compliant installation with 98% approval rate</span>
                 </div>
                 <div className="flex items-center">
-                  <div className="w-8 h-8 text-green-400 mr-4 flex-shrink-0">
+                  <div className="w-8 h-8 text-blue-400 mr-4 flex-shrink-0">
                     <CheckCircle className="w-8 h-8" />
                   </div>
                   <span className="text-lg">Extended range solutions for 500+ acre properties</span>
                 </div>
               </div>
               
-              <div className="bg-gradient-to-r from-green-500/20 to-yellow-500/20 border border-green-400/30 rounded-xl p-6 text-center">
-                <p className="text-green-300 font-bold text-lg mb-2">
+              <div className="bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-400/30 rounded-xl p-6 text-center backdrop-blur-sm">
+                <p className="text-blue-300 font-bold text-lg mb-2">
                   🐎 Trusted by 40+ Loudoun horse farms and 25+ data centers
                 </p>
                 <p className="text-slate-300">
@@ -420,7 +482,7 @@ export const LoudounPage: React.FC = () => {
               <div className="mt-8 text-center">
                 <a 
                   href="#assessment" 
-                  className="inline-flex items-center bg-gradient-to-r from-green-500 to-yellow-600 hover:from-green-400 hover:to-yellow-500 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg"
+                  className="inline-flex items-center bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-400 hover:to-purple-500 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg"
                 >
                   <Calendar className="w-5 h-5 mr-2" />
                   Get Your Rural Assessment
@@ -433,12 +495,12 @@ export const LoudounPage: React.FC = () => {
       </section>
 
       {/* Verified Customer Testimonials */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-gradient-to-br from-slate-100 to-slate-200">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-6 tracking-tight">
               Verified Customer 
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-yellow-600"> Success Stories</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600"> Success Stories</span>
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
               Real results from Loudoun County's most challenging locations
@@ -447,93 +509,93 @@ export const LoudounPage: React.FC = () => {
           
           <div className="grid lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
             {/* Horse Farm Testimonial */}
-            <div className="bg-gradient-to-br from-green-50 to-green-100 p-8 rounded-3xl shadow-2xl border border-green-200">
+            <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-700 p-8 rounded-3xl shadow-2xl border border-slate-600 backdrop-blur-sm">
               <div className="flex items-center mb-6">
-                <div className="w-20 h-20 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center text-white font-bold text-xl mr-6 shadow-lg">
+                <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center text-white font-bold text-xl mr-6 shadow-lg">
                   TW
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-green-900">Tom Williams</h3>
-                  <p className="text-green-700 font-medium">Purcellville Horse Farm, 150 acres</p>
-                  <div className="flex items-center text-yellow-500 mt-1">
+                  <h3 className="text-2xl font-bold text-white">Tom Williams</h3>
+                  <p className="text-blue-300 font-medium">Purcellville Horse Farm, 150 acres</p>
+                  <div className="flex items-center text-amber-400 mt-1">
                     {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-current" />)}
                   </div>
                 </div>
               </div>
-              <blockquote className="text-slate-700 text-lg italic leading-relaxed mb-6">
+              <blockquote className="text-slate-300 text-lg italic leading-relaxed mb-6">
                 "Cable companies quoted $50K to reach our horse farm. The Orbit Tech installed Starlink and gave us 340 Mbps the same week. Complete game changer for our boarding operation and vet telehealth!"
               </blockquote>
-              <div className="bg-green-200/50 rounded-xl p-4">
+              <div className="bg-blue-500/20 rounded-xl p-4 border border-blue-500/30">
                 <div className="grid grid-cols-2 gap-4 text-center">
                   <div>
-                    <div className="text-2xl font-bold text-green-900">$50K</div>
-                    <div className="text-sm text-green-700">Cable cost avoided</div>
+                    <div className="text-2xl font-bold text-white">$50K</div>
+                    <div className="text-sm text-blue-300">Cable cost avoided</div>
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-green-900">340 Mbps</div>
-                    <div className="text-sm text-green-700">Rural speed achieved</div>
+                    <div className="text-2xl font-bold text-white">340 Mbps</div>
+                    <div className="text-sm text-blue-300">Rural speed achieved</div>
                   </div>
                 </div>
               </div>
             </div>
             
             {/* Data Center Testimonial */}
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-3xl shadow-2xl border border-blue-200">
+            <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-700 p-8 rounded-3xl shadow-2xl border border-slate-600 backdrop-blur-sm">
               <div className="flex items-center mb-6">
-                <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center text-white font-bold text-xl mr-6 shadow-lg">
+                <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center text-white font-bold text-xl mr-6 shadow-lg">
                   LJ
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-blue-900">Lisa Johnson</h3>
-                  <p className="text-blue-700 font-medium">IT Director, Ashburn Data Center</p>
-                  <div className="flex items-center text-yellow-500 mt-1">
+                  <h3 className="text-2xl font-bold text-white">Lisa Johnson</h3>
+                  <p className="text-purple-300 font-medium">IT Director, Ashburn Data Center</p>
+                  <div className="flex items-center text-amber-400 mt-1">
                     {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-current" />)}
                   </div>
                 </div>
               </div>
-              <blockquote className="text-slate-700 text-lg italic leading-relaxed mb-6">
+              <blockquote className="text-slate-300 text-lg italic leading-relaxed mb-6">
                 "After the major fiber outage last year, we needed bulletproof redundancy. The Orbit Tech's enterprise Starlink with automatic failover has delivered zero downtime for 14+ months. Absolutely mission-critical."
               </blockquote>
-              <div className="bg-blue-200/50 rounded-xl p-4">
+              <div className="bg-purple-500/20 rounded-xl p-4 border border-purple-500/30">
                 <div className="grid grid-cols-2 gap-4 text-center">
                   <div>
-                    <div className="text-2xl font-bold text-blue-900">0 minutes</div>
-                    <div className="text-sm text-blue-700">Downtime in 14 months</div>
+                    <div className="text-2xl font-bold text-white">0 minutes</div>
+                    <div className="text-sm text-purple-300">Downtime in 14 months</div>
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-blue-900">Auto</div>
-                    <div className="text-sm text-blue-700">Failover system</div>
+                    <div className="text-2xl font-bold text-white">Auto</div>
+                    <div className="text-sm text-purple-300">Failover system</div>
                   </div>
                 </div>
               </div>
             </div>
             
             {/* HOA Community Testimonial */}
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-8 rounded-3xl shadow-2xl border border-purple-200">
+            <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-700 p-8 rounded-3xl shadow-2xl border border-slate-600 backdrop-blur-sm">
               <div className="flex items-center mb-6">
-                <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center text-white font-bold text-xl mr-6 shadow-lg">
+                <div className="w-20 h-20 bg-gradient-to-br from-amber-500 to-amber-600 rounded-2xl flex items-center justify-center text-white font-bold text-xl mr-6 shadow-lg">
                   MG
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-purple-900">Mike Garcia</h3>
-                  <p className="text-purple-700 font-medium">Sterling HOA Community</p>
-                  <div className="flex items-center text-yellow-500 mt-1">
+                  <h3 className="text-2xl font-bold text-white">Mike Garcia</h3>
+                  <p className="text-amber-300 font-medium">Sterling HOA Community</p>
+                  <div className="flex items-center text-amber-400 mt-1">
                     {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-current" />)}
                   </div>
                 </div>
               </div>
-              <blockquote className="text-slate-700 text-lg italic leading-relaxed mb-6">
+              <blockquote className="text-slate-300 text-lg italic leading-relaxed mb-6">
                 "Our Sterling HOA initially rejected our satellite request. The Orbit Tech handled all documentation and got approval in just 5 days. Professional installation looks fantastic - 425 Mbps speeds!"
               </blockquote>
-              <div className="bg-purple-200/50 rounded-xl p-4">
+              <div className="bg-amber-500/20 rounded-xl p-4 border border-amber-500/30">
                 <div className="grid grid-cols-2 gap-4 text-center">
                   <div>
-                    <div className="text-2xl font-bold text-purple-900">5 days</div>
-                    <div className="text-sm text-purple-700">HOA approval time</div>
+                    <div className="text-2xl font-bold text-white">5 days</div>
+                    <div className="text-sm text-amber-300">HOA approval time</div>
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-purple-900">425 Mbps</div>
-                    <div className="text-sm text-purple-700">HOA-compliant speed</div>
+                    <div className="text-2xl font-bold text-white">425 Mbps</div>
+                    <div className="text-sm text-amber-300">HOA-compliant speed</div>
                   </div>
                 </div>
               </div>
@@ -541,14 +603,14 @@ export const LoudounPage: React.FC = () => {
           </div>
           
           {/* Trust Indicators */}
-          <div className="mt-16 bg-gradient-to-r from-slate-900 to-green-900 rounded-3xl p-8 text-center shadow-2xl">
+          <div className="mt-16 bg-gradient-to-r from-slate-900 via-slate-800 to-blue-900 rounded-3xl p-8 text-center shadow-2xl border border-slate-600">
             <div className="grid md:grid-cols-4 gap-6 text-white">
               <div>
-                <div className="text-3xl font-bold text-green-400 mb-2">40+</div>
+                <div className="text-3xl font-bold text-blue-400 mb-2">40+</div>
                 <div className="text-slate-300">Horse Farms Served</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-yellow-400 mb-2">25+</div>
+                <div className="text-3xl font-bold text-amber-400 mb-2">25+</div>
                 <div className="text-slate-300">Data Centers Protected</div>
               </div>
               <div>
@@ -565,13 +627,13 @@ export const LoudounPage: React.FC = () => {
       </section>
 
       {/* Coverage Areas */}
-      <section className="py-16 bg-gray-100">
+      <section className="py-16 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Complete Loudoun County Coverage
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-slate-300">
               All 847 square miles - from data centers to horse farms
             </p>
           </div>
