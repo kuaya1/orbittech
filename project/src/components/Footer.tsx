@@ -1,162 +1,224 @@
-import React from 'react';
-
-// SVG components for social media icons for better reusability and clarity
-const LinkedInIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-    <rect x="2" y="9" width="4" height="12"></rect>
-    <circle cx="4" cy="4" r="2"></circle>
-  </svg>
-);
-
-const InstagramIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-  </svg>
-);
-
-const FacebookIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-    </svg>
-);
-
+import { Phone, Mail, MapPin, ArrowRight, Star, Shield, Award } from 'lucide-react';
 
 const Footer = () => {
   const year = new Date().getFullYear();
 
-  // Modern minimal link component for footer links
-  const FooterLink = ({ href, children, target, rel }: { href: string; children: React.ReactNode; target?: string; rel?: string }) => (
-    <li>
-      <a href={href} target={target} rel={rel} className="text-neutral-400 hover:text-neutral-50 transition-all duration-300 text-sm tracking-wide group relative">
-        {children}
-        <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-neutral-50 transition-all duration-300 group-hover:w-full"></span>
-      </a>
-    </li>
-  );
-  
-  // Modern minimal link component for bottom bar links
-  const BottomBarLink = ({ href, children }: { href: string; children: React.ReactNode }) => (
-     <a href={href} className="text-neutral-500 hover:text-neutral-300 text-sm transition-all duration-300 uppercase tracking-wider">
-        {children}
-      </a>
-  );
-
   return (
-    <footer className="bg-black border-t border-white/10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        
-        {/* Modern minimal footer content grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-16 mb-16">
-          
-          {/* Logo and description with modern styling */}
-          <div className="lg:col-span-2 space-y-6">
-            <div>
-              <a href="/" className="inline-block">
-                <img 
-                  src="/Starlink Dmv (33).png" 
-                  alt="Orbittec Logo" 
-                  className="h-12 w-auto mb-4 transition-all duration-300 hover:scale-105"
-                  loading="lazy"
-                  decoding="async"
-                  width="144"
-                  height="48"
-                />
-              </a>
-              <p className="text-neutral-400 text-base leading-relaxed max-w-md">
-                Professional Starlink installation services across the DMV area and beyond. 
-                Connecting you to the future of internet.
-              </p>
-            </div>
-            
-            {/* Contact info with minimal design - Updated NAP */}
-            <div className="space-y-3">
-              <a href="tel:+15719996915" className="flex items-center text-neutral-400 hover:text-neutral-50 transition-all duration-300 group">
-                <span className="text-sm tracking-wide">(571) 999-6915</span>
-              </a>
-              <a href="mailto:contact@theorbittech.com" className="flex items-center text-neutral-400 hover:text-neutral-50 transition-all duration-300 group">
-                <span className="text-sm tracking-wide">contact@theorbittech.com</span>
-              </a>
-              <div className="text-neutral-400 text-sm tracking-wide">
-                8000 Westpark Drive, STE 450<br />
-                McLean, VA 22102
+    <footer className="relative bg-gradient-to-b from-gray-900 via-black to-black">
+      {/* Subtle grid pattern overlay */}
+      <div className="absolute inset-0 opacity-20" style={{
+        backgroundImage: "url('data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%239C92AC\" fill-opacity=\"0.03\"%3E%3Cpath d=\"M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"
+      }}></div>
+
+      {/* Top CTA Section */}
+      <div className="relative border-t border-gray-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="bg-gradient-to-r from-blue-600/10 to-emerald-600/10 rounded-2xl border border-gray-800 p-8 backdrop-blur-sm">
+            <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
+              <div>
+                <h3 className="text-2xl font-bold text-white mb-2">Ready to Experience Lightning-Fast Internet?</h3>
+                <p className="text-gray-400">Join 500+ satisfied customers across the DMV region</p>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <a 
+                  href="tel:+15719996915" 
+                  className="inline-flex items-center justify-center px-6 py-3 bg-emerald-500 text-white font-semibold rounded-lg hover:bg-emerald-600 transition-all duration-300 shadow-lg hover:shadow-emerald-500/25"
+                >
+                  <Phone className="w-5 h-5 mr-2" />
+                  Call (571) 999-6915
+                </a>
+                <a 
+                  href="/#contact" 
+                  className="inline-flex items-center justify-center px-6 py-3 bg-gray-800 text-white font-semibold rounded-lg hover:bg-gray-700 transition-all duration-300 border border-gray-700"
+                >
+                  Get Free Quote
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </a>
               </div>
             </div>
           </div>
-          
-          {/* Modern link columns */}
-          <div className="space-y-4">
-            <h4 className="font-medium text-neutral-50 tracking-tighter text-lg">Services</h4>
-            <ul className="space-y-3">
-              <FooterLink href="/#services">Residential Installation</FooterLink>
-              <FooterLink href="/#services">Business Solutions</FooterLink>
-              <FooterLink href="/#services">Mobile & Marine</FooterLink>
-            </ul>
-          </div>
-          
-          <div className="space-y-4">
-            <h4 className="font-medium text-neutral-50 tracking-tighter text-lg">Company</h4>
-            <ul className="space-y-3">
-              <FooterLink href="/">Home</FooterLink>
-              <FooterLink href="/blog">Blog & Resources</FooterLink>
-              <FooterLink href="/#featured-installations">Success Stories</FooterLink>
-            </ul>
-          </div>
-
-          <div className="space-y-4">
-            <h4 className="font-medium text-neutral-50 tracking-tighter text-lg">Support</h4>
-            <ul className="space-y-3">
-              <FooterLink href="/#contact">Contact Us</FooterLink>
-              <FooterLink href="/#availability-process">Check Coverage</FooterLink>
-              <FooterLink href="https://www.bestbuy.com/site/starlink-standard-kit-ax-tri-band-wi-fi-system-white/6571727.p?skuId=6571727&extStoreId=273&utm_source=feed&ref=212&loc=19626691823&gclsrc=aw.ds&gad_source=1&gad_campaignid=19626692342&gbraid=0AAAAAD-ORIhnFg98rJEwN2ALR4Btaklc3&gclid=CjwKCAjwwNbEBhBpEiwAFYLtGIXwsHK-GJpPi0RT0mSdwXlY3JNorfcbyfIDORZXpJE6OQpp71Gf4RoCt4sQAvD_BwE" target="_blank" rel="noopener noreferrer">Buy Starlink Locally</FooterLink>
-              <FooterLink href="https://www.google.com/maps/place/?cid=16628350007596958974" target="_blank" rel="noopener noreferrer">Leave us a Review on Google!</FooterLink>
-            </ul>
-          </div>
-
         </div>
+      </div>
 
-        {/* Modern newsletter and bottom section */}
-        <div className="border-t border-white/10 pt-12">
-            <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-12">
-                
-                {/* Premium newsletter design */}
-                <div className="w-full lg:w-auto max-w-md">
-                    <h4 className="font-medium text-neutral-50 mb-4 text-lg tracking-tighter">Stay Updated</h4>
-                    <p className="text-neutral-400 text-sm mb-6 leading-relaxed">
-                        Get the latest updates on Starlink technology and installation tips.
-                    </p>
-                    <form className="flex flex-col sm:flex-row gap-3">
-                        <input 
-                            type="email"
-                            placeholder="Enter your email"
-                            className="bg-white/[0.02] border border-white/20 text-neutral-50 placeholder-neutral-500 px-4 py-3 rounded-lg focus:ring-2 focus:ring-white/20 focus:border-white/30 focus:outline-none w-full flex-grow transition-all duration-300"
-                            aria-label="Email for newsletter"
-                        />
-                        <button 
-                            type="submit"
-                            className="bg-white text-black font-semibold rounded-lg px-6 py-3 hover:bg-neutral-100 transition-all duration-300 whitespace-nowrap shadow-lg hover:shadow-xl"
-                        >
-                            Subscribe
-                        </button>
-                    </form>
-                </div>
-
-                {/* Modern bottom bar */}
-                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-8 w-full lg:w-auto">
-                    <div className="text-neutral-500 text-sm uppercase tracking-wider order-2 sm:order-1">
-                        © {year} OrbitTech
-                    </div>
-                    <div className="flex items-center space-x-6 order-1 sm:order-2">
-                         <BottomBarLink href="/privacy-policy.html">Privacy</BottomBarLink>
-                         <BottomBarLink href="/terms-of-service.html">Terms</BottomBarLink>
-                         <BottomBarLink href="/imprint.html">Legal</BottomBarLink>
-                    </div>
-                </div>
+      {/* Main Footer Content */}
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+          
+          {/* Company Info */}
+          <div className="lg:col-span-1">
+            <img 
+              src="/Starlink Dmv (33).png" 
+              alt="The Orbit Tech" 
+              className="h-12 w-auto mb-6"
+            />
+            <p className="text-gray-400 mb-6 leading-relaxed">
+              DMV's #1 Rated Starlink Installation Experts. Professional, certified, and fully insured.
+            </p>
+            
+            {/* Trust Badges */}
+            <div className="flex gap-4 mb-6">
+              <div className="flex items-center justify-center w-12 h-12 bg-gray-800 rounded-lg">
+                <Star className="w-6 h-6 text-yellow-500" />
+              </div>
+              <div className="flex items-center justify-center w-12 h-12 bg-gray-800 rounded-lg">
+                <Shield className="w-6 h-6 text-blue-500" />
+              </div>
+              <div className="flex items-center justify-center w-12 h-12 bg-gray-800 rounded-lg">
+                <Award className="w-6 h-6 text-emerald-500" />
+              </div>
             </div>
+
+            {/* Contact Info */}
+            <div className="space-y-3">
+              <a href="tel:+15719996915" className="flex items-center text-gray-400 hover:text-white transition-colors group">
+                <Phone className="w-4 h-4 mr-3 text-emerald-500" />
+                <span>(571) 999-6915</span>
+              </a>
+              <a href="mailto:contact@theorbittech.com" className="flex items-center text-gray-400 hover:text-white transition-colors group">
+                <Mail className="w-4 h-4 mr-3 text-emerald-500" />
+                <span>contact@theorbittech.com</span>
+              </a>
+              <div className="flex items-start text-gray-400">
+                <MapPin className="w-4 h-4 mr-3 text-emerald-500 mt-0.5 flex-shrink-0" />
+                <span>
+                  8000 Westpark Drive, STE 450<br />
+                  McLean, VA 22102
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Services */}
+          <div>
+            <h4 className="text-white font-semibold text-lg mb-6">Services</h4>
+            <ul className="space-y-3">
+              <li>
+                <a href="/#services" className="text-gray-400 hover:text-white transition-colors inline-flex items-center group">
+                  <span className="w-1 h-1 bg-emerald-500 rounded-full mr-3 group-hover:w-2 transition-all"></span>
+                  Starlink Installation
+                </a>
+              </li>
+              <li>
+                <a href="/#services" className="text-gray-400 hover:text-white transition-colors inline-flex items-center group">
+                  <span className="w-1 h-1 bg-emerald-500 rounded-full mr-3 group-hover:w-2 transition-all"></span>
+                  Mesh WiFi Setup
+                </a>
+              </li>
+              <li>
+                <a href="/#services" className="text-gray-400 hover:text-white transition-colors inline-flex items-center group">
+                  <span className="w-1 h-1 bg-emerald-500 rounded-full mr-3 group-hover:w-2 transition-all"></span>
+                  Business Solutions
+                </a>
+              </li>
+              <li>
+                <a href="/#services" className="text-gray-400 hover:text-white transition-colors inline-flex items-center group">
+                  <span className="w-1 h-1 bg-emerald-500 rounded-full mr-3 group-hover:w-2 transition-all"></span>
+                  RV & Marine
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Service Areas */}
+          <div>
+            <h4 className="text-white font-semibold text-lg mb-6">Service Areas</h4>
+            <ul className="space-y-3">
+              <li>
+                <a href="/locations/loudoun-county" className="text-gray-400 hover:text-white transition-colors inline-flex items-center group">
+                  <span className="w-1 h-1 bg-emerald-500 rounded-full mr-3 group-hover:w-2 transition-all"></span>
+                  Loudoun County
+                </a>
+              </li>
+              <li>
+                <a href="/locations/fairfax-county" className="text-gray-400 hover:text-white transition-colors inline-flex items-center group">
+                  <span className="w-1 h-1 bg-emerald-500 rounded-full mr-3 group-hover:w-2 transition-all"></span>
+                  Fairfax County
+                </a>
+              </li>
+              <li>
+                <a href="/locations/arlington-county" className="text-gray-400 hover:text-white transition-colors inline-flex items-center group">
+                  <span className="w-1 h-1 bg-emerald-500 rounded-full mr-3 group-hover:w-2 transition-all"></span>
+                  Arlington County
+                </a>
+              </li>
+              <li>
+                <a href="/locations/montgomery-county" className="text-gray-400 hover:text-white transition-colors inline-flex items-center group">
+                  <span className="w-1 h-1 bg-emerald-500 rounded-full mr-3 group-hover:w-2 transition-all"></span>
+                  Montgomery County, MD
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Resources */}
+          <div>
+            <h4 className="text-white font-semibold text-lg mb-6">Resources</h4>
+            <ul className="space-y-3">
+              <li>
+                <a href="/blog" className="text-gray-400 hover:text-white transition-colors inline-flex items-center group">
+                  <span className="w-1 h-1 bg-emerald-500 rounded-full mr-3 group-hover:w-2 transition-all"></span>
+                  Installation Guide
+                </a>
+              </li>
+              <li>
+                <a href="/#faq" className="text-gray-400 hover:text-white transition-colors inline-flex items-center group">
+                  <span className="w-1 h-1 bg-emerald-500 rounded-full mr-3 group-hover:w-2 transition-all"></span>
+                  FAQs
+                </a>
+              </li>
+              <li>
+                <a href="/#featured-installations" className="text-gray-400 hover:text-white transition-colors inline-flex items-center group">
+                  <span className="w-1 h-1 bg-emerald-500 rounded-full mr-3 group-hover:w-2 transition-all"></span>
+                  Success Stories
+                </a>
+              </li>
+              <li>
+                <a href="https://www.google.com/maps/place/?cid=16628350007596958974" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors inline-flex items-center group">
+                  <span className="w-1 h-1 bg-emerald-500 rounded-full mr-3 group-hover:w-2 transition-all"></span>
+                  Google Reviews
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
 
+        {/* Stats Bar */}
+        <div className="mt-12 pt-12 border-t border-gray-800">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            <div className="text-center">
+              <div className="text-3xl font-bold text-white mb-1">500+</div>
+              <div className="text-gray-500 text-sm">Installations Completed</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-white mb-1">4.9★</div>
+              <div className="text-gray-500 text-sm">Google Rating</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-white mb-1">100%</div>
+              <div className="text-gray-500 text-sm">Satisfaction Rate</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="pt-8 border-t border-gray-800">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <div className="text-gray-500 text-sm">
+              © {year} The Orbit Tech. All rights reserved.
+            </div>
+            <div className="flex items-center gap-6">
+              <a href="/privacy-policy.html" className="text-gray-500 hover:text-white text-sm transition-colors">
+                Privacy Policy
+              </a>
+              <a href="/terms-of-service.html" className="text-gray-500 hover:text-white text-sm transition-colors">
+                Terms of Service
+              </a>
+              <a href="/imprint.html" className="text-gray-500 hover:text-white text-sm transition-colors">
+                Legal
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </footer>
   );
