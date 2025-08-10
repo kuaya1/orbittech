@@ -31,7 +31,7 @@ if (fs.existsSync(robotsSrc) && !fs.existsSync(robotsDest)) {
 }
 
 // Generate comprehensive sitemap for Vercel deployment
-const siteUrl = 'https://www.theorbittech.com';
+const siteUrl = 'https://theorbittech.com';
 const currentDate = new Date().toISOString();
 
 const sitemapUrls = [
