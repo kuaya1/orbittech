@@ -199,10 +199,10 @@ const Footer = () => {
           <motion.div variants={itemVariants}>
             <h4 className="text-white font-normal text-sm mb-6 tracking-wide">Locations</h4>
             <ul className="space-y-3">
-              <li><FooterLink href="/locations/loudoun-county">Loudoun County</FooterLink></li>
-              <li><FooterLink href="/locations/fairfax-county">Fairfax County</FooterLink></li>
-              <li><FooterLink href="/locations/arlington-county">Arlington County</FooterLink></li>
-              <li><FooterLink href="/locations/montgomery-county">Montgomery County</FooterLink></li>
+              <li><FooterLink href="/locations/loudoun-county-va">Loudoun County</FooterLink></li>
+              <li><FooterLink href="/locations/fairfax-county-va">Fairfax County</FooterLink></li>
+              <li><FooterLink href="/locations/arlington-county-va">Arlington County</FooterLink></li>
+              <li><FooterLink href="/locations/montgomery-county-md">Montgomery County</FooterLink></li>
             </ul>
           </motion.div>
 
