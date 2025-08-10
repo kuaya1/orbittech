@@ -171,11 +171,11 @@ const Hero: React.FC<HeroProps> = ({ className = '' }) => {
                   className="text-[2.15rem] sm:text-[2.85rem] lg:text-[3.19rem] xl:text-[3.825rem] font-bold tracking-tight"
                   variants={fadeInUp}
                 >
-                  <span className="block text-white leading-tight">
-                    The DMV's #1 Rated
+                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 leading-tight">
+                    Certified Starlink Installers
                   </span>
-                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 leading-tight mt-2">
-                    Starlink Installation Experts
+                  <span className="block text-white leading-tight mt-2">
+                    Serving the DMV Region
                   </span>
                 </motion.h1>
 
@@ -184,7 +184,7 @@ const Hero: React.FC<HeroProps> = ({ className = '' }) => {
                   className="text-lg sm:text-xl lg:text-2xl text-neutral-300 leading-relaxed max-w-2xl mx-auto lg:mx-0"
                   variants={fadeInUp}
                 >
-                  We deliver flawless Starlink installations and guarantee perfect Wi-Fi coverage throughout your entire home.
+                  From professional installation to whole-home Wi-Fi optimization—we ensure every corner gets blazing-fast internet.
                 </motion.p>
 
                 {/* CTA Buttons */}

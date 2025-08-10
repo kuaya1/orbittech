@@ -252,9 +252,6 @@ const Services: React.FC = () => {
       opacity: 1,
       y: 0,
       transition: {
-        type: "spring",
-        damping: 25,
-        stiffness: 100,
         duration: 0.6
       }
     }
@@ -320,12 +317,11 @@ const Services: React.FC = () => {
           variants={itemVariants}
         >
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
-            The DMV's #1 Rated
-            <span className="block text-blue-400 mt-2">Starlink Installer</span>
+            Your Complete
+            <span className="block text-blue-400 mt-2">Starlink Solution</span>
           </h2>
           <p className="mt-6 text-lg leading-8 text-neutral-300">
-            Certified professionals delivering flawless installations with speeds up to 250 Mbps. 
-            Serving Virginia, Maryland & DC with same-day service available.
+            From site assessment to final speed test, we handle every detail. Licensed, insured, and committed to perfection in every installation.
           </p>
         </motion.div>
 
