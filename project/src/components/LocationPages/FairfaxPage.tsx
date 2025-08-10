@@ -94,9 +94,9 @@ export const FairfaxPage: React.FC = () => {
 
             {/* Image */}
             <div className="relative">
-              <OptimizedImage
-                src="/starlink-installation-fairfax-va.jpg"
-                alt="Professional Starlink satellite internet installation in Fairfax County, Virginia by The Orbit Tech certified technicians"
+                            <OptimizedImage
+                src="/starlink-dish-installation.jpg"
+                alt="Professional Starlink installation in Fairfax County Virginia"
                 width={600}
                 height={400}
                 priority={true}

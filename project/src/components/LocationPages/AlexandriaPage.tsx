@@ -88,7 +88,7 @@ export const AlexandriaPage: React.FC = () => {
 
             <div className="relative">
               <OptimizedImage
-                src="/starlink-installation-alexandria-va.jpg"
+                src="/starlink-dish-installation.jpg"
                 alt="Professional Starlink satellite internet installation in Alexandria, Virginia including Old Town and Del Ray"
                 width={600}
                 height={400}

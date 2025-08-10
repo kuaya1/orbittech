@@ -1,18 +1,21 @@
 import blogPosts from '../data/blogPosts';
 import BlogPost from './BlogPost';
 import BlogPage from './BlogPage';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import SEOMetadata from './SEOMetadata';
 
 const Blog = () => {
   const location = useLocation();
-  const postId = new URLSearchParams(location.search).get('post');
+  const { postId } = useParams();
+  
+  // Support both URL parameters (/blog/post-id) and query parameters (/blog?post=post-id)
+  const currentPostId = postId || new URLSearchParams(location.search).get('post');
   
   // Add console logging for debugging
   console.log("Available posts:", blogPosts);
-  console.log("Looking for post ID:", postId);
+  console.log("Looking for post ID:", currentPostId);
   
-  const currentPost = postId ? blogPosts.find(post => post.id === postId) : null;
+  const currentPost = currentPostId ? blogPosts.find(post => post.id === currentPostId) : null;
   
   // Log the found post
   console.log("Found post:", currentPost);

@@ -50,8 +50,11 @@ const Navbar = () => {
     e.preventDefault();
     setIsMenuOpen(false);
     
-    // Handle hash links for smooth scrolling on the same page
-    if (path.startsWith('/#')) {
+    if (path === '/blog') {
+      // Navigate to blog page
+      window.location.href = '/blog';
+    } else if (path.startsWith('/#')) {
+      // Handle hash links for smooth scrolling on the same page
       const id = path.substring(2);
       setTimeout(() => {
         const element = document.getElementById(id);
@@ -69,7 +72,7 @@ const Navbar = () => {
   const navLinks = [
     { href: '/#services', label: 'Services' },
     { href: '/#availability-process', label: 'Coverage' },
-    { href: '/#featured-installations', label: 'Success Stories' },
+    { href: '/blog', label: 'Blog' },
     { href: '/#faq', label: 'FAQ' },
   ];
 

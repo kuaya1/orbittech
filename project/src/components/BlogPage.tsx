@@ -80,7 +80,7 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({ post, variant = 'default' }
     return (
       <article className="group relative bg-white rounded-3xl shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-[1.02]">
         <Link 
-          to={`/blog?post=${post.id}`}
+          to={`/blog/${post.id}`}
           className="block"
           aria-label={`Read article: ${post.title}`}
         >
@@ -155,7 +155,7 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({ post, variant = 'default' }
   return (
     <article className="group bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
       <Link 
-        to={`/blog?post=${post.id}`}
+        to={`/blog/${post.id}`}
         className="block h-full"
         aria-label={`Read article: ${post.title}`}
       >

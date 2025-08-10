@@ -91,12 +91,9 @@ export const LoudounPage: React.FC = () => {
 
             <div className="relative">
               <OptimizedImage
-                src="/starlink-installation-loudoun-county-va.jpg"
-                alt="Professional Starlink satellite internet installation in Loudoun County, Virginia including Leesburg and Sterling"
-                width={600}
-                height={400}
-                priority={true}
-                className="rounded-lg shadow-2xl"
+                src="/starlink-dish-installation.jpg"
+                alt="Professional Starlink installation in Loudoun County Virginia"
+                className="rounded-lg w-full h-64 object-cover"
               />
               
               <div className="absolute -bottom-6 -left-6 bg-purple-600 rounded-lg p-4 shadow-lg">

@@ -35,7 +35,7 @@ const BlogList: React.FC<BlogListProps> = ({ posts }) => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {posts.map((post) => (
               <article key={post.id} className="group bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
-                <Link to={`/blog?post=${post.id}`} className="block">
+                <Link to={`/blog/${post.id}`} className="block">
                   <div className="relative h-56 overflow-hidden">
                     <img
                       src={post.coverImage}

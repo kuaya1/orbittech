@@ -88,7 +88,7 @@ export const HowardCountyPage: React.FC = () => {
 
             <div className="relative">
               <OptimizedImage
-                src="/starlink-installation-howard-county-md.jpg"
+                src="/starlink-dish-installation.jpg"
                 alt="Professional Starlink satellite internet installation in Howard County, Maryland including Columbia and Ellicott City"
                 width={600}
                 height={400}

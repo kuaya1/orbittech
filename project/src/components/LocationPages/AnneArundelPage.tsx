@@ -89,7 +89,7 @@ export const AnneArundelPage: React.FC = () => {
 
             <div className="relative">
               <OptimizedImage
-                src="/starlink-installation-anne-arundel-county-md.jpg"
+                src="/starlink-dish-installation.jpg"
                 alt="Professional Starlink satellite internet installation in Anne Arundel County, Maryland including Annapolis and Glen Burnie"
                 width={600}
                 height={400}

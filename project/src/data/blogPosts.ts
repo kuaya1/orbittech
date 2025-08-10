@@ -5,7 +5,7 @@ const blogPosts: BlogPost[] = [
     id: "ultimate-starlink-installation-guide-dmv",
     title: "The Ultimate Guide to Starlink Installation in the DMV (Virginia, Maryland & DC)",
     excerpt: "A comprehensive guide to Starlink installation in the DMV area. Learn about professional installation, optimal setup locations, and everything you need to know about getting high-speed Starlink internet in DC, Maryland, and Virginia.",
-    coverImage: "/starlink-dmv-guide.jpg",
+    coverImage: "https://www.flickr.com/photo_download.gne?id=54393788136&secret=8a82df958e&size=l&source=photoPageEngagement",
     date: "2025-07-24",
     readTime: 15,
     author: {
@@ -184,7 +184,7 @@ Don't let poor internet hold you back. As the DMV's leading Starlink installatio
     id: "complete-satellite-internet-installation-dmv-guide",
     title: "The Complete Guide to Satellite Internet Installation in the DMV Area: Starlink, Kuiper & Professional Setup Services",
     excerpt: "Everything you need to know about satellite internet installation in Washington DC, Virginia, and Maryland. From Starlink to Amazon Kuiper, discover why professional installation is essential for optimal performance.",
-    coverImage: "https://www.flickr.com/photo_download.gne?id=54394043543&secret=e8036650ef&size=l&source=photoPageEngagement",
+    coverImage: "https://www.flickr.com/photo_download.gne?id=54667002412&secret=bfd9ae2c70&size=l&source=photoPageEngagement",
     date: "2025-07-21",
     readTime: 18,
     author: {
@@ -386,7 +386,7 @@ The satellite internet revolution is here, and the DMV area is at the forefront 
     id: "mesh-wifi-satellite-internet-dmv",
     title: "Mesh WiFi for Satellite Internet: Optimizing Your DMV Home Network",
     excerpt: "Maximize your satellite internet investment with professional mesh WiFi systems. Complete guide to whole-home coverage, device capacity, and seamless connectivity for DMV homes.",
-    coverImage: "https://www.flickr.com/photo_download.gne?id=54669833440&secret=bf3b523ac3&size=l&source=photoPageEngagement",
+    coverImage: "https://www.flickr.com/photo_download.gne?id=54667833431&secret=a20c5d88b6&size=l&source=photoPageEngagement",
     date: "2025-01-21",
     readTime: 12,
     author: {
@@ -917,7 +917,7 @@ As professional installers, we're committed to helping DMV residents navigate th
     id: "starlink-vs-kuiper-dmv-comparison",
     title: "Starlink vs Amazon Kuiper: Which Satellite Internet is Best for DMV Residents?",
     excerpt: "Professional analysis of Starlink and Amazon Kuiper for Virginia, Maryland, and DC residents. Technology comparison, performance expectations, and installation considerations.",
-    coverImage: "https://www.flickr.com/photo_download.gne?id=54668057968&secret=401e1aa675&size=l&source=photoPageEngagement",
+    coverImage: "https://www.flickr.com/photo_download.gne?id=54702618456&secret=3939897f75&size=l&source=photoPageEngagement",
     date: "2025-01-20",
     readTime: 10,
     author: {

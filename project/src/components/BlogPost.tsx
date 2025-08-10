@@ -176,7 +176,7 @@ const BlogPost: React.FC<BlogPostProps> = ({ post }) => {
               {relatedPosts.map((relatedPost) => (
                 <Link 
                   key={relatedPost.id} 
-                  to={`/blog?post=${relatedPost.id}`}
+                  to={`/blog/${relatedPost.id}`}
                   className="group block"
                 >
                   <div className="aspect-video w-full bg-surface-100 rounded-xl overflow-hidden mb-6">

@@ -112,8 +112,8 @@ export const WashingtonDCPage: React.FC = () => {
 
             <div className="relative">
               <OptimizedImage
-                src="/starlink-installation-washington-dc.jpg"
-                alt="Professional Starlink satellite internet installation in Washington, DC including Georgetown and Capitol Hill"
+                src="/starlink-dish-installation.jpg"
+                alt="Professional Starlink installation in Washington DC"
                 width={600}
                 height={400}
                 priority={true}

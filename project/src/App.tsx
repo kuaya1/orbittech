@@ -54,6 +54,7 @@ function App() {
               </main>
             } />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:postId" element={<Blog />} />
             <Route path="/faq" element={<FAQ />} />
             
             {/* Location Pages - Virginia */}

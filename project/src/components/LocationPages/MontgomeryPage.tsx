@@ -116,9 +116,9 @@ export const MontgomeryPage: React.FC = () => {
 
             {/* Image */}
             <div className="relative">
-              <OptimizedImage
-                src="/starlink-installation-montgomery-county-md.jpg"
-                alt="Professional Starlink satellite internet installation in Montgomery County, Maryland by certified technicians"
+                            <OptimizedImage
+                src="/starlink-dish-installation.jpg"
+                alt="Professional Starlink installation in Montgomery County Maryland"
                 width={600}
                 height={400}
                 priority={true}

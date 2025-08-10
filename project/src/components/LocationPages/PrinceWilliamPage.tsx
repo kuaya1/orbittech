@@ -88,9 +88,9 @@ export const PrinceWilliamPage: React.FC = () => {
             </div>
 
             <div className="relative">
-              <OptimizedImage
-                src="/starlink-installation-prince-william-county-va.jpg"
-                alt="Professional Starlink satellite internet installation in Prince William County, Virginia including Manassas and Woodbridge"
+                            <OptimizedImage
+                src="/starlink-dish-installation.jpg"
+                alt="Professional Starlink installation in Prince William County Virginia"
                 width={600}
                 height={400}
                 priority={true}

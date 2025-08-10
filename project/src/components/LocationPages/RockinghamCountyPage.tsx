@@ -87,9 +87,9 @@ export const RockinghamCountyPage: React.FC = () => {
             </div>
 
             <div className="relative">
-              <OptimizedImage
-                src="/starlink-installation-rockingham-county-va.jpg"
-                alt="Professional Starlink satellite internet installation in Rockingham County, Virginia including Harrisonburg and Broadway"
+                            <OptimizedImage
+                src="/starlink-dish-installation.jpg"
+                alt="Professional Starlink installation in Rockingham County Virginia"
                 width={600}
                 height={400}
                 priority={true}

@@ -87,9 +87,9 @@ export const ArlingtonPage: React.FC = () => {
             </div>
 
             <div className="relative">
-              <OptimizedImage
-                src="/starlink-installation-arlington-county-va.jpg"
-                alt="Professional Starlink satellite internet installation in Arlington County, Virginia near Pentagon and DC"
+                            <OptimizedImage
+                src="/starlink-dish-installation.jpg"
+                alt="Professional Starlink installation in Arlington County Virginia"
                 width={600}
                 height={400}
                 priority={true}

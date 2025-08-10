@@ -86,9 +86,9 @@ export const JeffersonCountyPage: React.FC = () => {
             </div>
 
             <div className="relative">
-              <OptimizedImage
-                src="/starlink-installation-jefferson-county-wv.jpg"
-                alt="Professional Starlink satellite internet installation in Jefferson County, West Virginia including Charles Town and Martinsburg"
+                            <OptimizedImage
+                src="/starlink-dish-installation.jpg"
+                alt="Professional Starlink installation in Jefferson County West Virginia"
                 width={600}
                 height={400}
                 priority={true}
