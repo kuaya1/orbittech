@@ -1,27 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   
   // Check if we're on a blog page
   const isBlogPage = location.pathname.includes('/blog');
 
   // --- Effects and Handlers ---
-
-  // Scroll effect to change navbar background
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      setIsScrolled(scrollTop > 20);
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   // Close mobile menu when clicking outside
   useEffect(() => {
@@ -45,25 +34,38 @@ const Navbar = () => {
     };
   }, [isMenuOpen]);
 
-  // Handles clicks on nav links to close the mobile menu and scroll smoothly
+  // Handles clicks on nav links to close the mobile menu and navigate properly
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
     e.preventDefault();
     setIsMenuOpen(false);
     
     if (path === '/blog') {
-      // Navigate to blog page
-      window.location.href = '/blog';
+      // Navigate to blog page using React Router
+      navigate('/blog');
     } else if (path.startsWith('/#')) {
-      // Handle hash links for smooth scrolling on the same page
+      // Handle hash links - navigate to home first if not already there, then scroll
       const id = path.substring(2);
-      setTimeout(() => {
+      if (location.pathname !== '/') {
+        navigate('/');
+        setTimeout(() => {
+          const element = document.getElementById(id);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 300); // Give time for page to load
+      } else {
+        // Already on home page, just scroll
         const element = document.getElementById(id);
         if (element) {
           element.scrollIntoView({ behavior: 'smooth' });
         }
-      }, 100);
+      }
     } else if (path === '/') {
+      // Navigate to home page
+      navigate('/');
+      setTimeout(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 100);
     }
   };
 
@@ -88,7 +90,10 @@ const Navbar = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Modern Logo */}
-            <a href="/" className="flex items-center group transition-transform duration-300 hover:scale-105" onClick={(e) => handleLinkClick(e, '/')}>
+            <button 
+              onClick={(e) => handleLinkClick(e as any, '/')} 
+              className="flex items-center group transition-transform duration-300 hover:scale-105 bg-transparent border-none p-0 cursor-pointer"
+            >
               <img 
                 src="/Starlink Dmv (33).png" 
                 alt="Orbittec Logo" 
@@ -98,7 +103,7 @@ const Navbar = () => {
                 width="120"
                 height="40"
               />
-            </a>
+            </button>
 
             {/* Modern Desktop Navigation */}
             <nav className="hidden lg:flex items-center space-x-8">
@@ -123,13 +128,12 @@ const Navbar = () => {
               >
                 (571) 999-6915
               </a>
-              <a
-                href="/#contact"
-                className="bg-white text-black font-semibold rounded-lg text-sm px-6 py-2.5 hover:bg-neutral-100 transition-all duration-300 shadow-lg hover:shadow-xl"
-                onClick={(e) => handleLinkClick(e, '/#contact')}
+              <button
+                onClick={(e) => handleLinkClick(e as any, '/#contact')}
+                className="bg-white text-black font-semibold rounded-lg text-sm px-6 py-2.5 hover:bg-neutral-100 transition-all duration-300 shadow-lg hover:shadow-xl border-none cursor-pointer"
               >
                 Get Quote
-              </a>
+              </button>
             </div>
 
             {/* Modern Mobile Menu Toggle */}
@@ -187,14 +191,13 @@ const Navbar = () => {
                 >
                   Call: (571) 999-6915
                 </a>
-                <a
-                  href="/#contact"
-                  className="block bg-white text-black font-semibold rounded-lg text-base px-6 py-4 text-center hover:bg-neutral-100 transition-all duration-300 shadow-lg animate-fade-in-up"
+                <button
+                  onClick={(e) => handleLinkClick(e as any, '/#contact')}
+                  className="block w-full bg-white text-black font-semibold rounded-lg text-base px-6 py-4 text-center hover:bg-neutral-100 transition-all duration-300 shadow-lg animate-fade-in-up border-none cursor-pointer"
                   style={{ animationDelay: `${(navLinks.length + 1) * 100}ms` }}
-                  onClick={(e) => handleLinkClick(e, '/#contact')}
                 >
                   Get Your Free Quote
-                </a>
+                </button>
               </div>
             </nav>
           </div>
