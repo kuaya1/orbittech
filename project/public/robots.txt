@@ -1,11 +1,7 @@
-# Robots.txt for The Orbit Tech
-# Generated on 2025-08-10T16:00:56.793Z
-
 User-agent: *
 Allow: /
 
 # Block admin and development paths
-Disallow: /admin/
 Disallow: /api/
 Disallow: /.well-known/
 Disallow: /private/
@@ -16,25 +12,6 @@ Disallow: /*?*fbclid
 Disallow: /*?*gclid
 Disallow: /*?*ref
 Disallow: /*?*source
-Disallow: /*#*
-
-# Block trailing slash variations
-Disallow: /*/
-
-User-agent: Googlebot
-Allow: /
-Crawl-delay: 0.5
 
 # Sitemap location
 Sitemap: https://theorbittech.com/sitemap.xml
-
-# Allow essential files
-Allow: /robots.txt
-Allow: /sitemap*.xml
-Allow: /*.css
-Allow: /*.js
-Allow: /*.png
-Allow: /*.jpg
-Allow: /*.jpeg
-Allow: /*.webp
-Allow: /*.svg
