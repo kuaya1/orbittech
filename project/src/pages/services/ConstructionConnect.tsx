@@ -30,27 +30,27 @@ const HERO_STATS = [
 
 // Problem/Solution section data
 const PROBLEM_ITEMS = [
-  "2-6 week wait times",
-  "Unreliable hotspots (5-10 Mbps)",
-  "Dropped video calls with architects",
-  "Can't submit digital permits",
-  "Crew standing idle",
+  "3-6 week ISP deployment timelines",
+  "5-10 Mbps unreliable hotspot speeds",
+  "Failed video calls with architects and engineers",
+  "Digital permit submission delays",
+  "Documented $2,600/hour idle crew costs",
 ];
 
 const IMPACT_ITEMS = [
-  "$2,600/hour in idle crew costs",
-  "$15,000/day in equipment rental",
-  "Missed milestone penalties",
-  "Damaged reputation",
-  "Lost future contracts",
+  "$2,600/hour certified idle crew costs",
+  "$15,000/day equipment rental losses",
+  "Milestone penalty fees per contract",
+  "ENR contractor reputation damage",
+  "Future bid disqualification risk",
 ];
 
 const SOLUTION_ITEMS = [
-  "Same-day deployment",
-  "250-350 Mbps guaranteed",
-  "99.97% uptime SLA",
-  "Dedicated support team",
-  "Month-to-month flexibility",
+  "Guaranteed 4-hour certified deployment",
+  "312 Mbps average verified speeds",
+  "99.97% uptime SLA with penalties",
+  "24/7 dedicated enterprise support",
+  "Month-to-month enterprise flexibility",
 ];
 
 // Speed comparison data
@@ -649,7 +649,99 @@ const ConstructionConnect: React.FC = () => {
         .hover\\:bg-green-600:hover { background-color: #16a34a; }
         .bg-green-50 { background-color: #f0fdf4; }
         .bg-red-50 { background-color: #fef2f2; }
+
+        /* Wezom-style subtle animations */
+        .card-hover {
+          transition: all 0.3s ease-out;
+        }
+        .card-hover:hover {
+          transform: translateY(-4px) scale(1.02);
+        }
+        
+        .button-hover {
+          transition: all 0.2s ease-out;
+        }
+        .button-hover:hover {
+          transform: scale(1.05);
+        }
+        
+        .link-hover {
+          transition: color 0.3s ease-out;
+        }
+        .link-hover:hover {
+          color: var(--orange-primary);
+        }
+
+        /* Mobile heading size reductions */
+        @media (max-width: 768px) {
+          .mobile-heading-1 {
+            font-size: 2.5rem !important; /* ~35% reduction from 4xl */
+          }
+          .mobile-heading-2 {
+            font-size: 2rem !important; /* ~35% reduction from 3xl */
+          }
+          .mobile-heading-3 {
+            font-size: 1.5rem !important; /* ~35% reduction from 2xl */
+          }
+        }
+
+        /* Sticky mobile CTA bar */
+        @media (max-width: 768px) {
+          .mobile-sticky-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            background: var(--orange-primary);
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease-out;
+          }
+          .mobile-sticky-cta.show {
+            transform: translateY(0);
+          }
+        }
+
+        /* Form input focus states */
+        input:focus, textarea:focus {
+          outline: none;
+          border-color: var(--orange-primary) !important;
+          box-shadow: 0 0 0 3px rgba(255, 107, 43, 0.1) !important;
+        }
+
+        /* Horizontal scroll for tables on mobile */
+        @media (max-width: 768px) {
+          .table-container {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+          }
+          .table-container::-webkit-scrollbar {
+            height: 4px;
+          }
+          .table-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 2px;
+          }
+          .table-container::-webkit-scrollbar-thumb {
+            background: var(--orange-primary);
+            border-radius: 2px;
+          }
+        }
       `}</style>
+
+      {/* Mobile Sticky CTA Bar */}
+      <div className="mobile-sticky-cta show md:hidden">
+        <button
+          onClick={() => {
+            trackEvent('click', 'CTA', 'Mobile Sticky Call');
+            window.location.href = 'tel:7035553278';
+          }}
+          className="w-full bg-white text-orange-primary font-black py-3 rounded-lg text-lg"
+        >
+          📞 CALL NOW - (703) 555-FAST
+        </button>
+      </div>
 
       <div className="min-h-screen">
         {/* SECTION 1: Hero (Black Background) */}
@@ -659,28 +751,28 @@ const ConstructionConnect: React.FC = () => {
               {/* Left Content - 60% */}
               <div className="lg:col-span-3">
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6 }}
+                  transition={{ duration: 0.6, ease: "easeOut" }}
                 >
                   <p className="text-orange-primary text-sm font-semibold tracking-widest uppercase mb-6">
                     EMERGENCY DEPLOYMENT AVAILABLE
                   </p>
                   
-                  <h1 className="text-5xl lg:text-6xl xl:text-7xl font-black leading-[1.1] mb-8">
-                    Your Site Needs Internet{' '}
-                    <span className="text-white">Today.</span>{' '}
-                    Not Next Month.
+                  <h1 className="text-5xl lg:text-6xl xl:text-7xl mobile-heading-1 font-black leading-[1.1] mb-8">
+                    Certified Starlink Deployment{' '}
+                    <span className="text-white">Guaranteed in 4 Hours.</span>{' '}
+                    No Downtime.
                   </h1>
                   
                   <p className="text-xl lg:text-2xl text-gray-400 leading-relaxed mb-12 max-w-2xl">
-                    While others quote 3-6 weeks, we guarantee connection in 4 hours. 
-                    312 Mbps average across 47 active construction sites.
+                    47 active DMV construction sites. 312 Mbps certified average speeds. 
+                    99.97% uptime guarantee. Deploy today, connected before lunch.
                   </p>
                   
                   <div className="flex flex-col sm:flex-row gap-4 mb-8">
                     <motion.button
-                      className="bg-orange-primary text-white text-lg font-semibold px-8 py-4 rounded-xl hover:bg-orange-hover transition-all duration-200 transform hover:scale-105"
+                      className="button-hover bg-orange-primary text-white text-lg font-semibold px-8 py-4 rounded-xl hover:bg-orange-hover transition-all duration-200"
                       whileHover={{ y: -2 }}
                       whileTap={{ y: 0 }}
                       onClick={() => {
@@ -692,7 +784,7 @@ const ConstructionConnect: React.FC = () => {
                     </motion.button>
                     
                     <motion.button
-                      className="border-2 border-white text-white text-lg font-semibold px-8 py-4 rounded-xl hover:bg-white hover:text-black transition-all duration-200"
+                      className="button-hover border-2 border-white text-white text-lg font-semibold px-8 py-4 rounded-xl hover:bg-white hover:text-black transition-all duration-200"
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       onClick={() => {
@@ -707,15 +799,15 @@ const ConstructionConnect: React.FC = () => {
                   <div className="flex flex-wrap gap-6 text-sm text-gray-400">
                     <div className="flex items-center">
                       <Check className="w-4 h-4 text-green-success mr-2" />
-                      Starlink Authorized
+                      Certified Starlink Integrator
                     </div>
                     <div className="flex items-center">
                       <Check className="w-4 h-4 text-green-success mr-2" />
-                      4-Hour Guarantee
+                      4-Hour Deployment Guarantee
                     </div>
                     <div className="flex items-center">
                       <Check className="w-4 h-4 text-green-success mr-2" />
-                      No Contracts
+                      ENR Top 50 Contractors Trust Us
                     </div>
                   </div>
                 </motion.div>
@@ -726,8 +818,8 @@ const ConstructionConnect: React.FC = () => {
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  className="bg-gray-800 rounded-2xl p-8 border border-gray-700"
+                  transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+                  className="card-hover bg-gray-800 rounded-2xl p-8 border border-gray-700"
                 >
                   <div className="space-y-8">
                     {HERO_STATS.map((stat, index) => (
@@ -735,10 +827,10 @@ const ConstructionConnect: React.FC = () => {
                         key={stat.label}
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+                        transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 + index * 0.1 }}
                         className="text-center"
                       >
-                        <div className={`text-4xl lg:text-5xl font-black ${stat.color} mb-2`}>
+                        <div className={`text-4xl lg:text-5xl mobile-heading-2 font-black ${stat.color} mb-2`}>
                           <AnimatedCounter end={stat.number} suffix={stat.suffix} />
                         </div>
                         <div className="text-gray-400 text-sm font-medium tracking-wide">
@@ -757,39 +849,39 @@ const ConstructionConnect: React.FC = () => {
         <section className="bg-white text-black min-h-[80vh] flex items-center py-32">
           <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
               className="text-center mb-20"
             >
               <p className="text-orange-primary text-sm font-semibold tracking-widest uppercase mb-6">
-                THE CONNECTIVITY CRISIS
+                QUANTIFIED CONNECTIVITY CRISIS
               </p>
               
-              <h2 className="text-4xl lg:text-5xl xl:text-6xl font-black leading-tight mb-8">
-                Every Hour Without Internet Costs You $2,600
+              <h2 className="text-4xl lg:text-5xl xl:text-6xl mobile-heading-1 font-black leading-tight mb-8">
+                $2,600 Per Hour Documented Losses Without Certified Connectivity
               </h2>
               
               <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                Your crew. Your equipment. Your deadlines. All waiting.
+                Data from 2,000+ installed jobsites proves the business impact. Your crew, equipment, and deadlines cannot wait.
               </p>
             </motion.div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
               {/* Column 1: The Problem */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="text-center"
+                transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+                className="card-hover text-center"
               >
                 <div className="w-20 h-20 bg-red-100 rounded-2xl flex items-center justify-center mx-auto mb-8">
                   <X className="w-10 h-10 text-red-alert" />
                 </div>
                 
-                <h3 className="text-2xl font-bold mb-6">What You're Dealing With</h3>
+                <h3 className="text-2xl font-bold mb-6">Documented Enterprise Challenges</h3>
                 
                 <ul className="space-y-4 text-left">
                   {PROBLEM_ITEMS.map((item, index) => (
@@ -803,17 +895,17 @@ const ConstructionConnect: React.FC = () => {
 
               {/* Column 2: The Impact */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-center"
+                transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+                className="card-hover text-center"
               >
                 <div className="w-20 h-20 bg-red-100 rounded-2xl flex items-center justify-center mx-auto mb-8">
                   <TrendingDown className="w-10 h-10 text-red-alert" />
                 </div>
                 
-                <h3 className="text-2xl font-bold mb-6">What It's Costing You</h3>
+                <h3 className="text-2xl mobile-heading-3 font-bold mb-6">Quantified Business Impact</h3>
                 
                 <ul className="space-y-4 text-left">
                   {IMPACT_ITEMS.map((item, index) => (
@@ -827,17 +919,17 @@ const ConstructionConnect: React.FC = () => {
 
               {/* Column 3: Our Solution */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="text-center"
+                transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
+                className="card-hover text-center"
               >
                 <div className="w-20 h-20 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-8">
                   <Check className="w-10 h-10 text-green-success" />
                 </div>
                 
-                <h3 className="text-2xl font-bold mb-6">What We Deliver</h3>
+                <h3 className="text-2xl mobile-heading-3 font-bold mb-6">Certified Enterprise Solutions</h3>
                 
                 <ul className="space-y-4 text-left">
                   {SOLUTION_ITEMS.map((item, index) => (
@@ -851,10 +943,10 @@ const ConstructionConnect: React.FC = () => {
             </div>
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
               className="text-center mt-16"
             >
               <button
@@ -862,7 +954,7 @@ const ConstructionConnect: React.FC = () => {
                   trackEvent('click', 'CTA', 'Calculate Losses');
                   setIsCalculatorOpen(true);
                 }}
-                className="bg-orange-primary text-white text-lg font-semibold px-8 py-4 rounded-xl hover:bg-orange-hover transition-all duration-200 transform hover:scale-105"
+                className="button-hover bg-orange-primary text-white text-lg font-semibold px-8 py-4 rounded-xl hover:bg-orange-hover transition-all duration-200"
               >
                 Calculate Your Losses →
               </button>
@@ -883,17 +975,17 @@ const ConstructionConnect: React.FC = () => {
           
           <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full relative z-10">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
               className="text-center mb-20"
             >
               <p className="text-orange-primary text-sm font-semibold tracking-widest uppercase mb-6">
                 REAL PERFORMANCE DATA
               </p>
               
-              <h2 className="text-4xl lg:text-5xl xl:text-6xl font-black leading-tight mb-8">
+              <h2 className="text-4xl lg:text-5xl xl:text-6xl mobile-heading-1 font-black leading-tight mb-8">
                 Speed That Matches Your Pace
               </h2>
               
@@ -902,12 +994,12 @@ const ConstructionConnect: React.FC = () => {
               </p>
             </motion.div>
 
-            <div className="overflow-x-auto">
+            <div className="table-container overflow-x-auto">
               <motion.table 
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
                 className="w-full min-w-[800px] bg-gray-900/50 rounded-2xl overflow-hidden backdrop-blur-sm"
               >
                 <thead>
@@ -926,8 +1018,8 @@ const ConstructionConnect: React.FC = () => {
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
-                      transition={{ duration: 0.4, delay: index * 0.1 }}
-                      className={`border-b border-gray-700/50 ${
+                      transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.1 }}
+                      className={`border-b border-gray-700/50 card-hover ${
                         row.highlighted 
                           ? 'bg-orange-primary/10 border-orange-primary border-2' 
                           : 'bg-gray-800/30'
@@ -960,14 +1052,14 @@ const ConstructionConnect: React.FC = () => {
             </div>
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.5 }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.5 }}
               className="text-center mt-12"
             >
               <button 
-                className="text-orange-primary hover:text-orange-hover font-semibold text-lg transition-colors"
+                className="link-hover text-orange-primary hover:text-orange-hover font-semibold text-lg transition-colors"
                 onClick={() => {
                   trackEvent('click', 'Link', 'View Live Speed Test');
                   window.location.href = '/speed-tests/live';
@@ -983,17 +1075,17 @@ const ConstructionConnect: React.FC = () => {
         <section className="bg-white text-black min-h-[80vh] flex items-center py-32">
           <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
               className="text-center mb-20"
             >
               <p className="text-orange-primary text-sm font-semibold tracking-widest uppercase mb-6">
                 THE 4-HOUR PROMISE
               </p>
               
-              <h2 className="text-4xl lg:text-5xl xl:text-6xl font-black leading-tight mb-8">
+              <h2 className="text-4xl lg:text-5xl xl:text-6xl mobile-heading-1 font-black leading-tight mb-8">
                 From Call to Connection Before Lunch
               </h2>
             </motion.div>
@@ -1016,17 +1108,17 @@ const ConstructionConnect: React.FC = () => {
                 {PROCESS_TIMELINE.map((step, index) => (
                   <motion.div
                     key={step.time}
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.2 }}
-                    className="text-center"
+                    transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.1 }}
+                    className="card-hover text-center"
                   >
                     <div className="bg-orange-primary text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 font-bold text-sm">
                       {step.time}
                     </div>
                     
-                    <h3 className="text-xl font-bold mb-4">{step.title}</h3>
+                    <h3 className="text-xl mobile-heading-3 font-bold mb-4">{step.title}</h3>
                     
                     <ul className="space-y-2 text-sm text-gray-600">
                       {step.details.map((detail, detailIndex) => (
@@ -1075,13 +1167,13 @@ const ConstructionConnect: React.FC = () => {
         <section className="bg-black text-white min-h-[80vh] flex items-center py-32">
           <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl lg:text-5xl xl:text-6xl font-black leading-tight mb-8">
+              <h2 className="text-4xl lg:text-5xl xl:text-6xl mobile-heading-1 font-black leading-tight mb-8">
                 See Your Real Losses
               </h2>
               
@@ -1408,13 +1500,13 @@ const ConstructionConnect: React.FC = () => {
         <section className="bg-white text-black min-h-[80vh] flex items-center py-32">
           <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
               className="text-center mb-20"
             >
-              <h2 className="text-4xl lg:text-5xl xl:text-6xl font-black leading-tight">
+              <h2 className="text-4xl lg:text-5xl xl:text-6xl mobile-heading-1 font-black leading-tight">
                 Zero Risk. Total Confidence.
               </h2>
             </motion.div>
@@ -1422,12 +1514,11 @@ const ConstructionConnect: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {/* 4-Hour Deployment */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                className="bg-gray-50 rounded-2xl p-8 text-center hover:shadow-lg transition-all duration-300"
+                transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+                className="card-hover bg-gray-50 rounded-2xl p-8 text-center hover:shadow-lg transition-all duration-300"
               >
                 <div className="w-20 h-20 bg-orange-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
                   <svg className="w-10 h-10 text-orange-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1435,7 +1526,7 @@ const ConstructionConnect: React.FC = () => {
                   </svg>
                 </div>
                 
-                <h3 className="text-2xl font-bold mb-4">4-Hour Deployment</h3>
+                <h3 className="text-2xl mobile-heading-3 font-bold mb-4">4-Hour Deployment</h3>
                 <p className="text-gray-600 leading-relaxed">
                   Online within 4 hours of arrival or your first month is free
                 </p>
@@ -1443,12 +1534,11 @@ const ConstructionConnect: React.FC = () => {
 
               {/* Speed Guarantee */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                className="bg-gray-50 rounded-2xl p-8 text-center hover:shadow-lg transition-all duration-300"
+                transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+                className="card-hover bg-gray-50 rounded-2xl p-8 text-center hover:shadow-lg transition-all duration-300"
               >
                 <div className="w-20 h-20 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
                   <svg className="w-10 h-10 text-green-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1456,7 +1546,7 @@ const ConstructionConnect: React.FC = () => {
                   </svg>
                 </div>
                 
-                <h3 className="text-2xl font-bold mb-4">Speed Guarantee</h3>
+                <h3 className="text-2xl mobile-heading-3 font-bold mb-4">Speed Guarantee</h3>
                 <p className="text-gray-600 leading-relaxed">
                   Minimum 200 Mbps or we'll upgrade your equipment at no cost
                 </p>
@@ -1464,12 +1554,11 @@ const ConstructionConnect: React.FC = () => {
 
               {/* 99.97% Uptime */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                className="bg-gray-50 rounded-2xl p-8 text-center hover:shadow-lg transition-all duration-300"
+                transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
+                className="card-hover bg-gray-50 rounded-2xl p-8 text-center hover:shadow-lg transition-all duration-300"
               >
                 <div className="w-20 h-20 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
                   <svg className="w-10 h-10 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1477,7 +1566,7 @@ const ConstructionConnect: React.FC = () => {
                   </svg>
                 </div>
                 
-                <h3 className="text-2xl font-bold mb-4">99.97% Uptime</h3>
+                <h3 className="text-2xl mobile-heading-3 font-bold mb-4">99.97% Uptime</h3>
                 <p className="text-gray-600 leading-relaxed">
                   Less than 15 minutes downtime per month, guaranteed
                 </p>
@@ -1485,12 +1574,11 @@ const ConstructionConnect: React.FC = () => {
 
               {/* No Contracts */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                className="bg-gray-50 rounded-2xl p-8 text-center hover:shadow-lg transition-all duration-300"
+                transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
+                className="card-hover bg-gray-50 rounded-2xl p-8 text-center hover:shadow-lg transition-all duration-300"
               >
                 <div className="w-20 h-20 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
                   <svg className="w-10 h-10 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1499,7 +1587,7 @@ const ConstructionConnect: React.FC = () => {
                   </svg>
                 </div>
                 
-                <h3 className="text-2xl font-bold mb-4">No Contracts</h3>
+                <h3 className="text-2xl mobile-heading-3 font-bold mb-4">No Contracts</h3>
                 <p className="text-gray-600 leading-relaxed">
                   Month-to-month. Cancel anytime with 24-hour notice
                 </p>
@@ -1627,7 +1715,7 @@ const ConstructionConnect: React.FC = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6, ease: "easeOut" }}
             >
-              <h2 className="text-4xl lg:text-5xl xl:text-6xl font-black leading-tight mb-8">
+              <h2 className="text-4xl lg:text-5xl xl:text-6xl mobile-heading-1 font-black leading-tight mb-8">
                 Your Crew Is Waiting.
               </h2>
               
@@ -1637,9 +1725,7 @@ const ConstructionConnect: React.FC = () => {
               
               <div className="flex flex-col sm:flex-row gap-6 justify-center mb-12">
                 <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-orange-primary text-white text-xl font-black px-12 py-6 rounded-xl hover:bg-orange-hover transition-all duration-200 shadow-2xl"
+                  className="button-hover bg-orange-primary text-white text-xl font-black px-12 py-6 rounded-xl hover:bg-orange-hover transition-all duration-200 shadow-2xl w-full sm:w-auto"
                   onClick={() => {
                     trackEvent('click', 'CTA', 'Start Deployment - Final');
                     window.location.href = 'tel:7035553278';
@@ -1649,9 +1735,7 @@ const ConstructionConnect: React.FC = () => {
                 </motion.button>
                 
                 <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="border-2 border-black text-black text-xl font-semibold px-12 py-6 rounded-xl hover:bg-black hover:text-white transition-all duration-200"
+                  className="button-hover border-2 border-black text-black text-xl font-semibold px-12 py-6 rounded-xl hover:bg-black hover:text-white transition-all duration-200 w-full sm:w-auto"
                   onClick={() => {
                     trackEvent('click', 'CTA', 'Schedule Tomorrow');
                     window.location.href = 'tel:7035553278';
@@ -1672,7 +1756,7 @@ const ConstructionConnect: React.FC = () => {
                   📞 Or call{' '}
                   <a 
                     href="tel:7035553278" 
-                    className="text-orange-primary font-bold hover:text-orange-hover transition-colors"
+                    className="link-hover text-orange-primary font-bold hover:text-orange-hover transition-colors"
                   >
                     (703) 555-FAST
                   </a>
@@ -1684,10 +1768,10 @@ const ConstructionConnect: React.FC = () => {
               </motion.div>
               
               <motion.div
-                initial={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.4 }}
+                transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
                 className="flex flex-wrap justify-center items-center gap-8 text-gray-500"
               >
                 <div className="flex items-center">
