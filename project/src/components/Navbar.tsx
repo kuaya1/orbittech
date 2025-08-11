@@ -76,6 +76,7 @@ const Navbar = () => {
 
   const navLinks = [
     { href: '/#services', label: 'Services' },
+    { href: '/services/construction-connect', label: 'Construction Connect' },
     { href: '/#availability-process', label: 'Coverage' },
     { href: '/blog', label: 'Blog' },
     { href: '/#faq', label: 'FAQ' },
