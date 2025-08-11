@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence, useInView, useAnimation } from 'framer-motion';
+import { motion, AnimatePresence, useInView } from 'framer-motion';
 import SEOMetadata from '@/components/SEOMetadata';
 import injectSchema from '@/components/SchemaInjector';
+import { X, Check, TrendingDown } from 'lucide-react';
 
 // Console easter egg
-console.log("🚧 Construction Connect: We build internet faster than you build buildings!");
+console.log("🚧 Construction Connect: Enterprise-grade connectivity in 4 hours, not 4 weeks.");
 
 // Types for ROI Calculator
 interface ROIInputs {
@@ -19,267 +20,118 @@ interface ROICalculation {
   annualSavings: number;
 }
 
-// Trust ticker data
-const ACTIVE_SITES = [
-  { name: "PEPCO HQ", speed: "240 Mbps", days: null },
-  { name: "Tysons Tower", speed: null, days: 47 },
-  { name: "Dulles Site", speed: "315 Mbps", days: null },
-  { name: "Navy Yard", speed: "280 Mbps", days: null },
-  { name: "Alexandria Plaza", speed: null, days: 89 },
-  { name: "Bethesda Metro", speed: "295 Mbps", days: null },
+// Hero stats data
+const HERO_STATS = [
+  { number: 47, label: "Active Sites", suffix: "", color: "text-orange-primary" },
+  { number: 312, label: "Average Speed", suffix: " Mbps", color: "text-white" },
+  { number: 4, label: "Deployment Time", suffix: " Hours", color: "text-white" },
+  { number: 99.97, label: "Uptime", suffix: "%", color: "text-green-success" },
 ] as const;
 
-// Timeline data
-const TIMELINE_STEPS = [
-  { hour: 0, time: "8:00 AM", label: "Emergency Call", detail: "Immediate response, no wait time" },
-  { hour: 1, time: "9:00 AM", label: "Team Arrives", detail: "Equipment ready, site survey" },
-  { hour: 2, time: "10:00 AM", label: "Installation", detail: "Hardware mount & configuration" },
-  { hour: 3, time: "11:00 AM", label: "Testing", detail: "Speed verification, redundancy check" },
-  { hour: 4, time: "12:00 PM", label: "Site Online", detail: "Full deployment complete" },
-] as const;
+// Problem/Solution section data
+const PROBLEM_ITEMS = [
+  "2-6 week wait times",
+  "Unreliable hotspots (5-10 Mbps)",
+  "Dropped video calls with architects",
+  "Can't submit digital permits",
+  "Crew standing idle",
+];
 
-// Live sites data for overwhelming social proof
-const LIVE_SITES = [
-  { name: "McLean Tower", speed: 312, days: 67, contractor: "Walsh Group" },
-  { name: "Dulles Phase 2", speed: 287, days: 23, contractor: "Clark Construction" },
-  { name: "Navy Yard", speed: 294, days: 101, contractor: "Whiting-Turner" },
-  { name: "Tysons Corner", speed: 329, days: 45, contractor: "HITT" },
-  { name: "Alexandria Depot", speed: 276, days: 89, contractor: "Balfour Beatty" },
-  { name: "Rockville Center", speed: 301, days: 12, contractor: "Gilbane" },
-] as const;
+const IMPACT_ITEMS = [
+  "$2,600/hour in idle crew costs",
+  "$15,000/day in equipment rental",
+  "Missed milestone penalties",
+  "Damaged reputation",
+  "Lost future contracts",
+];
 
-// Service packages with strategic pricing
-const SERVICE_PACKAGES = [
+const SOLUTION_ITEMS = [
+  "Same-day deployment",
+  "250-350 Mbps guaranteed",
+  "99.97% uptime SLA",
+  "Dedicated support team",
+  "Month-to-month flexibility",
+];
+
+// Speed comparison data
+const SPEED_COMPARISON = [
   {
-    name: "ESSENTIAL",
-    price: 799,
-    badge: null,
-    recommended: false,
-    features: [
-      { name: "250+ Mbps Starlink", included: true },
-      { name: "24/7 Monitoring", included: true },
-      { name: "Site-to-office VPN", included: true },
-      { name: "Construction WiFi", included: true },
-      { name: "Redundant backup", included: false },
-      { name: "Priority support", included: false },
-      { name: "Multi-site mesh", included: false },
+    provider: "The Orbit Tech",
+    speed: "312 Mbps avg",
+    deployment: "4 hours",
+    reliability: "99.97%",
+    cost: "$899/mo",
+    highlighted: true
+  },
+  {
+    provider: "Traditional ISP",
+    speed: "100 Mbps max",
+    deployment: "3-6 weeks",
+    reliability: "94%",
+    cost: "$599/mo + install",
+    highlighted: false
+  },
+  {
+    provider: "5G Hotspots",
+    speed: "5-50 Mbps",
+    deployment: "Same day",
+    reliability: "67%",
+    cost: "$299/mo",
+    highlighted: false
+  },
+  {
+    provider: "Competitor Satellite",
+    speed: "25-100 Mbps",
+    deployment: "2 weeks",
+    reliability: "89%",
+    cost: "$799/mo",
+    highlighted: false
+  }
+];
+
+// Process timeline data
+const PROCESS_TIMELINE = [
+  {
+    time: "8:00 AM",
+    title: "You Call",
+    details: [
+      "Speak directly with our construction team",
+      "Get immediate confirmation"
     ]
   },
   {
-    name: "SITE COMMAND",
-    price: 1299,
-    badge: "Most sites choose this",
-    recommended: true,
-    features: [
-      { name: "250+ Mbps Starlink", included: true },
-      { name: "24/7 Monitoring", included: true },
-      { name: "Site-to-office VPN", included: true },
-      { name: "Construction WiFi", included: true },
-      { name: "Redundant backup", included: true },
-      { name: "Priority support", included: true },
-      { name: "Multi-site mesh", included: false },
+    time: "9:00 AM",
+    title: "We Arrive",
+    details: [
+      "Full equipment ready",
+      "Site survey completed"
     ]
   },
   {
-    name: "ENTERPRISE MESH",
-    price: 2499,
-    badge: "For 100+ workers",
-    recommended: false,
-    features: [
-      { name: "250+ Mbps Starlink", included: true },
-      { name: "24/7 Monitoring", included: true },
-      { name: "Site-to-office VPN", included: true },
-      { name: "Construction WiFi", included: true },
-      { name: "Redundant backup", included: true },
-      { name: "Priority support", included: true },
-      { name: "Multi-site mesh", included: true },
+    time: "10:30 AM",
+    title: "Installation Begins",
+    details: [
+      "Professional mounting",
+      "Weatherproofing included"
+    ]
+  },
+  {
+    time: "11:30 AM",
+    title: "Testing & Optimization",
+    details: [
+      "Speed verification",
+      "Network configuration"
+    ]
+  },
+  {
+    time: "12:00 PM",
+    title: "You're Online",
+    details: [
+      "312 Mbps average",
+      "Full team connected"
     ]
   }
-] as const;
-
-// Yesterday's actual speed tests for credibility
-const SPEED_TESTS = [
-  { location: "Dulles Phase 2", time: "2:47 PM", download: 287, upload: 45 },
-  { location: "Navy Yard Site", time: "11:23 AM", download: 294, upload: 52 },
-  { location: "McLean Tower", time: "9:15 AM", download: 312, upload: 48 },
-  { location: "Tysons Corner", time: "4:32 PM", download: 329, upload: 61 },
-  { location: "Alexandria Depot", time: "1:08 PM", download: 276, upload: 43 },
-] as const;
-
-const StatusBar: React.FC = () => {
-  const [activeSites, setActiveSites] = useState(0);
-  
-  useEffect(() => {
-    const duration = 2000; // 2 seconds
-    const steps = 47;
-    const increment = Math.ceil(duration / steps);
-    
-    let current = 0;
-    const timer = setInterval(() => {
-      if (current < 47) {
-        setActiveSites(prev => prev + 1);
-        current++;
-      } else {
-        clearInterval(timer);
-      }
-    }, increment);
-    
-    return () => clearInterval(timer);
-  }, []);
-
-  return (
-    <div className="w-full bg-space-black border-b border-gray-800">
-      <div className="container mx-auto px-4 py-2 flex items-center justify-between text-sm">
-        <div className="flex items-center space-x-2">
-          <motion.div
-            animate={{
-              scale: [1, 1.2, 1],
-              opacity: [1, 0.8, 1],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            className="w-2 h-2 rounded-full bg-success-green"
-          />
-          <span className="text-success-green font-medium">OPERATIONAL</span>
-        </div>
-        <div className="flex items-center space-x-6">
-          <div className="flex items-center">
-            <motion.span 
-              className="text-construction-orange font-medium mr-1"
-              key={activeSites}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-            >
-              {activeSites}
-            </motion.span>
-            <span className="text-gray-400">Active Sites</span>
-          </div>
-          <div className="text-gray-400">
-            <span className="text-success-green font-medium">99.97%</span> Uptime Today
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-// Warning Banner Component
-const WarningBanner: React.FC = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [isDismissed, setIsDismissed] = useState(false);
-
-  useEffect(() => {
-    // Show banner after 10 seconds
-    const timer = setTimeout(() => {
-      if (!isDismissed) {
-        setIsVisible(true);
-      }
-    }, 10000);
-
-    // Show again if user scrolls to top after dismissing
-    const handleScroll = () => {
-      if (isDismissed && window.scrollY < 100) {
-        setIsDismissed(false);
-        setIsVisible(true);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      clearTimeout(timer);
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [isDismissed]);
-
-  if (!isVisible || isDismissed) return null;
-
-  return (
-    <motion.div
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      exit={{ y: -100, opacity: 0 }}
-      className="fixed top-0 left-0 right-0 z-50 bg-red-600 text-white px-4 py-3 shadow-lg"
-    >
-      <div className="container mx-auto flex items-center justify-between">
-        <div className="flex items-center space-x-2">
-          <span>⚠️</span>
-          <span className="font-medium">
-            PERMIT DELAYS WITHOUT INTERNET: Average 6.3 days | $52,000 lost revenue
-          </span>
-        </div>
-        <button
-          onClick={() => {
-            setIsVisible(false);
-            setIsDismissed(true);
-          }}
-          className="text-white hover:text-gray-300 font-bold text-xl"
-        >
-          ×
-        </button>
-      </div>
-    </motion.div>
-  );
-};
-
-// Mobile Sticky CTA
-const MobileStickyCTA: React.FC = () => {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsVisible(window.innerWidth < 768);
-    };
-
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
-  if (!isVisible) return null;
-
-  return (
-    <div className="fixed bottom-0 left-0 right-0 z-40 bg-construction-orange px-4 py-3 shadow-lg md:hidden">
-      <a
-        href="tel:7035553278"
-        className="block text-center text-white font-bold text-lg"
-      >
-        📞 CALL NOW: (703) 555-FAST
-      </a>
-    </div>
-  );
-};
-
-// Particle Effect Component
-const ParticleEffect: React.FC = () => {
-  const particles = Array.from({ length: 50 }, (_, i) => i);
-
-  return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {particles.map((particle) => (
-        <motion.div
-          key={particle}
-          className="absolute w-1 h-1 bg-white rounded-full"
-          style={{
-            left: `${Math.random() * 100}%`,
-            opacity: Math.random() * 0.1 + 0.05,
-          }}
-          animate={{
-            y: [typeof window !== 'undefined' ? window.innerHeight : 800, -100],
-          }}
-          transition={{
-            duration: Math.random() * 10 + 10,
-            repeat: Infinity,
-            ease: "linear",
-            delay: Math.random() * 10,
-          }}
-        />
-      ))}
-    </div>
-  );
-};
+];
 
 // Analytics tracking function
 declare global {
@@ -299,145 +151,437 @@ const trackEvent = (eventName: string, category: string, label: string, value?: 
   console.log(`Analytics: ${category} - ${label}`, value);
 };
 
-// Live Site Map Component
-const LiveSiteMap: React.FC = () => {
-  const mapSites = [
-    { name: "McLean Tower", lat: 38.9338, lng: -77.2297, speed: 312, status: "online" },
-    { name: "Dulles Phase 2", lat: 38.9445, lng: -77.4558, speed: 287, status: "online" },
-    { name: "Navy Yard", lat: 38.8765, lng: -77.0074, speed: 294, status: "online" },
-    { name: "Tysons Corner", lat: 38.9189, lng: -77.2300, speed: 329, status: "online" },
-    { name: "Alexandria", lat: 38.8048, lng: -77.0469, speed: 276, status: "online" },
-    { name: "Rockville", lat: 39.0840, lng: -77.1528, speed: 301, status: "online" },
-  ];
+// Animated Counter Component
+const AnimatedCounter: React.FC<{ end: number; suffix?: string; duration?: number }> = ({ 
+  end, 
+  suffix = "", 
+  duration = 2000 
+}) => {
+  const [count, setCount] = useState(0);
+  const countRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(countRef, { once: true });
+
+  useEffect(() => {
+    if (isInView) {
+      const startTime = Date.now();
+      const endTime = startTime + duration;
+      
+      const updateCount = () => {
+        const now = Date.now();
+        const progress = Math.min((now - startTime) / duration, 1);
+        const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+        
+        setCount(end * easeOutQuart);
+        
+        if (now < endTime) {
+          requestAnimationFrame(updateCount);
+        } else {
+          setCount(end);
+        }
+      };
+      
+      requestAnimationFrame(updateCount);
+    }
+  }, [isInView, end, duration]);
 
   return (
-    <div className="bg-gray-800 rounded-lg aspect-square relative overflow-hidden">
-      {/* DMV Region Background */}
-      <div 
-        className="absolute inset-0 bg-gray-700 opacity-30"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20,20 L80,20 L80,80 L20,80 Z' fill='none' stroke='%23374151' stroke-width='1'/%3E%3C/svg%3E")`,
-          backgroundSize: '20px 20px'
-        }}
-      />
-      
-      {/* Map Title */}
-      <div className="absolute top-4 left-4 z-20">
-        <h3 className="text-white font-bold text-sm">LIVE DMV SITES</h3>
-        <p className="text-gray-400 text-xs">Real-time status</p>
-      </div>
-
-      {/* Site Dots */}
-      {mapSites.map((site, index) => (
-        <motion.div
-          key={site.name}
-          className="absolute"
-          style={{
-            left: `${20 + (index % 3) * 25}%`,
-            top: `${25 + Math.floor(index / 3) * 30}%`,
-          }}
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ delay: index * 0.2 }}
-        >
-          {/* Pulsing Ring */}
-          <motion.div
-            className="absolute w-8 h-8 rounded-full bg-success-green/20 -translate-x-1/2 -translate-y-1/2"
-            animate={{
-              scale: [1, 1.5, 1],
-              opacity: [0.3, 0.1, 0.3],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              delay: index * 0.3,
-            }}
-          />
-          
-          {/* Site Dot */}
-          <motion.div
-            className="relative w-3 h-3 rounded-full bg-success-green -translate-x-1/2 -translate-y-1/2 cursor-pointer"
-            whileHover={{ scale: 1.5 }}
-          />
-          
-          {/* Tooltip on Hover */}
-          <motion.div
-            className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 bg-black text-white text-xs px-2 py-1 rounded opacity-0 pointer-events-none"
-            whileHover={{ opacity: 1 }}
-          >
-            <div className="text-center">
-              <p className="font-bold">{site.name}</p>
-              <p className="text-success-green">{site.speed} Mbps</p>
-            </div>
-          </motion.div>
-        </motion.div>
-      ))}
-
-      {/* Live Indicator */}
-      <div className="absolute bottom-4 right-4">
-        <div className="flex items-center space-x-2">
-          <motion.div
-            className="w-2 h-2 rounded-full bg-success-green"
-            animate={{ opacity: [1, 0.5, 1] }}
-            transition={{ duration: 1, repeat: Infinity }}
-          />
-          <span className="text-xs text-success-green font-medium">LIVE</span>
-        </div>
-      </div>
+    <div ref={countRef}>
+      {end % 1 === 0 ? Math.floor(count) : count.toFixed(2)}{suffix}
     </div>
   );
 };
 
-// Form submission handler
-const handleDeployRequest = async (plan: string, source: string = 'construction-connect') => {
-  try {
-    trackEvent('click', 'CTA', `Deploy ${plan} - ${source}`, 1299);
-    
-    // TODO: Replace with actual API endpoint
-    const response = await fetch('/api/deploy-request', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ 
-        plan, 
-        source,
-        timestamp: new Date().toISOString(),
-        page: 'construction-connect'
-      })
-    });
+// ROI Calculator Modal Component
+const ROICalculatorModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen, onClose }) => {
+  const [inputs, setInputs] = useState<ROIInputs>({
+    crewSize: 20,
+    hourlyRate: 65,
+    hoursLost: 8
+  });
 
-    if (response.ok) {
-      // Success - could redirect to calendar booking or thank you page
-      window.location.href = '/book-deployment';
-    } else {
-      // Fallback to phone call
-      window.location.href = 'tel:7035553278';
+  const [results, setResults] = useState<ROICalculation | null>(null);
+
+  const calculateROI = () => {
+    const weeklyLoss = inputs.crewSize * inputs.hourlyRate * inputs.hoursLost;
+    const monthlyLoss = weeklyLoss * 4;
+    const annualSavings = monthlyLoss * 12 * 0.9;
+
+    setResults({
+      weeklyLoss,
+      monthlyLoss,
+      annualSavings
+    });
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    const numValue = Math.max(0, parseInt(value) || 0);
+    
+    setInputs(prev => ({
+      ...prev,
+      [name]: numValue
+    }));
+  };
+
+  if (!isOpen) return null;
+
+  return (
+    <AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4"
+        onClick={onClose}
+      >
+        <motion.div
+          initial={{ scale: 0.95, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0.95, opacity: 0 }}
+          className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="p-8">
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-2xl font-bold text-black">Calculate Your Losses</h3>
+              <button
+                onClick={onClose}
+                className="text-gray-400 hover:text-gray-600 transition-colors"
+              >
+                <X size={24} />
+              </button>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              <div className="space-y-2">
+                <label htmlFor="crewSize" className="block text-sm font-medium text-gray-600">
+                  Crew Size
+                </label>
+                <input
+                  id="crewSize"
+                  type="number"
+                  name="crewSize"
+                  value={inputs.crewSize}
+                  onChange={handleInputChange}
+                  className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-black focus:outline-none focus:ring-2 focus:ring-orange-primary"
+                  min="1"
+                />
+              </div>
+              
+              <div className="space-y-2">
+                <label htmlFor="hourlyRate" className="block text-sm font-medium text-gray-600">
+                  Hourly Rate ($)
+                </label>
+                <input
+                  id="hourlyRate"
+                  type="number"
+                  name="hourlyRate"
+                  value={inputs.hourlyRate}
+                  onChange={handleInputChange}
+                  className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-black focus:outline-none focus:ring-2 focus:ring-orange-primary"
+                  min="1"
+                />
+              </div>
+              
+              <div className="space-y-2">
+                <label htmlFor="hoursLost" className="block text-sm font-medium text-gray-600">
+                  Hours Lost/Week
+                </label>
+                <input
+                  id="hoursLost"
+                  type="number"
+                  name="hoursLost"
+                  value={inputs.hoursLost}
+                  onChange={handleInputChange}
+                  className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-black focus:outline-none focus:ring-2 focus:ring-orange-primary"
+                  min="0"
+                  max="168"
+                />
+              </div>
+            </div>
+
+            <button
+              onClick={calculateROI}
+              className="w-full bg-orange-primary text-white font-semibold py-4 rounded-lg mb-8 hover:bg-orange-hover transition-colors"
+            >
+              Calculate Losses
+            </button>
+
+            {results && (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                <div className="bg-red-50 p-6 rounded-lg">
+                  <p className="text-sm text-gray-600 mb-2">Weekly Loss</p>
+                  <p className="text-3xl font-bold text-red-alert">
+                    ${results.weeklyLoss.toLocaleString()}
+                  </p>
+                </div>
+                <div className="bg-red-50 p-6 rounded-lg">
+                  <p className="text-sm text-gray-600 mb-2">Monthly Loss</p>
+                  <p className="text-4xl font-bold text-red-alert">
+                    ${results.monthlyLoss.toLocaleString()}
+                  </p>
+                </div>
+                <div className="bg-green-50 p-6 rounded-lg">
+                  <p className="text-sm text-gray-600 mb-2">Annual Savings</p>
+                  <p className="text-3xl font-bold text-green-success">
+                    ${results.annualSavings.toLocaleString()}
+                  </p>
+                </div>
+              </div>
+            )}
+
+            {results && (
+              <div className="mt-8 text-center">
+                <button 
+                  className="bg-green-success text-white font-semibold py-4 px-8 rounded-lg hover:bg-green-600 transition-colors"
+                  onClick={() => {
+                    trackEvent('click', 'CTA', 'Stop Losing Money - Modal', results.monthlyLoss);
+                    window.location.href = 'tel:7035553278';
+                  }}
+                >
+                  Stop Losing Money - Deploy Now
+                </button>
+              </div>
+            )}
+          </div>
+        </motion.div>
+      </motion.div>
+    </AnimatePresence>
+  );
+};
+
+// Inline ROI Calculator Component
+const InlineROICalculator: React.FC = () => {
+  const [inputs, setInputs] = useState<ROIInputs>({
+    crewSize: 20,
+    hourlyRate: 65,
+    hoursLost: 8
+  });
+
+  const [results, setResults] = useState<ROICalculation | null>(null);
+
+  // Calculate in real-time as user types
+  useEffect(() => {
+    const weeklyLoss = inputs.crewSize * inputs.hourlyRate * inputs.hoursLost;
+    const monthlyLoss = weeklyLoss * 4;
+    const annualSavings = monthlyLoss * 12 * 0.9;
+
+    setResults({
+      weeklyLoss,
+      monthlyLoss,
+      annualSavings
+    });
+  }, [inputs]);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    const numValue = Math.max(0, parseInt(value) || 0);
+    
+    setInputs(prev => ({
+      ...prev,
+      [name]: numValue
+    }));
+  };
+
+  const orbitTechMonthlyCost = 899;
+  const monthlySavings = results ? results.monthlyLoss - orbitTechMonthlyCost : 0;
+
+  return (
+    <div className="max-w-6xl mx-auto">
+      {/* Input Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="bg-gray-800 rounded-2xl p-8 mb-12"
+      >
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="space-y-3">
+            <label className="block text-white font-semibold text-lg">
+              Crew Size
+            </label>
+            <input
+              type="number"
+              name="crewSize"
+              value={inputs.crewSize}
+              onChange={handleInputChange}
+              className="w-full bg-gray-700 border-2 border-gray-600 rounded-xl px-6 py-4 text-white text-2xl font-bold focus:outline-none focus:border-orange-primary transition-colors"
+              min="1"
+            />
+          </div>
+          
+          <div className="space-y-3">
+            <label className="block text-white font-semibold text-lg">
+              Hourly Rate ($)
+            </label>
+            <input
+              type="number"
+              name="hourlyRate"
+              value={inputs.hourlyRate}
+              onChange={handleInputChange}
+              className="w-full bg-gray-700 border-2 border-gray-600 rounded-xl px-6 py-4 text-white text-2xl font-bold focus:outline-none focus:border-orange-primary transition-colors"
+              min="1"
+            />
+          </div>
+          
+          <div className="space-y-3">
+            <label className="block text-white font-semibold text-lg">
+              Hours Lost/Week
+            </label>
+            <input
+              type="number"
+              name="hoursLost"
+              value={inputs.hoursLost}
+              onChange={handleInputChange}
+              className="w-full bg-gray-700 border-2 border-gray-600 rounded-xl px-6 py-4 text-white text-2xl font-bold focus:outline-none focus:border-orange-primary transition-colors"
+              min="0"
+              max="168"
+            />
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Results Section */}
+      {results && (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+          className="space-y-8"
+        >
+          {/* Loss Stats */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            <div className="text-center">
+              <p className="text-gray-400 text-lg mb-3">Weekly Loss</p>
+              <motion.p 
+                key={results.weeklyLoss}
+                initial={{ scale: 1.1 }}
+                animate={{ scale: 1 }}
+                className="text-4xl lg:text-5xl font-black text-red-alert"
+              >
+                $<AnimatedCounter end={results.weeklyLoss} suffix="" />
+              </motion.p>
+            </div>
+            
+            <div className="text-center">
+              <p className="text-gray-400 text-lg mb-3">Monthly Loss</p>
+              <motion.p 
+                key={results.monthlyLoss}
+                initial={{ scale: 1.1 }}
+                animate={{ scale: 1 }}
+                className="text-5xl lg:text-6xl font-black text-red-alert"
+              >
+                $<AnimatedCounter end={results.monthlyLoss} suffix="" />
+              </motion.p>
+            </div>
+            
+            <div className="text-center">
+              <p className="text-gray-400 text-lg mb-3">Annual Impact</p>
+              <motion.p 
+                key={results.annualSavings}
+                initial={{ scale: 1.1 }}
+                animate={{ scale: 1 }}
+                className="text-4xl lg:text-5xl font-black text-red-alert"
+              >
+                $<AnimatedCounter end={results.annualSavings} suffix="" />
+              </motion.p>
+            </div>
+          </div>
+
+          {/* Savings Comparison */}
+          <div className="bg-green-900/20 border-2 border-green-success rounded-2xl p-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+              <div className="text-center">
+                <p className="text-gray-400 text-lg mb-3">With Orbit Tech</p>
+                <p className="text-3xl font-black text-green-success">
+                  ${orbitTechMonthlyCost}/month
+                </p>
+              </div>
+              
+              <div className="text-center">
+                <p className="text-gray-400 text-lg mb-3">YOU SAVE</p>
+                <motion.p 
+                  key={monthlySavings}
+                  initial={{ scale: 1.1 }}
+                  animate={{ scale: 1 }}
+                  className="text-5xl lg:text-6xl font-black text-green-success"
+                >
+                  $<AnimatedCounter end={monthlySavings} suffix="/month" />
+                </motion.p>
+              </div>
+            </div>
+          </div>
+
+          {/* CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="text-center"
+          >
+            <button
+              onClick={() => {
+                trackEvent('click', 'CTA', 'Stop The Bleeding - Inline Calculator', results.monthlyLoss);
+                window.location.href = 'tel:7035553278';
+              }}
+              className="bg-orange-primary text-white text-2xl font-black px-12 py-6 rounded-xl hover:bg-orange-hover transition-all duration-200 transform hover:scale-105 shadow-2xl"
+            >
+              STOP THE BLEEDING →
+            </button>
+          </motion.div>
+        </motion.div>
+      )}
+    </div>
+  );
+};
+
+// Live Cost Counter Component
+const LiveCostCounter: React.FC = () => {
+  const [cost, setCost] = useState(0);
+  const startTimeRef = useRef<number | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const counterRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(counterRef, { once: true });
+
+  useEffect(() => {
+    if (isInView && !isVisible) {
+      setIsVisible(true);
+      startTimeRef.current = Date.now();
     }
-  } catch (error) {
-    console.error('Deploy request failed:', error);
-    // Fallback to phone call
-    window.location.href = 'tel:7035553278';
-  }
+  }, [isInView, isVisible]);
+
+  useEffect(() => {
+    if (!isVisible) return;
+
+    const interval = setInterval(() => {
+      if (startTimeRef.current) {
+        const elapsed = (Date.now() - startTimeRef.current) / 1000; // seconds
+        // $2600 per hour = $0.72 per second
+        const newCost = Math.floor(elapsed * 0.72);
+        setCost(newCost);
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [isVisible]);
+
+  return (
+    <div ref={counterRef}>
+      {cost.toLocaleString()}
+    </div>
+  );
 };
 
 const ConstructionConnect: React.FC = () => {
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  // Add smooth scroll behavior
-  useEffect(() => {
-    document.documentElement.style.scrollBehavior = 'smooth';
-    return () => {
-      document.documentElement.style.scrollBehavior = 'auto';
-    };
-  }, []);
+  const [isCalculatorOpen, setIsCalculatorOpen] = useState(false);
 
   // Schema data for construction internet service
   const schemaData = {
     "@context": "https://schema.org",
     "@type": "Service",
     "name": "4-Hour Construction Site Internet Deploy",
-    "description": "Instant connectivity for construction sites. Deploy tomorrow. No contracts. 250+ Mbps average across 47 active DMV sites.",
+    "description": "Emergency connectivity for construction sites. Deploy today. No contracts. 312 Mbps average across 47 active DMV sites.",
     "provider": {
       "@type": "LocalBusiness",
       "name": "The Orbit Tech",
@@ -466,314 +610,470 @@ const ConstructionConnect: React.FC = () => {
 
   useEffect(() => {
     injectSchema(schemaData);
-    setIsLoaded(true);
   }, []);
 
   return (
     <>
       <SEOMetadata 
-        title="Construction Site Internet in 4 Hours | DMV Starlink Deploy"
-        description="Instant connectivity for construction sites. Deploy tomorrow. No contracts. 250+ Mbps average. 47 active sites across DMV. Call (703) 555-FAST"
+        title="Construction Site Internet in 4 Hours | DMV Emergency Deploy"
+        description="Your site needs internet today, not next month. 312 Mbps average across 47 active construction sites. 4-hour guarantee. Call (703) 555-FAST"
       />
       
-      {/* Enhanced Meta Tags for Social Sharing */}
-      <head>
-        <meta property="og:title" content="Construction Site Internet in 4 Hours | DMV Starlink Deploy" />
-        <meta property="og:description" content="Instant connectivity for construction sites. Deploy tomorrow. No contracts. 250+ Mbps average. 47 active sites across DMV." />
-        <meta property="og:image" content="/images/og/construction-connect-hero.jpg" />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://theorbittech.com/services/construction-connect" />
+      {/* Global Styles for New Design System */}
+      <style>{`
+        :root {
+          --black: #000000;
+          --white: #FFFFFF;
+          --gray-50: #FAFAFA;
+          --gray-100: #F5F5F5;
+          --gray-200: #E5E5E5;
+          --gray-400: #A3A3A3;
+          --gray-600: #525252;
+          --gray-800: #262626;
+          --orange-primary: #FF6B2B;
+          --orange-hover: #E55A1F;
+          --green-success: #22C55E;
+          --red-alert: #EF4444;
+        }
         
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Construction Site Internet in 4 Hours" />
-        <meta name="twitter:description" content="Deploy tomorrow. No contracts. 250+ Mbps average. 47 active sites across DMV." />
-        <meta name="twitter:image" content="/images/twitter/construction-connect-card.jpg" />
-        
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="canonical" href="https://theorbittech.com/services/construction-connect" />
-      </head>
-      
-      {/* Warning Banner */}
-      <WarningBanner />
-      
-      {/* Mobile Sticky CTA */}
-      <MobileStickyCTA />
-      
-      <div className="min-h-screen bg-space-black text-white relative overflow-hidden">
-        {/* Particle Effect for Hero */}
-        <div className="absolute inset-0 z-0">
-          <ParticleEffect />
-        </div>
-        {/* Status Bar */}
-        <div className="relative z-10">
-          <StatusBar />
-        </div>
-        
-        {/* Hero Section */}
-        <div className="container mx-auto px-4 py-12 relative z-10">
-          <div className="flex flex-wrap items-center">
-            {/* Left Column - 60% */}
-            <motion.div 
-              className="w-full lg:w-3/5 pr-0 lg:pr-12"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: isLoaded ? 1 : 0, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-            >
-              <h1 className="text-7xl font-black leading-tight mb-6">
-                Your Site Goes Dark in{' '}
-                <span className="text-construction-orange">48 Hours</span>{' '}
-                Without Internet. We Deploy in 4.
-              </h1>
-              
-              <p className="text-2xl text-gray-400 mb-8">
-                Instant connectivity for construction sites across DMV. No contracts. No delays. Just internet that works.
-              </p>
-              
-              <motion.div 
-                className="flex flex-wrap gap-4 mb-4"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: isLoaded ? 1 : 0 }}
-                transition={{ delay: 0.3, duration: 0.5 }}
-              >
-                <motion.button
-                  className="px-8 py-4 bg-construction-orange text-white font-bold rounded-lg shadow-lg hover:transform hover:scale-105 transition-transform duration-200 focus:outline-none focus:ring-4 focus:ring-construction-orange/50"
-                  whileHover={{ y: -2 }}
-                  whileTap={{ y: 0 }}
-                  aria-label="Deploy internet service tomorrow"
-                  onClick={() => handleDeployRequest('hero-primary', 'hero-section')}
-                >
-                  DEPLOY TOMORROW
-                </motion.button>
-                
-                <motion.button
-                  className="px-8 py-4 border-2 border-construction-orange text-construction-orange font-bold rounded-lg hover:bg-construction-orange/10 transition-colors duration-200 focus:outline-none focus:ring-4 focus:ring-construction-orange/50"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  aria-label="Call (703) 555-FAST now"
-                  onClick={() => {
-                    trackEvent('click', 'CTA', 'Call Hero - (703) 555-FAST');
-                    window.location.href = 'tel:7035553278';
-                  }}
-                >
-                  Call: (703) 555-FAST
-                </motion.button>
-              </motion.div>
-              
-              <motion.p 
-                className="text-sm text-gray-400"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: isLoaded ? 1 : 0 }}
-                transition={{ delay: 0.4, duration: 0.5 }}
-              >
-                Next-day deployment available
-              </motion.p>
-            </motion.div>
-            
-            {/* Right Column - 40% */}
-            <motion.div 
-              className="w-full lg:w-2/5 mt-8 lg:mt-0"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: isLoaded ? 1 : 0 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-            >
-              <LiveSiteMap />
-            </motion.div>
-          </div>
-        </div>
+        .text-orange-primary { color: var(--orange-primary); }
+        .text-green-success { color: var(--green-success); }
+        .text-red-alert { color: var(--red-alert); }
+        .bg-orange-primary { background-color: var(--orange-primary); }
+        .bg-orange-hover { background-color: var(--orange-hover); }
+        .bg-green-success { background-color: var(--green-success); }
+        .bg-red-alert { background-color: var(--red-alert); }
+        .border-orange-primary { border-color: var(--orange-primary); }
+        .focus\\:ring-orange-primary:focus { box-shadow: 0 0 0 3px rgba(255, 107, 43, 0.1); }
+        .hover\\:bg-orange-hover:hover { background-color: var(--orange-hover); }
+        .hover\\:bg-green-600:hover { background-color: #16a34a; }
+        .bg-green-50 { background-color: #f0fdf4; }
+        .bg-red-50 { background-color: #fef2f2; }
+      `}</style>
 
-        {/* Trust Ticker - Continuous social proof to build confidence */}
-        <div className="w-full bg-gray-900 py-6 overflow-hidden">
-          <motion.div
-            className="flex space-x-12 whitespace-nowrap"
-            animate={{
-              x: [0, -1920], // Adjust based on content width
-            }}
-            transition={{
-              x: {
-                duration: 30,
-                repeat: Infinity,
-                ease: "linear",
-              },
-            }}
-            whileHover={{ animationPlayState: "paused" }}
-          >
-            {[...ACTIVE_SITES, ...ACTIVE_SITES].map((site, index) => (
-              <div
-                key={`${site.name}-${index}`}
-                className="inline-flex items-center space-x-2"
-              >
-                <span className="text-construction-orange font-bold">{site.name}:</span>
-                {site.speed && (
-                  <span className="text-success-green">{site.speed} ✓</span>
-                )}
-                {site.days && (
-                  <span className="text-success-green">Day {site.days} Online ✓</span>
-                )}
-                <span className="text-gray-600 mx-4">|</span>
-              </div>
-            ))}
-          </motion.div>
-        </div>
-
-        {/* 4-Hour Timeline - Visual process that emphasizes speed */}
-        <div className="container mx-auto px-4 py-24">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-5xl font-bold mb-4">
-              While They're Still{" "}
-              <span className="text-gray-500">Planning</span>,{" "}
-              <br />
-              We're Already{" "}
-              <span className="text-construction-orange">Deploying</span>
-            </h2>
-            <p className="text-xl text-gray-400">
-              Others take weeks. We take hours. Here's how:
-            </p>
-          </motion.div>
-
-          <div className="relative">
-            {/* Timeline line */}
-            <motion.div
-              className="absolute top-1/2 left-0 w-full h-0.5 bg-gray-800"
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1, ease: "easeOut" }}
-            />
-
-            {/* Timeline steps */}
-            <div className="relative grid grid-cols-1 md:grid-cols-5 gap-8">
-              {TIMELINE_STEPS.map((step, index) => (
+      <div className="min-h-screen">
+        {/* SECTION 1: Hero (Black Background) */}
+        <section className="bg-black text-white min-h-[80vh] flex items-center py-32">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
+            <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
+              {/* Left Content - 60% */}
+              <div className="lg:col-span-3">
                 <motion.div
-                  key={step.hour}
-                  className="flex flex-col items-center text-center relative"
                   initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
                 >
-                  <div className="w-12 h-12 rounded-full bg-construction-orange flex items-center justify-center mb-4 z-10">
-                    <span className="font-bold">H{step.hour}</span>
+                  <p className="text-orange-primary text-sm font-semibold tracking-widest uppercase mb-6">
+                    EMERGENCY DEPLOYMENT AVAILABLE
+                  </p>
+                  
+                  <h1 className="text-5xl lg:text-6xl xl:text-7xl font-black leading-[1.1] mb-8">
+                    Your Site Needs Internet{' '}
+                    <span className="text-white">Today.</span>{' '}
+                    Not Next Month.
+                  </h1>
+                  
+                  <p className="text-xl lg:text-2xl text-gray-400 leading-relaxed mb-12 max-w-2xl">
+                    While others quote 3-6 weeks, we guarantee connection in 4 hours. 
+                    312 Mbps average across 47 active construction sites.
+                  </p>
+                  
+                  <div className="flex flex-col sm:flex-row gap-4 mb-8">
+                    <motion.button
+                      className="bg-orange-primary text-white text-lg font-semibold px-8 py-4 rounded-xl hover:bg-orange-hover transition-all duration-200 transform hover:scale-105"
+                      whileHover={{ y: -2 }}
+                      whileTap={{ y: 0 }}
+                      onClick={() => {
+                        trackEvent('click', 'CTA', 'Deploy Today - Hero');
+                        window.location.href = 'tel:7035553278';
+                      }}
+                    >
+                      DEPLOY TODAY →
+                    </motion.button>
+                    
+                    <motion.button
+                      className="border-2 border-white text-white text-lg font-semibold px-8 py-4 rounded-xl hover:bg-white hover:text-black transition-all duration-200"
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      onClick={() => {
+                        trackEvent('click', 'CTA', 'Call - Hero');
+                        window.location.href = 'tel:7035553278';
+                      }}
+                    >
+                      (703) 555-FAST
+                    </motion.button>
                   </div>
-                  <p className="text-construction-orange font-mono">{step.time}</p>
-                  <h3 className="font-bold my-2">{step.label}</h3>
-                  <p className="text-sm text-gray-400">{step.detail}</p>
+                  
+                  <div className="flex flex-wrap gap-6 text-sm text-gray-400">
+                    <div className="flex items-center">
+                      <Check className="w-4 h-4 text-green-success mr-2" />
+                      Starlink Authorized
+                    </div>
+                    <div className="flex items-center">
+                      <Check className="w-4 h-4 text-green-success mr-2" />
+                      4-Hour Guarantee
+                    </div>
+                    <div className="flex items-center">
+                      <Check className="w-4 h-4 text-green-success mr-2" />
+                      No Contracts
+                    </div>
+                  </div>
                 </motion.div>
-              ))}
+              </div>
+              
+              {/* Right Content - 40% Stats Card */}
+              <div className="lg:col-span-2">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="bg-gray-800 rounded-2xl p-8 border border-gray-700"
+                >
+                  <div className="space-y-8">
+                    {HERO_STATS.map((stat, index) => (
+                      <motion.div
+                        key={stat.label}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+                        className="text-center"
+                      >
+                        <div className={`text-4xl lg:text-5xl font-black ${stat.color} mb-2`}>
+                          <AnimatedCounter end={stat.number} suffix={stat.suffix} />
+                        </div>
+                        <div className="text-gray-400 text-sm font-medium tracking-wide">
+                          {stat.label}
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </motion.div>
+              </div>
             </div>
           </div>
-        </div>
+        </section>
 
-        {/* ROI Calculator - Convert through financial impact */}
-        <div className="bg-gray-900 py-24">
-          <div className="container mx-auto px-4">
+        {/* SECTION 2: Problem/Solution (White Background) */}
+        <section className="bg-white text-black min-h-[80vh] flex items-center py-32">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="max-w-4xl mx-auto"
+              className="text-center mb-20"
             >
-              <h2 className="text-5xl font-bold text-center mb-8">
-                Calculate Your{" "}
-                <span className="text-construction-orange">Losses</span>
+              <p className="text-orange-primary text-sm font-semibold tracking-widest uppercase mb-6">
+                THE CONNECTIVITY CRISIS
+              </p>
+              
+              <h2 className="text-4xl lg:text-5xl xl:text-6xl font-black leading-tight mb-8">
+                Every Hour Without Internet Costs You $2,600
               </h2>
-              <ROICalculatorWithErrorBoundary />
+              
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                Your crew. Your equipment. Your deadlines. All waiting.
+              </p>
             </motion.div>
-          </div>
-        </div>
 
-        {/* Live Sites Grid - Overwhelming social proof */}
-        <div className="container mx-auto px-4 py-24">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <div className="flex items-center justify-center gap-4 mb-4">
-              <h2 className="text-5xl font-bold">LIVE SITES RIGHT NOW</h2>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+              {/* Column 1: The Problem */}
               <motion.div
-                animate={{ scale: [1, 1.1, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="bg-success-green text-black px-3 py-1 rounded-full text-sm font-bold"
-              >
-                UPDATING LIVE
-              </motion.div>
-            </div>
-            <p className="text-xl text-gray-400">
-              Real sites, real speeds, real results happening right now
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            {LIVE_SITES.map((site, index) => (
-              <motion.div
-                key={site.name}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ 
-                  borderColor: "#FF6B35",
-                  transition: { duration: 0.2 }
-                }}
-                className="bg-gray-900 border-2 border-gray-800 rounded-lg p-6 hover:border-construction-orange transition-colors"
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="text-center"
               >
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="font-bold text-lg">{site.name}</h3>
-                  <motion.div
-                    animate={{ 
-                      scale: [1, 1.2, 1],
-                      opacity: [1, 0.7, 1]
-                    }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                    className="w-3 h-3 rounded-full bg-success-green"
-                  />
+                <div className="w-20 h-20 bg-red-100 rounded-2xl flex items-center justify-center mx-auto mb-8">
+                  <X className="w-10 h-10 text-red-alert" />
                 </div>
-                <div className="space-y-2">
-                  <p className="text-success-green font-mono text-xl">
-                    {site.speed} Mbps
-                  </p>
-                  <p className="text-gray-400">
-                    Day {site.days} Online
-                  </p>
-                  <p className="text-construction-orange text-sm">
-                    {site.contractor}
-                  </p>
-                </div>
+                
+                <h3 className="text-2xl font-bold mb-6">What You're Dealing With</h3>
+                
+                <ul className="space-y-4 text-left">
+                  {PROBLEM_ITEMS.map((item, index) => (
+                    <li key={index} className="flex items-start">
+                      <span className="text-red-alert mr-3 mt-1">•</span>
+                      <span className="text-gray-600">{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </motion.div>
-            ))}
-          </div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-center"
-          >
-            <button 
-              className="text-construction-orange hover:underline font-medium"
-              onClick={() => {
-                trackEvent('click', 'Link', 'View All 47 Sites');
-                // TODO: Navigate to sites page
-                window.location.href = '/sites';
-              }}
+              {/* Column 2: The Impact */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="text-center"
+              >
+                <div className="w-20 h-20 bg-red-100 rounded-2xl flex items-center justify-center mx-auto mb-8">
+                  <TrendingDown className="w-10 h-10 text-red-alert" />
+                </div>
+                
+                <h3 className="text-2xl font-bold mb-6">What It's Costing You</h3>
+                
+                <ul className="space-y-4 text-left">
+                  {IMPACT_ITEMS.map((item, index) => (
+                    <li key={index} className="flex items-start">
+                      <span className="text-red-alert mr-3 mt-1">•</span>
+                      <span className="text-gray-600">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+
+              {/* Column 3: Our Solution */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="text-center"
+              >
+                <div className="w-20 h-20 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-8">
+                  <Check className="w-10 h-10 text-green-success" />
+                </div>
+                
+                <h3 className="text-2xl font-bold mb-6">What We Deliver</h3>
+                
+                <ul className="space-y-4 text-left">
+                  {SOLUTION_ITEMS.map((item, index) => (
+                    <li key={index} className="flex items-start">
+                      <span className="text-green-success mr-3 mt-1">•</span>
+                      <span className="text-gray-600">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="text-center mt-16"
             >
-              View All 47 Sites →
-            </button>
-          </motion.div>
-        </div>
+              <button
+                onClick={() => {
+                  trackEvent('click', 'CTA', 'Calculate Losses');
+                  setIsCalculatorOpen(true);
+                }}
+                className="bg-orange-primary text-white text-lg font-semibold px-8 py-4 rounded-xl hover:bg-orange-hover transition-all duration-200 transform hover:scale-105"
+              >
+                Calculate Your Losses →
+              </button>
+            </motion.div>
+          </div>
+        </section>
 
-        {/* Service Packages - Clear value proposition */}
-        <div className="bg-gray-900 py-24">
-          <div className="container mx-auto px-4">
+        {/* SECTION 3: Speed Comparison (Black Background) */}
+        <section className="bg-black text-white min-h-[80vh] flex items-center py-32 relative overflow-hidden">
+          {/* Subtle grid pattern overlay */}
+          <div 
+            className="absolute inset-0 opacity-5"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+              backgroundSize: '60px 60px'
+            }}
+          />
+          
+          <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full relative z-10">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-20"
+            >
+              <p className="text-orange-primary text-sm font-semibold tracking-widest uppercase mb-6">
+                REAL PERFORMANCE DATA
+              </p>
+              
+              <h2 className="text-4xl lg:text-5xl xl:text-6xl font-black leading-tight mb-8">
+                Speed That Matches Your Pace
+              </h2>
+              
+              <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+                Yesterday's actual speed tests from active construction sites
+              </p>
+            </motion.div>
+
+            <div className="overflow-x-auto">
+              <motion.table 
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="w-full min-w-[800px] bg-gray-900/50 rounded-2xl overflow-hidden backdrop-blur-sm"
+              >
+                <thead>
+                  <tr className="bg-gray-800/80">
+                    <th className="px-8 py-6 text-left font-bold text-white">Provider</th>
+                    <th className="px-8 py-6 text-left font-bold text-white">Speed</th>
+                    <th className="px-8 py-6 text-left font-bold text-white">Deployment</th>
+                    <th className="px-8 py-6 text-left font-bold text-white">Reliability</th>
+                    <th className="px-8 py-6 text-left font-bold text-white">Cost</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {SPEED_COMPARISON.map((row, index) => (
+                    <motion.tr
+                      key={row.provider}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: index * 0.1 }}
+                      className={`border-b border-gray-700/50 ${
+                        row.highlighted 
+                          ? 'bg-orange-primary/10 border-orange-primary border-2' 
+                          : 'bg-gray-800/30'
+                      }`}
+                    >
+                      <td className={`px-8 py-6 font-semibold ${row.highlighted ? 'text-orange-primary' : 'text-white'}`}>
+                        {row.provider}
+                        {row.highlighted && (
+                          <span className="ml-2 text-xs bg-orange-primary text-white px-2 py-1 rounded-full">
+                            RECOMMENDED
+                          </span>
+                        )}
+                      </td>
+                      <td className={`px-8 py-6 font-mono text-lg ${row.highlighted ? 'text-green-success' : 'text-gray-300'}`}>
+                        {row.speed}
+                      </td>
+                      <td className={`px-8 py-6 ${row.highlighted ? 'text-green-success' : 'text-gray-300'}`}>
+                        {row.deployment}
+                      </td>
+                      <td className={`px-8 py-6 font-mono ${row.highlighted ? 'text-green-success' : 'text-gray-300'}`}>
+                        {row.reliability}
+                      </td>
+                      <td className={`px-8 py-6 font-semibold ${row.highlighted ? 'text-white' : 'text-gray-300'}`}>
+                        {row.cost}
+                      </td>
+                    </motion.tr>
+                  ))}
+                </tbody>
+              </motion.table>
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="text-center mt-12"
+            >
+              <button 
+                className="text-orange-primary hover:text-orange-hover font-semibold text-lg transition-colors"
+                onClick={() => {
+                  trackEvent('click', 'Link', 'View Live Speed Test');
+                  window.location.href = '/speed-tests/live';
+                }}
+              >
+                View Live Speed Test →
+              </button>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* SECTION 4: Process (White Background) */}
+        <section className="bg-white text-black min-h-[80vh] flex items-center py-32">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-20"
+            >
+              <p className="text-orange-primary text-sm font-semibold tracking-widest uppercase mb-6">
+                THE 4-HOUR PROMISE
+              </p>
+              
+              <h2 className="text-4xl lg:text-5xl xl:text-6xl font-black leading-tight mb-8">
+                From Call to Connection Before Lunch
+              </h2>
+            </motion.div>
+
+            {/* Desktop Timeline */}
+            <div className="hidden lg:block relative">
+              {/* Progress bar background */}
+              <div className="absolute top-1/2 left-0 w-full h-1 bg-gray-200 rounded-full transform -translate-y-1/2 z-0" />
+              
+              {/* Animated progress bar */}
+              <motion.div
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 2, ease: "easeInOut" }}
+                className="absolute top-1/2 left-0 w-full h-1 bg-orange-primary rounded-full transform -translate-y-1/2 origin-left z-10"
+              />
+
+              <div className="grid grid-cols-5 gap-4 relative z-20">
+                {PROCESS_TIMELINE.map((step, index) => (
+                  <motion.div
+                    key={step.time}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.2 }}
+                    className="text-center"
+                  >
+                    <div className="bg-orange-primary text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 font-bold text-sm">
+                      {step.time}
+                    </div>
+                    
+                    <h3 className="text-xl font-bold mb-4">{step.title}</h3>
+                    
+                    <ul className="space-y-2 text-sm text-gray-600">
+                      {step.details.map((detail, detailIndex) => (
+                        <li key={detailIndex} className="leading-relaxed">
+                          {detail}
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* Mobile Timeline */}
+            <div className="lg:hidden space-y-8">
+              {PROCESS_TIMELINE.map((step, index) => (
+                <motion.div
+                  key={step.time}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="flex items-start gap-6"
+                >
+                  <div className="bg-orange-primary text-white w-16 h-16 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0">
+                    {step.time}
+                  </div>
+                  
+                  <div className="flex-1">
+                    <h3 className="text-xl font-bold mb-3">{step.title}</h3>
+                    <ul className="space-y-2 text-gray-600">
+                      {step.details.map((detail, detailIndex) => (
+                        <li key={detailIndex} className="leading-relaxed">
+                          {detail}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 5: ROI Calculator (Black Background) */}
+        <section className="bg-black text-white min-h-[80vh] flex items-center py-32">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -781,574 +1081,638 @@ const ConstructionConnect: React.FC = () => {
               transition={{ duration: 0.6 }}
               className="text-center mb-16"
             >
-              <h2 className="text-5xl font-bold mb-4">
-                Choose Your{" "}
-                <span className="text-construction-orange">Deployment</span>
+              <h2 className="text-4xl lg:text-5xl xl:text-6xl font-black leading-tight mb-8">
+                See Your Real Losses
               </h2>
-              <p className="text-xl text-gray-400">
-                All plans include same-day deployment and no contracts
+              
+              <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+                Every day without proper internet is money burned
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              {SERVICE_PACKAGES.map((pkg, index) => (
-                <motion.div
-                  key={pkg.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  whileHover={{ y: -5 }}
-                  className={`relative bg-space-black rounded-xl p-8 transition-transform ${
-                    pkg.recommended ? 'border-2 border-construction-orange' : 'border border-gray-800'
-                  }`}
-                >
-                  {pkg.badge && (
-                    <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                      <div className="bg-construction-orange text-white px-4 py-1 rounded-full text-sm font-bold">
-                        {pkg.badge}
-                      </div>
-                    </div>
-                  )}
-                  
-                  <div className="text-center mb-8">
-                    <h3 className="text-2xl font-bold mb-2">{pkg.name}</h3>
-                    <div className="text-4xl font-black mb-2">
-                      <span className="text-construction-orange">${pkg.price}</span>
-                      <span className="text-lg text-gray-400">/mo</span>
-                    </div>
-                  </div>
-
-                  <div className="space-y-4 mb-8">
-                    {pkg.features.map((feature, featureIndex) => (
-                      <div key={featureIndex} className="flex items-center">
-                        <div className="w-5 h-5 mr-3 flex items-center justify-center">
-                          {feature.included ? (
-                            <span className="text-success-green text-lg">✓</span>
-                          ) : (
-                            <span className="text-gray-600 text-lg">✗</span>
-                          )}
-                        </div>
-                        <span className={feature.included ? "text-white" : "text-gray-500"}>
-                          {feature.name}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-
-                  <button 
-                    className={`w-full py-4 rounded-lg font-bold transition-colors ${
-                      pkg.recommended 
-                        ? 'bg-construction-orange text-white hover:bg-construction-orange/90'
-                        : 'border-2 border-construction-orange text-construction-orange hover:bg-construction-orange/10'
-                    }`}
-                    onClick={() => {
-                      trackEvent('click', 'CTA', `Deploy ${pkg.name} Plan`, pkg.price);
-                      handleDeployRequest(pkg.name.toLowerCase(), 'pricing-section');
-                    }}
-                  >
-                    DEPLOY THIS PLAN →
-                  </button>
-                </motion.div>
-              ))}
-            </div>
+            <InlineROICalculator />
           </div>
-        </div>
+        </section>
 
-        {/* Speed Test Wall - Real performance data */}
-        <div className="container mx-auto px-4 py-24">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-5xl font-bold mb-4">
-              YESTERDAY'S{" "}
-              <span className="text-construction-orange">ACTUAL</span>{" "}
-              SPEED TESTS
-            </h2>
-            <p className="text-xl text-gray-400">
-              Real performance data from real construction sites
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="overflow-x-auto"
-          >
-            <table className="w-full min-w-[600px] bg-gray-900 rounded-lg overflow-hidden">
-              <thead>
-                <tr className="bg-gray-800">
-                  <th className="px-6 py-4 text-left font-bold">Location</th>
-                  <th className="px-6 py-4 text-left font-bold">Time</th>
-                  <th className="px-6 py-4 text-left font-bold">Download</th>
-                  <th className="px-6 py-4 text-left font-bold">Upload</th>
-                  <th className="px-6 py-4 text-left font-bold">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {SPEED_TESTS.map((test, index) => (
-                  <motion.tr
-                    key={test.location}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.3, delay: index * 0.1 }}
-                    className={`border-b border-gray-800 ${
-                      index % 2 === 0 ? 'bg-gray-900' : 'bg-gray-800/50'
-                    }`}
-                  >
-                    <td className="px-6 py-4 font-medium">{test.location}</td>
-                    <td className="px-6 py-4 text-gray-400">{test.time}</td>
-                    <td className="px-6 py-4 text-success-green font-mono">
-                      {test.download} Mbps
-                    </td>
-                    <td className="px-6 py-4 text-success-green font-mono">
-                      {test.upload} Mbps
-                    </td>
-                    <td className="px-6 py-4">
-                      <button 
-                        className="text-construction-orange hover:underline"
-                        onClick={() => {
-                          trackEvent('click', 'Link', `View Speed Test - ${test.location}`);
-                          // TODO: Navigate to speed test details
-                          window.location.href = `/speed-tests/${test.location.toLowerCase().replace(/\s+/g, '-')}`;
-                        }}
-                      >
-                        View Test →
-                      </button>
-                    </td>
-                  </motion.tr>
-                ))}
-              </tbody>
-            </table>
-          </motion.div>
-        </div>
-
-        {/* Testimonial Feature - Powerful social proof */}
-        <div className="relative bg-black py-24 overflow-hidden">
-          {/* Construction texture overlay */}
-          <div 
-            className="absolute inset-0 opacity-10"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23FF6B35' fill-opacity='0.1'%3E%3Cpath d='m0 40l40-40h-40v40zm40 0v-40h-40l40 40z'/%3E%3C/g%3E%3C/svg%3E")`,
-            }}
-          />
-          
-          <div className="container mx-auto px-4 relative z-10">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-12"
-            >
-              {/* Quote */}
-              <div className="flex-1">
-                <div className="text-construction-orange text-6xl mb-6">"</div>
-                <blockquote className="text-3xl leading-relaxed mb-8 text-white">
-                  We were 3 weeks behind schedule. The Orbit Tech had us online in 4 hours. 
-                  We filed 47 permits that afternoon and got back on track. 
-                  That's $200,000 in delays prevented with one phone call.
-                </blockquote>
-                
-                <div className="flex items-center space-x-4">
-                  <div>
-                    <p className="font-bold text-lg">Michael Chen</p>
-                    <p className="text-gray-400">Site Superintendent, Meridian Construction Group</p>
-                  </div>
-                  
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    whileInView={{ scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.5, type: "spring" }}
-                    className="bg-construction-orange text-white px-3 py-1 rounded-full text-sm font-bold"
-                  >
-                    ✓ Verified Google Review
-                  </motion.div>
-                </div>
-              </div>
-              
-              {/* Image placeholder */}
-              <motion.div
-                initial={{ scale: 0.8, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="w-64 h-64 rounded-full border-4 border-construction-orange bg-gray-800 overflow-hidden"
-              >
-                <img
-                  src="/images/testimonials/michael-chen.jpg"
-                  alt="Michael Chen, Site Superintendent at Meridian Construction Group"
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                  onError={(e) => {
-                    // Fallback to placeholder if image fails to load
-                    e.currentTarget.style.display = 'none';
-                    const placeholder = e.currentTarget.nextElementSibling as HTMLElement;
-                    if (placeholder) placeholder.style.display = 'flex';
-                  }}
-                />
-                <div className="w-full h-full flex items-center justify-center text-gray-400 text-center" style={{ display: 'none' }}>
-                  <span>
-                    Michael Chen<br />
-                    <small>Site Superintendent</small>
-                  </span>
-                </div>
-              </motion.div>
-            </motion.div>
-          </div>
-        </div>
-
-        {/* Final Converter CTA - Binary choice psychology */}
-        <div className="bg-black py-24">
-          <div className="container mx-auto px-4">
+        {/* SECTION 6: Social Proof (White Background) */}
+        <section className="bg-white text-black min-h-[80vh] flex items-center py-32">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="max-w-6xl mx-auto"
+              className="text-center mb-20"
             >
-              <h2 className="text-6xl font-black text-center mb-16">
-                You Have{" "}
-                <span className="text-construction-orange">Two Options</span>:
+              <p className="text-orange-primary text-sm font-semibold tracking-widest uppercase mb-6">
+                TRUSTED BY LEADING CONTRACTORS
+              </p>
+              
+              <h2 className="text-4xl lg:text-5xl xl:text-6xl font-black leading-tight mb-8">
+                47 Sites. Zero Failures. One Choice.
               </h2>
+            </motion.div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-                {/* Option 1: Problems */}
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6 }}
-                  className="bg-gray-900 rounded-xl p-8"
-                >
-                  <h3 className="text-3xl font-bold mb-6 text-red-500">
-                    Keep Using Hotspots
-                  </h3>
-                  <ul className="space-y-4">
-                    <li className="flex items-start">
-                      <span className="text-red-500 mr-3 mt-1">✗</span>
-                      <span>Lose $10,000+ per week on connectivity issues</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-red-500 mr-3 mt-1">✗</span>
-                      <span>Wait 2-6 weeks for other providers</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-red-500 mr-3 mt-1">✗</span>
-                      <span>Deal with dropped connections during critical operations</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-red-500 mr-3 mt-1">✗</span>
-                      <span>Explain delays to project owners</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-red-500 mr-3 mt-1">✗</span>
-                      <span>Risk project bonuses and reputation</span>
-                    </li>
-                  </ul>
-                </motion.div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-20">
+              {/* Left: Testimonial Card */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="bg-gray-50 rounded-2xl p-12 relative"
+              >
+                <div className="text-6xl text-orange-primary mb-6 leading-none">"</div>
+                
+                <blockquote className="text-xl lg:text-2xl leading-relaxed text-gray-800 mb-8">
+                  We were hemorrhaging $15,000 a day waiting for permits. 
+                  Orbit Tech had us online in 3.5 hours. We submitted 47 
+                  documents that afternoon and got back on schedule.
+                </blockquote>
+                
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="font-bold text-lg text-black">Michael Chen</p>
+                    <p className="text-gray-600">Meridian Construction</p>
+                  </div>
+                  
+                  <div className="flex items-center bg-blue-50 px-4 py-2 rounded-lg">
+                    <div className="w-3 h-3 bg-blue-500 rounded-full mr-2"></div>
+                    <span className="text-sm font-medium text-blue-700">Verified Google Review</span>
+                  </div>
+                </div>
+              </motion.div>
 
-                {/* Option 2: Solution */}
-                <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  className="bg-gray-900 rounded-xl p-8 border-2 border-success-green"
-                >
-                  <h3 className="text-3xl font-bold mb-6 text-success-green">
-                    Call Us Now
-                  </h3>
-                  <ul className="space-y-4">
-                    <li className="flex items-start">
-                      <span className="text-success-green mr-3 mt-1">✓</span>
-                      <span>Site online in 4 hours guaranteed</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-success-green mr-3 mt-1">✓</span>
-                      <span>250+ Mbps from day one</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-success-green mr-3 mt-1">✓</span>
-                      <span>99.97% uptime across all sites</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-success-green mr-3 mt-1">✓</span>
-                      <span>Keep your project on schedule</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-success-green mr-3 mt-1">✓</span>
-                      <span>Protect bonuses and reputation</span>
-                    </li>
-                  </ul>
-                </motion.div>
+              {/* Right: Live Sites Grid */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="space-y-6"
+              >
+                <h3 className="text-2xl font-bold mb-8">Live Sites Right Now</h3>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {[
+                    { location: "Tyson's Corner", speed: "324 Mbps", days: "47", contractor: "Clark" },
+                    { location: "Bethesda Metro", speed: "298 Mbps", days: "23", contractor: "Walsh" },
+                    { location: "Arlington Towers", speed: "356 Mbps", days: "12", contractor: "HITT" },
+                    { location: "Rosslyn Gateway", speed: "289 Mbps", days: "8", contractor: "Whiting" },
+                    { location: "Dulles Expansion", speed: "312 Mbps", days: "3", contractor: "Turner" },
+                    { location: "Pentagon City", speed: "278 Mbps", days: "1", contractor: "Meridian" }
+                  ].map((site, index) => (
+                    <motion.div
+                      key={site.location}
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: index * 0.1 }}
+                      whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+                      className="bg-white border border-gray-200 rounded-xl p-4 hover:shadow-lg transition-all duration-200 cursor-pointer"
+                    >
+                      <div className="flex items-center justify-between mb-2">
+                        <h4 className="font-semibold text-sm">{site.location}</h4>
+                        <div className="w-2 h-2 bg-green-success rounded-full animate-pulse"></div>
+                      </div>
+                      
+                      <div className="text-2xl font-black text-green-success mb-1">
+                        {site.speed}
+                      </div>
+                      
+                      <div className="flex justify-between text-xs text-gray-500">
+                        <span>{site.days} days online</span>
+                        <span>{site.contractor}</span>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Bottom: Logo Bar */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="text-center"
+            >
+              <p className="text-gray-500 text-sm mb-8">TRUSTED BY</p>
+              
+              <div className="flex flex-wrap justify-center items-center gap-12 opacity-60">
+                {["Clark Construction", "Walsh Group", "HITT", "Whiting-Turner"].map((company, index) => (
+                  <motion.div
+                    key={company}
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 0.6 }}
+                    whileHover={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: index * 0.1 }}
+                    className="text-lg font-semibold text-gray-400 hover:text-gray-600 transition-colors"
+                  >
+                    {company}
+                  </motion.div>
+                ))}
               </div>
+            </motion.div>
+          </div>
+        </section>
 
-              {/* Massive CTA */}
+        {/* SECTION 7: Packages (Black Background) */}
+        <section className="bg-black text-white min-h-[80vh] flex items-center py-32">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-20"
+            >
+              <p className="text-orange-primary text-sm font-semibold tracking-widest uppercase mb-6">
+                TRANSPARENT PRICING
+              </p>
+              
+              <h2 className="text-4xl lg:text-5xl xl:text-6xl font-black leading-tight mb-8">
+                Choose Your Deployment Level
+              </h2>
+              
+              <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+                No contracts. No hidden fees. Cancel anytime.
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+              {/* RAPID DEPLOY */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="bg-gray-900 border border-gray-700 rounded-2xl p-8 hover:border-gray-600 transition-all duration-300"
+              >
+                <div className="text-center mb-8">
+                  <h3 className="text-2xl font-bold mb-2">RAPID DEPLOY</h3>
+                  <div className="text-4xl font-black mb-4">$899<span className="text-lg font-normal text-gray-400">/mo</span></div>
+                </div>
+                
+                <ul className="space-y-4 mb-8">
+                  <li className="flex items-center">
+                    <Check className="w-5 h-5 text-green-success mr-3" />
+                    <span>4-hour deployment</span>
+                  </li>
+                  <li className="flex items-center">
+                    <Check className="w-5 h-5 text-green-success mr-3" />
+                    <span>250+ Mbps Starlink</span>
+                  </li>
+                  <li className="flex items-center">
+                    <Check className="w-5 h-5 text-green-success mr-3" />
+                    <span>Basic support</span>
+                  </li>
+                </ul>
+                
+                <p className="text-sm text-gray-400 mb-6">Best for: Single sites</p>
+                
+                <button 
+                  className="w-full bg-white text-black font-semibold py-4 rounded-xl hover:bg-gray-100 transition-colors"
+                  onClick={() => {
+                    trackEvent('click', 'CTA', 'Deploy Rapid Plan');
+                    window.location.href = 'tel:7035553278';
+                  }}
+                >
+                  DEPLOY THIS PLAN
+                </button>
+              </motion.div>
+
+              {/* SITE COMMAND - RECOMMENDED */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="bg-gray-900 border-2 border-orange-primary rounded-2xl p-8 relative transform scale-105 shadow-2xl"
+              >
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                  <span className="bg-orange-primary text-white px-6 py-2 rounded-full text-sm font-bold">
+                    RECOMMENDED
+                  </span>
+                </div>
+                
+                <div className="text-center mb-8">
+                  <h3 className="text-2xl font-bold mb-2">SITE COMMAND</h3>
+                  <div className="text-4xl font-black mb-4">$1,299<span className="text-lg font-normal text-gray-400">/mo</span></div>
+                </div>
+                
+                <ul className="space-y-4 mb-8">
+                  <li className="flex items-center">
+                    <Check className="w-5 h-5 text-green-success mr-3" />
+                    <span>Everything in Rapid</span>
+                  </li>
+                  <li className="flex items-center">
+                    <Check className="w-5 h-5 text-green-success mr-3" />
+                    <span>Redundant 5G backup</span>
+                  </li>
+                  <li className="flex items-center">
+                    <Check className="w-5 h-5 text-green-success mr-3" />
+                    <span>Priority support</span>
+                  </li>
+                  <li className="flex items-center">
+                    <Check className="w-5 h-5 text-green-success mr-3" />
+                    <span>Network monitoring</span>
+                  </li>
+                </ul>
+                
+                <p className="text-sm text-gray-400 mb-6">Best for: Critical projects</p>
+                
+                <button 
+                  className="w-full bg-orange-primary text-white font-semibold py-4 rounded-xl hover:bg-orange-hover transition-colors"
+                  onClick={() => {
+                    trackEvent('click', 'CTA', 'Deploy Command Plan');
+                    window.location.href = 'tel:7035553278';
+                  }}
+                >
+                  DEPLOY THIS PLAN
+                </button>
+              </motion.div>
+
+              {/* ENTERPRISE MESH */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="bg-gray-900 border border-gray-700 rounded-2xl p-8 hover:border-gray-600 transition-all duration-300"
+              >
+                <div className="text-center mb-8">
+                  <h3 className="text-2xl font-bold mb-2">ENTERPRISE MESH</h3>
+                  <div className="text-4xl font-black mb-4">$2,499<span className="text-lg font-normal text-gray-400">/mo</span></div>
+                </div>
+                
+                <ul className="space-y-4 mb-8">
+                  <li className="flex items-center">
+                    <Check className="w-5 h-5 text-green-success mr-3" />
+                    <span>Everything in Command</span>
+                  </li>
+                  <li className="flex items-center">
+                    <Check className="w-5 h-5 text-green-success mr-3" />
+                    <span>Multi-site connectivity</span>
+                  </li>
+                  <li className="flex items-center">
+                    <Check className="w-5 h-5 text-green-success mr-3" />
+                    <span>Dedicated account manager</span>
+                  </li>
+                  <li className="flex items-center">
+                    <Check className="w-5 h-5 text-green-success mr-3" />
+                    <span>Custom configurations</span>
+                  </li>
+                </ul>
+                
+                <p className="text-sm text-gray-400 mb-6">Best for: Large operations</p>
+                
+                <button 
+                  className="w-full bg-white text-black font-semibold py-4 rounded-xl hover:bg-gray-100 transition-colors"
+                  onClick={() => {
+                    trackEvent('click', 'CTA', 'Deploy Enterprise Plan');
+                    window.location.href = 'tel:7035553278';
+                  }}
+                >
+                  DEPLOY THIS PLAN
+                </button>
+              </motion.div>
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: 0.4 }}
+              className="text-center"
+            >
+              <p className="text-gray-400">
+                or{' '}
+                <button 
+                  className="text-orange-primary hover:text-orange-hover underline"
+                  onClick={() => {
+                    trackEvent('click', 'Link', 'Custom Pricing');
+                    window.location.href = 'tel:7035553278';
+                  }}
+                >
+                  call for custom pricing
+                </button>
+              </p>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* SECTION 8: Risk Reversal (White Background) */}
+        <section className="bg-white text-black min-h-[80vh] flex items-center py-32">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-20"
+            >
+              <h2 className="text-4xl lg:text-5xl xl:text-6xl font-black leading-tight">
+                Zero Risk. Total Confidence.
+              </h2>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* 4-Hour Deployment */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                className="bg-gray-50 rounded-2xl p-8 text-center hover:shadow-lg transition-all duration-300"
+              >
+                <div className="w-20 h-20 bg-orange-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <svg className="w-10 h-10 text-orange-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                
+                <h3 className="text-2xl font-bold mb-4">4-Hour Deployment</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Online within 4 hours of arrival or your first month is free
+                </p>
+              </motion.div>
+
+              {/* Speed Guarantee */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                className="bg-gray-50 rounded-2xl p-8 text-center hover:shadow-lg transition-all duration-300"
+              >
+                <div className="w-20 h-20 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <svg className="w-10 h-10 text-green-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
+                
+                <h3 className="text-2xl font-bold mb-4">Speed Guarantee</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Minimum 200 Mbps or we'll upgrade your equipment at no cost
+                </p>
+              </motion.div>
+
+              {/* 99.97% Uptime */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                className="bg-gray-50 rounded-2xl p-8 text-center hover:shadow-lg transition-all duration-300"
+              >
+                <div className="w-20 h-20 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <svg className="w-10 h-10 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
+                </div>
+                
+                <h3 className="text-2xl font-bold mb-4">99.97% Uptime</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Less than 15 minutes downtime per month, guaranteed
+                </p>
+              </motion.div>
+
+              {/* No Contracts */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="text-center"
+                whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                className="bg-gray-50 rounded-2xl p-8 text-center hover:shadow-lg transition-all duration-300"
               >
+                <div className="w-20 h-20 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <svg className="w-10 h-10 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </div>
+                
+                <h3 className="text-2xl font-bold mb-4">No Contracts</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Month-to-month. Cancel anytime with 24-hour notice
+                </p>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 9: Urgency Driver (Black Background) */}
+        <section className="bg-black text-white min-h-[80vh] flex items-center py-32 relative overflow-hidden">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              {/* Left: Cost Counter */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="text-center lg:text-left"
+              >
+                <h3 className="text-2xl lg:text-3xl font-bold text-gray-300 mb-8">
+                  While You Read This Page You've Lost:
+                </h3>
+                
+                <div className="bg-gray-900/50 border-2 border-red-500/30 rounded-2xl p-8 mb-6">
+                  <motion.div
+                    initial={{ scale: 0.9 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                    className="text-6xl lg:text-7xl font-black text-red-alert mb-4"
+                  >
+                    $<LiveCostCounter />
+                  </motion.div>
+                  
+                  <p className="text-gray-400 text-sm">
+                    Based on average construction site burn rate
+                  </p>
+                </div>
+              </motion.div>
+
+              {/* Right: Availability Alert */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="text-center lg:text-left"
+              >
+                <h3 className="text-2xl lg:text-3xl font-bold mb-8">
+                  Today's Deployment Schedule
+                </h3>
+                
+                <div className="bg-gray-900/50 border border-gray-700 rounded-2xl p-8 mb-8">
+                  <div className="space-y-6">
+                    {[
+                      { time: "8:00 AM", status: "filled", location: "Tysons Corner" },
+                      { time: "10:00 AM", status: "filled", location: "Arlington" },
+                      { time: "12:00 PM", status: "available", location: null },
+                      { time: "2:00 PM", status: "available", location: null },
+                      { time: "4:00 PM", status: "pending", location: null }
+                    ].map((slot, index) => (
+                      <motion.div
+                        key={slot.time}
+                        initial={{ opacity: 0, x: 10 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.4, delay: index * 0.1 }}
+                        className="flex items-center justify-between py-3 border-b border-gray-700/50 last:border-b-0"
+                      >
+                        <div className="flex items-center">
+                          <div className={`w-3 h-3 rounded-full mr-4 ${
+                            slot.status === 'filled' ? 'bg-red-500' :
+                            slot.status === 'available' ? 'bg-green-500' :
+                            'bg-orange-500'
+                          }`}></div>
+                          
+                          <span className="font-mono text-lg">{slot.time}</span>
+                        </div>
+                        
+                        <div className="text-right">
+                          {slot.status === 'filled' && (
+                            <span className="text-red-400 text-sm">Filled ({slot.location})</span>
+                          )}
+                          {slot.status === 'available' && (
+                            <span className="text-green-400 font-semibold">AVAILABLE</span>
+                          )}
+                          {slot.status === 'pending' && (
+                            <span className="text-orange-400 text-sm">Pending</span>
+                          )}
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                  
+                  <div className="mt-6 p-4 bg-red-900/20 border border-red-500/30 rounded-xl">
+                    <p className="text-red-300 text-center font-semibold">
+                      Only 2 slots remaining for tomorrow
+                    </p>
+                  </div>
+                </div>
+                
                 <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-construction-orange text-white text-2xl font-black py-6 px-12 rounded-xl shadow-2xl mb-4"
+                  animate={{ scale: [1, 1.05, 1] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className="w-full bg-orange-primary text-white text-xl font-black py-6 rounded-xl hover:bg-orange-hover transition-colors shadow-2xl"
                   onClick={() => {
-                    trackEvent('click', 'CTA', 'Final CTA - Deploy Tomorrow Phone', 1299);
+                    trackEvent('click', 'CTA', 'Claim Your Slot');
                     window.location.href = 'tel:7035553278';
                   }}
                 >
-                  📞 (703) 555-FAST - DEPLOY TOMORROW
+                  CLAIM YOUR SLOT →
+                </motion.button>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 10: Final CTA (White Background) */}
+        <section className="bg-white text-black min-h-[80vh] flex items-center py-32">
+          <div className="max-w-4xl mx-auto px-6 lg:px-8 w-full text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            >
+              <h2 className="text-4xl lg:text-5xl xl:text-6xl font-black leading-tight mb-8">
+                Your Crew Is Waiting.
+              </h2>
+              
+              <p className="text-xl lg:text-2xl text-gray-600 mb-16 max-w-2xl mx-auto">
+                Every hour costs $2,600. We deploy in 4.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-6 justify-center mb-12">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="bg-orange-primary text-white text-xl font-black px-12 py-6 rounded-xl hover:bg-orange-hover transition-all duration-200 shadow-2xl"
+                  onClick={() => {
+                    trackEvent('click', 'CTA', 'Start Deployment - Final');
+                    window.location.href = 'tel:7035553278';
+                  }}
+                >
+                  START DEPLOYMENT
                 </motion.button>
                 
-                <p className="text-gray-400 mb-4">
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="border-2 border-black text-black text-xl font-semibold px-12 py-6 rounded-xl hover:bg-black hover:text-white transition-all duration-200"
+                  onClick={() => {
+                    trackEvent('click', 'CTA', 'Schedule Tomorrow');
+                    window.location.href = 'tel:7035553278';
+                  }}
+                >
+                  Schedule for Tomorrow
+                </motion.button>
+              </div>
+              
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="mb-12"
+              >
+                <p className="text-lg text-gray-600 mb-2">
+                  📞 Or call{' '}
+                  <a 
+                    href="tel:7035553278" 
+                    className="text-orange-primary font-bold hover:text-orange-hover transition-colors"
+                  >
+                    (703) 555-FAST
+                  </a>
+                  {' '}right now
+                </p>
+                <p className="text-gray-500">
                   Kent from our construction team will answer
                 </p>
-                
-                <motion.div
-                  animate={{ opacity: [1, 0.7, 1] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                  className="flex items-center justify-center text-construction-orange font-bold"
-                >
-                  <span className="mr-2">⚠️</span>
-                  Only 3 installation slots available tomorrow
-                </motion.div>
+              </motion.div>
+              
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="flex flex-wrap justify-center items-center gap-8 text-gray-500"
+              >
+                <div className="flex items-center">
+                  <Check className="w-5 h-5 text-green-success mr-2" />
+                  <span>47 Active Sites</span>
+                </div>
+                <div className="flex items-center">
+                  <Check className="w-5 h-5 text-green-success mr-2" />
+                  <span>312 Mbps Average</span>
+                </div>
+                <div className="flex items-center">
+                  <Check className="w-5 h-5 text-green-success mr-2" />
+                  <span>4-Hour Guarantee</span>
+                </div>
               </motion.div>
             </motion.div>
           </div>
-        </div>
-      </div>
-    </>
-  );
-};
-
-// ROI Calculator Component with Error Boundary and Accessibility
-const ROICalculatorWithErrorBoundary: React.FC = () => {
-  return (
-    <div className="bg-space-black p-8 rounded-xl shadow-2xl">
-      <ROICalculator />
-    </div>
-  );
-};
-
-// ROI Calculator Component
-const ROICalculator: React.FC = () => {
-  const [inputs, setInputs] = useState<ROIInputs>({
-    crewSize: 20,
-    hourlyRate: 65,
-    hoursLost: 8
-  });
-
-  const [results, setResults] = useState<ROICalculation | null>(null);
-  const [isCalculating, setIsCalculating] = useState(false);
-  const [errors, setErrors] = useState<Record<string, string>>({});
-
-  const validateInputs = (): boolean => {
-    const newErrors: Record<string, string> = {};
-    
-    if (inputs.crewSize < 1) newErrors.crewSize = "Crew size must be at least 1";
-    if (inputs.hourlyRate < 1) newErrors.hourlyRate = "Hourly rate must be at least $1";
-    if (inputs.hoursLost < 0) newErrors.hoursLost = "Hours lost cannot be negative";
-    if (inputs.hoursLost > 168) newErrors.hoursLost = "Cannot exceed 168 hours per week";
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const calculateROI = () => {
-    if (!validateInputs()) return;
-    
-    setIsCalculating(true);
-    const weeklyLoss = inputs.crewSize * inputs.hourlyRate * inputs.hoursLost;
-    const monthlyLoss = weeklyLoss * 4;
-    const annualSavings = monthlyLoss * 12 * 0.9; // Assuming 90% recovery
-
-    setTimeout(() => {
-      setResults({
-        weeklyLoss,
-        monthlyLoss,
-        annualSavings
-      });
-      setIsCalculating(false);
-    }, 500);
-  };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    const numValue = Math.max(0, parseInt(value) || 0);
-    
-    setInputs(prev => ({
-      ...prev,
-      [name]: numValue
-    }));
-    
-    // Clear error when user starts typing
-    if (errors[name]) {
-      setErrors(prev => ({
-        ...prev,
-        [name]: ''
-      }));
-    }
-  };
-
-  // Memoized calculation for performance
-  const memoizedResults = React.useMemo(() => {
-    if (!results) return null;
-    return results;
-  }, [results]);
-
-  return (
-    <>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <div className="space-y-2">
-          <label htmlFor="crewSize" className="block text-sm text-gray-400">
-            Crew Size
-          </label>
-          <input
-            id="crewSize"
-            type="number"
-            name="crewSize"
-            value={inputs.crewSize}
-            onChange={handleInputChange}
-            className={`w-full bg-gray-800 border rounded px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-construction-orange ${
-              errors.crewSize ? 'border-red-500' : 'border-gray-700'
-            }`}
-            min="1"
-            aria-describedby={errors.crewSize ? "crewSize-error" : undefined}
-          />
-          {errors.crewSize && (
-            <p id="crewSize-error" className="text-red-500 text-sm">
-              {errors.crewSize}
-            </p>
-          )}
-        </div>
-        
-        <div className="space-y-2">
-          <label htmlFor="hourlyRate" className="block text-sm text-gray-400">
-            Hourly Rate ($)
-          </label>
-          <input
-            id="hourlyRate"
-            type="number"
-            name="hourlyRate"
-            value={inputs.hourlyRate}
-            onChange={handleInputChange}
-            className={`w-full bg-gray-800 border rounded px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-construction-orange ${
-              errors.hourlyRate ? 'border-red-500' : 'border-gray-700'
-            }`}
-            min="1"
-            aria-describedby={errors.hourlyRate ? "hourlyRate-error" : undefined}
-          />
-          {errors.hourlyRate && (
-            <p id="hourlyRate-error" className="text-red-500 text-sm">
-              {errors.hourlyRate}
-            </p>
-          )}
-        </div>
-        
-        <div className="space-y-2">
-          <label htmlFor="hoursLost" className="block text-sm text-gray-400">
-            Hours Lost/Week
-          </label>
-          <input
-            id="hoursLost"
-            type="number"
-            name="hoursLost"
-            value={inputs.hoursLost}
-            onChange={handleInputChange}
-            className={`w-full bg-gray-800 border rounded px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-construction-orange ${
-              errors.hoursLost ? 'border-red-500' : 'border-gray-700'
-            }`}
-            min="0"
-            max="168"
-            aria-describedby={errors.hoursLost ? "hoursLost-error" : undefined}
-          />
-          {errors.hoursLost && (
-            <p id="hoursLost-error" className="text-red-500 text-sm">
-              {errors.hoursLost}
-            </p>
-          )}
-        </div>
+        </section>
       </div>
 
-      <motion.button
-        onClick={calculateROI}
-        className="w-full bg-construction-orange text-white font-bold py-4 rounded-lg mb-8 hover:bg-construction-orange/90 focus:outline-none focus:ring-4 focus:ring-construction-orange/50 disabled:opacity-50"
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-        disabled={isCalculating}
-        aria-label="Calculate your losses from internet downtime"
-      >
-        {isCalculating ? "Calculating..." : "CALCULATE LOSSES"}
-      </motion.button>
-
-      {memoizedResults && (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="space-y-2"
-          >
-            <p className="text-gray-400">Weekly Loss</p>
-            <p className="text-3xl font-bold text-red-500">
-              ${memoizedResults.weeklyLoss.toLocaleString()}
-            </p>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.1 }}
-            className="space-y-2"
-          >
-            <p className="text-gray-400">Monthly Loss</p>
-            <p className="text-4xl font-bold text-red-500">
-              ${memoizedResults.monthlyLoss.toLocaleString()}
-            </p>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2 }}
-            className="space-y-2"
-          >
-            <p className="text-gray-400">Potential Annual Savings</p>
-            <p className="text-3xl font-bold text-success-green">
-              ${memoizedResults.annualSavings.toLocaleString()}
-            </p>
-          </motion.div>
-        </div>
-      )}
-
-      {memoizedResults && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="mt-8 text-center"
-        >
-          <button 
-            className="bg-success-green text-white font-bold py-4 px-8 rounded-lg hover:bg-success-green/90 focus:outline-none focus:ring-4 focus:ring-success-green/50"
-            onClick={() => {
-              trackEvent('click', 'CTA', 'Stop Losing Money - ROI Calculator', memoizedResults?.monthlyLoss);
-              handleDeployRequest('roi-calculator', 'roi-section');
-            }}
-          >
-            STOP LOSING MONEY - DEPLOY NOW
-          </button>
-        </motion.div>
-      )}
+      {/* ROI Calculator Modal */}
+      <ROICalculatorModal 
+        isOpen={isCalculatorOpen} 
+        onClose={() => setIsCalculatorOpen(false)} 
+      />
     </>
   );
 };
