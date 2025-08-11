@@ -24,9 +24,13 @@ export default {
   			]
   		},
   		colors: {
-  			primary: {
-  				'50': '#f0f9ff',
-  				'100': '#e0f2fe',
+			'space-black': '#0A0E1A',
+			'construction-orange': '#FF6B35',
+			'success-green': '#10B981',
+			'clean-concrete': '#F7F8FA',
+			primary: {
+				'50': '#f0f9ff',
+				'100': '#e0f2fe',
   				'200': '#bae6fd',
   				'300': '#7dd3fc',
   				'400': '#38bdf8',

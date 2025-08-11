@@ -42,6 +42,9 @@ const Navbar = () => {
     if (path === '/blog') {
       // Navigate to blog page using React Router
       navigate('/blog');
+    } else if (path.startsWith('/services/')) {
+      // Navigate to service pages using React Router
+      navigate(path);
     } else if (path.startsWith('/#')) {
       // Handle hash links - navigate to home first if not already there, then scroll
       const id = path.substring(2);
@@ -73,6 +76,7 @@ const Navbar = () => {
 
   const navLinks = [
     { href: '/#services', label: 'Services' },
+    { href: '/services/construction-connect', label: 'Construction Connect' },
     { href: '/#availability-process', label: 'Coverage' },
     { href: '/blog', label: 'Blog' },
     { href: '/#faq', label: 'FAQ' },

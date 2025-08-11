@@ -14,6 +14,9 @@ import FAQ from './components/FAQ';
 import FinalHomepageCTA from './components/FinalHomepageCTA';
 import SocialProofTestimonials from './components/SocialProofTestimonials';
 
+// Lazy load service pages for better performance
+const ConstructionConnect = lazy(() => import('./pages/services/ConstructionConnect'));
+
 // Lazy load location pages for better performance
 const FairfaxPage = lazy(() => import('./components/LocationPages/FairfaxPage'));
 const MontgomeryPage = lazy(() => import('./components/LocationPages/MontgomeryPage'));
@@ -56,6 +59,13 @@ function App() {
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:postId" element={<Blog />} />
             <Route path="/faq" element={<FAQ />} />
+            
+            {/* Service Pages */}
+            <Route path="/services/construction-connect" element={
+              <Suspense fallback={<div className="flex items-center justify-center min-h-screen bg-black text-white">Loading...</div>}>
+                <ConstructionConnect />
+              </Suspense>
+            } />
             
             {/* Location Pages - Virginia */}
             <Route path="/locations/fairfax-county-va" element={
