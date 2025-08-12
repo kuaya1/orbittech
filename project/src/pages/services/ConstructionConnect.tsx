@@ -5,7 +5,6 @@ import {
   Check,
   X,
   TrendingDown,
-  ArrowRight,
   Star,
   Shield,
   Zap,
@@ -228,39 +227,6 @@ export default function ConstructionConnect() {
           }
         }
       `}</style>
-      
-      {/* Construction Connect Navigation Bar */}
-      <nav className="bg-white/95 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-40">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <div className="flex items-center">
-                <img 
-                  src="/orbittech logo black.png" 
-                  alt="OrbitTech Logo" 
-                  className="h-8 w-auto mr-3"
-                />
-                <div className="text-2xl font-bold text-gray-900">
-                  Orbit<span className="text-blue-600">Tech</span>
-                </div>
-              </div>
-            </div>
-            
-            <div className="hidden md:flex items-center space-x-8">
-              <a href="#solutions" className="text-gray-700 hover:text-blue-600 transition-all duration-300">Solutions</a>
-              <a href="#process" className="text-gray-700 hover:text-blue-600 transition-all duration-300">Process</a>
-              <a href="#pricing" className="text-gray-700 hover:text-blue-600 transition-all duration-300">Pricing</a>
-              <a href="#contact" className="text-gray-700 hover:text-blue-600 transition-all duration-300">Contact</a>
-            </div>
-            
-            <button
-              className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-all duration-300 min-h-[40px]"
-            >
-              Get Started <ArrowRight className="w-4 h-4 inline ml-2" />
-            </button>
-          </div>
-        </div>
-      </nav>
 
       {/* Hero Section - Clean 60/40 Split with Right Image */}
       <section className="relative py-24 bg-white overflow-hidden">
