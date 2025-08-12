@@ -258,9 +258,9 @@ export default function ConstructionConnect() {
       {/* Hero Section - Clean 60/40 Split with Right Image */}
       <section className="relative py-24 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
             {/* Left: Copy and CTAs (60%) */}
-            <div className="lg:col-span-3">
+            <div className="lg:col-span-3 order-2 lg:order-1">
               <div>
                 <div className="inline-flex items-center bg-blue-50 text-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-8">
                   <Zap className="w-4 h-4 mr-2" />
@@ -301,9 +301,9 @@ export default function ConstructionConnect() {
               </div>
             </div>
             
-            {/* Right: Construction Site Image (40%) */}
-            <div className="lg:col-span-2 relative">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+            {/* Right: Construction Site Image (40%) - Shows first on mobile */}
+            <div className="lg:col-span-2 relative order-1 lg:order-2">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl max-w-md mx-auto lg:max-w-none">
                 <img 
                   src="/construction-site-79.png" 
                   alt="Construction site with satellite internet connectivity"
