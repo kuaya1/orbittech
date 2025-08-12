@@ -253,7 +253,7 @@ export default function ConstructionConnect() {
                 </p>
                 
                 {/* Mobile: Image appears here above button, Desktop: Hidden - Move up 0.5 inch */}
-                <div className="lg:hidden relative mb-10 h-80 bg-cover bg-center bg-no-repeat -mt-12" style={{backgroundImage: 'url(/Whisk_886e99cbb8.jpg)'}}>
+                <div className="lg:hidden relative mb-10 h-80 bg-cover bg-center bg-no-repeat -mt-12" style={{backgroundImage: 'url(/ChatGPT Image Aug 11, 2025, 11_30_02 PM.png)'}}>
                 </div>
                 
                 {/* Mobile: Single button, Desktop: Two buttons */}
@@ -283,7 +283,7 @@ export default function ConstructionConnect() {
             </div>
             
             {/* Right: Construction Site Image (40%) - Desktop only */}
-            <div className="hidden lg:block lg:col-span-2 relative order-2 lg:order-2 h-[520px] bg-cover bg-center bg-no-repeat" style={{backgroundImage: 'url(/Whisk_886e99cbb8.jpg)'}}>
+            <div className="hidden lg:block lg:col-span-2 relative order-2 lg:order-2 h-[520px] bg-cover bg-center bg-no-repeat" style={{backgroundImage: 'url(/ChatGPT Image Aug 11, 2025, 11_30_02 PM.png)'}}>
             </div>
           </div>
         </div>
