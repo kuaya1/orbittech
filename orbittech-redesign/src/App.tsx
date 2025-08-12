@@ -8,6 +8,7 @@ import ArlingtonCounty from './pages/locations/ArlingtonCounty';
 import PrinceWilliamCounty from './pages/locations/PrinceWilliamCounty';
 import MontgomeryCountyMD from './pages/locations/MontgomeryCountyMD';
 import ThankYou from './pages/ThankYou';
+import ConstructionConnectLanding from './pages/ConstructionConnect';
 import { analyticsHelpers } from './utils/analyticsConfig';
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
     <Layout>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/construction-connect" element={<ConstructionConnectLanding />} />
         <Route path="/locations/loudoun-county" element={<LoudounCounty />} />
         <Route path="/locations/fairfax-county" element={<FairfaxCounty />} />
         <Route path="/locations/arlington-county" element={<ArlingtonCounty />} />
