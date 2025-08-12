@@ -229,13 +229,20 @@ export default function ConstructionConnect() {
         }
       `}</style>
       
-      {/* Navigation Bar */}
+      {/* Construction Connect Navigation Bar */}
       <nav className="bg-white/95 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
-              <div className="text-2xl font-bold text-gray-900">
-                Orbit<span className="text-blue-600">Tech</span>
+              <div className="flex items-center">
+                <img 
+                  src="/orbittech logo black.png" 
+                  alt="OrbitTech Logo" 
+                  className="h-8 w-auto mr-3"
+                />
+                <div className="text-2xl font-bold text-gray-900">
+                  Orbit<span className="text-blue-600">Tech</span>
+                </div>
               </div>
             </div>
             
@@ -278,19 +285,7 @@ export default function ConstructionConnect() {
                   312 Mbps average. 47 active sites. Zero downtime.
                 </p>
                 
-                {/* Mobile: Single button, Desktop: Two buttons */}
-                <div className="mb-10">
-                  <button className="bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-all duration-300 min-h-[48px] w-full sm:w-auto">
-                    Deploy Today
-                  </button>
-                  
-                  {/* Desktop only second button */}
-                  <button className="hidden sm:inline-block bg-white text-blue-600 border-2 border-blue-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-50 transition-all duration-300 min-h-[48px] ml-4">
-                    View Live Sites
-                  </button>
-                </div>
-                
-                {/* Mobile: Image appears here, Desktop: Hidden */}
+                {/* Mobile: Image appears here above button, Desktop: Hidden */}
                 <div className="lg:hidden relative mb-10">
                   <div className="relative rounded-2xl overflow-hidden shadow-2xl max-w-md mx-auto">
                     <img 
@@ -301,6 +296,18 @@ export default function ConstructionConnect() {
                     {/* Subtle overlay for depth */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
                   </div>
+                </div>
+                
+                {/* Mobile: Single button, Desktop: Two buttons */}
+                <div className="mb-10">
+                  <button className="bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-all duration-300 min-h-[48px] w-full sm:w-auto">
+                    Deploy Today
+                  </button>
+                  
+                  {/* Desktop only second button */}
+                  <button className="hidden sm:inline-block bg-white text-blue-600 border-2 border-blue-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-50 transition-all duration-300 min-h-[48px] ml-4">
+                    View Live Sites
+                  </button>
                 </div>
                 
                 {/* Subtle live status element */}
