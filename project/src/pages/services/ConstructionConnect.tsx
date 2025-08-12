@@ -1,27 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { 
   Wifi, 
   Clock, 
   Check,
   X,
   TrendingDown,
-  Star,
-  Shield,
-  Zap,
   Building,
   Phone,
   DollarSign,
-  AlertTriangle,
-  CheckCircle,
   Globe,
   Satellite,
   Activity,
-  Award,
   Truck,
-  Settings,
-  Target,
-  Rocket,
-  LayoutDashboard
+  Settings
 } from 'lucide-react';
 
 // Interactive Timeline Comparison
@@ -29,24 +20,24 @@ const TimelineComparison = () => {
   const [sliderPosition, setSliderPosition] = useState(50);
   
   const traditionalDays = 21;
-  const orbitTechHours = 4;
+  const orbitTechHours = 48;
   
   const dailyCost = 2600 * 8; // $2,600/hour * 8 hours
   const traditionalCost = dailyCost * traditionalDays;
   const orbitTechCost = 899; // Monthly fee
 
   return (
-    <div className="bg-white rounded-xl border border-gray-100 p-8 hover:shadow-lg transition-shadow duration-300">
+    <div className="bg-white rounded-xl border border-gray-100 p-8">
       <div className="text-center mb-8">
-        <h3 className="h3 text-gray-900 mb-2">Deployment Time Comparison</h3>
-        <p className="body">Drag the slider to see the difference</p>
+        <h3 className="text-[28px] font-semibold text-black mb-2">Deployment Time Comparison</h3>
+        <p className="text-[18px] text-gray-600">Drag the slider to see the difference</p>
       </div>
       
       <div className="relative">
         <div className="flex justify-between items-center mb-4">
           <div className={`transition-all duration-300 ${sliderPosition < 50 ? 'opacity-100' : 'opacity-50'}`}>
             <h4 className="font-semibold text-gray-900">Traditional ISP</h4>
-            <p className="text-3xl font-bold text-red-500">{traditionalDays} days</p>
+            <p className="text-3xl font-bold text-black">{traditionalDays} days</p>
             <p className="text-sm text-gray-500">Cost during wait: ${traditionalCost.toLocaleString()}</p>
           </div>
           
@@ -90,38 +81,6 @@ const TimelineComparison = () => {
               {/* Live cost counter removed per updated narrative */}
         </div>
       </div>
-    </div>
-  );
-};
-
-// Scroll-based section progress bar
-const SectionScrollProgress = ({ targetId = 'process' }: { targetId?: string }) => {
-  const [progress, setProgress] = useState(0);
-
-  useEffect(() => {
-    const el = document.getElementById(targetId);
-    if (!el) return;
-
-    const onScroll = () => {
-      const rect = el.getBoundingClientRect();
-      const total = rect.height + window.innerHeight;
-      const scrolled = window.innerHeight - rect.top;
-      const p = Math.min(1, Math.max(0, scrolled / total));
-      setProgress(p);
-    };
-
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true } as AddEventListenerOptions);
-    window.addEventListener('resize', onScroll);
-    return () => {
-      window.removeEventListener('scroll', onScroll as EventListener);
-      window.removeEventListener('resize', onScroll);
-    };
-  }, [targetId]);
-
-  return (
-    <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden" aria-label="Section progress" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(progress * 100)}>
-      <div className="h-full bg-blue-600 transition-[width] duration-150 ease-out" style={{ width: `${Math.round(progress * 100)}%` }} />
     </div>
   );
 };
@@ -258,6 +217,53 @@ export default function ConstructionConnect() {
           .h3 {
             font-size: 1.375rem; /* 22px on mobile */
           }
+
+          /* Mobile touch targets and spacing */
+          .mobile-cta {
+            width: 100%;
+            min-height: 48px;
+            font-size: 1rem;
+          }
+
+          .mobile-card {
+            margin-bottom: 1rem;
+          }
+
+          .mobile-stack {
+            flex-direction: column;
+            gap: 1rem;
+          }
+        }
+
+        /* Remove hover effects on touch devices */
+        @media (hover: none) and (pointer: coarse) {
+          .hover\\:bg-blue-700:hover {
+            background-color: rgb(37 99 235) !important;
+          }
+          
+          .hover\\:bg-gray-100:hover {
+            background-color: rgb(243 244 246) !important;
+          }
+          
+          .hover\\:bg-gray-50:hover {
+            background-color: rgb(249 250 251) !important;
+          }
+          
+          .hover\\:bg-white:hover {
+            background-color: rgb(255 255 255) !important;
+          }
+          
+          .hover\\:text-blue-600:hover {
+            color: rgb(37 99 235) !important;
+          }
+          
+          .hover\\:shadow-lg:hover {
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1) !important;
+          }
+
+          .core-card:hover {
+            box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1) !important;
+          }
         }
       `}</style>
 
@@ -268,93 +274,79 @@ export default function ConstructionConnect() {
             {/* Left: Copy and CTAs (60%) */}
             <div className="lg:col-span-3 order-1 lg:order-1">
               <div>
-                {/* Desktop only badge */}
-                <div className="hidden lg:inline-flex items-center bg-blue-100 text-blue-600 px-3 py-2 rounded-full text-sm font-medium mb-8">
-                  <Zap className="w-4 h-4 mr-2" />
-                  4-HOUR DEPLOYMENT
-                </div>
-                
                 <h1 className="text-[56px] font-extrabold leading-[1.1] tracking-tight text-black mb-8">
                   Your Construction Site <br />
-                  <span className="text-blue-600">Connected.</span> Today.
+                  <span className="text-blue-600">Connected.</span> This Week.
                 </h1>
                 
                 <p className="text-lg text-gray-600 leading-7 mb-10 max-w-2xl">
                   Enterprise-grade Starlink deployment for construction professionals.
-                  312 Mbps average. 47 active sites. Zero downtime.
+                  312 Mbps average. 47 active sites. 48-hour installation.
                 </p>
                 
-                {/* Mobile: Image appears here above button, Desktop: Hidden - Move up 0.5 inch */}
-                <div className="lg:hidden relative mb-10 h-80 bg-cover bg-center bg-no-repeat -mt-12" style={{backgroundImage: 'url(/Whisk starlink.jpg)'}}>
+                {/* Mobile: Image appears here above button, Desktop: Hidden */}
+                <div className="lg:hidden relative mb-10 h-80 bg-cover bg-center bg-no-repeat" style={{backgroundImage: 'url("/Whisk%20starlink.jpg")'}}>
                 </div>
                 
                 {/* CTAs */}
                 <div className="mb-10">
-                  <button className="bg-blue-600 text-white px-4 py-4 rounded-lg text-base font-semibold hover:bg-blue-700 transition-all duration-300 w-full sm:w-auto">
-                    Deploy Today
+                  <button className="bg-blue-600 text-white px-4 py-4 rounded-lg text-base font-semibold hover:bg-blue-700 transition-all duration-300 w-full sm:w-auto mobile-cta">
+                    Schedule Deployment
                   </button>
                   
                   {/* Desktop only second button */}
                   <button className="hidden sm:inline-block bg-white text-blue-600 border border-blue-600 px-4 py-4 rounded-lg text-base font-semibold hover:bg-gray-50 transition-all duration-300 ml-4">
-                    View Live Sites
+                    View Process
                   </button>
                 </div>
                 
-                {/* Live Status */}
-                <div className="flex items-center gap-4 text-sm text-gray-700">
-                  <div className="flex items-center">
-                    <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
-                    McLean: 287 Mbps
-                  </div>
-                  <div className="flex items-center">
-                    <CheckCircle className="w-4 h-4 text-green-500 mr-2" />
-                    47 Active Sites
-                  </div>
-                </div>
+                {/* Status line */}
+                <p className="text-sm text-gray-600">
+                  Currently serving 47 active sites across DMV
+                </p>
               </div>
             </div>
             
             {/* Right: Construction Site Image (40%) - Desktop only */}
             <div className="hidden lg:block lg:col-span-2 relative order-2">
-              <div className="aspect-[4/3] bg-cover bg-center bg-no-repeat rounded-lg" style={{backgroundImage: 'url(/Whisk starlink.jpg)'}}>
+              <div className="aspect-[4/3] bg-cover bg-center bg-no-repeat rounded-lg" style={{backgroundImage: 'url("/Whisk%20starlink.jpg")'}}>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-          {/* Problem Validation - Updated Narrative */}
-          <section className="py-24" style={{ backgroundColor: '#F8FAFC' }}>
+          {/* The Challenge */}
+          <section style={{ backgroundColor: '#F8FAFC', paddingTop: '96px', paddingBottom: '96px' }}>
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
-               <p className="text-sm font-semibold text-blue-600 uppercase tracking-wide mb-2">WHY SPEED MATTERS</p>
-               <h2 className="h2 text-black mb-3">Every Hour of Downtime Costs $2,600</h2>
-               <p className="text-lg text-gray-600">Traditional ISPs leave you waiting while costs accumulate</p>
+               <h2 className="text-[40px] font-bold text-black" style={{ fontFamily: 'Inter', fontWeight: 700 }}>Time Is Money in Construction</h2>
+               <p className="text-[18px] text-gray-600 mt-4">Traditional ISPs don't understand project timelines</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white rounded-xl border border-gray-100 p-8 text-center hover:shadow-lg transition-all duration-300">
+            <div className="bg-white rounded-xl border border-gray-100 p-8 text-center">
               <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Clock className="w-8 h-8 text-gray-600" />
               </div>
-              <h3 className="text-3xl font-bold text-gray-600 mb-2">21 Days</h3>
-                 <p className="text-lg font-semibold text-black">Average ISP Wait</p>
+              <h3 className="text-3xl font-bold text-black mb-2">21 days</h3>
+                 <p className="text-base text-gray-600">Typical ISP deployment</p>
             </div>
             
-            <div className="bg-white rounded-xl border border-gray-100 p-8 text-center hover:shadow-lg transition-all duration-300">
+            <div className="bg-white rounded-xl border border-gray-100 p-8 text-center">
+              <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <DollarSign className="w-8 h-8 text-gray-600" />
+              </div>
+                 <h3 className="text-3xl font-bold text-black mb-2">$2,600/hour</h3>
+                 <p className="text-base text-gray-600">Crew idle cost</p>
+            </div>
+            
+            <div className="bg-white rounded-xl border border-gray-100 p-8 text-center">
               <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
                 <TrendingDown className="w-8 h-8 text-gray-600" />
               </div>
-                 <h3 className="text-3xl font-bold text-gray-600 mb-2">$2,600/hr</h3>
-                 <p className="text-lg font-semibold text-black">Idle Crew Cost</p>
-            </div>
-            
-            <div className="bg-white rounded-xl border border-gray-100 p-8 text-center hover:shadow-lg transition-all duration-300">
-              <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <AlertTriangle className="w-8 h-8 text-gray-600" />
-              </div>
-              <h3 className="text-3xl font-bold text-gray-600 mb-2">73%</h3>
-                 <p className="text-lg font-semibold text-black">Projects Delayed</p>
+              <h3 className="text-3xl font-bold text-black mb-2">73%</h3>
+                 <p className="text-base text-gray-600">Projects with connectivity delays</p>
             </div>
           </div>
              
@@ -365,140 +357,130 @@ export default function ConstructionConnect() {
         </div>
       </section>
 
-      {/* Solution Section - Timeline Comparison */}
-      <section className="bg-white py-24" id="solutions">
+      {/* Our Approach */}
+      <section className="bg-white" style={{ paddingTop: '96px', paddingBottom: '96px' }} id="solutions">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
-            <p className="text-blue-600 font-semibold mb-4">THE ORBIT TECH SOLUTION</p>
-            <h2 className="h2 text-black mb-6">
-              4 Hours. Not 4 Weeks.
-            </h2>
+            <h2 className="text-[40px] font-bold text-black" style={{ fontFamily: 'Inter', fontWeight: 700 }}>48 Hours. Not 3 Weeks.</h2>
           </div>
-
-          {/* Testimonial snippet above comparison */}
-          <p className="text-center italic text-gray-700 max-w-3xl mx-auto mb-8">
-            "We saved $186,000 by getting online in 4 hours instead of waiting 3 weeks." - Turner C
-          </p>
 
           <TimelineComparison />
         </div>
       </section>
 
       {/* Core Services - New Section */}
-      <section className="bg-white border-t border-b border-gray-100 py-24">
-        {/* Local styles for card hover/elevation */}
+      <section className="bg-white" style={{ paddingTop: '96px', paddingBottom: '96px' }}>
+        {/* Local styles for card hover */}
         <style>{`
           .core-card { 
-            transition: all 0.3s ease-out; 
+            transition: box-shadow 0.3s ease;
             background: #FAFBFC; 
             border: 1px solid #E5E5E5; 
-            border-radius: 16px; 
+            border-radius: 12px; 
           }
           .core-card:hover { 
-            transform: translateY(-4px); 
-            box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
           }
         `}</style>
         <div className="max-w-[1200px] mx-auto px-6">
           {/* Header */}
-          <div className="text-center mb-12">
-            <h2 className="text-[40px] font-bold text-black tracking-tight">Your Complete Connectivity Solution</h2>
-            <p className="text-lg text-gray-600 mt-4">From rapid deployment to ongoing management, we handle everything</p>
+          <div className="text-center mb-16">
+            <h2 className="text-[40px] font-bold text-black" style={{ fontFamily: 'Inter', fontWeight: 700 }}>Complete Connectivity Solutions</h2>
+            <p className="text-[18px] text-gray-600 mt-4">Professional deployment and management for construction sites</p>
           </div>
 
           {/* Three-card grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Card 1 */}
-            <div className="core-card p-10">
-              <div className="relative w-12 h-12 mb-6">
-                <Rocket className="w-12 h-12 text-blue-600" strokeWidth={2} />
-                <Wifi className="w-5 h-5 text-blue-600 absolute -right-1 -top-1" strokeWidth={2} />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
+            {/* Card 1: Site Deployment */}
+            <div className="core-card mobile-card" style={{ padding: '32px' }}>
+              <div className="w-12 h-12 mb-6">
+                <Satellite className="w-12 h-12 text-blue-600" strokeWidth={2} />
               </div>
-              <h3 className="text-2xl font-semibold text-black mb-3">Rapid Site Deployment</h3>
-              <p className="text-base text-gray-600 mb-5">4-hour guaranteed Starlink installation with professional mounting and weatherproofing</p>
-              <a href="#" className="text-blue-600 font-medium hover:underline">Learn more →</a>
+              <h3 className="text-[20px] md:text-[24px] font-semibold text-black mb-3" style={{ fontFamily: 'Inter', fontWeight: 600 }}>Site Deployment</h3>
+              <p className="text-[14px] md:text-[16px] text-gray-600">48-hour Starlink installation with professional mounting</p>
             </div>
 
-            {/* Card 2 */}
-            <div className="core-card p-10">
-              <div className="relative w-12 h-12 mb-6">
-                <Shield className="w-12 h-12 text-blue-600" strokeWidth={2} />
-                <Wifi className="w-5 h-5 text-blue-600 absolute -right-1 -top-1" strokeWidth={2} />
+            {/* Card 2: Network Management */}
+            <div className="core-card mobile-card" style={{ padding: '32px' }}>
+              <div className="w-12 h-12 mb-6">
+                <Globe className="w-12 h-12 text-blue-600" strokeWidth={2} />
               </div>
-              <h3 className="text-2xl font-semibold text-black mb-3">Managed Connectivity</h3>
-              <p className="text-base text-gray-600 mb-5">24/7 network monitoring, automatic failover, and dedicated support for zero downtime</p>
-              <a href="#" className="text-blue-600 font-medium hover:underline">Learn more →</a>
+              <h3 className="text-[20px] md:text-[24px] font-semibold text-black mb-3" style={{ fontFamily: 'Inter', fontWeight: 600 }}>Network Management</h3>
+              <p className="text-[14px] md:text-[16px] text-gray-600">24/7 monitoring and support for continuous uptime</p>
             </div>
 
-            {/* Card 3 */}
-            <div className="core-card p-10">
-              <div className="relative w-12 h-12 mb-6">
-                <LayoutDashboard className="w-12 h-12 text-blue-600" strokeWidth={2} />
-                <Activity className="w-5 h-5 text-blue-600 absolute -right-1 -top-1" strokeWidth={2} />
+            {/* Card 3: Performance Analytics */}
+            <div className="core-card mobile-card" style={{ padding: '32px' }}>
+              <div className="w-12 h-12 mb-6">
+                <TrendingDown className="w-12 h-12 text-blue-600" strokeWidth={2} />
               </div>
-              <h3 className="text-2xl font-semibold text-black mb-3">Site Intelligence</h3>
-              <p className="text-base text-gray-600 mb-5">Real-time performance analytics, security cameras, and IoT sensor integration</p>
-              <a href="#" className="text-blue-600 font-medium hover:underline">Learn more →</a>
+              <h3 className="text-[20px] md:text-[24px] font-semibold text-black mb-3" style={{ fontFamily: 'Inter', fontWeight: 600 }}>Performance Analytics</h3>
+              <p className="text-[14px] md:text-[16px] text-gray-600">Real-time speed monitoring and optimization</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Process Section - 4 Steps, Clean Design */}
-      <section className="py-24" id="process" style={{ backgroundColor: '#F8FAFC' }}>
+      {/* Process Section - Two-Day Process */}
+      <section style={{ backgroundColor: '#F8FAFC', paddingTop: '96px', paddingBottom: '96px' }} id="process">
         <div className="max-w-7xl mx-auto px-4">
-          {/* Scroll progress bar for this section */}
-          <div className="mb-8">
-            <SectionScrollProgress targetId="process" />
-          </div>
           <div className="text-center mb-16">
-            <h2 className="h2 text-black mb-6">
-              How It Works
+            <h2 className="text-[40px] font-bold text-black" style={{ fontFamily: 'Inter', fontWeight: 700 }}>
+              Simple Two-Day Process
             </h2>
-            <p className="body">From call to connection in 4 hours</p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-8">
             {[
               { 
                 icon: Phone, 
-                time: "8:00 AM", 
-                title: "Call", 
-                description: "Direct construction team"
-              },
-              { 
-                icon: Truck, 
-                time: "9:00 AM", 
-                title: "Deploy", 
-                description: "Equipment arrives"
+                day: "Day 1", 
+                time: "Morning",
+                title: "Consultation", 
+                description: "Site survey and planning"
               },
               { 
                 icon: Settings, 
-                time: "11:00 AM", 
-                title: "Install", 
-                description: "Professional mounting"
+                day: "Day 1", 
+                time: "Afternoon",
+                title: "Preparation", 
+                description: "Equipment staging"
+              },
+              { 
+                icon: Truck, 
+                day: "Day 2", 
+                time: "Morning",
+                title: "Installation", 
+                description: "Professional mounting and setup"
               },
               { 
                 icon: Wifi, 
-                time: "12:00 PM", 
-                title: "Connect", 
-                description: "Site online"
+                day: "Day 2", 
+                time: "Afternoon",
+                title: "Activation", 
+                description: "Testing and handoff"
               }
             ].map((step, index) => (
               <div
                 key={index}
-                className="text-center relative"
+                className="text-center relative mobile-card"
               >
-                <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-6 border border-gray-100 hover:shadow-lg transition-all duration-300">
-                  <step.icon className="w-10 h-10 text-blue-600" />
+                <div className="w-16 h-16 md:w-20 md:h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6 border border-gray-100">
+                  <step.icon className="w-8 h-8 md:w-10 md:h-10 text-blue-600" />
                 </div>
-                <h3 className="text-2xl font-bold text-blue-600 mb-2">{step.time}</h3>
-                <h4 className="text-xl font-semibold text-black mb-2">{step.title}</h4>
-                <p className="text-gray-600">{step.description}</p>
+                <h3 className="text-base md:text-lg font-semibold text-gray-900 mb-1">{step.day}</h3>
+                <h4 className="text-sm text-gray-600 mb-2 md:mb-3">{step.time}</h4>
+                <h5 className="text-lg md:text-xl font-semibold text-black mb-2">{step.title}</h5>
+                <p className="text-sm md:text-base text-gray-600">{step.description}</p>
                 
-                {/* Connection line */}
+                {/* Connection line - Desktop only */}
                 {index < 3 && (
                   <div className="hidden md:block absolute top-10 left-1/2 w-full h-0.5 bg-gray-200 transform translate-x-1/2"></div>
+                )}
+
+                {/* Vertical connection line - Mobile only */}
+                {index < 3 && (
+                  <div className="md:hidden absolute left-1/2 transform -translate-x-1/2 w-0.5 h-8 bg-gray-200 -bottom-4"></div>
                 )}
               </div>
             ))}
@@ -506,59 +488,59 @@ export default function ConstructionConnect() {
         </div>
       </section>
 
-      {/* Dashboard Section - White Background with Blue Accent Cards */}
-      <section className="bg-white py-24">
+      {/* Performance Data */}
+      <section className="bg-white" style={{ paddingTop: '96px', paddingBottom: '96px' }}>
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="h2 text-black mb-4">Live Network Performance</h2>
-            <p className="body">Real-time data from active construction sites</p>
+            <h2 className="text-[40px] font-bold text-black" style={{ fontFamily: 'Inter', fontWeight: 700 }}>Network Performance</h2>
+            <p className="text-[18px] text-gray-600 mt-4">Live data from active construction sites</p>
           </div>
           
-          {/* Mobile: Key metrics only */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div className="bg-blue-50 border border-blue-100 rounded-xl p-8 text-center hover:shadow-lg transition-all duration-300">
-              <Activity className="w-8 h-8 mx-auto mb-4 text-blue-600" />
-              <div className="text-3xl font-bold text-blue-600 mb-2">298</div>
-              <p className="text-gray-600 text-sm md:text-base">Avg Speed (Mbps)</p>
+          {/* 2x2 Metrics Grid - Mobile: Single Column */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-8 max-w-4xl mx-auto">
+            <div className="bg-blue-50 border border-blue-100 rounded-xl p-6 md:p-8 text-center mobile-card">
+              <Activity className="w-6 h-6 md:w-8 md:h-8 mx-auto mb-4 text-blue-600" />
+              <div className="text-2xl md:text-3xl font-bold text-blue-600 mb-2">298</div>
+              <p className="text-sm md:text-base text-gray-600">Average Speed (Mbps)</p>
             </div>
             
-            <div className="bg-blue-50 border border-blue-100 rounded-xl p-8 text-center hover:shadow-lg transition-all duration-300">
-              <Building className="w-8 h-8 mx-auto mb-4 text-blue-600" />
-              <div className="text-3xl font-bold text-blue-600 mb-2">47</div>
-              <p className="text-gray-600 text-sm md:text-base">Active Sites</p>
+            <div className="bg-blue-50 border border-blue-100 rounded-xl p-6 md:p-8 text-center mobile-card">
+              <Building className="w-6 h-6 md:w-8 md:h-8 mx-auto mb-4 text-blue-600" />
+              <div className="text-2xl md:text-3xl font-bold text-blue-600 mb-2">47</div>
+              <p className="text-sm md:text-base text-gray-600">Active Sites</p>
             </div>
             
-            <div className="hidden md:block bg-blue-50 border border-blue-100 rounded-xl p-8 text-center hover:shadow-lg transition-all duration-300">
-              <Globe className="w-8 h-8 mx-auto mb-4 text-blue-600" />
-              <div className="text-3xl font-bold text-blue-600 mb-2">2,847</div>
-              <p className="text-gray-600">Data Today (GB)</p>
+            <div className="bg-blue-50 border border-blue-100 rounded-xl p-6 md:p-8 text-center mobile-card">
+              <Globe className="w-6 h-6 md:w-8 md:h-8 mx-auto mb-4 text-blue-600" />
+              <div className="text-2xl md:text-3xl font-bold text-blue-600 mb-2">99.97%</div>
+              <p className="text-sm md:text-base text-gray-600">Network Uptime</p>
             </div>
             
-            <div className="hidden md:block bg-blue-50 border border-blue-100 rounded-xl p-8 text-center hover:shadow-lg transition-all duration-300">
-              <Target className="w-8 h-8 mx-auto mb-4 text-blue-600" />
-              <div className="text-3xl font-bold text-blue-600 mb-2">312</div>
-              <p className="text-gray-600">Tysons (Mbps)</p>
+            <div className="bg-blue-50 border border-blue-100 rounded-xl p-6 md:p-8 text-center mobile-card">
+              <Clock className="w-6 h-6 md:w-8 md:h-8 mx-auto mb-4 text-blue-600" />
+              <div className="text-2xl md:text-3xl font-bold text-blue-600 mb-2">&lt;2 hours</div>
+              <p className="text-sm md:text-base text-gray-600">Response Time</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Pricing Section */}
-      <section className="bg-white py-24" id="pricing">
+      <section className="bg-white" style={{ paddingTop: '96px', paddingBottom: '96px' }} id="pricing">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="h2 text-black mb-6">
-              Simple, Transparent Pricing
+            <h2 className="text-[40px] font-bold text-black" style={{ fontFamily: 'Inter', fontWeight: 700 }}>
+              Transparent Pricing
             </h2>
-            <p className="body">Choose the plan that fits your project needs</p>
+            <p className="text-[18px] text-gray-600 mt-4">No contracts. No hidden fees.</p>
           </div>
 
           {/* Billing cycle toggle */}
           <div className="flex justify-center mb-6">
-            <div className="inline-flex items-center rounded-lg border border-gray-200 p-1 bg-gray-50">
+            <div className="inline-flex items-center rounded-lg border border-gray-200 p-1 bg-gray-50 w-full max-w-xs sm:w-auto">
               <button
                 onClick={() => setBillingCycle("monthly")}
-                className={`px-4 py-2 rounded-md text-sm font-semibold transition-colors ${
+                className={`px-3 py-2 md:px-4 md:py-2 rounded-md text-sm font-semibold transition-colors flex-1 sm:flex-initial ${
                   billingCycle === 'monthly' ? 'bg-white text-black shadow-sm' : 'text-gray-600 hover:text-black'
                 }`}
                 aria-pressed={billingCycle === 'monthly'}
@@ -567,7 +549,7 @@ export default function ConstructionConnect() {
               </button>
               <button
                 onClick={() => setBillingCycle("annual")}
-                className={`px-4 py-2 rounded-md text-sm font-semibold transition-colors ${
+                className={`px-3 py-2 md:px-4 md:py-2 rounded-md text-sm font-semibold transition-colors flex-1 sm:flex-initial ${
                   billingCycle === 'annual' ? 'bg-white text-black shadow-sm' : 'text-gray-600 hover:text-black'
                 }`}
                 aria-pressed={billingCycle === 'annual'}
@@ -576,74 +558,63 @@ export default function ConstructionConnect() {
               </button>
             </div>
           </div>
-
-          {/* Included line */}
-          <p className="text-center text-sm text-gray-700 mb-10">All plans include: ✓ No contracts ✓ Same-day deployment ✓ 24/7 support</p>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {[
               {
                 name: "Essential",
                 price: 899,
                 description: "Single sites",
                 features: [
-                  "4-hour deployment",
-                  "312 Mbps average speed",
-                  "24/7 monitoring",
-                  "Basic support"
-                ],
-                highlighted: false
+                  "48-hour deployment",
+                  "250+ Mbps speeds",
+                  "Standard support"
+                ]
               },
               {
                 name: "Professional",
                 price: 1299,
                 description: "Critical projects",
                 features: [
-                  "2-hour deployment",
+                  "Next-day deployment",
                   "Guaranteed speeds",
                   "Priority support",
-                  "Redundant backup",
-                  "Site management portal"
-                ],
-                highlighted: true
+                  "Backup connectivity"
+                ]
               },
               {
                 name: "Enterprise",
                 price: 2499,
                 description: "Multi-site operations",
                 features: [
-                  "1-hour deployment",
-                  "Dedicated account manager",
-                  "Custom configurations",
-                  "Advanced analytics",
+                  "Same-day deployment",
+                  "Dedicated management",
+                  "Custom configuration",
                   "SLA guarantees"
-                ],
-                highlighted: false
+                ]
               }
             ].map((plan, index) => (
               <div
                 key={index}
-                className={`rounded-xl p-8 hover:shadow-lg transition-all duration-300 ${
-                  plan.highlighted ? 'bg-[#F0F9FF] border border-blue-200' : 'bg-white border-0'
-                }`}
+                className="bg-white border border-gray-100 rounded-xl p-6 md:p-8 mobile-card"
               >
                 <div className="text-center">
-                  <h3 className="text-2xl font-bold mb-2 text-black">
+                  <h3 className="text-xl md:text-2xl font-bold mb-2 text-black">
                     {plan.name}
                   </h3>
-                  <p className="mb-6 text-gray-600">
+                  <p className="mb-6 text-gray-600 text-sm md:text-base">
                     {plan.description}
                   </p>
                   
-                  <div className="mb-8">
+                  <div className="mb-6 md:mb-8">
                     {(() => {
                       const monthly = plan.price;
                       const shown = billingCycle === 'monthly' ? monthly : Math.round(monthly * 0.9);
                       return (
                         <>
-                          <span className="font-extrabold text-black text-[56px] leading-none">${shown}</span>
-                          <span className="text-lg text-gray-600">/mo</span>
-                          <div className="text-sm text-gray-500 mt-1">
+                          <span className="font-extrabold text-black text-[40px] md:text-[56px] leading-none">${shown}</span>
+                          <span className="text-base md:text-lg text-gray-600">/mo</span>
+                          <div className="text-xs md:text-sm text-gray-500 mt-1">
                             {billingCycle === 'annual' ? 'billed annually' : 'billed monthly'}
                           </div>
                         </>
@@ -651,11 +622,11 @@ export default function ConstructionConnect() {
                     })()}
                   </div>
                   
-                  <ul className="space-y-4 mb-8">
+                  <ul className="space-y-3 md:space-y-4 mb-6 md:mb-8">
                     {plan.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-center">
-                        <Check className="w-5 h-5 mr-3 text-gray-800" />
-                        <span className="text-gray-600">
+                      <li key={featureIndex} className="flex items-center text-left">
+                        <Check className="w-4 h-4 md:w-5 md:h-5 mr-3 text-gray-800 flex-shrink-0" />
+                        <span className="text-gray-600 text-sm md:text-base">
                           {feature}
                         </span>
                       </li>
@@ -663,9 +634,9 @@ export default function ConstructionConnect() {
                   </ul>
                   
                   <button
-                    className="w-full py-4 px-6 rounded-lg font-semibold transition-all duration-300 bg-blue-600 text-white hover:bg-blue-700 min-h-[48px]"
+                    className="w-full py-3 md:py-4 px-6 rounded-lg font-semibold transition-all duration-300 bg-blue-600 text-white hover:bg-blue-700 min-h-[48px] mobile-cta"
                   >
-                    Deploy Now
+                    Get Started
                   </button>
                 </div>
               </div>
@@ -674,94 +645,82 @@ export default function ConstructionConnect() {
         </div>
       </section>
 
-      {/* Testimonial Section */}
-      <section className="bg-gray-50 py-24">
+      {/* Client Testimonial */}
+      <section style={{ backgroundColor: '#F8FAFC', paddingTop: '96px', paddingBottom: '96px' }}>
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <div className="bg-white rounded-xl border border-gray-100 p-12 hover:shadow-lg transition-all duration-300">
-            <div className="text-6xl text-blue-600 mb-8">"</div>
-            <p className="text-2xl md:text-3xl text-gray-900 leading-relaxed font-serif mb-8">
-              Orbit Tech delivered what they promised. 4 hours from call to connection. 
-              Our Tysons project stayed on schedule because of their rapid deployment.
-            </p>
-            
-            <div className="flex flex-col md:flex-row items-center justify-center gap-4">
-              <div className="w-16 h-16 bg-gray-300 rounded-full flex-shrink-0"></div>
-              <div className="text-center md:text-left">
-                <p className="font-semibold text-xl text-black">Mike Rodriguez</p>
-                <p className="text-gray-600">Project Manager, Turner Construction</p>
-                <div className="flex items-center justify-center md:justify-start mt-2">
-                  <CheckCircle className="w-5 h-5 text-blue-600 mr-2" />
-                  <span className="text-blue-600 font-medium">Verified Customer</span>
-                </div>
-              </div>
-            </div>
+          <p className="text-[32px] text-gray-900 leading-relaxed mb-12" style={{ fontFamily: 'Georgia, serif' }}>
+            Orbit Tech delivered exactly what they promised. 48 hours from call to connection. Our Tysons project stayed on schedule because of their reliable deployment.
+          </p>
+          
+          <div className="text-[18px] text-gray-700">
+            <p className="font-semibold">Mike Rodriguez</p>
+            <p>Project Manager, Turner Construction</p>
           </div>
         </div>
       </section>
 
-      {/* Trust & Certifications */}
-      <section className="bg-white py-24">
+      {/* Certifications */}
+      <section className="bg-white" style={{ paddingTop: '96px', paddingBottom: '96px' }}>
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="h2 text-black mb-6">
-              Trusted by Industry Leaders
+            <h2 className="text-[40px] font-bold text-black" style={{ fontFamily: 'Inter', fontWeight: 700 }}>
+              Fully Certified and Insured
             </h2>
           </div>
           
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
-            {[
-              { icon: Satellite, label: "Starlink Authorized" },
-              { icon: Shield, label: "FCC Licensed" },
-              { icon: Star, label: "BBB A+ Rating" },
-              { icon: Award, label: "ENR Top 400" },
-              { icon: CheckCircle, label: "$5M Liability" },
-              { icon: Phone, label: "24/7 Support" }
-            ].map((cert, index) => (
-              <div
-                key={index}
-                className="text-center group"
-              >
-                <div className="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-gray-100 transition-all duration-300 min-h-[48px]">
-                  <cert.icon className="w-8 h-8 text-gray-600 group-hover:text-blue-600 transition-all duration-300" />
-                </div>
-                <p className="text-sm font-medium text-black">{cert.label}</p>
-              </div>
-            ))}
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <div className="text-center">
+              <p className="text-gray-700">Starlink Authorized Installer</p>
+            </div>
+            <div className="text-center">
+              <p className="text-gray-700">FCC Licensed</p>
+            </div>
+            <div className="text-center">
+              <p className="text-gray-700">$5M General Liability</p>
+            </div>
+            <div className="text-center">
+              <p className="text-gray-700">$2M Professional Liability</p>
+            </div>
+            <div className="text-center">
+              <p className="text-gray-700">BBB Accredited</p>
+            </div>
+            <div className="text-center">
+              <p className="text-gray-700">24/7 Support Available</p>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Final CTA */}
-      <section className="bg-blue-600 py-24" id="contact">
+      <section className="bg-blue-600" style={{ paddingTop: '96px', paddingBottom: '96px' }} id="contact">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <div>
-            <h2 className="h2 text-white mb-6">
+            <h2 className="text-[40px] font-bold text-white mb-6" style={{ fontFamily: 'Inter', fontWeight: 700 }}>
               Ready to Connect Your Site?
             </h2>
-            <p className="body text-white mb-8">
-              4-hour deployment starts with one call
+            <p className="text-[18px] text-blue-100 mb-8">
+              Professional deployment in 48 hours
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8 mobile-stack">
               <a
                 href="tel:7035553278"
-                className="bg-white text-blue-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-all duration-300 inline-flex items-center justify-center min-h-[48px]"
+                className="bg-white text-blue-600 px-6 md:px-8 py-3 md:py-4 rounded-lg text-base md:text-lg font-semibold hover:bg-gray-100 transition-all duration-300 inline-flex items-center justify-center min-h-[48px] mobile-cta"
               >
-                <Phone className="w-5 h-5 mr-2" />
+                <Phone className="w-4 h-4 md:w-5 md:h-5 mr-2" />
                 Call (703) 555-FAST
               </a>
               
               <button
-                className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-blue-600 transition-all duration-300 min-h-[48px]"
+                className="bg-transparent border-2 border-white text-white px-6 md:px-8 py-3 md:py-4 rounded-lg text-base md:text-lg font-semibold hover:bg-white hover:text-blue-600 transition-all duration-300 min-h-[48px] mobile-cta"
               >
                 Schedule Consultation
               </button>
             </div>
             
-            <div className="flex items-center justify-center text-white">
-              <div className="w-3 h-3 bg-green-500 rounded-full mr-3"></div>
-              <span className="text-white">2 deployment slots available today</span>
-            </div>
+            <p className="text-[16px] text-blue-100">
+              48-hour deployment guarantee
+            </p>
           </div>
         </div>
       </section>
