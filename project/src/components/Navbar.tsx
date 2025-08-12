@@ -1,14 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ArrowRight } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-const Navbar = () => {
+interface NavbarProps {
+  logoSrc?: string;
+  logoAlt?: string;
+  variant?: 'default' | 'construction';
+}
+
+const Navbar: React.FC<NavbarProps> = ({ 
+  logoSrc,
+  logoAlt = "OrbitTech Logo",
+  variant = 'default'
+}) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   
   // Check if we're on a blog page
   const isBlogPage = location.pathname.includes('/blog');
+  
+  // Determine logo source based on variant or prop
+  const finalLogoSrc = logoSrc || (variant === 'construction' ? '/orbittech logo black.png' : '/Starlink Dmv (33).png');
 
   // --- Effects and Handlers ---
 
@@ -99,8 +112,8 @@ const Navbar = () => {
               className="flex items-center group transition-transform duration-300 hover:scale-105 bg-transparent border-none p-0 cursor-pointer"
             >
               <img 
-                src="/Starlink Dmv (33).png" 
-                alt="Orbittec Logo" 
+                src={finalLogoSrc} 
+                alt={logoAlt} 
                 className="h-10 w-auto transition-all duration-300"
                 loading="eager"
                 decoding="async"

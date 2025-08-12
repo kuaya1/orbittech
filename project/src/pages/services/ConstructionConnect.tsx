@@ -21,6 +21,7 @@ import {
   Settings,
   Target
 } from 'lucide-react';
+import Navbar from '../../components/Navbar';
 
 // Interactive Timeline Comparison
 const TimelineComparison = () => {
@@ -227,6 +228,9 @@ export default function ConstructionConnect() {
           }
         }
       `}</style>
+      
+      {/* Construction Connect Navigation Bar with Black Logo */}
+      <Navbar variant="construction" logoAlt="OrbitTech Construction Connect" />
 
       {/* Hero Section - Clean 60/40 Split with Right Image */}
       <section className="relative py-24 bg-white overflow-hidden">
@@ -252,9 +256,7 @@ export default function ConstructionConnect() {
                 </p>
                 
                 {/* Mobile: Image appears here above button, Desktop: Hidden */}
-                <div className="lg:hidden relative mb-10 h-64 bg-cover bg-center bg-no-repeat" style={{backgroundImage: 'url(/Whisk_4c22d21dac.jpg)'}}>
-                  {/* Subtle overlay for depth */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+                <div className="lg:hidden relative mb-10 h-80 bg-cover bg-center bg-no-repeat" style={{backgroundImage: 'url(/Whisk_4c22d21dac.jpg)'}}>
                 </div>
                 
                 {/* Mobile: Single button, Desktop: Two buttons */}
@@ -284,9 +286,7 @@ export default function ConstructionConnect() {
             </div>
             
             {/* Right: Construction Site Image (40%) - Desktop only */}
-            <div className="hidden lg:block lg:col-span-2 relative order-2 lg:order-2 h-96 bg-cover bg-center bg-no-repeat" style={{backgroundImage: 'url(/Whisk_4c22d21dac.jpg)'}}>
-              {/* Subtle overlay for depth */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+            <div className="hidden lg:block lg:col-span-2 relative order-2 lg:order-2 h-[520px] bg-cover bg-center bg-no-repeat" style={{backgroundImage: 'url(/Whisk_4c22d21dac.jpg)'}}>
             </div>
           </div>
         </div>
