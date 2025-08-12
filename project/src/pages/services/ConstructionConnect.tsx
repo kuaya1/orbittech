@@ -691,6 +691,123 @@ export default function ConstructionConnect() {
         </div>
       </section>
 
+      {/* Construction Connect Gateway - B2B Lead Generation */}
+      <section className="bg-gradient-to-br from-blue-900 to-blue-800" style={{ paddingTop: '96px', paddingBottom: '96px' }}>
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Left: Enterprise Value Proposition */}
+            <div>
+              <div className="inline-flex items-center bg-blue-800 text-blue-100 px-4 py-2 rounded-full text-sm font-medium mb-6">
+                <Building className="w-4 h-4 mr-2" />
+                Enterprise Solutions
+              </div>
+              
+              <h2 className="text-[40px] font-bold text-white mb-6" style={{ fontFamily: 'Inter', fontWeight: 700 }}>
+                Multi-Site Construction Operations?
+              </h2>
+              
+              <p className="text-[18px] text-blue-100 mb-8 leading-relaxed">
+                Scale your connectivity across multiple projects with our enterprise-grade deployment platform. 
+                Custom SLAs, dedicated support, and volume pricing for construction companies managing 5+ active sites.
+              </p>
+              
+              <div className="space-y-4 mb-8">
+                <div className="flex items-center text-blue-100">
+                  <Check className="w-5 h-5 mr-3 text-blue-300 flex-shrink-0" />
+                  <span>Centralized network management dashboard</span>
+                </div>
+                <div className="flex items-center text-blue-100">
+                  <Check className="w-5 h-5 mr-3 text-blue-300 flex-shrink-0" />
+                  <span>Volume pricing starting at 30% off standard rates</span>
+                </div>
+                <div className="flex items-center text-blue-100">
+                  <Check className="w-5 h-5 mr-3 text-blue-300 flex-shrink-0" />
+                  <span>Dedicated enterprise account manager</span>
+                </div>
+                <div className="flex items-center text-blue-100">
+                  <Check className="w-5 h-5 mr-3 text-blue-300 flex-shrink-0" />
+                  <span>Same-day deployment for urgent projects</span>
+                </div>
+              </div>
+              
+              <button className="bg-white text-blue-800 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-50 transition-all duration-300 inline-flex items-center min-h-[48px] mobile-cta">
+                Schedule Enterprise Consultation
+                <Globe className="w-5 h-5 ml-2" />
+              </button>
+            </div>
+            
+            {/* Right: ROI Calculator & Stats */}
+            <div className="bg-white rounded-xl p-8 shadow-xl">
+              <h3 className="text-[24px] font-bold text-gray-900 mb-6">Enterprise ROI Calculator</h3>
+              
+              <div className="space-y-6">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Number of Active Sites</label>
+                  <select className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 min-h-[48px]">
+                    <option>5-10 sites</option>
+                    <option>10-25 sites</option>
+                    <option>25-50 sites</option>
+                    <option>50+ sites</option>
+                  </select>
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Average Project Duration</label>
+                  <select className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 min-h-[48px]">
+                    <option>3-6 months</option>
+                    <option>6-12 months</option>
+                    <option>12+ months</option>
+                  </select>
+                </div>
+                
+                <div className="bg-green-50 p-6 rounded-lg">
+                  <h4 className="font-semibold text-green-800 mb-2">Estimated Annual Savings</h4>
+                  <p className="text-3xl font-bold text-green-600 mb-2">$147,000</p>
+                  <p className="text-sm text-green-700">vs. traditional ISP deployment delays</p>
+                </div>
+                
+                <div className="grid grid-cols-2 gap-4 pt-4 border-t border-gray-200">
+                  <div className="text-center">
+                    <p className="text-2xl font-bold text-blue-600">47</p>
+                    <p className="text-xs text-gray-600">Active Enterprise Sites</p>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-2xl font-bold text-blue-600">99.97%</p>
+                    <p className="text-xs text-gray-600">Enterprise Uptime SLA</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Enterprise Trust Indicators */}
+          <div className="mt-16 pt-12 border-t border-blue-700">
+            <div className="text-center mb-8">
+              <p className="text-blue-200 text-lg">Trusted by Leading Construction Companies</p>
+            </div>
+            
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center opacity-70">
+              <div className="text-center">
+                <p className="text-blue-200 font-semibold">Turner Construction</p>
+                <p className="text-blue-300 text-sm">12 Active Sites</p>
+              </div>
+              <div className="text-center">
+                <p className="text-blue-200 font-semibold">Skanska USA</p>
+                <p className="text-blue-300 text-sm">8 Active Sites</p>
+              </div>
+              <div className="text-center">
+                <p className="text-blue-200 font-semibold">Clark Construction</p>
+                <p className="text-blue-300 text-sm">15 Active Sites</p>
+              </div>
+              <div className="text-center">
+                <p className="text-blue-200 font-semibold">Whiting-Turner</p>
+                <p className="text-blue-300 text-sm">9 Active Sites</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Final CTA */}
       <section className="bg-blue-600" style={{ paddingTop: '96px', paddingBottom: '96px' }} id="contact">
         <div className="max-w-4xl mx-auto px-4 text-center">
