@@ -253,7 +253,7 @@ export default function ConstructionConnect() {
                 </p>
                 
                 {/* Mobile: Image appears here above button, Desktop: Hidden - Move up 0.5 inch */}
-                <div className="lg:hidden relative mb-10 h-80 bg-cover bg-center bg-no-repeat -mt-12" style={{backgroundImage: 'url(/Whisk_58fdc777e8.jpg)'}}>
+                <div className="lg:hidden relative mb-10 h-80 bg-cover bg-center bg-no-repeat -mt-12" style={{backgroundImage: 'url(/Whisk starlink.jpg)'}}>
                 </div>
                 
                 {/* Mobile: Single button, Desktop: Two buttons */}
@@ -283,7 +283,7 @@ export default function ConstructionConnect() {
             </div>
             
             {/* Right: Construction Site Image (40%) - Desktop only */}
-            <div className="hidden lg:block lg:col-span-2 relative order-2 lg:order-2 min-h-[600px] bg-cover bg-center bg-no-repeat" style={{backgroundImage: 'url(/Whisk_58fdc777e8.jpg)'}}>
+            <div className="hidden lg:block lg:col-span-2 relative order-2 lg:order-2 min-h-[600px] bg-cover bg-center bg-no-repeat" style={{backgroundImage: 'url(/Whisk starlink.jpg)'}}>
             </div>
           </div>
         </div>
@@ -495,14 +495,6 @@ export default function ConstructionConnect() {
                 key={index}
                 className="bg-white rounded-xl border border-gray-100 p-8 hover:shadow-lg transition-all duration-300"
               >
-                {plan.highlighted && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-yellow-400 text-black px-4 py-1 rounded-full text-sm font-semibold">
-                      Recommended
-                    </span>
-                  </div>
-                )}
-                
                 <div className="text-center">
                   <h3 className="text-2xl font-bold mb-2 text-black">
                     {plan.name}
