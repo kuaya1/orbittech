@@ -20,8 +20,14 @@ const Navbar: React.FC<NavbarProps> = ({
   // Check if we're on a blog page
   const isBlogPage = location.pathname.includes('/blog');
   
+  // Check if we're on the construction page
+  const isConstructionPage = location.pathname.includes('/construction-connect');
+  
+  // Determine the effective variant
+  const effectiveVariant = variant || (isConstructionPage ? 'construction' : 'default');
+  
   // Determine logo source based on variant or prop
-  const finalLogoSrc = logoSrc || (variant === 'construction' ? '/orbittech logo black.png' : '/Starlink Dmv (33).png');
+  const finalLogoSrc = logoSrc || (effectiveVariant === 'construction' ? '/orbittech logo black.png' : '/Starlink Dmv (33).png');
 
   // --- Effects and Handlers ---
 

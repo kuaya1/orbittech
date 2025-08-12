@@ -241,7 +241,8 @@ export default function ConstructionConnect() {
                   4-HOUR DEPLOYMENT
                 </div>
                 
-                <h1 className="h1 text-black mb-8">
+                {/* Mobile: Add 0.5 inch margin-top to title and subtitle */}
+                <h1 className="h1 text-black mb-8 lg:mt-0 mt-12">
                   Your Construction Site <br />
                   <span className="text-blue-600">Connected.</span> Today.
                 </h1>
@@ -251,8 +252,8 @@ export default function ConstructionConnect() {
                   312 Mbps average. 47 active sites. Zero downtime.
                 </p>
                 
-                {/* Mobile: Image appears here above button, Desktop: Hidden */}
-                <div className="lg:hidden relative mb-10 h-80 bg-cover bg-center bg-no-repeat" style={{backgroundImage: 'url(/Whisk_886e99cbb8.jpg)'}}>
+                {/* Mobile: Image appears here above button, Desktop: Hidden - Move up 0.5 inch */}
+                <div className="lg:hidden relative mb-10 h-80 bg-cover bg-center bg-no-repeat -mt-12" style={{backgroundImage: 'url(/Whisk_886e99cbb8.jpg)'}}>
                 </div>
                 
                 {/* Mobile: Single button, Desktop: Two buttons */}
