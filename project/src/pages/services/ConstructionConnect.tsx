@@ -134,7 +134,7 @@ const ConstructionConnectLanding = () => {
   const faqs = [
     {
       question: "How quickly can you get our construction site online?",
-      answer: "We can typically perform a full installation and have your site online within 24-48 hours of your request, assuming you have the Starlink kit on hand. Our rapid deployment team specializes in immediate site connectivity to prevent project delays."
+      answer: "Standard deployment: 24-48 hours from your call. If you have equipment ready, we can often connect you same day."
     },
     {
       question: "How does this work with our existing IT infrastructure?",
@@ -142,7 +142,7 @@ const ConstructionConnectLanding = () => {
     },
     {
       question: "Is the connection reliable enough for video calls and transferring large files?",
-      answer: "Absolutely. We guarantee speeds sufficient for multiple HD video calls, transferring large blueprints (BIM/CAD files), and running all your cloud-based software without interruption. Typical speeds range from 150-250 Mbps with sub-50ms latency."
+      answer: "Yes. Our installations consistently deliver 150-250 Mbps—more than sufficient for simultaneous video conferences, large file transfers, and cloud applications."
     },
     {
       question: "What is the real-world range of your job site Wi-Fi?",
@@ -664,20 +664,18 @@ const ConstructionConnectLanding = () => {
         />
         
         <div className="relative z-20 max-w-7xl mx-auto px-6 py-24 text-center">
-          <h1 className="headline-h1 text-white mb-6 leading-tight fade-in-up">
-            Your Job Site Online in 48 Hours.
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight fade-in-up">
+            Connected in 48 Hours.
             <br/>
             <span className="text-[#00D4FF]">Not 8 Weeks.</span>
           </h1>
           
-          <h2 className="body-large text-[#B8BCC8] mb-8 max-w-3xl mx-auto fade-in-up">
-            From foundation to finish, The Orbit Tech delivers reliable Starlink internet, 
-            site-wide Wi-Fi mesh, and 24/7 surveillance to keep your DMV construction 
-            project on schedule and on budget.
+          <h2 className="text-xl md:text-2xl text-[#B8BCC8] mb-8 max-w-3xl mx-auto leading-relaxed fade-in-up">
+            Complete connectivity infrastructure for DMV construction sites. Internet, coverage, and surveillance deployed before your next morning meeting.
           </h2>
           
           <button className="btn-primary-cta btn-magnetic animate-pulse-slow fade-in-up">
-            Get a Free Site Assessment
+            Schedule Your Site Assessment
           </button>
           
           <p className="mt-8 text-[#B8BCC8] caption fade-in-up">
@@ -695,7 +693,7 @@ const ConstructionConnectLanding = () => {
       <section className="bg-[#12172B] py-8">
         <div className="max-w-7xl mx-auto px-6">
           <h3 className="text-center caption text-[#6B7280] mb-6 tracking-wider fade-in-up">
-            PROVIDING CRITICAL CONNECTIVITY FOR LEADING CONTRACTORS IN THE DMV
+            TRUSTED BY DMV'S PREMIER CONSTRUCTION FIRMS
           </h3>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 items-center">
             {/* Replace with your actual logo files */}
@@ -721,14 +719,14 @@ const ConstructionConnectLanding = () => {
                 <li className="flex items-start"><XCircle className="icon-standard text-red-500 mr-3 mt-1 flex-shrink-0" /><span><strong>Poor communication costs $5,000/day</strong> when your superintendent can't video conference with architects, access updated plans, or coordinate with subcontractors in real-time.</span></li>
                 <li className="flex items-start"><XCircle className="icon-standard text-red-500 mr-3 mt-1 flex-shrink-0" /><span><strong>Unmonitored sites lose $25,000+ annually</strong> to theft and vandalism. Without 24/7 surveillance, your materials and equipment are sitting targets.</span></li>
               </ul>
-              <p className="font-semibold text-[#0A0E1A] body-regular">These aren't just inconveniences; they are direct threats to your timeline and profitability.</p>
+              <p className="font-semibold text-[#0A0E1A] body-regular">Every day offline compounds delays and multiplies costs across your entire project.</p>
             </div>
             {/* Solution Column */}
             <div className="space-y-6 fade-in-up">
               <div className="inline-block px-4 py-2 bg-green-100 text-green-700 rounded-full caption font-semibold mb-4">THE SOLUTION</div>
               <h3 className="headline-h3 text-[#0A0E1A]">One Call Solves It All</h3>
               <div className="space-y-4 body-regular text-[#4A5568]">
-                <p><span className="font-semibold text-[#0A0E1A]">Construction Connect</span> by The Orbit Tech is an all-in-one solution designed specifically for construction sites.</p>
+                <p>Construction Connect is purpose-built connectivity infrastructure for active job sites.</p>
                 <p><strong>Unlike traditional ISPs:</strong> We deploy high-speed satellite internet in 48 hours, not 8-12 weeks. No trenching, no permits, no waiting for infrastructure that may never come.</p>
                 <p><strong>Beyond basic Starlink:</strong> We design and install complete site-wide systems with professional-grade equipment, redundancy planning, and ongoing support that Starlink alone can't provide.</p>
                 <p><strong>More than internet:</strong> We integrate surveillance, security monitoring, and multi-site management that generic providers simply don't understand or offer.</p>
@@ -750,19 +748,19 @@ const ConstructionConnectLanding = () => {
             <div className="service-card fade-in-up">
               <div className="bg-[#00D4FF] w-16 h-16 rounded-lg flex items-center justify-center mb-6"><Satellite className="icon-feature text-[#0A0E1A]" /></div>
               <h3 className="headline-h4 text-white mb-4">Job Site Internet Backbone</h3>
-              <p className="body-small text-[#B8BCC8] mb-6">High-speed, low-latency internet powered by Starlink. Deployed in under 4 hours. Perfect for running BIM software, daily reports, VoIP, and all cloud-based project management tools.</p>
+              <p className="body-small text-[#B8BCC8] mb-6">Enterprise-grade satellite connectivity engineered for construction environments. Operational within hours.</p>
               <div className="flex items-center text-[#FF6B35] caption font-semibold"><Clock className="icon-standard mr-2" /><span>Setup in &lt; 24 hours</span></div>
             </div>
             <div className="service-card fade-in-up">
               <div className="bg-[#00D4FF] w-16 h-16 rounded-lg flex items-center justify-center mb-6"><Wifi className="icon-feature text-[#0A0E1A]" /></div>
               <h3 className="headline-h4 text-white mb-4">Complete Wi-Fi Coverage</h3>
-              <p className="body-small text-[#B8BCC8] mb-6">From the site trailer to the top floor, our commercial-grade mesh Wi-Fi systems provide seamless, reliable connectivity for every laptop, tablet, and smartphone on site. No more dead zones.</p>
+              <p className="body-small text-[#B8BCC8] mb-6">Intelligent mesh network architecture that adapts to your site's evolving footprint. Every device, every zone, consistently connected.</p>
               <div className="flex items-center text-[#FF6B35] caption font-semibold"><CheckCircle className="icon-standard mr-2" /><span>Trailer-to-Trench Coverage</span></div>
             </div>
             <div className="service-card fade-in-up">
               <div className="bg-[#00D4FF] w-16 h-16 rounded-lg flex items-center justify-center mb-6"><Camera className="icon-feature text-[#0A0E1A]" /></div>
               <h3 className="headline-h4 text-white mb-4">HD Security & Surveillance</h3>
-              <p className="body-small text-[#B8BCC8] mb-6">Protect your assets and monitor progress with integrated IP camera systems. Live, recordable HD video feeds accessible from any device, anywhere. Deter theft and improve site safety.</p>
+              <p className="body-small text-[#B8BCC8] mb-6">Professional-grade visual security with remote monitoring capabilities. Document progress, deter theft, maintain compliance.</p>
               <div className="flex items-center text-[#FF6B35] caption font-semibold"><Shield className="icon-standard mr-2" /><span>Remote Access, Anywhere</span></div>
             </div>
           </div>
@@ -872,9 +870,9 @@ const ConstructionConnectLanding = () => {
       {/* Final CTA Section */}
       <section id="contact" className="py-24 bg-[#0A0E1A]">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="headline-h2 text-white mb-6 fade-in-up">Stop Waiting. Start Building.</h2>
+          <h2 className="headline-h2 text-white mb-6 fade-in-up">Ready When You Are.</h2>
           <p className="body-large text-[#B8BCC8] mb-10 fade-in-up">Don't let poor connectivity be the weak link in your project. Partner with the DMV's leading experts in job site technology solutions.</p>
-          <button className="btn-primary-cta btn-magnetic fade-in-up">Schedule Your Free Site Assessment & Quote<ArrowRight className="ml-3 icon-standard" /></button>
+          <button className="btn-primary-cta btn-magnetic fade-in-up">Schedule Your Site Assessment & Quote<ArrowRight className="ml-3 icon-standard" /></button>
           <div className="mt-12 flex flex-col sm:flex-row gap-6 justify-center text-[#B8BCC8] fade-in-up">
             <a href="tel:571-999-6915" className="flex items-center justify-center hover:text-[#00D4FF] transition-colors body-regular"><Phone className="icon-standard mr-2" /><span>(571) 999-6915</span></a>
             <a href="mailto:connect@theorbittech.com" className="flex items-center justify-center hover:text-[#00D4FF] transition-colors body-regular"><Mail className="icon-standard mr-2" /><span>connect@theorbittech.com</span></a>
