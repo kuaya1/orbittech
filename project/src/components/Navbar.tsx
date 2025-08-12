@@ -23,11 +23,18 @@ const Navbar: React.FC<NavbarProps> = ({
   // Check if we're on the construction page
   const isConstructionPage = location.pathname.includes('/services/construction-connect') || location.pathname.includes('/construction-connect');
   
+  // Debug logging
+  console.log('Current pathname:', location.pathname);
+  console.log('Is construction page:', isConstructionPage);
+  
   // Determine the effective variant
   const effectiveVariant = variant || (isConstructionPage ? 'construction' : 'default');
   
   // Determine logo source based on variant or prop
   const finalLogoSrc = logoSrc || (effectiveVariant === 'construction' ? '/orbittech logo black.png' : '/Starlink Dmv (33).png');
+  
+  console.log('Effective variant:', effectiveVariant);
+  console.log('Final logo src:', finalLogoSrc);
 
   // --- Effects and Handlers ---
 
@@ -118,6 +125,7 @@ const Navbar: React.FC<NavbarProps> = ({
               className="flex items-center group transition-transform duration-300 hover:scale-105 bg-transparent border-none p-0 cursor-pointer"
             >
               <img 
+                key={finalLogoSrc}
                 src={finalLogoSrc} 
                 alt={logoAlt} 
                 className="h-10 w-auto transition-all duration-300"
