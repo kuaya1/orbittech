@@ -654,16 +654,17 @@ const ConstructionConnectLanding = () => {
 
       {/* Hero Section */}
       <section id="hero" className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0A0E1A] via-[#0A0E1A]/95 to-[#12172B]/90 z-10"></div>
-        <div className="hero-gradient-mesh z-15"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0A0E1A]/70 via-[#0A0E1A]/65 to-[#12172B]/60 z-10"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40 z-15"></div>
+        <div className="hero-gradient-mesh z-20"></div>
         <img 
           src="/images/hero-bg.jpg" 
           alt="Construction site background" 
-          className="absolute inset-0 w-full h-full object-cover opacity-40 animate-kenburns parallax-bg"
+          className="absolute inset-0 w-full h-full object-cover opacity-70 animate-kenburns parallax-bg"
           style={{ zIndex: 5 }}
         />
         
-        <div className="relative z-20 max-w-7xl mx-auto px-6 py-24 text-center">
+        <div className="relative z-25 max-w-7xl mx-auto px-6 py-24 text-center">
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight fade-in-up">
             Connected in 48 Hours.
             <br/>
@@ -706,36 +707,64 @@ const ConstructionConnectLanding = () => {
         </div>
       </section>
 
-      {/* Problem/Solution Section */}
-      <section id="problem" className="py-24 bg-[#F7F8FA]">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-12 lg:gap-20">
-            {/* Problem Column */}
-            <div className="space-y-6 fade-in-up">
-              <div className="inline-block px-4 py-2 bg-red-100 text-red-700 rounded-full caption font-semibold mb-4">THE PROBLEM</div>
-              <h3 className="headline-h3 text-[#0A0E1A]">Disconnected Sites Cause Costly Delays</h3>
-              <ul className="space-y-4 body-regular text-[#4A5568]">
-                <li className="flex items-start"><XCircle className="icon-standard text-red-500 mr-3 mt-1 flex-shrink-0" /><span><strong>8+ weeks waiting</strong> for traditional ISPs costs the average project <strong>$40,000+ in lost productivity</strong> and delays every phase from permitting to final inspection.</span></li>
-                <li className="flex items-start"><XCircle className="icon-standard text-red-500 mr-3 mt-1 flex-shrink-0" /><span><strong>Poor communication costs $5,000/day</strong> when your superintendent can't video conference with architects, access updated plans, or coordinate with subcontractors in real-time.</span></li>
-                <li className="flex items-start"><XCircle className="icon-standard text-red-500 mr-3 mt-1 flex-shrink-0" /><span><strong>Unmonitored sites lose $25,000+ annually</strong> to theft and vandalism. Without 24/7 surveillance, your materials and equipment are sitting targets.</span></li>
-              </ul>
-              <p className="font-semibold text-[#0A0E1A] body-regular">Every day offline compounds delays and multiplies costs across your entire project.</p>
-            </div>
-            {/* Solution Column */}
-            <div className="space-y-6 fade-in-up">
-              <div className="inline-block px-4 py-2 bg-green-100 text-green-700 rounded-full caption font-semibold mb-4">THE SOLUTION</div>
-              <h3 className="headline-h3 text-[#0A0E1A]">One Call Solves It All</h3>
-              <div className="space-y-4 body-regular text-[#4A5568]">
-                <p>Construction Connect is purpose-built connectivity infrastructure for active job sites.</p>
-                <p><strong>Unlike traditional ISPs:</strong> We deploy high-speed satellite internet in 48 hours, not 8-12 weeks. No trenching, no permits, no waiting for infrastructure that may never come.</p>
-                <p><strong>Beyond basic Starlink:</strong> We design and install complete site-wide systems with professional-grade equipment, redundancy planning, and ongoing support that Starlink alone can't provide.</p>
-                <p><strong>More than internet:</strong> We integrate surveillance, security monitoring, and multi-site management that generic providers simply don't understand or offer.</p>
-                <p className="font-semibold text-[#0A0E1A] border-l-4 border-[#00D4FF] pl-4 bg-blue-50 py-2">Result: Complete connectivity infrastructure deployed faster and more reliably than any alternative in the DMV market.</p>
-              </div>
-            </div>
-          </div>
+      {/* Problem/Solution Section - Redesigned */}
+<section className="py-24 bg-primary-dark text-white">
+  <div className="max-w-7xl mx-auto px-6">
+    <div className="grid md:grid-cols-2 gap-12 lg:gap-16">
+
+      {/* Problem Column Card */}
+      <div className="bg-primary-medium/50 border border-red-500/30 rounded-2xl p-8 space-y-6">
+        <div className="flex items-center gap-4">
+          <XCircle className="w-10 h-10 text-red-500 flex-shrink-0" />
+          <h3 className="font-tight text-3xl lg:text-4xl font-bold text-white">
+            Disconnected Sites Cause Costly Delays
+          </h3>
         </div>
-      </section>
+        <ul className="space-y-4 text-text-dark text-lg pl-2">
+          <li className="flex items-start">
+            <ArrowRight className="w-5 h-5 text-red-500 mr-4 mt-1.5 flex-shrink-0" />
+            <span><strong>Weeks of waiting</strong> for traditional ISPs means lost productivity and project delays from day one.</span>
+          </li>
+          <li className="flex items-start">
+            <ArrowRight className="w-5 h-5 text-red-500 mr-4 mt-1.5 flex-shrink-0" />
+            <span><strong>Poor on-site communication</strong> leads to errors when your superintendent can't video conference or access plans instantly.</span>
+          </li>
+          <li className="flex items-start">
+            <ArrowRight className="w-5 h-5 text-red-500 mr-4 mt-1.5 flex-shrink-0" />
+            <span><strong>A dark, unmonitored site</strong> is vulnerable to theft of materials and equipment, impacting your bottom line.</span>
+          </li>
+        </ul>
+        <p className="font-semibold text-white/90 text-lg pt-4 border-t border-red-500/20">
+          Every day offline compounds delays and multiplies costs across your entire project.
+        </p>
+      </div>
+      
+      {/* Solution Column Card */}
+      <div className="bg-primary-medium/50 border border-accent-primary/30 rounded-2xl p-8 space-y-6">
+        <div className="flex items-center gap-4">
+          <CheckCircle className="w-10 h-10 text-accent-primary flex-shrink-0 [filter:drop-shadow(0_0_8px_rgba(0,212,255,0.4))]" />
+          <h3 className="font-tight text-3xl lg:text-4xl font-bold text-white">
+            Purpose-Built Connectivity Infrastructure
+          </h3>
+        </div>
+        <div className="space-y-4 text-text-dark text-lg leading-relaxed pl-2">
+          <p>
+            Construction Connect is engineered for the demands of active job sites. We bypass traditional ISP timelines to deliver an end-to-end connectivity solution.
+          </p>
+          <ul className="space-y-3 pt-2">
+            <li className="flex items-center gap-3"><Wifi strokeWidth={1.5} className="text-accent-primary"/><span>Enterprise-grade satellite internet and site-wide Wi-Fi.</span></li>
+            <li className="flex items-center gap-3"><Camera strokeWidth={1.5} className="text-accent-primary"/><span>Professional visual security and remote monitoring.</span></li>
+            <li className="flex items-center gap-3"><Shield strokeWidth={1.5} className="text-accent-primary"/><span>Reliable infrastructure maintained throughout your project.</span></li>
+          </ul>
+        </div>
+        <p className="font-semibold text-white/90 text-lg pt-4 border-t border-accent-primary/20">
+          The result: Working connectivity in 48 hours, not weeks.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
 
       {/* Core Services Grid */}
       <section id="services" className="py-24 bg-[#0A0E1A]">
