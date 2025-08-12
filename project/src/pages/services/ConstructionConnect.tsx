@@ -1,4 +1,3 @@
-import React from 'react';
 import { 
   Satellite, 
   Wifi, 
@@ -77,7 +76,7 @@ const ConstructionConnectLanding = () => {
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#0A192F] via-[#0A192F]/95 to-[#0A192F]/90 z-10"></div>
-        <div className="absolute inset-0 bg-[url('/images/hero/dc-skyline-construction.jpg')] bg-cover bg-center opacity-40 animate-kenburns"></div>
+        <div className="absolute inset-0 bg-[url('/images/Whisk_e1f97057a5.jpg')] bg-cover bg-center opacity-40 animate-kenburns"></div>
         
         <div className="relative z-20 max-w-7xl mx-auto px-6 py-24 text-center">
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
@@ -187,19 +186,19 @@ const ConstructionConnectLanding = () => {
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div className="bg-white rounded-lg overflow-hidden shadow-lg group transform hover:-translate-y-2 transition-all duration-300">
-              <div className="h-48 bg-gray-300 flex items-center justify-center overflow-hidden"><img src="http://googleusercontent.com/image_generation_content/0" alt="Storm-proof Starlink satellite installation on a commercial roof" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"/></div>
+              <div className="h-48 bg-gray-300 flex items-center justify-center overflow-hidden"><img src="/images/Gemini_Generated_Image_t7u8prt7u8prt7u8.png" alt="Storm-proof Starlink satellite installation on a commercial roof" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"/></div>
               <div className="p-4"><p className="text-sm text-gray-700">Storm-proof satellite installation on a commercial building in Fairfax, VA.</p></div>
             </div>
             <div className="bg-white rounded-lg overflow-hidden shadow-lg group transform hover:-translate-y-2 transition-all duration-300">
-              <div className="h-48 bg-gray-300 flex items-center justify-center overflow-hidden"><img src="http://googleusercontent.com/image_generation_content/1" alt="Ruggedized Wi-Fi access point on a construction site" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"/></div>
+              <div className="h-48 bg-gray-300 flex items-center justify-center overflow-hidden"><img src="/images/Whisk_c8d18d14d2.jpg" alt="Ruggedized Wi-Fi access point on a construction site" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"/></div>
               <div className="p-4"><p className="text-sm text-gray-700">Ruggedized Wi-Fi node providing coverage across a 5-acre site in Loudoun County.</p></div>
             </div>
             <div className="bg-white rounded-lg overflow-hidden shadow-lg group transform hover:-translate-y-2 transition-all duration-300">
-              <div className="h-48 bg-gray-300 flex items-center justify-center overflow-hidden"><img src="http://googleusercontent.com/image_generation_content/2" alt="24/7 HD surveillance camera protecting construction site materials" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"/></div>
+              <div className="h-48 bg-gray-300 flex items-center justify-center overflow-hidden"><img src="/images/Whisk_df20144b50.jpg" alt="24/7 HD surveillance camera protecting construction site materials" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"/></div>
               <div className="p-4"><p className="text-sm text-gray-700">24/7 surveillance camera protecting equipment and materials.</p></div>
             </div>
             <div className="bg-white rounded-lg overflow-hidden shadow-lg group transform hover:-translate-y-2 transition-all duration-300">
-              <div className="h-48 bg-gray-300 flex items-center justify-center overflow-hidden"><img src="http://googleusercontent.com/image_generation_content/3" alt="Professional network rack installation in a site office trailer" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"/></div>
+              <div className="h-48 bg-gray-300 flex items-center justify-center overflow-hidden"><img src="/images/Whisk_du2n2qxzu.jpg" alt="Professional network rack installation in a site office trailer" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"/></div>
               <div className="p-4"><p className="text-sm text-gray-700">The central nervous system: A clean and organized network rack in the site office.</p></div>
             </div>
           </div>
