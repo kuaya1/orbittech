@@ -260,9 +260,10 @@ export default function ConstructionConnect() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
             {/* Left: Copy and CTAs (60%) */}
-            <div className="lg:col-span-3 order-2 lg:order-1">
+            <div className="lg:col-span-3 order-1 lg:order-1">
               <div>
-                <div className="inline-flex items-center bg-blue-50 text-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-8">
+                {/* Desktop only badge */}
+                <div className="hidden lg:inline-flex items-center bg-blue-50 text-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-8">
                   <Zap className="w-4 h-4 mr-2" />
                   4-HOUR DEPLOYMENT
                 </div>
@@ -277,14 +278,29 @@ export default function ConstructionConnect() {
                   312 Mbps average. 47 active sites. Zero downtime.
                 </p>
                 
-                <div className="flex flex-col sm:flex-row gap-4 mb-10">
-                  <button className="bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-all duration-300 min-h-[48px]">
+                {/* Mobile: Single button, Desktop: Two buttons */}
+                <div className="mb-10">
+                  <button className="bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-all duration-300 min-h-[48px] w-full sm:w-auto">
                     Deploy Today
                   </button>
                   
-                  <button className="bg-white text-blue-600 border-2 border-blue-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-50 transition-all duration-300 min-h-[48px]">
+                  {/* Desktop only second button */}
+                  <button className="hidden sm:inline-block bg-white text-blue-600 border-2 border-blue-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-50 transition-all duration-300 min-h-[48px] ml-4">
                     View Live Sites
                   </button>
+                </div>
+                
+                {/* Mobile: Image appears here, Desktop: Hidden */}
+                <div className="lg:hidden relative mb-10">
+                  <div className="relative rounded-2xl overflow-hidden shadow-2xl max-w-md mx-auto">
+                    <img 
+                      src="/construction-site-79.png" 
+                      alt="Construction site with satellite internet connectivity"
+                      className="w-full h-auto object-cover"
+                    />
+                    {/* Subtle overlay for depth */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+                  </div>
                 </div>
                 
                 {/* Subtle live status element */}
@@ -301,9 +317,9 @@ export default function ConstructionConnect() {
               </div>
             </div>
             
-            {/* Right: Construction Site Image (40%) - Shows first on mobile */}
-            <div className="lg:col-span-2 relative order-1 lg:order-2">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl max-w-md mx-auto lg:max-w-none">
+            {/* Right: Construction Site Image (40%) - Desktop only */}
+            <div className="hidden lg:block lg:col-span-2 relative order-2 lg:order-2">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <img 
                   src="/construction-site-79.png" 
                   alt="Construction site with satellite internet connectivity"
