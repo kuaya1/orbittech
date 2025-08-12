@@ -662,14 +662,14 @@ const ConstructionConnectLanding = () => {
         {/* Background Image Container with Overlays */}
         <div className="absolute inset-0" style={{ zIndex: 1 }}>
           <img 
-            src="/images/Whisk_7728c5d747 (1).jpg" 
+            src="/images/Whisk_a8927b407a.jpg" 
             alt="Construction site background" 
-            className="absolute inset-0 w-full h-full object-cover opacity-70 animate-kenburns parallax-bg"
+            className="absolute inset-0 w-full h-full object-cover opacity-85 animate-kenburns parallax-bg"
           />
-          {/* Overlays constrained to image */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#0A0E1A]/70 via-[#0A0E1A]/65 to-[#12172B]/60"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/60"></div>
-          <div className="absolute inset-0 bg-gradient-radial from-black/60 via-transparent to-transparent"></div>
+          {/* Reduced overlays constrained to image */}
+          <div className="absolute inset-0 bg-gradient-to-br from-[#0A0E1A]/40 via-[#0A0E1A]/35 to-[#12172B]/30"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/15 to-black/30"></div>
+          <div className="absolute inset-0 bg-gradient-radial from-black/30 via-transparent to-transparent"></div>
         </div>
         
         {/* Animated Gradient Mesh */}
@@ -677,13 +677,13 @@ const ConstructionConnectLanding = () => {
         
         {/* Content */}
         <div className="relative max-w-7xl mx-auto px-6 py-24 text-center" style={{ zIndex: 10 }}>
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight fade-in-up" style={{ textShadow: '0 4px 8px rgba(0,0,0,0.8), 0 2px 4px rgba(0,0,0,0.9)' }}>
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight fade-in-up">
             Connected in 48 Hours.
             <br/>
             <span className="text-[#00D4FF]">Not 8 Weeks.</span>
           </h1>
           
-          <h2 className="text-xl md:text-2xl text-[#B8BCC8] mb-8 max-w-3xl mx-auto leading-relaxed fade-in-up" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.8)' }}>
+          <h2 className="text-xl md:text-2xl text-white mb-8 max-w-3xl mx-auto leading-relaxed fade-in-up">
             Complete connectivity infrastructure for DMV construction sites. Internet, coverage, and surveillance deployed before your next morning meeting.
           </h2>
           
@@ -691,30 +691,13 @@ const ConstructionConnectLanding = () => {
             Schedule Your Site Assessment
           </button>
           
-          <p className="mt-8 text-[#B8BCC8] caption fade-in-up" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.8)' }}>
+          <p className="mt-8 text-[#D1D5DB] caption fade-in-up">
             Your Trusted Partner for Projects in Virginia, Maryland, and DC
           </p>
           
           {/* Scroll Indicator */}
           <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 scroll-bounce">
             <ChevronDown className="icon-standard text-[#00D4FF] opacity-60" />
-          </div>
-        </div>
-      </section>
-
-      {/* Trust Bar Component */}
-      <section className="bg-[#12172B] py-8">
-        <div className="max-w-7xl mx-auto px-6">
-          <h3 className="text-center caption text-[#6B7280] mb-6 tracking-wider fade-in-up">
-            TRUSTED BY DMV'S PREMIER CONSTRUCTION FIRMS
-          </h3>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 items-center">
-            {/* Replace with your actual logo files */}
-            <div className="flex justify-center trust-logo"><img className="h-10 opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all" src="/logos/turner-construction-logo.svg" alt="Turner Construction"/></div>
-            <div className="flex justify-center trust-logo"><img className="h-10 opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all" src="/logos/clark-construction-logo.svg" alt="Clark Construction"/></div>
-            <div className="flex justify-center trust-logo"><img className="h-10 opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all" src="/logos/whiting-turner-logo.svg" alt="Whiting-Turner"/></div>
-            <div className="flex justify-center trust-logo"><img className="h-10 opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all" src="/logos/balfour-beatty-logo.svg" alt="Balfour Beatty"/></div>
-            <div className="flex justify-center trust-logo"><img className="h-10 opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all" src="/logos/abc-metro-logo.svg" alt="ABC Metro Washington"/></div>
           </div>
         </div>
       </section>
