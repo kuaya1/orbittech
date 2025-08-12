@@ -21,7 +21,7 @@ const Navbar: React.FC<NavbarProps> = ({
   const isBlogPage = location.pathname.includes('/blog');
   
   // Check if we're on the construction page
-  const isConstructionPage = location.pathname.includes('/construction-connect');
+  const isConstructionPage = location.pathname.includes('/services/construction-connect') || location.pathname.includes('/construction-connect');
   
   // Determine the effective variant
   const effectiveVariant = variant || (isConstructionPage ? 'construction' : 'default');
