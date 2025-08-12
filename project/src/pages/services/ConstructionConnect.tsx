@@ -255,7 +255,7 @@ export default function ConstructionConnect() {
                 <div className="lg:hidden relative mb-10">
                   <div className="relative rounded-2xl overflow-hidden shadow-2xl max-w-md mx-auto">
                     <img 
-                      src="/construction-site-79.png" 
+                      src="/Whisk_4c22d21dac.jpg" 
                       alt="Construction site with satellite internet connectivity"
                       className="w-full h-auto object-cover"
                     />
@@ -294,7 +294,7 @@ export default function ConstructionConnect() {
             <div className="hidden lg:block lg:col-span-2 relative order-2 lg:order-2">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <img 
-                  src="/construction-site-79.png" 
+                  src="/Whisk_4c22d21dac.jpg" 
                   alt="Construction site with satellite internet connectivity"
                   className="w-full h-auto object-cover"
                 />
