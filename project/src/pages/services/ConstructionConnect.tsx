@@ -659,18 +659,24 @@ const ConstructionConnectLanding = () => {
 
       {/* Hero Section */}
       <section id="hero" className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0A0E1A]/70 via-[#0A0E1A]/65 to-[#12172B]/60 z-10"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/60 z-15"></div>
-        <div className="absolute inset-0 bg-gradient-radial from-black/60 via-transparent to-transparent z-18"></div>
-        <div className="hero-gradient-mesh z-20"></div>
-        <img 
-          src="/images/Whisk_1a9e990cdc.jpg" 
-          alt="Construction site background" 
-          className="absolute inset-0 w-full h-full object-cover opacity-70 animate-kenburns parallax-bg"
-          style={{ zIndex: 5 }}
-        />
+        {/* Background Image Container with Overlays */}
+        <div className="absolute inset-0" style={{ zIndex: 1 }}>
+          <img 
+            src="/images/Whisk_7728c5d747 (1).jpg" 
+            alt="Construction site background" 
+            className="absolute inset-0 w-full h-full object-cover opacity-70 animate-kenburns parallax-bg"
+          />
+          {/* Overlays constrained to image */}
+          <div className="absolute inset-0 bg-gradient-to-br from-[#0A0E1A]/70 via-[#0A0E1A]/65 to-[#12172B]/60"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/60"></div>
+          <div className="absolute inset-0 bg-gradient-radial from-black/60 via-transparent to-transparent"></div>
+        </div>
         
-        <div className="relative z-25 max-w-7xl mx-auto px-6 py-24 text-center">
+        {/* Animated Gradient Mesh */}
+        <div className="hero-gradient-mesh" style={{ zIndex: 2 }}></div>
+        
+        {/* Content */}
+        <div className="relative max-w-7xl mx-auto px-6 py-24 text-center" style={{ zIndex: 10 }}>
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight fade-in-up" style={{ textShadow: '0 4px 8px rgba(0,0,0,0.8), 0 2px 4px rgba(0,0,0,0.9)' }}>
             Connected in 48 Hours.
             <br/>
@@ -713,169 +719,190 @@ const ConstructionConnectLanding = () => {
         </div>
       </section>
 
-      {/* Problem/Solution Section - Redesigned */}
-      <section id="problem" className="py-24 bg-gradient-to-br from-[#F7F8FA] via-white to-[#F0F2F5] relative overflow-hidden">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-10 left-10 w-32 h-32 border border-gray-300 rounded-full"></div>
-          <div className="absolute top-32 right-20 w-24 h-24 border border-gray-300 rounded-full"></div>
-          <div className="absolute bottom-20 left-1/4 w-16 h-16 border border-gray-300 rounded-full"></div>
+      {/* Problem/Solution Section - Apple-Style Minimal Design */}
+      <section id="problem" className="py-32 bg-white relative overflow-hidden">
+        {/* Subtle Tech Pattern Background */}
+        <div className="absolute inset-0 opacity-[0.02]">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Ccircle cx='7' cy='7' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }}></div>
         </div>
         
-        <div className="max-w-7xl mx-auto px-6 relative">
-          {/* Section Header */}
-          <div className="text-center mb-16 fade-in-up">
-            <div className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm border border-gray-200 rounded-full px-6 py-3 mb-6">
-              <div className="w-2 h-2 bg-[#FF6B35] rounded-full"></div>
-              <span className="caption font-semibold text-[#4A5568] tracking-wider">CHALLENGE & SOLUTION</span>
+        <div className="max-w-6xl mx-auto px-8 relative">
+          {/* Minimal Section Header */}
+          <div className="text-center mb-20 fade-in-up">
+            <div className="inline-block mb-6">
+              <span className="text-sm font-medium text-[#6B7280] tracking-[0.2em] uppercase">Before & After</span>
             </div>
-            <h2 className="headline-h2 text-[#0A0E1A] mb-4">The Construction Connectivity Problem</h2>
-            <p className="body-large text-[#6B7280] max-w-3xl mx-auto">Every construction project faces the same critical infrastructure challenge</p>
+            <h2 className="text-5xl lg:text-6xl font-light text-[#1D1D1F] mb-6 tracking-tight">
+              The Construction<br/>
+              <span className="font-semibold text-[#0A0E1A]">Connectivity Challenge</span>
+            </h2>
+            <p className="text-xl text-[#86868B] max-w-2xl mx-auto font-light leading-relaxed">
+              Traditional approaches fail construction projects.<br/>
+              Smart infrastructure changes everything.
+            </p>
           </div>
 
-          {/* VS Layout */}
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Split Screen Layout */}
+          <div className="grid lg:grid-cols-2 gap-1 rounded-3xl overflow-hidden shadow-2xl fade-in-up">
             
-            {/* Problem Side */}
-            <div className="fade-in-up">
-              <div className="relative">
-                {/* Problem Card */}
-                <div className="bg-white rounded-2xl shadow-xl border border-red-100 overflow-hidden group hover:shadow-2xl transition-all duration-500">
-                  {/* Header with Gradient */}
-                  <div className="bg-gradient-to-r from-red-50 to-red-100 p-8 border-b border-red-200">
-                    <div className="flex items-center gap-4">
-                      <div className="w-14 h-14 bg-red-500 rounded-xl flex items-center justify-center">
-                        <XCircle className="icon-feature text-white" />
-                      </div>
-                      <div>
-                        <div className="inline-block px-3 py-1 bg-red-500 text-white rounded-full caption font-semibold mb-2">THE PROBLEM</div>
-                        <h3 className="headline-h3 text-[#0A0E1A]">Disconnected Sites Cause Costly Delays</h3>
+            {/* Problem Side - Dark Theme */}
+            <div className="bg-gradient-to-br from-[#1D1D1F] to-[#2D2D30] p-12 lg:p-16 relative">
+              {/* Subtle Grid Pattern */}
+              <div className="absolute inset-0 opacity-5" style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M0 0h40v1H0zM0 20h40v1H0z'/%3E%3Cpath d='M0 0v40h1V0zM20 0v40h1V0z'/%3E%3C/g%3E%3C/svg%3E")`,
+              }}></div>
+              
+              <div className="relative z-10">
+                {/* Problem Header */}
+                <div className="mb-12">
+                  <div className="w-12 h-12 bg-[#FF3B30] rounded-2xl flex items-center justify-center mb-6">
+                    <XCircle className="w-6 h-6 text-white" strokeWidth={1.5} />
+                  </div>
+                  <div className="text-sm font-medium text-[#FF3B30] tracking-[0.15em] uppercase mb-4">The Problem</div>
+                  <h3 className="text-3xl lg:text-4xl font-semibold text-white leading-tight mb-6">
+                    Disconnected<br/>Construction Sites
+                  </h3>
+                  <p className="text-lg text-[#86868B] font-light leading-relaxed">
+                    Legacy infrastructure approaches create cascading delays and mounting costs.
+                  </p>
+                </div>
+
+                {/* Problem Points */}
+                <div className="space-y-8">
+                  <div className="flex items-start gap-4">
+                    <div className="w-1 h-16 bg-[#FF3B30] rounded-full mt-1 flex-shrink-0"></div>
+                    <div>
+                      <div className="text-white font-medium mb-2">8+ Week ISP Delays</div>
+                      <div className="text-[#86868B] text-sm leading-relaxed">
+                        $40,000+ lost productivity while waiting for traditional internet installation
                       </div>
                     </div>
                   </div>
                   
-                  {/* Content */}
-                  <div className="p-8 space-y-6">
-                    <ul className="space-y-4">
-                      <li className="flex items-start group/item">
-                        <div className="w-6 h-6 bg-red-100 rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0">
-                          <XCircle className="w-4 h-4 text-red-500" />
-                        </div>
-                        <span className="body-regular text-[#4A5568]">
-                          <strong className="text-[#0A0E1A]">8+ weeks waiting</strong> for traditional ISPs costs the average project <strong className="text-red-600">$40,000+ in lost productivity</strong> and delays every phase from permitting to final inspection.
-                        </span>
-                      </li>
-                      <li className="flex items-start group/item">
-                        <div className="w-6 h-6 bg-red-100 rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0">
-                          <XCircle className="w-4 h-4 text-red-500" />
-                        </div>
-                        <span className="body-regular text-[#4A5568]">
-                          <strong className="text-[#0A0E1A]">Poor communication costs $5,000/day</strong> when your superintendent can't video conference with architects, access updated plans, or coordinate with subcontractors in real-time.
-                        </span>
-                      </li>
-                      <li className="flex items-start group/item">
-                        <div className="w-6 h-6 bg-red-100 rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0">
-                          <XCircle className="w-4 h-4 text-red-500" />
-                        </div>
-                        <span className="body-regular text-[#4A5568]">
-                          <strong className="text-[#0A0E1A]">Unmonitored sites lose $25,000+ annually</strong> to theft and vandalism. Without 24/7 surveillance, your materials and equipment are sitting targets.
-                        </span>
-                      </li>
-                    </ul>
-                    
-                    {/* Bottom Impact Statement */}
-                    <div className="pt-6 border-t border-red-100">
-                      <div className="bg-red-50 rounded-lg p-4 border-l-4 border-red-500">
-                        <p className="font-semibold text-[#0A0E1A] body-regular">
-                          Every day offline compounds delays and multiplies costs across your entire project.
-                        </p>
+                  <div className="flex items-start gap-4">
+                    <div className="w-1 h-16 bg-[#FF3B30] rounded-full mt-1 flex-shrink-0"></div>
+                    <div>
+                      <div className="text-white font-medium mb-2">Communication Breakdown</div>
+                      <div className="text-[#86868B] text-sm leading-relaxed">
+                        $5,000/day in delays from poor connectivity affecting coordination
                       </div>
                     </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-4">
+                    <div className="w-1 h-16 bg-[#FF3B30] rounded-full mt-1 flex-shrink-0"></div>
+                    <div>
+                      <div className="text-white font-medium mb-2">Security Vulnerabilities</div>
+                      <div className="text-[#86868B] text-sm leading-relaxed">
+                        $25,000+ annual losses from theft on unmonitored sites
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Bottom Insight */}
+                <div className="mt-12 pt-8 border-t border-[#48484A]">
+                  <div className="text-[#86868B] text-sm italic">
+                    "Every offline day multiplies project delays exponentially."
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* VS Divider */}
-            <div className="hidden lg:flex flex-col items-center justify-center absolute left-1/2 transform -translate-x-1/2 z-10">
-              <div className="w-16 h-16 bg-gradient-to-r from-red-500 to-[#00D4FF] rounded-full flex items-center justify-center shadow-lg">
-                <ArrowRight className="icon-standard text-white" />
-              </div>
-              <div className="mt-4 px-4 py-2 bg-white rounded-full shadow-lg border border-gray-200">
-                <span className="caption font-bold text-[#6B7280]">VS</span>
-              </div>
-            </div>
+            {/* Solution Side - Light Theme */}
+            <div className="bg-gradient-to-br from-[#F5F5F7] to-white p-12 lg:p-16 relative">
+              {/* Subtle Tech Pattern */}
+              <div className="absolute inset-0 opacity-3" style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300D4FF' fill-opacity='1'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+              }}></div>
+              
+              <div className="relative z-10">
+                {/* Solution Header */}
+                <div className="mb-12">
+                  <div className="w-12 h-12 bg-gradient-to-br from-[#00D4FF] to-[#0099CC] rounded-2xl flex items-center justify-center mb-6">
+                    <CheckCircle className="w-6 h-6 text-white" strokeWidth={1.5} />
+                  </div>
+                  <div className="text-sm font-medium text-[#00D4FF] tracking-[0.15em] uppercase mb-4">The Solution</div>
+                  <h3 className="text-3xl lg:text-4xl font-semibold text-[#1D1D1F] leading-tight mb-6">
+                    Intelligent<br/>Infrastructure
+                  </h3>
+                  <p className="text-lg text-[#6B7280] font-light leading-relaxed">
+                    Purpose-built connectivity that deploys in hours, not weeks.
+                  </p>
+                </div>
 
-            {/* Solution Side */}
-            <div className="fade-in-up">
-              <div className="relative">
-                {/* Solution Card */}
-                <div className="bg-white rounded-2xl shadow-xl border border-green-100 overflow-hidden group hover:shadow-2xl transition-all duration-500">
-                  {/* Header with Gradient */}
-                  <div className="bg-gradient-to-r from-green-50 to-blue-50 p-8 border-b border-green-200">
-                    <div className="flex items-center gap-4">
-                      <div className="w-14 h-14 bg-gradient-to-r from-green-500 to-[#00D4FF] rounded-xl flex items-center justify-center">
-                        <CheckCircle className="icon-feature text-white" />
-                      </div>
-                      <div>
-                        <div className="inline-block px-3 py-1 bg-gradient-to-r from-green-500 to-[#00D4FF] text-white rounded-full caption font-semibold mb-2">THE SOLUTION</div>
-                        <h3 className="headline-h3 text-[#0A0E1A]">One Call Solves It All</h3>
+                {/* Solution Features */}
+                <div className="space-y-8">
+                  <div className="flex items-start gap-4">
+                    <div className="w-8 h-8 bg-gradient-to-br from-[#00D4FF] to-[#0099CC] rounded-xl flex items-center justify-center flex-shrink-0 mt-1">
+                      <Satellite className="w-4 h-4 text-white" strokeWidth={1.5} />
+                    </div>
+                    <div>
+                      <div className="text-[#1D1D1F] font-medium mb-2">48-Hour Deployment</div>
+                      <div className="text-[#6B7280] text-sm leading-relaxed">
+                        Enterprise satellite internet bypassing traditional ISP timelines entirely
                       </div>
                     </div>
                   </div>
                   
-                  {/* Content */}
-                  <div className="p-8 space-y-6">
-                    <div className="space-y-4">
-                      <p className="body-regular text-[#4A5568]">
-                        Construction Connect is purpose-built connectivity infrastructure for active job sites.
-                      </p>
-                      
-                      <div className="space-y-4">
-                        <div className="flex items-start gap-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
-                          <div className="w-6 h-6 bg-[#00D4FF] rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                            <CheckCircle className="w-4 h-4 text-white" />
-                          </div>
-                          <div>
-                            <p className="body-regular text-[#4A5568]">
-                              <strong className="text-[#0A0E1A]">Unlike traditional ISPs:</strong> We deploy high-speed satellite internet in 48 hours, not 8-12 weeks. No trenching, no permits, no waiting for infrastructure that may never come.
-                            </p>
-                          </div>
-                        </div>
-                        
-                        <div className="flex items-start gap-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
-                          <div className="w-6 h-6 bg-[#00D4FF] rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                            <CheckCircle className="w-4 h-4 text-white" />
-                          </div>
-                          <div>
-                            <p className="body-regular text-[#4A5568]">
-                              <strong className="text-[#0A0E1A]">Beyond basic Starlink:</strong> We design and install complete site-wide systems with professional-grade equipment, redundancy planning, and ongoing support that Starlink alone can't provide.
-                            </p>
-                          </div>
-                        </div>
-                        
-                        <div className="flex items-start gap-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
-                          <div className="w-6 h-6 bg-[#00D4FF] rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                            <CheckCircle className="w-4 h-4 text-white" />
-                          </div>
-                          <div>
-                            <p className="body-regular text-[#4A5568]">
-                              <strong className="text-[#0A0E1A]">More than internet:</strong> We integrate surveillance, security monitoring, and multi-site management that generic providers simply don't understand or offer.
-                            </p>
-                          </div>
-                        </div>
-                      </div>
+                  <div className="flex items-start gap-4">
+                    <div className="w-8 h-8 bg-gradient-to-br from-[#00D4FF] to-[#0099CC] rounded-xl flex items-center justify-center flex-shrink-0 mt-1">
+                      <Wifi className="w-4 h-4 text-white" strokeWidth={1.5} />
                     </div>
-                    
-                    {/* Bottom Result Statement */}
-                    <div className="pt-6 border-t border-green-100">
-                      <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-lg p-4 border-l-4 border-[#00D4FF]">
-                        <p className="font-semibold text-[#0A0E1A] body-regular">
-                          Result: Complete connectivity infrastructure deployed faster and more reliably than any alternative in the DMV market.
-                        </p>
+                    <div>
+                      <div className="text-[#1D1D1F] font-medium mb-2">Complete Coverage</div>
+                      <div className="text-[#6B7280] text-sm leading-relaxed">
+                        Professional mesh networks covering trailer to top floor
                       </div>
                     </div>
                   </div>
+                  
+                  <div className="flex items-start gap-4">
+                    <div className="w-8 h-8 bg-gradient-to-br from-[#00D4FF] to-[#0099CC] rounded-xl flex items-center justify-center flex-shrink-0 mt-1">
+                      <Camera className="w-4 h-4 text-white" strokeWidth={1.5} />
+                    </div>
+                    <div>
+                      <div className="text-[#1D1D1F] font-medium mb-2">Integrated Security</div>
+                      <div className="text-[#6B7280] text-sm leading-relaxed">
+                        HD surveillance with remote monitoring and instant alerts
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Bottom Result */}
+                <div className="mt-12 pt-8 border-t border-[#D1D1D6]">
+                  <div className="bg-gradient-to-r from-[#00D4FF]/10 to-[#0099CC]/10 rounded-2xl p-6 border border-[#00D4FF]/20">
+                    <div className="text-[#1D1D1F] font-medium text-sm">
+                      Complete connectivity infrastructure deployed faster and more reliably than any alternative in the DMV market.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Stats Bar */}
+          <div className="mt-16 fade-in-up">
+            <div className="bg-white/80 backdrop-blur-xl rounded-3xl border border-[#D1D1D6] p-8 shadow-xl">
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                <div>
+                  <div className="text-3xl lg:text-4xl font-light text-[#1D1D1F] mb-2">48hrs</div>
+                  <div className="text-xs text-[#6B7280] font-medium tracking-[0.1em] uppercase">Deploy Time</div>
+                </div>
+                <div>
+                  <div className="text-3xl lg:text-4xl font-light text-[#1D1D1F] mb-2">$52K</div>
+                  <div className="text-xs text-[#6B7280] font-medium tracking-[0.1em] uppercase">Avg Savings</div>
+                </div>
+                <div>
+                  <div className="text-3xl lg:text-4xl font-light text-[#1D1D1F] mb-2">280%</div>
+                  <div className="text-xs text-[#6B7280] font-medium tracking-[0.1em] uppercase">ROI</div>
+                </div>
+                <div>
+                  <div className="text-3xl lg:text-4xl font-light text-[#1D1D1F] mb-2">99.8%</div>
+                  <div className="text-xs text-[#6B7280] font-medium tracking-[0.1em] uppercase">Uptime</div>
                 </div>
               </div>
             </div>
