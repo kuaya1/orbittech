@@ -70,6 +70,20 @@ const ConstructionConnectLanding = () => {
         .animate-kenburns {
           animation: kenburns-effect 20s ease-out forwards;
         }
+        
+        @keyframes pulse-slow {
+          50% {
+            box-shadow: 0 0 0 5px rgba(255, 193, 7, 0);
+          }
+          100% {
+            box-shadow: 0 0 0 0 rgba(255, 193, 7, 0);
+          }
+        }
+        
+        .animate-pulse-slow {
+          box-shadow: 0 0 0 0 rgba(255, 193, 7, 1);
+          animation: pulse-slow 2s infinite;
+        }
         `}
       </style>
 
@@ -85,7 +99,9 @@ const ConstructionConnectLanding = () => {
         
         <div className="relative z-20 max-w-7xl mx-auto px-6 py-24 text-center">
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-            Turnkey Connectivity for the<br/>Modern Job Site
+            Your Job Site Online in 48 Hours.
+            <br/>
+            <span className="text-[#FFC107]">Not 8 Weeks.</span>
           </h1>
           
           <h2 className="text-xl md:text-2xl text-gray-200 mb-8 max-w-3xl mx-auto leading-relaxed">
@@ -94,7 +110,7 @@ const ConstructionConnectLanding = () => {
             project on schedule and on budget.
           </h2>
           
-          <button className="bg-[#FFC107] text-[#0A192F] px-8 py-4 rounded-lg font-bold text-lg hover:bg-[#FFD54F] transition-all duration-200 shadow-xl hover:shadow-2xl transform hover:-translate-y-1">
+          <button className="bg-[#FFC107] text-[#0A192F] px-10 py-5 rounded-lg font-bold text-xl hover:bg-[#FFD54F] transition-all duration-200 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 animate-pulse-slow">
             Get a Free Site Assessment
           </button>
           
@@ -243,6 +259,17 @@ const ConstructionConnectLanding = () => {
           </div>
         </div>
       </section>
+
+      {/* Mobile-Only Sticky Click-to-Call Footer */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-[#0A192F] p-4 z-50 shadow-[0_-5px_15px_-5px_rgba(0,0,0,0.3)]">
+        <a 
+          href="tel:571-999-6915" 
+          className="w-full bg-[#FFC107] text-[#0A192F] px-6 py-3 rounded-lg font-bold text-lg flex items-center justify-center transition-all duration-200"
+        >
+          <Phone className="w-6 h-6 mr-3" />
+          Click to Call Now
+        </a>
+      </div>
     </div>
   );
 };
