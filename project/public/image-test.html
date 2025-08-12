@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Test</title>
+</head>
+<body>
+    <h1>Direct Image Test</h1>
+    
+    <h2>Hero Background:</h2>
+    <img src="/images/hero-bg.jpg" alt="Hero background" style="width: 300px; border: 1px solid #ccc;">
+    
+    <h2>Original Hero Background:</h2>
+    <img src="/images/Whisk_e1f97057a5.jpg" alt="Original hero" style="width: 300px; border: 1px solid #ccc;">
+    
+    <h2>Gallery Images:</h2>
+    <img src="/images/Gemini_Generated_Image_t7u8prt7u8prt7u8.png" alt="Gallery 1" style="width: 200px; border: 1px solid #ccc;">
+    <img src="/images/Whisk_c8d18d14d2.jpg" alt="Gallery 2" style="width: 200px; border: 1px solid #ccc;">
+    <img src="/images/Whisk_df20144b50.jpg" alt="Gallery 3" style="width: 200px; border: 1px solid #ccc;">
+    <img src="/images/Whisk_du2n2qxzju.jpg" alt="Gallery 4" style="width: 200px; border: 1px solid #ccc;">
+    
+    <script>
+        // Log loading status
+        document.querySelectorAll('img').forEach((img, index) => {
+            img.onload = () => console.log(`Image ${index + 1} loaded successfully: ${img.src}`);
+            img.onerror = () => console.error(`Image ${index + 1} failed to load: ${img.src}`);
+        });
+    </script>
+</body>
+</html>

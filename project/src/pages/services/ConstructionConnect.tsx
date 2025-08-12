@@ -76,7 +76,12 @@ const ConstructionConnectLanding = () => {
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#0A192F] via-[#0A192F]/95 to-[#0A192F]/90 z-10"></div>
-        <div className="absolute inset-0 bg-[url('/images/Whisk_e1f97057a5.jpg')] bg-cover bg-center opacity-40 animate-kenburns"></div>
+        <img 
+          src="/images/hero-bg.jpg" 
+          alt="Construction site background" 
+          className="absolute inset-0 w-full h-full object-cover opacity-40 animate-kenburns"
+          style={{ zIndex: 5 }}
+        />
         
         <div className="relative z-20 max-w-7xl mx-auto px-6 py-24 text-center">
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
