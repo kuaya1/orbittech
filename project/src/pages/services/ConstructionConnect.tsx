@@ -198,7 +198,7 @@ const ConstructionConnectLanding = () => {
               <div className="p-4"><p className="text-sm text-gray-700">24/7 surveillance camera protecting equipment and materials.</p></div>
             </div>
             <div className="bg-white rounded-lg overflow-hidden shadow-lg group transform hover:-translate-y-2 transition-all duration-300">
-              <div className="h-48 bg-gray-300 flex items-center justify-center overflow-hidden"><img src="/images/Whisk_du2n2qxzu.jpg" alt="Professional network rack installation in a site office trailer" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"/></div>
+              <div className="h-48 bg-gray-300 flex items-center justify-center overflow-hidden"><img src="/images/Whisk_du2n2qxzju.jpg" alt="Professional network rack installation in a site office trailer" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"/></div>
               <div className="p-4"><p className="text-sm text-gray-700">The central nervous system: A clean and organized network rack in the site office.</p></div>
             </div>
           </div>
