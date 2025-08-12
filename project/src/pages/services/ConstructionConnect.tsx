@@ -397,8 +397,19 @@ export default function ConstructionConnect() {
       </nav>
 
       {/* Hero Section */}
-      <section className="bg-white py-20">
-        <div className="max-w-7xl mx-auto px-4">
+      <section className="relative py-20 overflow-hidden">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: 'url(/Whisk_f433ee6b48.jpg)',
+          }}
+        >
+          {/* Overlay for better text readability */}
+          <div className="absolute inset-0 bg-black/40"></div>
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-4 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
             <div className="lg:col-span-3">
               <motion.div
@@ -411,12 +422,12 @@ export default function ConstructionConnect() {
                   4-HOUR DEPLOYMENT
                 </div>
                 
-                <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
+                <h1 className="text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
                   Your Construction Site <br />
-                  <span className="text-blue-600">Connected.</span> Today.
+                  <span className="text-blue-400">Connected.</span> Today.
                 </h1>
                 
-                <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+                <p className="text-xl text-gray-200 mb-8 leading-relaxed">
                   Enterprise-grade Starlink deployment for construction professionals.
                   312 Mbps average. 47 active sites. Zero downtime.
                 </p>
@@ -439,17 +450,17 @@ export default function ConstructionConnect() {
                   </motion.button>
                 </div>
                 
-                <div className="flex flex-wrap items-center gap-6 text-sm text-gray-600">
+                <div className="flex flex-wrap items-center gap-6 text-sm text-gray-300">
                   <div className="flex items-center">
-                    <CheckCircle className="w-4 h-4 text-green-500 mr-2" />
+                    <CheckCircle className="w-4 h-4 text-green-400 mr-2" />
                     ENR Top 400 Trusted
                   </div>
                   <div className="flex items-center">
-                    <CheckCircle className="w-4 h-4 text-green-500 mr-2" />
+                    <CheckCircle className="w-4 h-4 text-green-400 mr-2" />
                     FCC Licensed
                   </div>
                   <div className="flex items-center">
-                    <CheckCircle className="w-4 h-4 text-green-500 mr-2" />
+                    <CheckCircle className="w-4 h-4 text-green-400 mr-2" />
                     $5M Insurance
                   </div>
                 </div>
@@ -463,23 +474,23 @@ export default function ConstructionConnect() {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="relative"
               >
-                <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8 relative overflow-hidden">
+                <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-2xl p-8 relative overflow-hidden border border-white/20">
                   <div className="relative z-10">
-                    <Satellite className="w-24 h-24 text-blue-600 mx-auto mb-6" />
+                    <Satellite className="w-24 h-24 text-blue-400 mx-auto mb-6" />
                     <div className="text-center">
-                      <h3 className="text-2xl font-bold text-gray-900 mb-4">Live Site Connection</h3>
+                      <h3 className="text-2xl font-bold text-white mb-4">Live Site Connection</h3>
                       <div className="space-y-2">
                         <div className="flex justify-between">
-                          <span className="text-gray-600">Speed:</span>
-                          <span className="font-semibold text-blue-600">312 Mbps</span>
+                          <span className="text-gray-300">Speed:</span>
+                          <span className="font-semibold text-blue-400">312 Mbps</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-gray-600">Latency:</span>
-                          <span className="font-semibold text-green-600">23ms</span>
+                          <span className="text-gray-300">Latency:</span>
+                          <span className="font-semibold text-green-400">23ms</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-gray-600">Uptime:</span>
-                          <span className="font-semibold text-green-600">99.97%</span>
+                          <span className="text-gray-300">Uptime:</span>
+                          <span className="font-semibold text-green-400">99.97%</span>
                         </div>
                       </div>
                     </div>
