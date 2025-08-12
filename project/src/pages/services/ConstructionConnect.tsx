@@ -252,16 +252,9 @@ export default function ConstructionConnect() {
                 </p>
                 
                 {/* Mobile: Image appears here above button, Desktop: Hidden */}
-                <div className="lg:hidden relative mb-10">
-                  <div className="relative rounded-2xl overflow-hidden shadow-2xl max-w-md mx-auto">
-                    <img 
-                      src="/Whisk_4c22d21dac.jpg" 
-                      alt="Construction site with satellite internet connectivity"
-                      className="w-full h-auto object-cover"
-                    />
-                    {/* Subtle overlay for depth */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
-                  </div>
+                <div className="lg:hidden relative mb-10 h-64 bg-cover bg-center bg-no-repeat" style={{backgroundImage: 'url(/Whisk_4c22d21dac.jpg)'}}>
+                  {/* Subtle overlay for depth */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
                 </div>
                 
                 {/* Mobile: Single button, Desktop: Two buttons */}
@@ -291,16 +284,9 @@ export default function ConstructionConnect() {
             </div>
             
             {/* Right: Construction Site Image (40%) - Desktop only */}
-            <div className="hidden lg:block lg:col-span-2 relative order-2 lg:order-2">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-                <img 
-                  src="/Whisk_4c22d21dac.jpg" 
-                  alt="Construction site with satellite internet connectivity"
-                  className="w-full h-auto object-cover"
-                />
-                {/* Subtle overlay for depth */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
-              </div>
+            <div className="hidden lg:block lg:col-span-2 relative order-2 lg:order-2 h-96 bg-cover bg-center bg-no-repeat" style={{backgroundImage: 'url(/Whisk_4c22d21dac.jpg)'}}>
+              {/* Subtle overlay for depth */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
             </div>
           </div>
         </div>
