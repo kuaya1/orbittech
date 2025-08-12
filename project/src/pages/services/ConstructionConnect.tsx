@@ -255,20 +255,9 @@ export default function ConstructionConnect() {
         </div>
       </nav>
 
-      {/* Hero Section - Clean 60/40 Split with Background Image */}
-      <section className="relative py-24 bg-white overflow-hidden min-h-[80vh] flex items-center">
-        {/* Background Image */}
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="/construction-site-79.png" 
-            alt="Construction site with satellite internet connectivity"
-            className="w-full h-full object-cover"
-          />
-          {/* Overlay for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-white/70"></div>
-        </div>
-        
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+      {/* Hero Section - Clean 60/40 Split with Right Image */}
+      <section className="relative py-24 bg-white overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-center">
             {/* Left: Copy and CTAs (60%) */}
             <div className="lg:col-span-3">
@@ -299,7 +288,7 @@ export default function ConstructionConnect() {
                 </div>
                 
                 {/* Subtle live status element */}
-                <div className="flex items-center gap-4 text-sm text-gray-700 bg-white/80 backdrop-blur-sm rounded-lg px-4 py-3 inline-flex">
+                <div className="flex items-center gap-4 text-sm text-gray-700">
                   <div className="flex items-center">
                     <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
                     McLean: 287 Mbps
@@ -312,32 +301,16 @@ export default function ConstructionConnect() {
               </div>
             </div>
             
-            {/* Right: Live Stats Card (40%) */}
+            {/* Right: Construction Site Image (40%) */}
             <div className="lg:col-span-2 relative">
-              <div className="bg-white/95 backdrop-blur-sm rounded-xl border border-gray-100 p-8 hover:shadow-lg transition-all duration-300">
-                <div className="flex items-center justify-between mb-6">
-                  <Satellite className="w-10 h-10 text-blue-600" />
-                  <div className="flex items-center text-green-600">
-                    <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
-                    <span className="text-sm font-medium">LIVE</span>
-                  </div>
-                </div>
-                
-                <h3 className="text-xl font-bold text-black mb-6">Site Connection</h3>
-                <div className="space-y-4">
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-600">Speed:</span>
-                    <span className="text-2xl font-bold text-blue-600">312 Mbps</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-600">Latency:</span>
-                    <span className="text-2xl font-bold text-green-500">23ms</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-600">Uptime:</span>
-                    <span className="text-2xl font-bold text-green-500">99.97%</span>
-                  </div>
-                </div>
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                <img 
+                  src="/construction-site-79.png" 
+                  alt="Construction site with satellite internet connectivity"
+                  className="w-full h-auto object-cover"
+                />
+                {/* Subtle overlay for depth */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
               </div>
             </div>
           </div>
