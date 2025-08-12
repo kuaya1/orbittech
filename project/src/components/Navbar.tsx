@@ -20,21 +20,21 @@ const Navbar: React.FC<NavbarProps> = ({
   // Check if we're on a blog page
   const isBlogPage = location.pathname.includes('/blog');
   
-  // Check if we're on the construction page
-  const isConstructionPage = location.pathname.includes('/services/construction-connect') || location.pathname.includes('/construction-connect');
+  // More explicit check for construction page
+  const isConstructionPage = location.pathname === '/services/construction-connect' || 
+                             location.pathname.startsWith('/services/construction-connect') ||
+                             location.pathname.includes('construction-connect');
   
-  // Debug logging
-  console.log('Current pathname:', location.pathname);
-  console.log('Is construction page:', isConstructionPage);
+  // Force the construction variant when on construction page
+  const effectiveVariant = isConstructionPage ? 'construction' : (variant || 'default');
   
-  // Determine the effective variant
-  const effectiveVariant = variant || (isConstructionPage ? 'construction' : 'default');
-  
-  // Determine logo source based on variant or prop
-  const finalLogoSrc = logoSrc || (effectiveVariant === 'construction' ? '/orbittech logo black.png' : '/Starlink Dmv (33).png');
-  
-  console.log('Effective variant:', effectiveVariant);
-  console.log('Final logo src:', finalLogoSrc);
+  // Always use black logo for construction pages
+  const finalLogoSrc = logoSrc || (isConstructionPage ? '/orbittech logo black.png' : '/Starlink Dmv (33).png');
+
+  // Force re-render when location changes
+  useEffect(() => {
+    // This effect will run when location.pathname changes
+  }, [location.pathname]);
 
   // --- Effects and Handlers ---
 
@@ -125,7 +125,7 @@ const Navbar: React.FC<NavbarProps> = ({
               className="flex items-center group transition-transform duration-300 hover:scale-105 bg-transparent border-none p-0 cursor-pointer"
             >
               <img 
-                key={finalLogoSrc}
+                key={`${finalLogoSrc}-${location.pathname}`}
                 src={finalLogoSrc} 
                 alt={logoAlt} 
                 className="h-10 w-auto transition-all duration-300"

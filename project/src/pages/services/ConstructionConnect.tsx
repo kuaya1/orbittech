@@ -229,9 +229,9 @@ export default function ConstructionConnect() {
       `}</style>
 
       {/* Hero Section - Clean 60/40 Split with Right Image */}
-      <section className="relative py-24 bg-white overflow-hidden">
+      <section className="relative py-16 lg:py-24 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center min-h-[500px] lg:min-h-[600px]">
             {/* Left: Copy and CTAs (60%) */}
             <div className="lg:col-span-3 order-1 lg:order-1">
               <div>
@@ -283,7 +283,7 @@ export default function ConstructionConnect() {
             </div>
             
             {/* Right: Construction Site Image (40%) - Desktop only */}
-            <div className="hidden lg:block lg:col-span-2 relative order-2 lg:order-2 h-[520px] bg-cover bg-center bg-no-repeat" style={{backgroundImage: 'url(/Whisk_58fdc777e8.jpg)'}}>
+            <div className="hidden lg:block lg:col-span-2 relative order-2 lg:order-2 min-h-[600px] bg-cover bg-center bg-no-repeat" style={{backgroundImage: 'url(/Whisk_58fdc777e8.jpg)'}}>
             </div>
           </div>
         </div>
