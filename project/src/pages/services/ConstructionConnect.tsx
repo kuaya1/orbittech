@@ -256,11 +256,11 @@ export default function ConstructionConnect() {
       </nav>
 
       {/* Hero Section - Clean 60/40 Split */}
-      <section className="relative py-24 bg-white">
+      <section className="relative py-24 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-center">
             {/* Left: Copy and CTAs (60%) */}
-            <div className="lg:col-span-3">
+            <div className="lg:col-span-3 relative z-10">
               <div>
                 <div className="inline-flex items-center bg-blue-50 text-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-8">
                   <Zap className="w-4 h-4 mr-2" />
@@ -301,24 +301,42 @@ export default function ConstructionConnect() {
               </div>
             </div>
             
-            {/* Right: Live Stats Card (40%) */}
-            <div className="lg:col-span-2">
-              <div className="bg-white rounded-xl border border-gray-100 p-8 hover:shadow-lg transition-all duration-300">
-                <Satellite className="w-16 h-16 text-blue-600 mx-auto mb-6" />
-                <div className="text-center">
-                  <h3 className="h3 text-black mb-6">Live Site Connection</h3>
-                  <div className="space-y-4">
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Speed:</span>
-                      <span className="font-semibold text-blue-600">312 Mbps</span>
+            {/* Right: Hero Image and Stats Card (40%) */}
+            <div className="lg:col-span-2 relative">
+              {/* Background Image */}
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                <img 
+                  src="/construction-site-79.png" 
+                  alt="Construction site with satellite internet connectivity"
+                  className="w-full h-auto object-cover"
+                />
+                
+                {/* Overlay gradient for better text readability */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                
+                {/* Floating Stats Card */}
+                <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-sm rounded-xl border border-gray-100 p-6 hover:shadow-lg transition-all duration-300">
+                  <div className="flex items-center justify-between mb-4">
+                    <Satellite className="w-8 h-8 text-blue-600" />
+                    <div className="flex items-center text-green-600">
+                      <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+                      <span className="text-sm font-medium">LIVE</span>
                     </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Latency:</span>
-                      <span className="font-semibold text-green-500">23ms</span>
+                  </div>
+                  
+                  <h3 className="text-lg font-bold text-black mb-3">Site Connection</h3>
+                  <div className="grid grid-cols-3 gap-3 text-center">
+                    <div>
+                      <div className="text-xl font-bold text-blue-600">312</div>
+                      <div className="text-xs text-gray-600">Mbps</div>
                     </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Uptime:</span>
-                      <span className="font-semibold text-green-500">99.97%</span>
+                    <div>
+                      <div className="text-xl font-bold text-green-500">23</div>
+                      <div className="text-xs text-gray-600">ms</div>
+                    </div>
+                    <div>
+                      <div className="text-xl font-bold text-green-500">99.97</div>
+                      <div className="text-xs text-gray-600">% Up</div>
                     </div>
                   </div>
                 </div>
