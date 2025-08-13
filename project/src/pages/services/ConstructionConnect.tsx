@@ -417,59 +417,60 @@ const ConstructionConnectLanding = () => {
       </style>
 
       {/* Hero Section */}
-      <section id="hero" className="hero-section relative min-h-screen pt-16 flex items-center justify-center overflow-hidden">
-        {/* Background Image Container - Clean, original image */}
-        <div className="absolute inset-0" style={{ zIndex: 1 }}>
-          {/* Responsive Background Image using Picture Element */}
-          <picture className="absolute inset-0">
-            <source 
-              media="(min-width: 768px)" 
-              srcSet="/images/hero desktop image.png"
-            />
-            <source 
-              media="(max-width: 767px)" 
-              srcSet="/images/Mobile desktop image.PNG"
-            />
-            <img 
-              src="/images/hero desktop image.png" 
-              alt="Professional construction site with modern connectivity infrastructure" 
-              className="absolute inset-0 w-full h-full object-cover"
-              loading="eager"
-              fetchPriority="high"
-            />
-          </picture>
-          {/* Frosted Glass Overlay for Entire Hero Section */}
-          <div className="absolute inset-0" style={{ backgroundColor: 'rgba(0, 0, 0, 0.3)', backdropFilter: 'blur(2px)', WebkitBackdropFilter: 'blur(2px)', zIndex: 2 }}></div>
-        </div>
-        
-        {/* Content with Clean Container */}
-        <div className="relative max-w-7xl mx-auto px-6 py-24 sm:py-32 text-center" style={{ zIndex: 10 }}>
-          <div className="hero-content-box">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight fade-in-up">
-              Connected in 48 Hours.
-              <br/>
-              <span className="text-[#3B82F6]">Not 8 Weeks.</span>
-            </h1>
-            
-            <h2 className="text-lg sm:text-xl lg:text-2xl text-neutral-300 leading-relaxed max-w-2xl mx-auto lg:mx-0 fade-in-up font-extralight">
-              Complete connectivity infrastructure for DMV construction sites. Internet, coverage, and surveillance deployed before your next morning meeting.
-            </h2>
-            
-            <button className="btn-primary-cta hover-lift fade-in-up">
-              Schedule Your Site Assessment
-            </button>
-            
-            <p className="mt-8 text-[#D1D5DB] text-sm md:text-base font-medium fade-in-up">
-              Your Trusted Partner for Projects in Virginia, Maryland, and DC
-            </p>
-          </div>
-          
-          {/* Scroll Indicator */}
-          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 scroll-bounce">
-            <ChevronDown className="icon-standard text-[#3B82F6] opacity-60" />
-          </div>
-        </div>
-      </section>
+<section id="hero" className="hero-section relative min-h-screen pt-16 flex items-center justify-center overflow-hidden">
+  {/* Background Image Container with Overlays */}
+  <div className="absolute inset-0">
+    {/* Responsive Background Image using Picture Element */}
+    <picture className="absolute inset-0">
+      <source 
+        media="(min-width: 768px)" 
+        srcSet="/images/hero desktop image.png"
+      />
+      <source 
+        media="(max-width: 767px)" 
+        srcSet="/images/Mobile desktop image.PNG"
+      />
+      <img 
+        src="/images/hero desktop image.png" 
+        alt="Professional construction site with modern connectivity infrastructure" 
+        className="absolute inset-0 w-full h-full object-cover"
+        loading="eager"
+        fetchPriority="high"
+      />
+    </picture>
+    
+    {/* Semi-transparent overlay for entire hero section */}
+    <div className="absolute inset-0 bg-black/40"></div>
+  </div>
+  
+  {/* Content - Properly centered */}
+  <div className="relative z-10 w-full max-w-7xl mx-auto px-6">
+    <div className="text-center">
+      <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight fade-in-up">
+        Connected in 48 Hours.
+        <br/>
+        <span className="text-[#3B82F6]">Not 8 Weeks.</span>
+      </h1>
+      
+      <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed fade-in-up">
+        Complete connectivity infrastructure for DMV construction sites. Internet, coverage, and surveillance deployed before your next morning meeting.
+      </p>
+      
+      <button className="btn-primary-cta hover-lift fade-in-up mb-8">
+        <a href="/my-app#contact" className="btn-primary-cta hover-lift fade-in-up">Schedule Your Site Assessment</a>
+      </button>
+      
+      <p className="text-white/70 text-sm md:text-base fade-in-up">
+        Your Trusted Partner for Projects in Virginia, Maryland, and DC
+      </p>
+    </div>
+  </div>
+  
+  {/* Scroll Indicator */}
+  <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 scroll-bounce z-10">
+    <ChevronDown className="w-6 h-6 text-white/60" />
+  </div>
+</section>
 
       {/* Problem/Solution Section - Timeline-based Design */}
       <section id="problem" className="py-24 sm:py-32 bg-white relative overflow-hidden">
