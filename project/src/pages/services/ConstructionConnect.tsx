@@ -87,6 +87,17 @@ const ConstructionConnectLanding = () => {
     return () => observer.disconnect();
   }, []);
 
+  // Preload hero images for better performance
+  useEffect(() => {
+    const preloadImages = () => {
+      const desktopImg = new Image();
+      const mobileImg = new Image();
+      desktopImg.src = '/images/Whisk_a8927b407a.jpg';
+      mobileImg.src = '/images/Whisk_7728c5d747 (1).jpg';
+    };
+    preloadImages();
+  }, []);
+
   const faqs = [
     {
       question: "How quickly can you get our construction site online?",
@@ -354,18 +365,43 @@ const ConstructionConnectLanding = () => {
           background: linear-gradient(135deg, #eff6ff, #dbeafe);
           border-left: 4px solid #3b82f6;
         }
+
+        /* Hero Section Responsive Images */
+        .hero-section picture {
+          width: 100%;
+          height: 100%;
+        }
+
+        .hero-section picture img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
         `}
       </style>
 
       {/* Hero Section */}
-      <section id="hero" className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+      <section id="hero" className="hero-section relative min-h-[90vh] flex items-center justify-center overflow-hidden">
         {/* Background Image Container with Overlays */}
         <div className="absolute inset-0" style={{ zIndex: 1 }}>
-          <img 
-            src="/images/Whisk_a8927b407a.jpg" 
-            alt="Construction site background" 
-            className="absolute inset-0 w-full h-full object-cover opacity-85"
-          />
+          {/* Responsive Background Image using Picture Element */}
+          <picture className="absolute inset-0">
+            <source 
+              media="(min-width: 768px)" 
+              srcSet="/images/Whisk_a8927b407a.jpg"
+            />
+            <source 
+              media="(max-width: 767px)" 
+              srcSet="/images/Whisk_7728c5d747 (1).jpg"
+            />
+            <img 
+              src="/images/Whisk_a8927b407a.jpg" 
+              alt="Professional construction site with modern connectivity infrastructure" 
+              className="absolute inset-0 w-full h-full object-cover opacity-85"
+              loading="eager"
+              fetchPriority="high"
+            />
+          </picture>
           {/* Reduced overlays constrained to image */}
           <div className="absolute inset-0 bg-gradient-to-br from-[#0A0E1A]/40 via-[#0A0E1A]/35 to-[#12172B]/30"></div>
           <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/15 to-black/30"></div>
