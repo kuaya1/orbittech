@@ -45,75 +45,6 @@ const ConstructionConnectLanding = () => {
       });
     }, observerOptions);
 
-    const elements = document.querySelectorAll('.fade-in-up');
-    elements.forEach((element) => observer.observe(element));
-
-    return () => observer.disconnect();
-  }, []);
-
-  // Trust logos sequence animation
-  useEffect(() => {
-    const trustLogos = document.querySelectorAll('.trust-logo');
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          trustLogos.forEach((logo, index) => {
-            setTimeout(() => {
-              logo.classList.add('animate-in');
-            }, index * 150); // 150ms stagger
-          });
-        }
-      });
-    }, { threshold: 0.5 });
-
-    if (trustLogos.length > 0) {
-      observer.observe(trustLogos[0].parentElement?.parentElement || trustLogos[0]);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
-  // Simple fade-in animations with Intersection Observerne,
-  Mail,
-  ArrowRight,
-  Camera,
-  XCircle
-} from 'lucide-react';
-import { useEffect } from 'react';
-
-const ConstructionConnectLanding = () => {
-  // Scroll progress tracking
-  useEffect(() => {
-    const updateScrollProgress = () => {
-      const scrollTop = window.pageYOffset;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const scrollPercent = (scrollTop / docHeight) * 100;
-      const progressBar = document.getElementById('scroll-progress-bar');
-      if (progressBar) {
-        progressBar.style.width = scrollPercent + '%';
-      }
-    };
-
-    window.addEventListener('scroll', updateScrollProgress);
-    return () => window.removeEventListener('scroll', updateScrollProgress);
-  }, []);
-
-  // Intersection Observer for fade-up animations
-  useEffect(() => {
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, observerOptions);
-
     const fadeElements = document.querySelectorAll('.fade-in-up');
     fadeElements.forEach((el) => observer.observe(el));
 
@@ -144,22 +75,6 @@ const ConstructionConnectLanding = () => {
     }
 
     return () => observer.disconnect();
-  }, []);
-
-  // Parallax scrolling effect
-  useEffect(() => {
-    const handleParallax = () => {
-      const scrolled = window.pageYOffset;
-      const parallaxElements = document.querySelectorAll('.parallax-bg');
-      
-      parallaxElements.forEach((element) => {
-        const rate = scrolled * -0.1; // 10% offset for subtle parallax
-        (element as HTMLElement).style.transform = `translateY(${rate}px)`;
-      });
-    };
-
-    window.addEventListener('scroll', handleParallax);
-    return () => window.removeEventListener('scroll', handleParallax);
   }, []);
 
   const faqs = [
