@@ -403,6 +403,7 @@ const ConstructionConnectLanding = () => {
           padding: 40px;
           border: 1px solid rgba(255, 255, 255, 0.1);
           color: white;
+          /* No blur here, only overlay */
         }
 
         /* Mobile responsive adjustments for content box */
@@ -417,7 +418,7 @@ const ConstructionConnectLanding = () => {
 
       {/* Hero Section */}
       <section id="hero" className="hero-section relative min-h-screen pt-16 flex items-center justify-center overflow-hidden">
-        {/* Background Image Container - Clean, no overlays */}
+        {/* Background Image Container - Clean, original image */}
         <div className="absolute inset-0" style={{ zIndex: 1 }}>
           {/* Responsive Background Image using Picture Element */}
           <picture className="absolute inset-0">
@@ -437,11 +438,9 @@ const ConstructionConnectLanding = () => {
               fetchPriority="high"
             />
           </picture>
-
         </div>
-        
         {/* Frosted Glass Overlay for Entire Hero Section */}
-        <div className="absolute inset-0 bg-black/30 backdrop-blur-sm" style={{ zIndex: 2 }}></div>
+        <div className="absolute inset-0" style={{ zIndex: 2, backdropFilter: 'blur(2px)', WebkitBackdropFilter: 'blur(2px)', background: 'rgba(0,0,0,0.3)' }}></div>
         
         {/* Content with Clean Container */}
         <div className="relative max-w-7xl mx-auto px-6 py-24 sm:py-32 text-center" style={{ zIndex: 10 }}>

@@ -29,7 +29,7 @@ const Navbar: React.FC<NavbarProps> = ({
   const effectiveVariant = isConstructionPage ? 'construction' : (variant || 'default');
   
   // Always use black logo for construction pages
-  const finalLogoSrc = logoSrc || (isConstructionPage ? '/orbittech logo black.png' : '/Starlink Dmv (33).png');
+  const finalLogoSrc = logoSrc || (isConstructionPage ? '/Starlink Dmv (33).png' : '/Starlink Dmv (33).png');
 
   // Force re-render when location changes
   useEffect(() => {
