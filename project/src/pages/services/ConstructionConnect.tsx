@@ -370,7 +370,7 @@ const ConstructionConnectLanding = () => {
           box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
         }
 
-        /* Hero Section Responsive Images */
+        /* Hero Section Responsive Images - Clean Background */
         .hero-section picture {
           width: 100%;
           height: 100%;
@@ -396,20 +396,20 @@ const ConstructionConnectLanding = () => {
           }
         }
 
-        /* Frosted Glass Effect for Hero Content */
-        .frosted-box {
-          background-color: rgba(25, 25, 25, 0.75);
-          backdrop-filter: blur(12px);
-          -webkit-backdrop-filter: blur(12px);
+        /* Content container styling - clean and crisp */
+        .hero-content-box {
+          background-color: rgba(0, 0, 0, 0.3);
           border-radius: 16px;
           padding: 40px;
           border: 1px solid rgba(255, 255, 255, 0.1);
           color: white;
+          backdrop-filter: blur(2px);
+          -webkit-backdrop-filter: blur(2px);
         }
 
-        /* Mobile responsive adjustments for frosted box */
+        /* Mobile responsive adjustments for content box */
         @media (max-width: 768px) {
-          .frosted-box {
+          .hero-content-box {
             padding: 32px 24px;
             margin: 0 16px;
           }
@@ -439,18 +439,20 @@ const ConstructionConnectLanding = () => {
               fetchPriority="high"
             />
           </picture>
+          {/* Frosted Glass Overlay */}
+          <div className="absolute inset-0 bg-black/30 backdrop-blur-sm"></div>
         </div>
         
-        {/* Content with Frosted Glass Effect */}
+        {/* Content with Clean Container */}
         <div className="relative max-w-7xl mx-auto px-6 py-24 sm:py-32 text-center" style={{ zIndex: 10 }}>
-          <div className="frosted-box">
+          <div className="hero-content-box">
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight fade-in-up">
               Connected in 48 Hours.
               <br/>
               <span className="text-[#3B82F6]">Not 8 Weeks.</span>
             </h1>
             
-            <h2 className="text-lg sm:text-xl lg:text-2xl text-neutral-300 leading-relaxed max-w-2xl mx-auto fade-in-up">
+            <h2 className="text-lg sm:text-xl lg:text-2xl text-neutral-300 leading-relaxed max-w-2xl mx-auto lg:mx-0 fade-in-up font-extralight">
               Complete connectivity infrastructure for DMV construction sites. Internet, coverage, and surveillance deployed before your next morning meeting.
             </h2>
             
