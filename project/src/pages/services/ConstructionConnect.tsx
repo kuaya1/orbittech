@@ -168,7 +168,7 @@ const ConstructionConnectLanding = () => {
         .btn-primary-cta {
           background: #3B82F6;
           border-radius: 8px;
-          padding: 14px 28px;
+          padding: 8px 16px;
           font-weight: 600;
           font-size: 18px;
           letter-spacing: 0.025em;
