@@ -93,7 +93,7 @@ const ConstructionConnectLanding = () => {
       const desktopImg = new Image();
       const mobileImg = new Image();
       desktopImg.src = '/images/hero desktop image.png';
-      mobileImg.src = '/images/hero mobile image.png';
+      mobileImg.src = '/images/Mobile desktop image.PNG';
     };
     preloadImages();
   }, []);
@@ -352,18 +352,22 @@ const ConstructionConnectLanding = () => {
         }
 
         .metric-card {
-          backdrop-filter: blur(10px);
-          background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.95));
+          background: rgba(18, 23, 43, 0.95);
+          border: 1px solid rgba(59, 130, 246, 0.2);
         }
 
         .problem-card {
-          background: linear-gradient(135deg, #fef2f2, #fee2e2);
-          border-left: 4px solid #ef4444;
+          background: linear-gradient(to-b, #fef2f2, #ffffff);
+          border: 1px solid rgba(239, 68, 68, 0.2);
+          border-left: 3px solid #ef4444;
+          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
         }
 
         .solution-card {
-          background: linear-gradient(135deg, #eff6ff, #dbeafe);
-          border-left: 4px solid #3b82f6;
+          background: linear-gradient(to-b, #f0f9ff, #ffffff);
+          border: 1px solid rgba(59, 130, 246, 0.2);
+          border-left: 3px solid #3b82f6;
+          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
         }
 
         /* Hero Section Responsive Images */
@@ -392,7 +396,7 @@ const ConstructionConnectLanding = () => {
             />
             <source 
               media="(max-width: 767px)" 
-              srcSet="/images/hero mobile image.png"
+              srcSet="/images/Mobile desktop image.PNG"
             />
             <img 
               src="/images/hero desktop image.png" 
@@ -439,7 +443,7 @@ const ConstructionConnectLanding = () => {
       </section>
 
       {/* Problem/Solution Section - Timeline-based Design */}
-      <section id="problem" className="py-24 sm:py-32 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
+      <section id="problem" className="py-24 sm:py-32 bg-white relative overflow-hidden">
         {/* Animated Background Pattern */}
         <div className="absolute inset-0 opacity-[0.03]">
           <div className="absolute inset-0" style={{backgroundImage: "repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(59, 130, 246, 0.05) 35px, rgba(59, 130, 246, 0.05) 70px)"}}></div>
@@ -448,17 +452,13 @@ const ConstructionConnectLanding = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           {/* Section Header - Refined */}
           <div className="text-center max-w-3xl mx-auto mb-20">
-            <div className="inline-flex items-center gap-2 mb-6">
-              <div className="h-px w-12 bg-gradient-to-r from-transparent to-blue-500"></div>
-              <span className="text-xs font-semibold text-blue-600 tracking-[0.3em] uppercase">The Challenge</span>
-              <div className="h-px w-12 bg-gradient-to-l from-transparent to-blue-500"></div>
-            </div>
-            <h2 className="text-5xl lg:text-6xl font-light text-gray-900 mb-6 tracking-tight">
-              Every Day <span className="font-bold bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">Offline</span>
+            <span className="text-sm font-medium text-neutral-500 tracking-[0.2em] uppercase mb-6 block">The Challenge</span>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-black mb-6">
+              Every Day <span className="text-red-500">Offline</span>
               <br/>
-              <span className="text-3xl lg:text-4xl text-gray-600">Costs You Thousands</span>
+              <span className="text-2xl md:text-3xl font-normal text-neutral-600">Costs You Thousands</span>
             </h2>
-            <p className="text-xl text-gray-600 font-light leading-relaxed">
+            <p className="text-lg text-neutral-400 font-light leading-relaxed">
               See how Construction Connect transforms your timeline from months to hours.
             </p>
           </div>
@@ -468,8 +468,8 @@ const ConstructionConnectLanding = () => {
             {/* Traditional Timeline */}
             <div className="relative slide-left">
               <div className="text-center mb-8">
-                <h3 className="text-2xl font-semibold text-gray-900 mb-2">Traditional ISP Timeline</h3>
-                <p className="text-gray-500">The costly reality of waiting</p>
+                <h3 className="text-2xl font-bold text-black mb-2">Traditional ISP Timeline</h3>
+                <p className="text-neutral-400 font-light">The costly reality of waiting</p>
               </div>
               
               <div className="relative pl-8">
@@ -480,8 +480,8 @@ const ConstructionConnectLanding = () => {
                     <div className="timeline-dot absolute -left-5"></div>
                     <div className="problem-card rounded-xl p-6 ml-8 hover:shadow-lg transition-shadow">
                       <div className="text-xs font-bold text-red-600 mb-1">WEEK 1-2</div>
-                      <h4 className="font-semibold text-gray-900 mb-2">Initial Site Survey</h4>
-                      <p className="text-sm text-gray-600">Waiting for technician availability</p>
+                      <h4 className="font-bold text-black mb-2">Initial Site Survey</h4>
+                      <p className="text-sm text-neutral-500">Waiting for technician availability</p>
                       <div className="mt-3 text-red-600 font-bold">-$10,000 productivity</div>
                     </div>
                   </div>
@@ -490,8 +490,8 @@ const ConstructionConnectLanding = () => {
                     <div className="timeline-dot absolute -left-5"></div>
                     <div className="problem-card rounded-xl p-6 ml-8 hover:shadow-lg transition-shadow">
                       <div className="text-xs font-bold text-red-600 mb-1">WEEK 3-4</div>
-                      <h4 className="font-semibold text-gray-900 mb-2">Permit & Planning</h4>
-                      <p className="text-sm text-gray-600">Infrastructure requirements assessment</p>
+                      <h4 className="font-bold text-black mb-2">Permit & Planning</h4>
+                      <p className="text-sm text-neutral-500">Infrastructure requirements assessment</p>
                       <div className="mt-3 text-red-600 font-bold">-$10,000 delays</div>
                     </div>
                   </div>
@@ -500,8 +500,8 @@ const ConstructionConnectLanding = () => {
                     <div className="timeline-dot absolute -left-5"></div>
                     <div className="problem-card rounded-xl p-6 ml-8 hover:shadow-lg transition-shadow">
                       <div className="text-xs font-bold text-red-600 mb-1">WEEK 5-8</div>
-                      <h4 className="font-semibold text-gray-900 mb-2">Cable Installation</h4>
-                      <p className="text-sm text-gray-600">Trenching and infrastructure build</p>
+                      <h4 className="font-bold text-black mb-2">Cable Installation</h4>
+                      <p className="text-sm text-neutral-500">Trenching and infrastructure build</p>
                       <div className="mt-3 text-red-600 font-bold">-$20,000 lost time</div>
                     </div>
                   </div>
@@ -510,8 +510,8 @@ const ConstructionConnectLanding = () => {
                     <div className="timeline-dot absolute -left-5"></div>
                     <div className="problem-card rounded-xl p-6 ml-8 hover:shadow-lg transition-shadow opacity-50">
                       <div className="text-xs font-bold text-red-600 mb-1">WEEK 9+</div>
-                      <h4 className="font-semibold text-gray-900 mb-2">Maybe Connected</h4>
-                      <p className="text-sm text-gray-600">If everything goes perfectly...</p>
+                      <h4 className="font-bold text-black mb-2">Maybe Connected</h4>
+                      <p className="text-sm text-neutral-500">If everything goes perfectly...</p>
                       <div className="mt-3 text-red-600 font-bold">Total: -$40,000+</div>
                     </div>
                   </div>
@@ -522,7 +522,7 @@ const ConstructionConnectLanding = () => {
             {/* Construction Connect Timeline */}
             <div className="relative slide-right">
               <div className="text-center mb-8">
-                <h3 className="text-2xl font-semibold text-gray-900 mb-2">Construction Connect</h3>
+                <h3 className="text-2xl font-bold text-black mb-2">Construction Connect</h3>
                 <p className="text-blue-600 font-medium">Connected. This week.</p>
               </div>
               
@@ -534,8 +534,8 @@ const ConstructionConnectLanding = () => {
                     <div className="timeline-dot solution absolute -left-5 pulse-glow"></div>
                     <div className="solution-card rounded-xl p-6 ml-8 hover:shadow-lg transition-shadow">
                       <div className="text-xs font-bold text-blue-600 mb-1">HOUR 1</div>
-                      <h4 className="font-semibold text-gray-900 mb-2">Immediate Response</h4>
-                      <p className="text-sm text-gray-600">Call us, get scheduled today</p>
+                      <h4 className="font-bold text-black mb-2">Immediate Response</h4>
+                      <p className="text-sm text-neutral-500">Call us, get scheduled today</p>
                       <div className="mt-3 text-green-600 font-bold">Same day assessment</div>
                     </div>
                   </div>
@@ -544,8 +544,8 @@ const ConstructionConnectLanding = () => {
                     <div className="timeline-dot solution absolute -left-5"></div>
                     <div className="solution-card rounded-xl p-6 ml-8 hover:shadow-lg transition-shadow">
                       <div className="text-xs font-bold text-blue-600 mb-1">HOUR 24</div>
-                      <h4 className="font-semibold text-gray-900 mb-2">Equipment Deployed</h4>
-                      <p className="text-sm text-gray-600">Satellite & network gear installed</p>
+                      <h4 className="font-bold text-black mb-2">Equipment Deployed</h4>
+                      <p className="text-sm text-neutral-500">Satellite & network gear installed</p>
                       <div className="mt-3 text-green-600 font-bold">200+ Mbps active</div>
                     </div>
                   </div>
@@ -554,8 +554,8 @@ const ConstructionConnectLanding = () => {
                     <div className="timeline-dot solution absolute -left-5"></div>
                     <div className="solution-card rounded-xl p-6 ml-8 hover:shadow-lg transition-shadow">
                       <div className="text-xs font-bold text-blue-600 mb-1">HOUR 48</div>
-                      <h4 className="font-semibold text-gray-900 mb-2">Fully Operational</h4>
-                      <p className="text-sm text-gray-600">Complete site coverage & security</p>
+                      <h4 className="font-bold text-black mb-2">Fully Operational</h4>
+                      <p className="text-sm text-neutral-500">Complete site coverage & security</p>
                       <div className="mt-3 text-green-600 font-bold">100% connected</div>
                     </div>
                   </div>
@@ -564,8 +564,8 @@ const ConstructionConnectLanding = () => {
                     <div className="timeline-dot solution absolute -left-5"></div>
                     <div className="solution-card rounded-xl p-6 ml-8 hover:shadow-lg transition-shadow border-2 border-blue-500">
                       <div className="text-xs font-bold text-blue-600 mb-1">RESULT</div>
-                      <h4 className="font-semibold text-gray-900 mb-2">Project On Track</h4>
-                      <p className="text-sm text-gray-600">Zero downtime, maximum productivity</p>
+                      <h4 className="font-bold text-black mb-2">Project On Track</h4>
+                      <p className="text-sm text-neutral-500">Zero downtime, maximum productivity</p>
                       <div className="mt-3 text-blue-600 font-bold text-lg">+$40,000 Saved</div>
                     </div>
                   </div>
@@ -575,38 +575,38 @@ const ConstructionConnectLanding = () => {
           </div>
 
           {/* Visual Comparison Metrics */}
-          <div className="bg-gradient-to-r from-gray-50 to-stone-100 rounded-3xl p-12 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-gray-300/10 to-transparent rounded-full blur-3xl"></div>
+          <div className="bg-black rounded-2xl p-12 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-blue-500/10 to-transparent rounded-full blur-3xl"></div>
             
-            <h3 className="text-3xl font-bold text-center text-gray-900 mb-12">
+            <h3 className="text-3xl font-bold text-center text-white mb-12">
               The Real Cost of Waiting
             </h3>
             
             <div className="grid md:grid-cols-3 gap-8 relative z-10">
-              <div className="metric-card rounded-2xl p-8 text-center hover:scale-105 transition-transform">
+              <div className="bg-neutral-900 border border-neutral-800 rounded-xl p-8 text-center hover:border-neutral-700 transition-all duration-300 hover:transform hover:-translate-y-1">
                 <div className="text-5xl font-bold text-red-500 mb-2">56</div>
-                <div className="text-gray-600 font-medium">Days Average Wait</div>
-                <div className="text-sm text-gray-500 mt-2">Traditional ISP</div>
+                <div className="text-white font-medium">Days Average Wait</div>
+                <div className="text-sm text-neutral-400 mt-2">Traditional ISP</div>
               </div>
               
-              <div className="metric-card rounded-2xl p-8 text-center hover:scale-105 transition-transform border-2 border-blue-500">
-                <div className="text-5xl font-bold bg-gradient-to-r from-blue-500 to-blue-600 bg-clip-text text-transparent">48</div>
-                <div className="text-gray-600 font-medium">Hours to Connect</div>
-                <div className="text-sm text-blue-600 mt-2 font-semibold">Construction Connect</div>
+              <div className="bg-neutral-900 border-2 border-blue-500 rounded-xl p-8 text-center transform scale-105">
+                <div className="text-5xl font-bold text-blue-400">48</div>
+                <div className="text-white font-medium">Hours to Connect</div>
+                <div className="text-sm text-blue-400 mt-2 font-semibold">Construction Connect</div>
               </div>
               
-              <div className="metric-card rounded-2xl p-8 text-center hover:scale-105 transition-transform">
+              <div className="bg-neutral-900 border border-neutral-800 rounded-xl p-8 text-center hover:border-neutral-700 transition-all duration-300 hover:transform hover:-translate-y-1">
                 <div className="text-5xl font-bold text-green-500">92%</div>
-                <div className="text-gray-600 font-medium">Time Saved</div>
-                <div className="text-sm text-gray-500 mt-2">Back to work faster</div>
+                <div className="text-white font-medium">Time Saved</div>
+                <div className="text-sm text-neutral-400 mt-2">Back to work faster</div>
               </div>
             </div>
             
             <div className="text-center mt-12">
-              <p className="text-lg text-gray-700 font-medium">
-                Every week offline costs you <span className="text-red-600 font-bold">$5,000+</span> in lost productivity.
+              <p className="text-lg text-neutral-300">
+                Every week offline costs you <span className="text-red-400 font-bold">$5,000+</span> in lost productivity.
               </p>
-              <p className="text-2xl text-blue-600 font-bold mt-2">
+              <p className="text-2xl text-blue-400 font-bold mt-2">
                 We get you connected in 48 hours.
               </p>
             </div>
