@@ -398,12 +398,12 @@ const ConstructionConnectLanding = () => {
 
         /* Content container styling - clean and simple */
         .hero-content-box {
-          background-color: rgba(0, 0, 0, 0.3);
+          background-color: transparent;
           border-radius: 16px;
           padding: 40px;
-          border: 1px solid rgba(255, 255, 255, 0.1);
+          border: none;
           color: white;
-          /* No blur here, only overlay */
+          /* Fully transparent, no overlay or border */
         }
 
         /* Mobile responsive adjustments for content box */
