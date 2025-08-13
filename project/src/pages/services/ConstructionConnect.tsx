@@ -396,15 +396,13 @@ const ConstructionConnectLanding = () => {
           }
         }
 
-        /* Content container styling - clean and crisp */
+        /* Content container styling - clean and simple */
         .hero-content-box {
           background-color: rgba(0, 0, 0, 0.3);
           border-radius: 16px;
           padding: 40px;
           border: 1px solid rgba(255, 255, 255, 0.1);
           color: white;
-          backdrop-filter: blur(2px);
-          -webkit-backdrop-filter: blur(2px);
         }
 
         /* Mobile responsive adjustments for content box */
@@ -439,9 +437,11 @@ const ConstructionConnectLanding = () => {
               fetchPriority="high"
             />
           </picture>
-          {/* Frosted Glass Overlay */}
-          <div className="absolute inset-0 bg-black/30 backdrop-blur-sm"></div>
+
         </div>
+        
+        {/* Frosted Glass Overlay for Entire Hero Section */}
+        <div className="absolute inset-0 bg-black/30 backdrop-blur-sm" style={{ zIndex: 2 }}></div>
         
         {/* Content with Clean Container */}
         <div className="relative max-w-7xl mx-auto px-6 py-24 sm:py-32 text-center" style={{ zIndex: 10 }}>
