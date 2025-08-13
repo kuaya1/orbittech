@@ -314,7 +314,7 @@ const ConstructionConnectLanding = () => {
         /* Mobile Responsive */
         @media (max-width: 768px) {
           .btn-primary-cta {
-            padding: 6px 12px;
+            padding: 7px 14px;
             font-size: 16px;
           }
         }
