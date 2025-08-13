@@ -395,12 +395,31 @@ const ConstructionConnectLanding = () => {
             object-position: center center;
           }
         }
+
+        /* Frosted Glass Effect for Hero Content */
+        .frosted-box {
+          background-color: rgba(25, 25, 25, 0.75);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          border-radius: 16px;
+          padding: 40px;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          color: white;
+        }
+
+        /* Mobile responsive adjustments for frosted box */
+        @media (max-width: 768px) {
+          .frosted-box {
+            padding: 32px 24px;
+            margin: 0 16px;
+          }
+        }
         `}
       </style>
 
       {/* Hero Section */}
       <section id="hero" className="hero-section relative min-h-screen pt-16 flex items-center justify-center overflow-hidden">
-        {/* Background Image Container with Overlays */}
+        {/* Background Image Container - Clean, no overlays */}
         <div className="absolute inset-0" style={{ zIndex: 1 }}>
           {/* Responsive Background Image using Picture Element */}
           <picture className="absolute inset-0">
@@ -415,39 +434,34 @@ const ConstructionConnectLanding = () => {
             <img 
               src="/images/hero desktop image.png" 
               alt="Professional construction site with modern connectivity infrastructure" 
-              className="absolute inset-0 w-full h-full object-cover opacity-85"
+              className="absolute inset-0 w-full h-full object-cover"
               loading="eager"
               fetchPriority="high"
             />
           </picture>
-          {/* Reduced overlays constrained to image */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#0A0E1A]/40 via-[#0A0E1A]/35 to-[#12172B]/30"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/15 to-black/30"></div>
-          <div className="absolute inset-0 bg-gradient-radial from-black/30 via-transparent to-transparent"></div>
         </div>
         
-        {/* Animated Gradient Mesh */}
-        <div className="hero-gradient-mesh" style={{ zIndex: 2 }}></div>
-        
-        {/* Content */}
+        {/* Content with Frosted Glass Effect */}
         <div className="relative max-w-7xl mx-auto px-6 py-24 sm:py-32 text-center" style={{ zIndex: 10 }}>
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight fade-in-up">
-            Connected in 48 Hours.
-            <br/>
-            <span className="text-[#3B82F6]">Not 8 Weeks.</span>
-          </h1>
-          
-          <h2 className="text-xl md:text-2xl text-white mb-8 max-w-3xl mx-auto leading-relaxed fade-in-up">
-            Complete connectivity infrastructure for DMV construction sites. Internet, coverage, and surveillance deployed before your next morning meeting.
-          </h2>
-          
-          <button className="btn-primary-cta hover-lift fade-in-up">
-            Schedule Your Site Assessment
-          </button>
-          
-          <p className="mt-8 text-[#D1D5DB] text-sm md:text-base font-medium fade-in-up">
-            Your Trusted Partner for Projects in Virginia, Maryland, and DC
-          </p>
+          <div className="frosted-box">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight fade-in-up">
+              Connected in 48 Hours.
+              <br/>
+              <span className="text-[#3B82F6]">Not 8 Weeks.</span>
+            </h1>
+            
+            <h2 className="text-lg sm:text-xl lg:text-2xl text-neutral-300 leading-relaxed max-w-2xl mx-auto fade-in-up">
+              Complete connectivity infrastructure for DMV construction sites. Internet, coverage, and surveillance deployed before your next morning meeting.
+            </h2>
+            
+            <button className="btn-primary-cta hover-lift fade-in-up">
+              Schedule Your Site Assessment
+            </button>
+            
+            <p className="mt-8 text-[#D1D5DB] text-sm md:text-base font-medium fade-in-up">
+              Your Trusted Partner for Projects in Virginia, Maryland, and DC
+            </p>
+          </div>
           
           {/* Scroll Indicator */}
           <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 scroll-bounce">
