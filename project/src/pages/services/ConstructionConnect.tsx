@@ -168,7 +168,7 @@ const ConstructionConnectLanding = () => {
         .btn-primary-cta {
           background: #3B82F6;
           border-radius: 8px;
-          padding: 8px 16px;
+          padding: 9px 18px;
           font-weight: 600;
           font-size: 18px;
           letter-spacing: 0.025em;
@@ -314,7 +314,7 @@ const ConstructionConnectLanding = () => {
         /* Mobile Responsive */
         @media (max-width: 768px) {
           .btn-primary-cta {
-            padding: 16px 32px;
+            padding: 6px 12px;
             font-size: 16px;
           }
         }
@@ -484,13 +484,13 @@ const ConstructionConnectLanding = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           {/* Section Header - Refined */}
           <div className="text-center max-w-3xl mx-auto mb-20">
-            <span className="text-sm font-medium text-neutral-500 tracking-[0.2em] uppercase mb-6 block">The Challenge</span>
+            <span className="text-sm font-medium text-neutral-600 tracking-[0.2em] uppercase mb-6 block">The Challenge</span>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-black mb-6">
               Every Day <span className="text-red-500">Offline</span>
               <br/>
               <span className="text-2xl md:text-3xl font-normal text-neutral-600">Costs You Thousands</span>
             </h2>
-            <p className="text-lg text-neutral-400 font-light leading-relaxed">
+            <p className="text-lg text-neutral-600 font-light leading-relaxed">
               See how Construction Connect transforms your timeline from months to hours.
             </p>
           </div>
@@ -501,7 +501,7 @@ const ConstructionConnectLanding = () => {
             <div className="relative slide-left">
               <div className="text-center mb-8">
                 <h3 className="text-2xl font-bold text-black mb-2">Traditional ISP Timeline</h3>
-                <p className="text-neutral-400 font-light">The costly reality of waiting</p>
+                <p className="text-neutral-600 font-light">The costly reality of waiting</p>
               </div>
               
               <div className="relative pl-8">
