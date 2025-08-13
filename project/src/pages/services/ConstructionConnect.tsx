@@ -539,8 +539,8 @@ const ConstructionConnectLanding = () => {
           </div>
 
           {/* Visual Comparison Metrics */}
-          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-3xl p-12 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-blue-400/10 to-transparent rounded-full blur-3xl"></div>
+          <div className="bg-gradient-to-r from-gray-50 to-stone-100 rounded-3xl p-12 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-gray-300/10 to-transparent rounded-full blur-3xl"></div>
             
             <h3 className="text-3xl font-bold text-center text-gray-900 mb-12">
               The Real Cost of Waiting
