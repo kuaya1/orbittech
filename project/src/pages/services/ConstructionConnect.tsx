@@ -168,7 +168,7 @@ const ConstructionConnectLanding = () => {
         .btn-primary-cta {
           background: #3B82F6;
           border-radius: 8px;
-          padding: 20px 40px;
+          padding: 14px 28px;
           font-weight: 600;
           font-size: 18px;
           letter-spacing: 0.025em;
@@ -440,7 +440,7 @@ const ConstructionConnectLanding = () => {
     </picture>
     
     {/* Semi-transparent overlay for entire hero section */}
-    <div className="absolute inset-0 bg-black/40"></div>
+  <div className="absolute inset-0 bg-black/50"></div>
   </div>
   
   {/* Content - Properly centered */}
