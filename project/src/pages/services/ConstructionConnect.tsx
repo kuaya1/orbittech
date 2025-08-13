@@ -92,8 +92,8 @@ const ConstructionConnectLanding = () => {
     const preloadImages = () => {
       const desktopImg = new Image();
       const mobileImg = new Image();
-      desktopImg.src = '/images/Whisk_a8927b407a.jpg';
-      mobileImg.src = '/images/Whisk_7728c5d747 (1).jpg';
+      desktopImg.src = '/images/hero desktop image.png';
+      mobileImg.src = '/images/hero mobile image.png';
     };
     preloadImages();
   }, []);
@@ -388,14 +388,14 @@ const ConstructionConnectLanding = () => {
           <picture className="absolute inset-0">
             <source 
               media="(min-width: 768px)" 
-              srcSet="/images/Whisk_a8927b407a.jpg"
+              srcSet="/images/hero desktop image.png"
             />
             <source 
               media="(max-width: 767px)" 
-              srcSet="/images/Whisk_7728c5d747 (1).jpg"
+              srcSet="/images/hero mobile image.png"
             />
             <img 
-              src="/images/Whisk_a8927b407a.jpg" 
+              src="/images/hero desktop image.png" 
               alt="Professional construction site with modern connectivity infrastructure" 
               className="absolute inset-0 w-full h-full object-cover opacity-85"
               loading="eager"
