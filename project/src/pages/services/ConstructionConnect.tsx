@@ -438,9 +438,9 @@ const ConstructionConnectLanding = () => {
               fetchPriority="high"
             />
           </picture>
+          {/* Frosted Glass Overlay for Entire Hero Section */}
+          <div className="absolute inset-0" style={{ backgroundColor: 'rgba(0, 0, 0, 0.3)', backdropFilter: 'blur(2px)', WebkitBackdropFilter: 'blur(2px)', zIndex: 2 }}></div>
         </div>
-        {/* Frosted Glass Overlay for Entire Hero Section */}
-        <div className="absolute inset-0" style={{ zIndex: 2, backdropFilter: 'blur(2px)', WebkitBackdropFilter: 'blur(2px)', background: 'rgba(0,0,0,0.3)' }}></div>
         
         {/* Content with Clean Container */}
         <div className="relative max-w-7xl mx-auto px-6 py-24 sm:py-32 text-center" style={{ zIndex: 10 }}>
