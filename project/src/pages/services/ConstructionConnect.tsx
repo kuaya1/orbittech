@@ -381,11 +381,25 @@ const ConstructionConnectLanding = () => {
           height: 100%;
           object-fit: cover;
         }
+
+        /* Mobile image positioning - center the construction worker */
+        @media (max-width: 767px) {
+          .hero-section picture img {
+            object-position: 30% center;
+          }
+        }
+
+        /* Desktop image positioning */
+        @media (min-width: 768px) {
+          .hero-section picture img {
+            object-position: center center;
+          }
+        }
         `}
       </style>
 
       {/* Hero Section */}
-      <section id="hero" className="hero-section relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+      <section id="hero" className="hero-section relative min-h-screen pt-16 flex items-center justify-center overflow-hidden">
         {/* Background Image Container with Overlays */}
         <div className="absolute inset-0" style={{ zIndex: 1 }}>
           {/* Responsive Background Image using Picture Element */}
@@ -444,10 +458,12 @@ const ConstructionConnectLanding = () => {
 
       {/* Problem/Solution Section - Timeline-based Design */}
       <section id="problem" className="py-24 sm:py-32 bg-white relative overflow-hidden">
-        {/* Animated Background Pattern */}
+        {/* Animated Background Pattern - DISABLED */}
+        {/*
         <div className="absolute inset-0 opacity-[0.03]">
           <div className="absolute inset-0" style={{backgroundImage: "repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(59, 130, 246, 0.05) 35px, rgba(59, 130, 246, 0.05) 70px)"}}></div>
         </div>
+        */}
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           {/* Section Header - Refined */}
@@ -536,7 +552,7 @@ const ConstructionConnectLanding = () => {
                       <div className="text-xs font-bold text-blue-600 mb-1">HOUR 1</div>
                       <h4 className="font-bold text-black mb-2">Immediate Response</h4>
                       <p className="text-sm text-neutral-500">Call us, get scheduled today</p>
-                      <div className="mt-3 text-green-600 font-bold">Same day assessment</div>
+                      <div className="mt-3 text-blue-600 font-bold">Same day assessment</div>
                     </div>
                   </div>
                   
@@ -546,7 +562,7 @@ const ConstructionConnectLanding = () => {
                       <div className="text-xs font-bold text-blue-600 mb-1">HOUR 24</div>
                       <h4 className="font-bold text-black mb-2">Equipment Deployed</h4>
                       <p className="text-sm text-neutral-500">Satellite & network gear installed</p>
-                      <div className="mt-3 text-green-600 font-bold">200+ Mbps active</div>
+                      <div className="mt-3 text-blue-600 font-bold">200+ Mbps active</div>
                     </div>
                   </div>
                   
@@ -556,7 +572,7 @@ const ConstructionConnectLanding = () => {
                       <div className="text-xs font-bold text-blue-600 mb-1">HOUR 48</div>
                       <h4 className="font-bold text-black mb-2">Fully Operational</h4>
                       <p className="text-sm text-neutral-500">Complete site coverage & security</p>
-                      <div className="mt-3 text-green-600 font-bold">100% connected</div>
+                      <div className="mt-3 text-blue-600 font-bold">100% connected</div>
                     </div>
                   </div>
                   
@@ -596,7 +612,7 @@ const ConstructionConnectLanding = () => {
               </div>
               
               <div className="bg-neutral-900 border border-neutral-800 rounded-xl p-8 text-center hover:border-neutral-700 transition-all duration-300 hover:transform hover:-translate-y-1">
-                <div className="text-5xl font-bold text-green-500">92%</div>
+                <div className="text-5xl font-bold text-white mb-2">92%</div>
                 <div className="text-white font-medium">Time Saved</div>
                 <div className="text-sm text-neutral-400 mt-2">Back to work faster</div>
               </div>
@@ -775,7 +791,8 @@ const ConstructionConnectLanding = () => {
         </div>
       </section>
 
-      {/* Mobile-Only Sticky Click-to-Call Footer */}
+      {/* Mobile-Only Sticky Click-to-Call Footer - DISABLED */}
+      {/* 
       <div className="md:hidden fixed bottom-0 left-0 right-0 bg-neutral-950/95 floating-element p-4 z-50 shadow-[0_-5px_15px_-5px_rgba(0,0,0,0.3)] border-t border-white/10">
         <a 
           href="tel:571-999-6915" 
@@ -785,6 +802,7 @@ const ConstructionConnectLanding = () => {
           Click to Call Now
         </a>
       </div>
+      */}
     </div>
   );
 };
