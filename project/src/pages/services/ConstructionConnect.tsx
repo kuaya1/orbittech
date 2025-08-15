@@ -92,8 +92,8 @@ const ConstructionConnectLanding = () => {
     const preloadImages = () => {
       const desktopImg = new Image();
       const mobileImg = new Image();
-      desktopImg.src = '/images/hero desktop image.png';
-      mobileImg.src = '/images/Mobile desktop image.PNG';
+  desktopImg.src = '/images/Google_AI_Studio_2025-08-15T04_58_21.092Z.png';
+  mobileImg.src = '/images/Google_AI_Studio_2025-08-15T04_58_21.092Z.png';
     };
     preloadImages();
   }, []);
@@ -422,16 +422,16 @@ const ConstructionConnectLanding = () => {
   <div className="absolute inset-0">
     {/* Responsive Background Image using Picture Element */}
     <picture className="absolute inset-0">
-      <source 
-        media="(min-width: 768px)" 
-        srcSet="/images/hero desktop image.png"
-      />
-      <source 
-        media="(max-width: 767px)" 
-        srcSet="/images/Mobile desktop image.PNG"
-      />
-      <img 
-        src="/images/hero desktop image.png" 
+            <source 
+              media="(min-width: 768px)" 
+              srcSet="/images/Google_AI_Studio_2025-08-15T04_58_21.092Z.png"
+            />
+            <source 
+              media="(max-width: 767px)" 
+              srcSet="/images/Google_AI_Studio_2025-08-15T04_58_21.092Z.png"
+            />
+            <img 
+              src="/images/Google_AI_Studio_2025-08-15T04_58_21.092Z.png" 
         alt="Professional construction site with modern connectivity infrastructure" 
         className="absolute inset-0 w-full h-full object-cover"
         loading="eager"
