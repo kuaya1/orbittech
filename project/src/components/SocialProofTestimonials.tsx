@@ -211,40 +211,6 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial, index, f
   );
 };
 
-// Schema.org Structured Data Component
-const TestimonialSchema: React.FC<{ testimonials: TestimonialData[] }> = ({ testimonials }) => {
-  const schemaData = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "The Orbit Tech",
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "5.0",
-      "reviewCount": testimonials.length.toString()
-    },
-    "review": testimonials.map(t => ({
-      "@type": "Review",
-      "reviewRating": {
-        "@type": "Rating",
-        "ratingValue": t.rating.toString()
-      },
-      "author": {
-        "@type": "Person",
-        "name": t.customerName
-      },
-      "reviewBody": t.quote,
-      "datePublished": t.date
-    }))
-  };
-
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
-    />
-  );
-};
-
 // Main Testimonials Component
 const Testimonials: React.FC = () => {
   const [containerRef, isVisible] = useScrollReveal(0.15);
@@ -344,9 +310,6 @@ const Testimonials: React.FC = () => {
 
   return (
     <>
-      {/* Schema.org Structured Data */}
-      <TestimonialSchema testimonials={testimonials} />
-      
       <motion.section 
         id="testimonials"
         ref={containerRef}

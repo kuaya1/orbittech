@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
-import { SEOMetadata, HomeSchema, ReviewSchema } from './components/SEO';
+import { SEOMetadata } from './components/SEO';
+import { SchemaProvider, ConsolidatedSchemaInjector, BusinessSchema, ReviewSchema } from './components/SEO/CentralizedSchemaManager';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -33,29 +34,74 @@ const RockinghamCountyPage = lazy(() => import('./components/LocationPages/Rocki
 function App() {
   return (
     <HelmetProvider>
-      <Router>
-        <div className="min-h-screen bg-black">
-          <HomeSchema />
-          <Navbar />
-          <Routes>
-            <Route path="/" element={
-              <main className="bg-black text-white">
-                <SEOMetadata 
-                  title="The Orbit Tech | #1 Starlink Installation DMV | Free Quote"
-                  description="The Orbit Tech: Certified Starlink installation experts serving 100-mile radius from Reston, VA. Professional setup across Northern Virginia, Maryland & West Virginia. Flexible pricing $499-$999. Get your free quote today!"
-                  canonical="https://www.theorbittech.com/"
-                />
-                <ReviewSchema />
-                <Hero />
-                <AvailabilityProcess />
-                <Services />
-                <SocialProofTestimonials />
-                <Contact />
-                <FeaturedInstallations />
-                <FAQ />
-                <FinalHomepageCTA />
-              </main>
-            } />
+      <SchemaProvider>
+        <ConsolidatedSchemaInjector />
+        <Router>
+          <div className="min-h-screen bg-black">
+            <BusinessSchema />
+            <Navbar />
+            <Routes>
+              <Route path="/" element={
+                <main className="bg-black text-white">
+                  <SEOMetadata 
+                    title="The Orbit Tech | #1 Starlink Installation DMV | Free Quote"
+                    description="The Orbit Tech: Certified Starlink installation experts serving 100-mile radius from Reston, VA. Professional setup across Northern Virginia, Maryland & West Virginia. Flexible pricing $499-$999. Get your free quote today!"
+                    canonical="https://www.theorbittech.com/"
+                  />
+                  <ReviewSchema reviews={[
+                    {
+                      "@type": "Review",
+                      "author": {
+                        "@type": "Person",
+                        "name": "Sarah Chen"
+                      },
+                      "reviewRating": {
+                        "@type": "Rating",
+                        "ratingValue": "5",
+                        "bestRating": "5"
+                      },
+                      "reviewBody": "The Orbit Tech team exceeded our expectations! They handled our challenging roofline perfectly and the installation was seamless. Our Starlink speeds are incredible now.",
+                      "datePublished": "2024-12-15"
+                    },
+                    {
+                      "@type": "Review",
+                      "author": {
+                        "@type": "Person",
+                        "name": "Michael Rodriguez"
+                      },
+                      "reviewRating": {
+                        "@type": "Rating",
+                        "ratingValue": "5",
+                        "bestRating": "5"
+                      },
+                      "reviewBody": "Outstanding service from quote to completion. The Orbit Tech's DMV team knows exactly what they're doing. Professional installation with excellent cable management.",
+                      "datePublished": "2024-11-28"
+                    },
+                    {
+                      "@type": "Review",
+                      "author": {
+                        "@type": "Person",
+                        "name": "Jennifer Walsh"
+                      },
+                      "reviewRating": {
+                        "@type": "Rating",
+                        "ratingValue": "5",
+                        "bestRating": "5"
+                      },
+                      "reviewBody": "After years of poor rural internet, The Orbit Tech transformed our connectivity completely. Fast, reliable service and their DMV area expertise really shows.",
+                      "datePublished": "2024-11-10"
+                    }
+                  ]} />
+                  <Hero />
+                  <AvailabilityProcess />
+                  <Services />
+                  <SocialProofTestimonials />
+                  <Contact />
+                  <FeaturedInstallations />
+                  <FAQ />
+                  <FinalHomepageCTA />
+                </main>
+              } />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:postId" element={<Blog />} />
             <Route path="/faq" element={<FAQ />} />
@@ -133,6 +179,7 @@ function App() {
           <Footer />
         </div>
       </Router>
+      </SchemaProvider>
     </HelmetProvider>
   );
 }

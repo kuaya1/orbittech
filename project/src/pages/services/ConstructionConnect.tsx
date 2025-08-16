@@ -11,6 +11,7 @@ import {
   Camera
 } from 'lucide-react';
 import { useEffect } from 'react';
+import { FAQSchema, ServiceSchema } from '../../components/SEO/CentralizedSchemaManager';
 
 const ConstructionConnectLanding = () => {
   // Scroll progress tracking
@@ -121,21 +122,18 @@ const ConstructionConnectLanding = () => {
     }
   ];
 
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqs.map(faq => ({
-      "@type": "Question",
-      "name": faq.question,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": faq.answer
-      }
-    }))
-  };
-
   return (
     <div className="min-h-screen bg-white">
+      {/* Schema Components */}
+      <FAQSchema faqs={faqs} />
+      <ServiceSchema data={{
+        name: "Construction Site Connectivity Solutions",
+        description: "Professional Starlink installation for construction sites with security cameras and high-speed internet",
+        url: "/services/construction-connect",
+        image: "https://www.theorbittech.com/images/construction-starlink.webp",
+        imageCaption: "Professional construction site connectivity by The Orbit Tech"
+      }} />
+      
       {/* Scroll Progress Indicator */}
       <div className="scroll-progress">
         <div className="scroll-progress-bar" id="scroll-progress-bar"></div>
@@ -154,11 +152,6 @@ const ConstructionConnectLanding = () => {
           </div>
         </nav>
       </div>
-
-      {/* Schema injection for SEO */}
-      <script type="application/ld+json">
-        {JSON.stringify(faqSchema)}
-      </script>
 
       <style>
         {`

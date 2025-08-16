@@ -1,6 +1,6 @@
 import React from 'react';
 import { SEOMetadata } from '../SEO/SEOMetadata';
-import LocationSchema from '../SEO/LocationSchema';
+import { LocationServiceSchema, FAQSchema } from '../SEO/CentralizedSchemaManager';
 import OptimizedImage from '../OptimizedImage';
 import { Star, Phone, MapPin, Clock, Shield, Award } from 'lucide-react';
 
@@ -26,12 +26,31 @@ export const FairfaxPage: React.FC = () => {
         canonical="https://theorbittech.com/locations/fairfax-va"
       />
       
-      <LocationSchema 
-        location="Fairfax" 
-        state="VA" 
-        zipCodes={fairfaxZipCodes}
-        serviceRadius={30}
+      <LocationServiceSchema 
+        location="Fairfax County" 
+        state="Virginia" 
+        url="/locations/fairfax-county-va"
+        nearbyAreas={["Vienna", "Oakton", "Burke", "Annandale", "Springfield", "Herndon", "Reston", "Great Falls"]}
       />
+      
+      <FAQSchema faqs={[
+        {
+          question: "How quickly can you install Starlink in Fairfax County?",
+          answer: "We typically complete Starlink installations in Fairfax County within 2-4 hours. Our local team serves all areas including Vienna, Oakton, Burke, and surrounding communities with same-day or next-day service availability."
+        },
+        {
+          question: "What areas of Fairfax County do you serve?",
+          answer: "We provide Starlink installation throughout all of Fairfax County, including Vienna, Oakton, Burke, Annandale, Springfield, Herndon, Reston, Great Falls, and all zip codes from 22030 to 22185."
+        },
+        {
+          question: "Do you handle permits for Starlink installation in Fairfax County?",
+          answer: "Most residential Starlink installations in Fairfax County don't require permits. However, we're familiar with local regulations and will advise if any permits are needed for your specific installation."
+        },
+        {
+          question: "What's the cost for Starlink installation in Fairfax VA?",
+          answer: "Our Fairfax County Starlink installation starts at $599 for professional setup. This includes mounting, alignment, weatherproofing, and network configuration. We offer free quotes and transparent pricing with no hidden fees."
+        }
+      ]} />
 
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-900 via-black to-blue-800 text-white py-20">

@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence, useMotionValue, useTransform } from 'framer-motion';
+import { FAQSchema } from './SEO/CentralizedSchemaManager';
 
 // Type definitions
 interface FAQData {
@@ -14,10 +15,6 @@ interface FAQItemProps {
   isOpen: boolean;
   onClick: () => void;
   index: number;
-}
-
-interface FAQSchemaProps {
-  faqs: FAQData[];
 }
 
 // Precision Intersection Observer for orchestrated reveal
@@ -49,29 +46,6 @@ const useScrollReveal = (threshold = 0.1) => {
   }, [threshold]);
 
   return [elementRef, isVisible] as const;
-};
-
-// Schema.org Structured Data Component
-const FAQSchema: React.FC<FAQSchemaProps> = ({ faqs }) => {
-  const schemaData = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqs.map(faq => ({
-      "@type": "Question",
-      "name": faq.question,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": faq.answer
-      }
-    }))
-  };
-
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
-    />
-  );
 };
 
 // FAQ Item Component with refined design
@@ -338,7 +312,7 @@ const FAQ: React.FC = () => {
   return (
     <>
       {/* Schema.org Structured Data */}
-      <FAQSchema faqs={faqData} />
+      <FAQSchema faqs={faqData.map(faq => ({ question: faq.question, answer: faq.answer }))} />
       
       <motion.section
         id="faq"
