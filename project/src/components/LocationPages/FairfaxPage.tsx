@@ -1,6 +1,7 @@
 import React from 'react';
 import { SEOMetadata } from '../SEO/SEOMetadata';
 import { LocationServiceSchema, FAQSchema } from '../SEO/CentralizedSchemaManager';
+import { ServiceAreaSchema, EnhancedLocationServiceSchema, PriceSpecificationSchema, OfferSchema } from '../SEO/AdvancedLocationSchemas';
 import OptimizedImage from '../OptimizedImage';
 import { Star, Phone, MapPin, Clock, Shield, Award } from 'lucide-react';
 
@@ -31,6 +32,113 @@ export const FairfaxPage: React.FC = () => {
         state="Virginia" 
         url="/locations/fairfax-county-va"
         nearbyAreas={["Vienna", "Oakton", "Burke", "Annandale", "Springfield", "Herndon", "Reston", "Great Falls"]}
+      />
+
+      {/* Advanced Location Schema for Enhanced Local SEO */}
+      <ServiceAreaSchema
+        serviceName="Starlink Installation"
+        serviceArea={{
+          name: "Fairfax County",
+          counties: ["Fairfax"],
+          coordinates: {
+            latitude: 38.8462,
+            longitude: -77.3064
+          }
+        }}
+        priceRange={{
+          minPrice: 299,
+          maxPrice: 899,
+          currency: "USD"
+        }}
+        availability={{
+          openingHours: ["Mo-Sa 08:00-18:00"],
+          serviceRadius: 25
+        }}
+      />
+
+      <EnhancedLocationServiceSchema
+        locationName="Fairfax County"
+        coordinates={{
+          latitude: 38.8462,
+          longitude: -77.3064
+        }}
+        serviceRadius={25}
+        services={[
+          {
+            name: "Residential Starlink Installation",
+            description: "Complete home satellite internet setup with professional mounting and configuration",
+            priceRange: { min: 299, max: 599 },
+            duration: "PT2H"
+          },
+          {
+            name: "Business Starlink Solutions",
+            description: "Enterprise satellite internet with redundancy and priority support",
+            priceRange: { min: 799, max: 1299 },
+            duration: "PT4H"
+          },
+          {
+            name: "Emergency Connectivity Service",
+            description: "Same-day installation for urgent connectivity needs",
+            priceRange: { min: 599, max: 899 },
+            duration: "PT3H"
+          }
+        ]}
+        specializations={[
+          "Rural connectivity solutions",
+          "Emergency backup internet",
+          "High-speed business installations",
+          "Mesh network integration"
+        ]}
+        contactInfo={{
+          phone: "+1-571-999-6915",
+          email: "fairfax@theorbittech.com",
+          localNumber: "+1-703-555-0456"
+        }}
+      />
+
+      <PriceSpecificationSchema
+        serviceName="Fairfax County Starlink Installation"
+        basePrice={599}
+        priceRange={{ min: 299, max: 899 }}
+        includedServices={[
+          "Professional site survey",
+          "Dish mounting and alignment",
+          "Cable routing and concealment",
+          "Network configuration and optimization",
+          "Speed testing and verification",
+          "2-year installation warranty"
+        ]}
+        additionalOptions={[
+          {
+            name: "Same-Day Installation",
+            price: 199,
+            description: "Emergency same-day service available throughout Fairfax County"
+          },
+          {
+            name: "Mesh Network Setup",
+            price: 249,
+            description: "Whole-home Wi-Fi coverage with professional mesh configuration"
+          },
+          {
+            name: "Business Priority Support",
+            price: 149,
+            description: "24/7 technical support and priority service calls"
+          }
+        ]}
+      />
+
+      <OfferSchema
+        offerName="Fairfax County Special: Free Site Survey"
+        description="Comprehensive property assessment with satellite visibility analysis and custom installation plan for Fairfax County residents"
+        price={0}
+        availability="InStock"
+        validFrom={new Date()}
+        validThrough={new Date(Date.now() + 60 * 24 * 60 * 60 * 1000)}
+        eligibleRegions={["Virginia"]}
+        bookingInfo={{
+          url: "https://www.theorbittech.com/locations/fairfax-county-starlink",
+          phone: "+1-571-999-6915"
+        }}
       />
       
       <FAQSchema faqs={[

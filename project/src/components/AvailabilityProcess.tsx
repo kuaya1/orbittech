@@ -356,7 +356,7 @@ const AvailabilityProcess = () => {
         ref={bgRef}
         className="absolute inset-0 w-full h-full bg-gray-900"
         style={{
-          backgroundImage: "url('/1000002290.png')",
+          backgroundImage: "url('/Untitled design (21).png')",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
