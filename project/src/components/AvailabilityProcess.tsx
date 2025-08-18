@@ -157,6 +157,9 @@ const AvailabilityProcess = () => {
   const bgRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
   
+  // Background image state for responsive behavior
+  const [backgroundImage, setBackgroundImage] = useState("url('/Untitled design desktop.PNG')");
+  
   // Availability check state
   const [zipCode, setZipCode] = useState('');
   const [serviceStatus, setServiceStatus] = useState<null | boolean | 'loading'>(null);
@@ -168,6 +171,27 @@ const AvailabilityProcess = () => {
   // Input references for better focus management
   const inputRef = useRef<HTMLInputElement>(null);
   const blurTimeoutRef = useRef<number | null>(null);
+
+  // Update background image based on screen size
+  useEffect(() => {
+    const updateBackgroundImage = () => {
+      const isMobile = window.innerWidth <= 768;
+      setBackgroundImage(isMobile 
+        ? "url('/Untitled design mobile pic.PNG')" 
+        : "url('/Untitled design desktop.PNG')"
+      );
+    };
+
+    // Set initial background image
+    updateBackgroundImage();
+
+    // Add resize listener
+    window.addEventListener('resize', updateBackgroundImage);
+
+    return () => {
+      window.removeEventListener('resize', updateBackgroundImage);
+    };
+  }, []);
 
   // Redesigned parallax: section-relative, rAF, multi-layer, reduced-motion aware
   useEffect(() => {
@@ -356,7 +380,7 @@ const AvailabilityProcess = () => {
         ref={bgRef}
         className="absolute inset-0 w-full h-full bg-gray-900"
         style={{
-          backgroundImage: "url('/Untitled design (21).png')",
+          backgroundImage: backgroundImage,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
