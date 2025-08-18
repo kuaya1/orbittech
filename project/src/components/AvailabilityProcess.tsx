@@ -390,6 +390,9 @@ const AvailabilityProcess = () => {
         }}
       />
       
+      {/* Dark overlay for better contrast */}
+      <div className="absolute inset-0 bg-black/50"></div>
+      
       {/* Dark gradient overlay - subtle parallax */}
       <div
         ref={overlayRef}
