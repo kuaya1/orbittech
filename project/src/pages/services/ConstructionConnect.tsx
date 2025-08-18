@@ -13,7 +13,45 @@ import {
 import { useEffect } from 'react';
 import { FAQSchema, ServiceSchema } from '../../components/SEO/CentralizedSchemaManager';
 
+// Declare gtag function for TypeScript
+declare global {
+  interface Window {
+    gtag: (command: string, action: string, parameters: object) => void;
+  }
+}
+
 const ConstructionConnectLanding = () => {
+  // Conversion tracking functions
+  const trackCTAClick = (buttonText: string) => {
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'conversion', {
+        'send_to': 'AW-17369280864/afTpCKOIgYkbEODiqNpA',
+        'event_category': 'CTA',
+        'event_label': buttonText
+      });
+    }
+  };
+
+  const trackPhoneClick = () => {
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'conversion', {
+        'send_to': 'AW-17369280864/afTpCKOIgYkbEODiqNpA',
+        'event_category': 'Contact',
+        'event_label': 'Phone Number Click'
+      });
+    }
+  };
+
+  const trackEmailClick = () => {
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'conversion', {
+        'send_to': 'AW-17369280864/afTpCKOIgYkbEODiqNpA',
+        'event_category': 'Contact',
+        'event_label': 'Email Click'
+      });
+    }
+  };
+
   // Scroll progress tracking
   useEffect(() => {
     const updateScrollProgress = () => {
@@ -449,7 +487,10 @@ const ConstructionConnectLanding = () => {
         Complete connectivity infrastructure for DMV construction sites. Internet, coverage, and surveillance deployed before your next morning meeting.
       </p>
       
-      <button className="btn-primary-cta hover-lift fade-in-up mb-8">
+      <button 
+        className="btn-primary-cta hover-lift fade-in-up mb-8"
+        onClick={() => trackCTAClick('Schedule Your Site Assessment')}
+      >
         <a href="/my-app#contact" className="btn-primary-cta hover-lift fade-in-up">Schedule Your Site Assessment</a>
       </button>
       
@@ -791,10 +832,27 @@ const ConstructionConnectLanding = () => {
           <div className="max-w-3xl mx-auto">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6 fade-in-up">Ready When You Are.</h2>
             <p className="text-lg md:text-xl font-light text-neutral-400 mb-10 fade-in-up">Don't let poor connectivity be the weak link in your project. Partner with the DMV's leading experts in job site technology solutions.</p>
-            <button className="btn-primary-cta fade-in-up">Schedule Your Site Assessment & Quote<ArrowRight className="ml-3 icon-standard" /></button>
+            <button 
+              className="btn-primary-cta fade-in-up"
+              onClick={() => trackCTAClick('Schedule Your Site Assessment & Quote')}
+            >
+              Schedule Your Site Assessment & Quote<ArrowRight className="ml-3 icon-standard" />
+            </button>
             <div className="mt-12 flex flex-col sm:flex-row gap-6 justify-center text-neutral-400 fade-in-up">
-              <a href="tel:571-999-6915" className="flex items-center justify-center hover:text-blue-500 transition-colors text-base md:text-lg font-light"><Phone className="icon-standard mr-2" /><span>(571) 999-6915</span></a>
-              <a href="mailto:connect@theorbittech.com" className="flex items-center justify-center hover:text-blue-500 transition-colors text-base md:text-lg font-light"><Mail className="icon-standard mr-2" /><span>connect@theorbittech.com</span></a>
+              <a 
+                href="tel:571-999-6915" 
+                className="flex items-center justify-center hover:text-blue-500 transition-colors text-base md:text-lg font-light"
+                onClick={trackPhoneClick}
+              >
+                <Phone className="icon-standard mr-2" /><span>(571) 999-6915</span>
+              </a>
+              <a 
+                href="mailto:connect@theorbittech.com" 
+                className="flex items-center justify-center hover:text-blue-500 transition-colors text-base md:text-lg font-light"
+                onClick={trackEmailClick}
+              >
+                <Mail className="icon-standard mr-2" /><span>connect@theorbittech.com</span>
+              </a>
             </div>
           </div>
         </div>

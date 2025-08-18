@@ -2,6 +2,13 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
 import { Phone, Mail, Shield, Clock, CheckCircle, Award, MapPin, Loader2 } from 'lucide-react';
 
+// Declare gtag function for TypeScript
+declare global {
+  interface Window {
+    gtag: (command: string, action: string, parameters: object) => void;
+  }
+}
+
 // Type definitions
 interface FormData {
   name: string;
@@ -199,6 +206,15 @@ const Contact: React.FC = () => {
       const response = await emailjsRef.current.send(serviceID, templateID, templateParams);
 
       if (response.status === 200) {
+        // Track Google Analytics conversion
+        if (typeof window.gtag === 'function') {
+          window.gtag('event', 'conversion', {
+            'send_to': 'AW-17369280864/afTpCKOIgYkbEODiqNpA',
+            'event_category': 'Contact',
+            'event_label': 'Contact Form Submission'
+          });
+        }
+        
         setFormStatus('success');
         setTimeout(() => {
           setFormData({

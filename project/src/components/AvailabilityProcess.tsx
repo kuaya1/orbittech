@@ -1,6 +1,13 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { CheckCircle, XCircle, Loader2, Info, History, Target } from 'lucide-react';
 
+// Declare gtag function for TypeScript
+declare global {
+  interface Window {
+    gtag: (command: string, action: string, parameters: object) => void;
+  }
+}
+
 // Updated serviceableZips to include all regions within 150 miles of DC
 const serviceableZips = new Set([
     // Original DC/VA/MD zip codes
@@ -310,6 +317,19 @@ const AvailabilityProcess = () => {
         setServiceStatus(isServiceable);
         saveToRecent(zipCode);
         setShowResults(true);
+        
+        // Track Google Analytics conversion for availability check
+        if (typeof window.gtag === 'function') {
+          window.gtag('event', 'conversion', {
+            'send_to': 'AW-17369280864/afTpCKOIgYkbEODiqNpA',
+            'event_category': 'Availability',
+            'event_label': 'ZIP Code Check',
+            'custom_parameters': {
+              'zip_code': zipCode,
+              'service_available': isServiceable
+            }
+          });
+        }
       } catch (error) {
         setErrorMessage('Something went wrong. Please try again.');
         setServiceStatus(null);
