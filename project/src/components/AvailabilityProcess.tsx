@@ -165,7 +165,7 @@ const AvailabilityProcess = () => {
   const overlayRef = useRef<HTMLDivElement>(null);
   
   // Background image state for responsive behavior
-  const [backgroundImage, setBackgroundImage] = useState("url('/Untitled design desktop.PNG')");
+  const [backgroundImage, setBackgroundImage] = useState("url('/Untitled design (31) desktop.PNG')");
   
   // Availability check state
   const [zipCode, setZipCode] = useState('');
@@ -184,8 +184,8 @@ const AvailabilityProcess = () => {
     const updateBackgroundImage = () => {
       const isMobile = window.innerWidth <= 768;
       setBackgroundImage(isMobile 
-        ? "url('/Untitled design mobile pic.PNG')" 
-        : "url('/Untitled design desktop.PNG')"
+        ? "url('/Untitled design (31) mobile.PNG')" 
+        : "url('/Untitled design (31) desktop.PNG')"
       );
     };
 
