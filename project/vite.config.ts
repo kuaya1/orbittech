@@ -3,8 +3,6 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 import { VitePWA } from 'vite-plugin-pwa';
 import viteCompression from 'vite-plugin-compression';
-import { ssr as viteSSR } from 'vite-plugin-ssr/plugin';
-import { viteSingleFile } from 'vite-plugin-singlefile';
 
 /**
  * ENHANCED BUILD CONFIGURATION 🚀
@@ -15,15 +13,6 @@ import { viteSingleFile } from 'vite-plugin-singlefile';
 export default defineConfig({
   plugins: [
     react(),
-    viteSSR({
-      prerender: {
-        noExtraDir: true
-      }
-    }),
-    viteSingleFile({
-      removeViteModuleLoader: true,
-      useRecommendedBuildConfig: true
-    }),
     VitePWA({
       registerType: 'autoUpdate',
       workbox: {
@@ -78,9 +67,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
-      '@components': path.resolve(__dirname, './src/components'),
-      '@utils': path.resolve(__dirname, './src/utils')
+      '@': path.resolve(__dirname, './src')
     }
   },
   build: {

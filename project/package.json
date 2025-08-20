@@ -5,12 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "ts-node scripts/build.ts",
-    "build:ssr": "vite-ssg build",
-    "build:static": "vite build && ts-node scripts/build.ts",
+    "build": "node scripts/build.cjs",
+    "build:vite": "vite build",
     "preview": "vite preview",
     "lint": "eslint .",
-    "serve": "vite preview --host 0.0.0.0 --port 4173"
+    "serve": "vite preview --host 0.0.0.0 --port 4173",
+    "sitemap": "node scripts/generateSitemap.cjs"
   },
   "dependencies": {
     "@emailjs/browser": "^4.1.0",

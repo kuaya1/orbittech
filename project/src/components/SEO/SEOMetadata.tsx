@@ -229,4 +229,5 @@ const SEOMetadata: React.FC<SEOMetadataProps> = ({
   );
 };
 
+export { SEOMetadata };
 export default SEOMetadata;
