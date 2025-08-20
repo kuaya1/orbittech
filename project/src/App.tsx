@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import { SEOMetadata } from './components/SEO';
 import { SchemaProvider, ConsolidatedSchemaInjector, BusinessSchema, ReviewSchema } from './components/SEO/CentralizedSchemaManager';
+import { CanonicalUrlEnforcer } from './components/SEO/CanonicalUrlEnforcer';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -37,6 +38,7 @@ function App() {
       <SchemaProvider>
         <ConsolidatedSchemaInjector />
         <Router>
+          <CanonicalUrlEnforcer />
           <div className="min-h-screen bg-black">
             <BusinessSchema />
             <Navbar />
@@ -46,7 +48,6 @@ function App() {
                   <SEOMetadata 
                     title="The Orbit Tech | #1 Starlink Installation DMV | Free Quote"
                     description="The Orbit Tech: Certified Starlink installation experts serving 100-mile radius from Reston, VA. Professional setup across Northern Virginia, Maryland & West Virginia. Flexible pricing $499-$999. Get your free quote today!"
-                    canonical="https://www.theorbittech.com/"
                   />
                   <ReviewSchema reviews={[
                     {

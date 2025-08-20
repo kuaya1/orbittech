@@ -4,6 +4,45 @@
   "installCommand": "npm install",
   "devCommand": "npm run dev",
   "framework": "vite",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/locations/loudoun",
+      "destination": "/locations/loudoun-county",
+      "permanent": true
+    },
+    {
+      "source": "/locations/fairfax", 
+      "destination": "/locations/fairfax-county",
+      "permanent": true
+    },
+    {
+      "source": "/locations/montgomery",
+      "destination": "/locations/montgomery-county", 
+      "permanent": true
+    },
+    {
+      "source": "/services.html",
+      "destination": "/services",
+      "permanent": true
+    },
+    {
+      "source": "/about.html",
+      "destination": "/about",
+      "permanent": true
+    },
+    {
+      "source": "/contact.html",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/(.*)",
@@ -11,6 +50,19 @@
     }
   ],
   "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "index, follow"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        }
+      ]
+    },
     {
       "source": "/assets/(.*)",
       "headers": [

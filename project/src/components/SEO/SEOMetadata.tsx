@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { generateCanonicalUrl, getCanonicalPath } from '@/utils/urlValidator';
 
 interface SEOMetadataProps {
   title: string;
@@ -43,10 +44,10 @@ const SEOMetadata: React.FC<SEOMetadataProps> = ({
     ? title 
     : `${title} | The Orbit Tech - Starlink Installation DMV`;
   
-  // Construct canonical URL
+  // Construct canonical URL using our URL validator
   const canonicalUrl = canonicalPath 
-    ? `${baseUrl}${canonicalPath.startsWith('/') ? canonicalPath : '/' + canonicalPath}`
-    : baseUrl;
+    ? generateCanonicalUrl(canonicalPath)
+    : `${baseUrl}/`;
   
   // Construct full OG image URL
   const fullOgImage = ogImage.startsWith('http') 
