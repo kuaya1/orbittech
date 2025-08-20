@@ -1,11 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { motion, useMotionValue, useTransform } from 'framer-motion';
-import { Star, CheckCircle, MapPin, Zap } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
 
-// Precision Intersection Observer for orchestrated reveal
+// Consistent Intersection Observer Hook
 const useScrollReveal = (threshold = 0.1) => {
   const [isVisible, setIsVisible] = useState(false);
-  const elementRef = useRef<HTMLDivElement>(null);
+  const elementRef = useRef(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -30,250 +29,129 @@ const useScrollReveal = (threshold = 0.1) => {
     };
   }, [threshold]);
 
-  return [elementRef, isVisible] as const;
+  return [elementRef, isVisible];
 };
 
-// Type definitions
-interface TestimonialData {
-  id: string;
-  quote: string;
-  customerName: string;
-  location: string;
-  rating: number;
-  date: string;
-  speedBefore?: string;
-  speedAfter?: string;
-  installationType: 'starlink-only' | 'starlink-plus-wifi';
-  verifiedPurchase: boolean;
-  highlightMetric?: {
-    value: string;
-    label: string;
-  };
-}
-
-interface TestimonialCardProps {
-  testimonial: TestimonialData;
-  index: number;
-  featured?: boolean;
-}
-
-interface SpeedComparisonProps {
-  before: string;
-  after: string;
-}
-
-// Avatar gradient helper for visual variety
-const getAvatarGradient = (key: string) => {
-  const palettes = [
-    'from-blue-500 to-cyan-500',
-    'from-indigo-500 to-purple-500',
-    'from-violet-500 to-fuchsia-500',
-    'from-emerald-500 to-teal-500',
-    'from-amber-500 to-orange-500',
-    'from-rose-500 to-pink-500',
-  ];
-  const sum = key.split('').reduce((acc, ch) => acc + ch.charCodeAt(0), 0);
-  const idx = sum % palettes.length;
-  return `bg-gradient-to-br ${palettes[idx]}`;
-};
-
-// Star Rating Component
-const StarRating: React.FC<{ rating: number; showNumeric?: boolean }> = ({ rating, showNumeric = false }) => (
-  <div className="flex items-center gap-2" role="img" aria-label={`Rated ${rating} out of 5 stars`}>
-    <div className="flex items-center gap-0.5">
-      {[...Array(5)].map((_, i) => (
-        <Star 
-          key={i} 
-          className={`h-5 w-5 ${i < rating ? 'text-yellow-400 fill-current' : 'text-neutral-700'}`}
-          aria-hidden="true"
-        />
-      ))}
-    </div>
-    {showNumeric && (
-      <span className="text-sm font-medium text-neutral-400">{rating}.0</span>
-    )}
-  </div>
-);
-
-// Speed Comparison Component
-const SpeedComparison: React.FC<SpeedComparisonProps> = ({ before, after }) => (
-  <motion.div 
-    className="bg-black/50 border border-neutral-800 rounded-xl p-4 mt-4"
-    initial={{ opacity: 0, scale: 0.95 }}
-    whileInView={{ opacity: 1, scale: 1 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.5, delay: 0.2 }}
+// Star Icon Component (matching Services section style)
+const StarIcon = () => (
+  <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    fill="currentColor" 
+    viewBox="0 0 24 24" 
+    className="w-5 h-5"
   >
-    <div className="flex items-center justify-between">
-      <div className="text-center">
-        <div className="text-sm text-neutral-500 mb-1">Before</div>
-        <div className="text-xl font-bold text-red-400">{before}</div>
-      </div>
-      <div className="flex items-center px-4">
-        <div className="w-8 h-0.5 bg-gradient-to-r from-red-400 to-green-400"></div>
-        <Zap className="w-5 h-5 text-blue-400 mx-1" />
-        <div className="w-8 h-0.5 bg-gradient-to-r from-red-400 to-green-400"></div>
-      </div>
-      <div className="text-center">
-        <div className="text-sm text-neutral-500 mb-1">After</div>
-        <div className="text-xl font-bold text-green-400">{after}</div>
-      </div>
-    </div>
-  </motion.div>
+    <path d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+  </svg>
 );
 
-// Testimonial Card Component
-const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial, index, featured = false }) => {
+// Primary Testimonial Card (Featured)
+const PrimaryTestimonialCard = ({ testimonial }) => {
   return (
-    <motion.article
-      className="relative bg-gradient-to-b from-neutral-900/30 to-black/30 backdrop-blur-sm border border-neutral-800/50 rounded-2xl p-6 md:p-8 hover:border-neutral-700/50 transition-all duration-500 group"
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ 
-        duration: 0.7, 
-        delay: index * 0.08,
-        ease: "easeOut" as const
-      }}
-      aria-label={`Customer testimonial from ${testimonial.customerName}`}
-    >
-      {/* Subtle border glow */}
-      <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/5 via-transparent to-blue-500/5 blur-xl -z-10" />
-
-      {/* Content Container */}
-      <div className="relative">
-        {/* Star Rating */}
-        <div className="mb-4 md:mb-6">
-          <StarRating rating={testimonial.rating} showNumeric={featured} />
+    <div className="group bg-gradient-to-b from-neutral-900 to-black border border-neutral-800 rounded-3xl p-10 lg:p-12 relative overflow-hidden transition-all duration-500 hover:border-neutral-700">
+      {/* Subtle gradient overlay on hover */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      
+      <div className="relative z-10">
+        {/* Rating and Badge */}
+        <div className="flex items-start justify-between mb-8">
+          <div className="flex items-center gap-1">
+            {[...Array(5)].map((_, i) => (
+              <StarIcon key={i} />
+            ))}
+            <span className="ml-2 text-neutral-400">5.0</span>
+          </div>
+          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-500/10 text-blue-400 border border-blue-500/20">
+            Verified Customer
+          </span>
         </div>
 
         {/* Quote */}
-        <blockquote className="relative mb-5 md:mb-6">
-          <p className={`relative text-neutral-300 leading-relaxed font-light ${featured ? 'text-base md:text-lg' : 'text-sm md:text-base'}`}>
+        <blockquote className="mb-8">
+          <p className="text-xl lg:text-2xl text-white font-light leading-relaxed">
             "{testimonial.quote}"
           </p>
         </blockquote>
 
-        {/* Speed Comparison (if available) */}
-        {testimonial.speedBefore && testimonial.speedAfter && (
-          <SpeedComparison before={testimonial.speedBefore} after={testimonial.speedAfter} />
-        )}
-
-        {/* Highlight Metric (if available) */}
-        {testimonial.highlightMetric && (
-          <motion.div 
-            className="bg-blue-500/10 border border-blue-500/20 rounded-xl p-4 mt-4"
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          >
-            <div className="text-center">
-              <div className="text-2xl font-bold text-blue-400">{testimonial.highlightMetric.value}</div>
-              <div className="text-sm text-neutral-400 mt-1">{testimonial.highlightMetric.label}</div>
-            </div>
-          </motion.div>
-        )}
-
         {/* Customer Info */}
-        <div className="flex items-center justify-between mt-5 md:mt-6 pt-5 md:pt-6 border-t border-neutral-800/50">
-          <div className="flex items-center gap-4">
-            {/* Customer Avatar */}
-            <div className={`w-10 h-10 md:w-12 md:h-12 ${getAvatarGradient(testimonial.customerName)} rounded-full flex items-center justify-center text-white font-bold text-xs md:text-sm`}>
-              {testimonial.customerName.split(' ').map(n => n[0]).join('')}
-            </div>
-            
-            {/* Name and Location */}
-            <div>
-              <div className="font-light text-white">{testimonial.customerName}</div>
-              <div className="flex items-center gap-2 text-xs md:text-sm text-neutral-500">
-                <MapPin className="w-3 h-3" />
-                <span>{testimonial.location}</span>
-              </div>
-            </div>
+        <div className="flex items-center gap-4 mb-8">
+          <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full flex items-center justify-center text-white font-semibold">
+            {testimonial.customerName.split(' ').map(n => n[0]).join('')}
           </div>
-
-          {/* Verification Badge */}
-          {testimonial.verifiedPurchase && (
-            <div className="flex items-center gap-1 text-xs text-green-400 font-light">
-              <CheckCircle className="w-4 h-4" />
-              <span>Verified</span>
-            </div>
-          )}
+          <div>
+            <h4 className="text-white font-semibold">{testimonial.customerName}</h4>
+            <p className="text-neutral-400 text-sm">{testimonial.location}</p>
+          </div>
         </div>
 
-        {/* Date */}
-        <div className="text-xs text-neutral-600 mt-4 font-light">
-          Installed {testimonial.date}
+        {/* Trust Indicators */}
+        <div className="flex flex-wrap gap-6 pt-8 border-t border-neutral-800">
+          <div className="flex items-center text-sm text-neutral-400">
+            <svg className="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+            </svg>
+            Google Review
+          </div>
+          <div className="flex items-center text-sm text-neutral-400">
+            <svg className="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+            </svg>
+            {testimonial.date}
+          </div>
         </div>
       </div>
-    </motion.article>
+    </div>
   );
 };
 
-// Main Testimonials Component
-const Testimonials: React.FC = () => {
-  const [containerRef, isVisible] = useScrollReveal(0.15);
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
+// Secondary Testimonial Card
+const SecondaryTestimonialCard = ({ testimonial }) => {
+  return (
+    <div className="group bg-black/50 border border-neutral-800 rounded-2xl p-8 h-full flex flex-col transition-all duration-300 hover:bg-neutral-900/50 hover:border-neutral-700">
+      <div className="flex-grow">
+        {/* Rating */}
+        <div className="flex items-center gap-1 mb-4">
+          {[...Array(5)].map((_, i) => (
+            <StarIcon key={i} />
+          ))}
+        </div>
 
-  // Subtle parallax effect for premium feel
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    mouseX.set(x);
-    mouseY.set(y);
-  };
+        {/* Quote */}
+        <blockquote className="mb-6">
+          <p className="text-neutral-300 leading-relaxed">
+            "{testimonial.quote}"
+          </p>
+        </blockquote>
+      </div>
 
-  // Transform mouse position for gradient tracking
-  const gradientX = useTransform(mouseX, [0, 1000], [0, 100]);
-  const gradientY = useTransform(mouseY, [0, 600], [0, 100]);
+      {/* Customer Info */}
+      <div className="mt-auto pt-6 border-t border-neutral-800">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 bg-gradient-to-br from-violet-500 to-fuchsia-500 rounded-full flex items-center justify-center text-white text-sm font-semibold">
+            {testimonial.customerName.split(' ').map(n => n[0]).join('')}
+          </div>
+          <div>
+            <h5 className="text-white text-sm font-semibold">{testimonial.customerName}</h5>
+            <p className="text-neutral-500 text-xs">{testimonial.location}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
-  // Live Google Business Reviews - Authentic customer feedback
-  const testimonials: TestimonialData[] = [
-    {
-      id: 'google-review-dave-wiseman',
-      quote: "Fantastic job with a very challenging roof and receiver location. Eric provided options and worked with us to get the receiver and hiding associated wires and router in the perfect place for us -- all with an attention to detail",
-      customerName: "Dave Wiseman",
-      location: "Local Guide • 27 reviews",
-      rating: 5,
-      date: "January 2025",
-      installationType: 'starlink-only',
-      verifiedPurchase: true
-    },
-    {
-      id: 'google-review-courtney-g',
-      quote: "Eric went above and beyond to provide a great installation on my (difficult) roof in Annapolis. Exceeded my expectations and was very professional through the whole process and answered all my questions. Highly recommend!",
-      customerName: "Courtney G",
-      location: "Annapolis, MD",
-      rating: 5,
-      date: "January 2025",
-      installationType: 'starlink-only',
-      verifiedPurchase: true
-    },
-    {
-      id: 'google-review-peter-baughan',
-      quote: "We called Orbit to ask about getting connectivity - they were out the next day after setting up exactly what we needed in a Best Buy shopping cart to make equipment purchasing super easy. Orbit expertly set up two systems for us - which work flawlessly - while hardwiring and fixing our Sonos system to boot. Eric is an expert! Goes the extra mile - and at a very reasonable price. Highly recommended!",
-      customerName: "Peter Baughan",
-      location: "DMV Area",
-      rating: 5,
-      date: "January 2025",
-      installationType: 'starlink-plus-wifi',
-      verifiedPurchase: true
-    }
-  ];
+const Testimonials = () => {
+  const [headerRef, headerVisible] = useScrollReveal(0.2);
+  const [primaryRef, primaryVisible] = useScrollReveal(0.1);
+  const [secondaryRef, secondaryVisible] = useScrollReveal(0.1);
 
-  // Orchestrated entrance animations
+  // Animation variants (matching Services section)
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        duration: 0.8,
-        ease: "easeOut" as const,
-        staggerChildren: 0.1,
-        delayChildren: 0.2
+        staggerChildren: 0.15,
+        delayChildren: 0.1
       }
     }
   };
@@ -281,168 +159,151 @@ const Testimonials: React.FC = () => {
   const itemVariants = {
     hidden: { 
       opacity: 0, 
-      y: 30,
-      scale: 0.98
+      y: 40
     },
     visible: {
       opacity: 1,
       y: 0,
-      scale: 1,
       transition: {
-        duration: 0.7,
-        ease: "easeOut" as const
+        duration: 0.6
       }
     }
   };
 
-  const lineVariants = {
-    hidden: { scaleX: 0, opacity: 0 },
-    visible: {
-      scaleX: 1,
-      opacity: 1,
-      transition: {
-        duration: 1.2,
-        ease: "easeOut" as const,
-        delay: 0.5
-      }
-    }
+  // Testimonial data
+  const primaryTestimonial = {
+    id: 'google-review-peter-baughan',
+    quote: "We called Orbit to ask about getting connectivity - they were out the next day after setting up exactly what we needed in a Best Buy shopping cart to make equipment purchasing super easy. Orbit expertly set up two systems for us - which work flawlessly - while hardwiring and fixing our Sonos system to boot. Eric is an expert! Goes the extra mile - and at a very reasonable price. Highly recommended!",
+    customerName: "Peter Baughan",
+    location: "DMV Area • Local Guide",
+    date: "January 2025"
   };
+
+  const secondaryTestimonials = [
+    {
+      id: 'google-review-dave-wiseman',
+      quote: "Fantastic job with a very challenging roof and receiver location. Eric provided options and worked with us to get the receiver and hiding associated wires and router in the perfect place for us -- all with an attention to detail",
+      customerName: "Dave Wiseman",
+      location: "Local Guide • 27 reviews",
+      date: "January 2025"
+    },
+    {
+      id: 'google-review-courtney-g',
+      quote: "Eric went above and beyond to provide a great installation on my (difficult) roof in Annapolis. Exceeded my expectations and was very professional through the whole process and answered all my questions. Highly recommend!",
+      customerName: "Courtney G",
+      location: "Annapolis, MD",
+      date: "January 2025"
+    }
+  ];
 
   return (
-    <>
-      <motion.section 
-        id="testimonials"
-        ref={containerRef}
-        className="relative py-32 lg:py-40 overflow-hidden isolate"
-        onMouseMove={handleMouseMove}
-        initial="hidden"
-        animate={isVisible ? "visible" : "hidden"}
-        variants={containerVariants}
-        aria-labelledby="testimonials-heading"
-      >
-        {/* Layered background system for depth */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-neutral-950 to-black" />
-        
-        {/* Spotlight effect - tracks mouse subtly */}
+    <motion.section
+      id="testimonials"
+      className="py-24 sm:py-32 bg-black relative overflow-hidden"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.1 }}
+      variants={containerVariants}
+    >
+      {/* Background gradient effect (matching Services) */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black via-neutral-950 to-black" />
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Section Header */}
         <motion.div 
-          className="absolute inset-0 opacity-20"
-          style={{
-            background: useTransform(
-              [gradientX, gradientY],
-              ([x, y]) => `radial-gradient(circle 800px at ${x}% ${y}%, rgba(59, 130, 246, 0.06), transparent 60%)`
-            )
-          }}
-        />
-        
-        {/* Grid pattern overlay for technical authority */}
-        <div 
-          className="absolute inset-0 opacity-[0.015]"
-          style={{
-            backgroundImage: `linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px)`,
-            backgroundSize: '100px 100px'
-          }}
-        />
-
-        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Accent line */}
-          <motion.div 
-            variants={lineVariants}
-            className="w-24 h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent mx-auto mb-12 origin-center"
-          />
-
-          {/* Section Header - Minimal and refined */}
-          <motion.div 
-            className="text-center mb-20"
-            variants={itemVariants}
-          >
-            <h2 
-              id="testimonials-heading"
-              className="text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight leading-[1.1] mb-6"
-            >
-              <span className="text-white">The Trusted </span>
-              <span className="text-white font-semibold">Starlink Installer</span>
-              <span className="text-white"> for the DMV</span>
-            </h2>
-            <p className="text-lg text-neutral-400 max-w-2xl mx-auto font-light">
-              Join hundreds of satisfied customers who've transformed their internet experience with our professional installation services.
-            </p>
-            
-            {/* Aggregate Rating Display */}
-            <motion.div 
-              className="flex items-center justify-center gap-4 mt-8"
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3, duration: 0.5 }}
-            >
-              <StarRating rating={5} />
-              <span className="text-white font-light">5.0 Average</span>
-              <span className="text-neutral-600">•</span>
-              <span className="text-neutral-500 font-light">100+ Installations</span>
-            </motion.div>
-          </motion.div>
-
-          {/* Testimonials Container - Clean and sophisticated */}
-          <motion.div 
-            className="relative mb-16"
-            variants={itemVariants}
-          >
-            {/* Subtle border glow */}
-            <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/5 via-transparent to-blue-500/5 blur-xl -z-10" />
-            
-            {/* Testimonials Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {testimonials.map((testimonial, index) => (
-                <TestimonialCard
-                  key={testimonial.id}
-                  testimonial={testimonial}
-                  index={index}
-                  featured={index === 0}
-                />
-              ))}
+          ref={headerRef}
+          className="text-center max-w-3xl mx-auto mb-20"
+          variants={itemVariants}
+        >
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
+            Trusted by Hundreds
+            <span className="block text-blue-400 mt-2">Across the DMV</span>
+          </h2>
+          <p className="mt-6 text-lg leading-8 text-neutral-300">
+            Join our growing community of satisfied customers who've transformed their internet experience with professional Starlink installation.
+          </p>
+          
+          {/* Stats Bar */}
+          <div className="flex items-center justify-center gap-8 mt-8">
+            <div className="text-center">
+              <div className="text-2xl font-bold text-white">100+</div>
+              <div className="text-sm text-neutral-400">Installations</div>
             </div>
-          </motion.div>
+            <div className="w-px h-8 bg-neutral-700" />
+            <div className="text-center">
+              <div className="text-2xl font-bold text-white">5.0</div>
+              <div className="text-sm text-neutral-400">Google Rating</div>
+            </div>
+            <div className="w-px h-8 bg-neutral-700" />
+            <div className="text-center">
+              <div className="text-2xl font-bold text-white">24hr</div>
+              <div className="text-sm text-neutral-400">Response Time</div>
+            </div>
+          </div>
+        </motion.div>
 
-          {/* Trust Indicators */}
-          <motion.div 
-            className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16"
-            variants={itemVariants}
-          >
-            {[
-              { value: "100+", label: "Installations Completed" },
-              { value: "5.0", label: "Google Rating" },
-              { value: "24hr", label: "Response Time" },
-              { value: "90 Day", label: "Warranty" }
-            ].map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-3xl font-light text-blue-400">{stat.value}</div>
-                <div className="text-sm text-neutral-500 mt-1 font-light">{stat.label}</div>
-              </div>
+        {/* Primary Testimonial - Full Width Feature */}
+        <motion.div 
+          ref={primaryRef}
+          className="mb-16"
+          variants={itemVariants}
+        >
+          <PrimaryTestimonialCard testimonial={primaryTestimonial} />
+        </motion.div>
+
+        {/* Secondary Testimonials - Two Column Grid */}
+        <motion.div 
+          ref={secondaryRef}
+          variants={containerVariants}
+        >
+          <div className="mb-12">
+            <h3 className="text-2xl font-bold text-white text-center mb-4">
+              More Happy Customers
+            </h3>
+            <p className="text-center text-neutral-400 max-w-2xl mx-auto">
+              Real reviews from verified Google Business listings
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {secondaryTestimonials.map((testimonial, index) => (
+              <motion.div
+                key={testimonial.id}
+                variants={itemVariants}
+                whileHover={{ 
+                  scale: 1.02,
+                  transition: { type: "spring", stiffness: 300, damping: 20 }
+                }}
+              >
+                <SecondaryTestimonialCard testimonial={testimonial} />
+              </motion.div>
             ))}
-          </motion.div>
+          </div>
+        </motion.div>
 
-          {/* Bottom accent line */}
-          <motion.div 
-            variants={lineVariants}
-            className="w-24 h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent mx-auto mt-16 origin-center"
-          />
-
-          {/* Subtle note */}
-          <motion.p 
-            variants={itemVariants}
-            className="text-center text-xs text-neutral-500 mt-8 font-light tracking-wide"
-          >
-            Reviews sourced directly from Google Business listings.
-          </motion.p>
-        </div>
-
-        {/* Edge vignette for focus */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-30" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black opacity-15" />
-        </div>
-      </motion.section>
-    </>
+        {/* CTA Section */}
+        <motion.div 
+          className="text-center mt-16"
+          variants={itemVariants}
+        >
+          <p className="text-neutral-400 mb-6">Ready to join our satisfied customers?</p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="#contact"
+              className="inline-flex items-center justify-center bg-blue-500 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:bg-blue-600 hover:shadow-lg hover:shadow-blue-500/20"
+            >
+              Get Your Free Quote
+            </a>
+            <a
+              href="tel:+15719996915"
+              className="inline-flex items-center justify-center bg-white/5 border border-white/10 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:bg-white/10"
+            >
+              Call (571) 999-6915
+            </a>
+          </div>
+        </motion.div>
+      </div>
+    </motion.section>
   );
 };
 
